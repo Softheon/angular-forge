@@ -1,0 +1,63 @@
+<form [formGroup]="form" class="content">
+    <div fxLayout="row" fxLayoutGap="10px">
+        <div sws-form--primary full-width>
+            <input sws-form__input type="text" name="oauthToken" id="oauthToken"
+                onkeyup="this.setAttribute('value', this.value);" formControlName="oauthToken" required>
+            <label sws-form__label for="oauthToken">OAuth Token</label>
+            <div sws-form__bar></div>
+            <div *ngIf="oauthToken.invalid && (oauthToken.dirty || oauthToken.touched)">
+                <div *ngIf="oauthToken.errors.required">
+                    <span sws-label--danger>OAuth token is required.</span>
+                </div>
+            </div>
+        </div>
+        <div sws-form--primary full-width>
+            <input sws-form__input type="text" name="processStudioApiUrl" id="processStudioApiUrl"
+                onclick="this.setAttribute('value', this.value);" formControlName="processStudioApiUrl" required>
+            <label sws-form__label for="processStudioApiUrl">Process Studio API URL</label>
+            <div *ngIf="processStudioApiUrl.invalid && (processStudioApiUrl.dirty || processStudioApiUrl.touched)">
+                <div *ngIf="processStudioApiUrl.errors.required">
+                    <span sws-label--danger>Process Studio API URL is required.</span>
+                </div>
+            </div>
+            <div sws-form__bar></div>
+        </div>
+        <div sws-form--primary full-width>
+            <input sws-form__input type="text" name="accountName" id="accountName"
+                onclick="this.setAttribute('value', this.value);" formControlName="accountName" required>
+            <label sws-form__label for="accountName">Account Name</label>
+            <div *ngIf="accountName.invalid && (accountName.dirty || accountName.touched)">
+                <div *ngIf="accountName.errors.required">
+                    <span sws-label--danger>Account name is required.</span>
+                </div>
+            </div>
+            <div sws-form__bar></div>
+        </div>
+        <div sws-form--primary full-width>
+            <input sws-form__input type="text" name="entityTemplateName" id="entityTemplateName"
+                onclick="this.setAttribute('value', this.value);" formControlName="entityTemplateName" required>
+            <label sws-form__label for="entityTemplateName">Entity Template Name</label>
+            <div *ngIf="entityTemplateName.invalid && (entityTemplateName.dirty || entityTemplateName.touched)">
+                <div *ngIf="entityTemplateName.errors.required">
+                    <span sws-label--danger>Entity template name is required.</span>
+                </div>
+            </div>
+            <div sws-form__bar></div>
+        </div>
+    </div>
+    <button m-t-30 sws-button--primary (click)="renderForm()">Update</button>
+</form>
+<div class="content">
+    <process-studio-form-renderer-lib *ngIf="formRendererConfig" [formRendererConfig]="formRendererConfig"
+        (finishedRendering)="onFinishedRendering($event)" (formSubmitted)="formSubmitted($event)">
+    </process-studio-form-renderer-lib>
+</div>
+<div class="modal-light" *ngIf="!didFinishRendering">
+    <div sws-spinner-container-full>
+        <div sws-spinner--lg></div>
+        <div sws-spinner__content>
+            <i class="fab fa-telegram-plane fa-3x" text-primary></i>
+            <p>Processing...</p>
+        </div>
+    </div>
+</div>

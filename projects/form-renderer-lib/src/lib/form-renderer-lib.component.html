@@ -1,0 +1,46 @@
+<form [formGroup]="entityForm">
+    <div *ngIf="didFinishRendering">
+        <h3>{{entityTemplateModel.name}}</h3>
+        <div sws-form full-width>
+            <input sws-form__input type="text" name="entityName" id="entityName"
+                onchange="this.setAttribute('value', this.value);" formControlName="entityName" required>
+            <label sws-form__label for="entityName">Name</label>
+            <div *ngIf="entityName.invalid && (entityName.dirty || entityName.touched)">
+                <div *ngIf="entityName.errors.required">
+                    <span sws-label--danger>Entity name is required.</span>
+                </div>
+            </div>
+            <div sws-form__bar></div>
+        </div>
+        <div *ngFor="let profile of entityTemplateModel?.profiles">
+            <h4>{{profile.name}}</h4>
+            <div *ngFor="let field of profile.fields">
+                <div *ngIf="field.type === 'String'" sws-form full-width>
+                    <input sws-form__input type="text" [name]="field.name" [id]="field.name"
+                        onchange="this.setAttribute('value', this.value);">
+                    <label sws-form__label [for]="field.name">{{field.name}}</label>
+                    <div sws-form__bar></div>
+                </div>
+                <div *ngIf="field.type === 'Integer'" sws-form full-width>
+                    <input sws-form__input Integer="true" [name]="field.name" [id]="field.name"
+                        onchange="this.setAttribute('value', this.value);">
+                    <label sws-form__label [for]="field.name">{{field.name}}</label>
+                    <div sws-form__bar></div>
+                </div>
+                <div *ngIf="field.type === 'DateTime'" sws-form full-width>
+                    <input sws-form__input type="datetime-local" [name]="field.name" [id]="field.name"
+                        onchange="this.setAttribute('value', this.value);">
+                    <label class="label-prepopulated" sws-form__label [for]="field.name">{{field.name}}</label>
+                    <div sws-form__bar></div>
+                </div>
+                <div *ngIf="field.type === 'Double'" sws-form full-width>
+                    <input sws-form__input Float="true" [name]="field.name" [id]="field.name"
+                        onchange="this.setAttribute('value', this.value);">
+                    <label sws-form__label [for]="field.name">{{field.name}}</label>
+                    <div sws-form__bar></div>
+                </div>
+            </div>
+        </div>
+        <button sws-button--primary (click)="submit()">Submit</button>
+    </div>
+</form>
