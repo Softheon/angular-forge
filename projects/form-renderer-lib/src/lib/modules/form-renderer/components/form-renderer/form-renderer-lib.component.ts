@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { EntityTemplateModel } from './models/entityTemplateModel';
-import { FormRendererConfig } from './config/form-renderer-lib-config';
+import { EntityTemplateModel } from '../../../../shared/models/entityTemplateModel';
+import { FormRendererConfig } from '../../../../config/form-renderer-lib-config';
+import { ProcessStudioService } from '../../../../core/services/process-studio.service';
 
 @Component({
   selector: 'process-studio-form-renderer-lib',
@@ -11,7 +11,6 @@ import { FormRendererConfig } from './config/form-renderer-lib-config';
   styleUrls: ['./form-renderer-lib.component.scss']
 })
 export class FormRendererLibComponent implements OnInit, OnChanges {
-
   /**
    * The configuration for the form rendering library
    */
@@ -49,12 +48,11 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
 
   /**
    * Constructs the component
-   * @param http The HTTP Client
    * @param fb The form builder
    */
   constructor(
-    private http: HttpClient,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private processStudioService: ProcessStudioService) { }
 
   /**
    * Initializes the component
@@ -78,11 +76,12 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
    * Renders the form
    */
   public async renderForm(): Promise<void> {
+    this.processStudioService.formRendererConfig = this.formRendererConfig;
     this.validateInputs();
 
     this.didFinishRendering = false;
     this.finishedRendering.emit(false);
-    this.entityTemplateModel = await this.GetEntityTemplate();
+    this.entityTemplateModel = await this.processStudioService.getEntityTemplate();
     this.didFinishRendering = true;
     this.finishedRendering.emit(true);
   }
@@ -102,7 +101,7 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
 
     // Create the submission form and submit it
     const submissionForm = this.createSubmissionForm();
-    const res = await this.CreateEntity(submissionForm);
+    const res = await this.processStudioService.createEntity(submissionForm);
 
     // Notify the parent compnent the form has been submitted
     this.didFinishRendering = true;
@@ -161,64 +160,6 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
     if (!this.formRendererConfig.oauthToken) {
       throw new Error('OAuth Token is required.');
     }
-  }
-
-  /**
-   * Calls the Process Studio API to retrieve the entity template model for the entity template specified by the parent component
-   */
-  private async GetEntityTemplate(): Promise<EntityTemplateModel> {
-    const headers = this.getHeader();
-    const fullUri = `${this.formRendererConfig.processStudioApiUrl}/v1/entityTemplate/${this.formRendererConfig.accountName}/${this.formRendererConfig.entityTemplateName}`;
-
-    return this.http.get<EntityTemplateModel>(fullUri, { headers: headers })
-      .toPromise()
-      .then(value => {
-        return value as EntityTemplateModel;
-      }).catch(error => {
-        return Promise.reject(error);
-      });
-  }
-
-  /**
-   * Calls the Process Studio API to create a new entity
-   * @param request The entity to create
-   */
-  private async CreateEntity(request: any): Promise<any> {
-    const headers = this.getHeader();
-    const fullUri = `${this.formRendererConfig.processStudioApiUrl}/v1/${this.formRendererConfig.accountName}/${this.formRendererConfig.entityTemplateName}`;
-
-    return this.http.post<any>(fullUri, request, { headers: headers })
-      .toPromise()
-      .then(value => {
-        return value;
-      }).catch(error => {
-        return Promise.reject(error);
-      });
-  }
-
-  /**
-   * Crates a new HTTP Headers which includes the OAuth Token
-   */
-  private getHeader(): HttpHeaders {
-    return new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.formRendererConfig.oauthToken}` });
-  }
-
-  /**
-   * Pads number with at least one decimal point.
-   * @param num The number to pad
-   */
-  private addZeroes(num: string): number {
-    // Convert input string to a number and store as a variable.
-    let value = Number(num);
-    // Split the input string into two arrays containing integers/decimals
-    const res = num.split('.');
-    // If there is no decimal point or only one decimal place found.
-    if (res.length === 1 || res[1].length < 3) {
-      // Set the number to two decimal places
-      value = +value.toFixed(1);
-    }
-    // Return updated or original number.
-    return value;
   }
 
   /**

@@ -2,6 +2,7 @@
  * Public API Surface of form-renderer-lib
  */
 
-export * from './lib/form-renderer-lib.component';
-export * from './lib/form-renderer-lib.module';
+export * from './lib/core/services/process-studio.service';
+export * from './lib/modules/form-renderer/components/form-renderer/form-renderer-lib.component';
+export * from './lib/modules/form-renderer/form-renderer-lib.module';
 export * from './lib/config/form-renderer-lib-config';
