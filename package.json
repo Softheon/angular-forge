@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "start": "ng serve form-renderer-tester",
+    "build": "ng build form-renderer-tester --prod",
+    "build-lib": "ng build form-renderer-lib && npm run copy",
+    "test": "ng test form-renderer-tester",
+    "test-lib": "ng test form-renderer-lib",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "copy": "copy README.md dist\\form-renderer-lib && copy LICENSE dist\\form-renderer-lib"
   },
   "private": true,
   "dependencies": {

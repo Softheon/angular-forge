@@ -14,7 +14,7 @@ You can easily render a form within your Angular 7 application by referencing yo
 
 First you will need to install it as a dependency within your project.
 
-`npm install --save angular-process-studio`
+`npm install --save @softheon/angular-process-studio`
 
 You can now include the module in your Angular application as follow.
 
