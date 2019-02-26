@@ -92,7 +92,7 @@ describe('FormRendererLibComponent', () => {
     component.formRendererConfig = {
       processStudioApiUrl: null,
       accountName: 'TEST',
-      entityTemplateName: 'TEST',
+      formName: 'TEST',
       oauthToken: 'TEST'
     };
 
@@ -106,7 +106,7 @@ describe('FormRendererLibComponent', () => {
     component.formRendererConfig = {
       processStudioApiUrl: 'TEST',
       accountName: null,
-      entityTemplateName: 'TEST',
+      formName: 'TEST',
       oauthToken: 'TEST'
     };
 
@@ -120,7 +120,7 @@ describe('FormRendererLibComponent', () => {
     component.formRendererConfig = {
       processStudioApiUrl: 'TEST',
       accountName: 'TEST',
-      entityTemplateName: null,
+      formName: null,
       oauthToken: 'TEST'
     };
 
@@ -134,7 +134,7 @@ describe('FormRendererLibComponent', () => {
     component.formRendererConfig = {
       processStudioApiUrl: 'TEST',
       accountName: 'TEST',
-      entityTemplateName: 'TEST',
+      formName: 'TEST',
       oauthToken: null
     };
 

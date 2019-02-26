@@ -6,7 +6,7 @@ import { FormRendererConfig } from '../../../../config/form-renderer-lib-config'
 import { ProcessStudioService } from '../../../../core/services/process-studio.service';
 
 @Component({
-  selector: 'process-studio-form-renderer-lib',
+  selector: 'process-studio',
   templateUrl: './form-renderer-lib.component.html',
   styleUrls: ['./form-renderer-lib.component.scss']
 })
@@ -153,7 +153,7 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
       throw new Error('Account Name is required.');
     }
 
-    if (!this.formRendererConfig.entityTemplateName) {
+    if (!this.formRendererConfig.formName) {
       throw new Error('Entity Template Name is required.');
     }
 

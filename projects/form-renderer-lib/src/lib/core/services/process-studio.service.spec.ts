@@ -30,7 +30,7 @@ describe('ProcessStudioService', () => {
     });
 
     it('#getEntityTemplate should get entity templates', (done) => {
-        const url = `${processStudioService.formRendererConfig.processStudioApiUrl}/v1/entityTemplate/${processStudioService.formRendererConfig.accountName}/${processStudioService.formRendererConfig.entityTemplateName}`;
+        const url = `${processStudioService.formRendererConfig.processStudioApiUrl}/v1/entityTemplate/${processStudioService.formRendererConfig.accountName}/${processStudioService.formRendererConfig.formName}`;
 
         processStudioService.getEntityTemplate().then((res: any) => {
             expect(res).toEqual(getEntityTemplateResMock);
@@ -44,7 +44,7 @@ describe('ProcessStudioService', () => {
     });
 
     it('#createEntity should create entity', (done) => {
-        const url = `${processStudioService.formRendererConfig.processStudioApiUrl}/v1/${processStudioService.formRendererConfig.accountName}/${processStudioService.formRendererConfig.entityTemplateName}`;
+        const url = `${processStudioService.formRendererConfig.processStudioApiUrl}/v1/${processStudioService.formRendererConfig.accountName}/${processStudioService.formRendererConfig.formName}`;
 
         processStudioService.createEntity(createEntityResMock).then((res: any) => {
             expect(res).toEqual(createEntityResMock);

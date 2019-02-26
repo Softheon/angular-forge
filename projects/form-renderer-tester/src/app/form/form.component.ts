@@ -34,7 +34,7 @@ export class FormComponent implements OnInit {
     /**
      * The name of the entity template to generate a form for
      */
-    public get entityTemplateName() { return this.form.get('entityTemplateName'); }
+    public get formName() { return this.form.get('formName'); }
 
     /**
      * The configuration for the form renderer
@@ -62,7 +62,7 @@ export class FormComponent implements OnInit {
             oauthToken: ['', Validators.required],
             processStudioApiUrl: ['https://localhost/ProcessStudio', Validators.required],
             accountName: ['Process Studio', Validators.required],
-            entityTemplateName: ['Airplane', Validators.required]
+            formName: ['Airplane', Validators.required]
         });
     }
 
@@ -81,7 +81,7 @@ export class FormComponent implements OnInit {
             oauthToken: this.oauthToken.value.trim(),
             processStudioApiUrl: this.processStudioApiUrl.value.trim(),
             accountName: this.accountName.value.trim(),
-            entityTemplateName: this.entityTemplateName.value.trim()
+            formName: this.formName.value.trim()
         };
     }
 

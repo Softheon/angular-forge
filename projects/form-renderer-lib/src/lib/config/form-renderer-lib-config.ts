@@ -10,9 +10,9 @@ export interface FormRendererConfig {
     accountName: string;
 
     /**
-     * The entity template
+     * The form name
      */
-    entityTemplateName: string;
+    formName: string;
 
     /**
      * The OAuth Token
