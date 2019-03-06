@@ -1,7 +1,7 @@
 import { getEntityTemplateResMock, createEntityResMock } from './httpMocks';
 import { EntityTemplateModel } from '../../shared/models/entityTemplateModel';
 
-export const processStudioServiceMock = {
+export const forgeServiceMock = {
     async getEntityTemplate(): Promise<EntityTemplateModel> {
         return Promise.resolve(getEntityTemplateResMock);
     },

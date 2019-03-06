@@ -7,7 +7,7 @@ import { FormRendererConfig } from '../../config/form-renderer-lib-config';
 @Injectable({
     providedIn: 'root'
 })
-export class ProcessStudioService {
+export class ForgeService {
     public formRendererConfig: FormRendererConfig;
 
     /**
@@ -20,7 +20,7 @@ export class ProcessStudioService {
      * Gets the entity template
      */
     public async getEntityTemplate(): Promise<EntityTemplateModel> {
-        const url = `${this.formRendererConfig.processStudioApiUrl}/v1/entityTemplate/${this.formRendererConfig.accountName}/${this.formRendererConfig.formName}`;
+        const url = `${this.formRendererConfig.forgeApiUrl}/v1/entityTemplate/${this.formRendererConfig.accountName}/${this.formRendererConfig.formName}`;
         const headers = this.getHeader(this.formRendererConfig.oauthToken);
 
         return this.http.get<EntityTemplateModel>(url, { headers: headers })
@@ -37,7 +37,7 @@ export class ProcessStudioService {
      * @param request Payload
      */
     public async createEntity(request: any): Promise<any> {
-        const url = `${this.formRendererConfig.processStudioApiUrl}/v1/${this.formRendererConfig.accountName}/${this.formRendererConfig.formName}`;
+        const url = `${this.formRendererConfig.forgeApiUrl}/v1/${this.formRendererConfig.accountName}/${this.formRendererConfig.formName}`;
         const headers = this.getHeader(this.formRendererConfig.oauthToken);
 
         return this.http.post<any>(url, request, { headers: headers })

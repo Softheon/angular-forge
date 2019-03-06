@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { FormRendererLibModule } from 'form-renderer-lib';
+
 import { FormComponent } from './form.component';
 
 describe('FormComponent', () => {
@@ -11,19 +13,22 @@ describe('FormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormComponent ],
+      declarations: [
+        FormComponent
+      ],
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FormRendererLibModule
       ],
       providers: [
-        { provide: Router, useValue: { } }
+        { provide: Router, useValue: {} }
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

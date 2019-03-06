@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "process-studio",
+      "forge",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "process-studio",
+      "forge",
       "kebab-case"
     ]
   }

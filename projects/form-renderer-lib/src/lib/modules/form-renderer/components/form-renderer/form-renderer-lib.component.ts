@@ -3,10 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { EntityTemplateModel } from '../../../../shared/models/entityTemplateModel';
 import { FormRendererConfig } from '../../../../config/form-renderer-lib-config';
-import { ProcessStudioService } from '../../../../core/services/process-studio.service';
+import { ForgeService } from '../../../../core/services/forge.service';
 
 @Component({
-  selector: 'process-studio',
+  selector: 'forge',
   templateUrl: './form-renderer-lib.component.html',
   styleUrls: ['./form-renderer-lib.component.scss']
 })
@@ -52,7 +52,7 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
    */
   constructor(
     private fb: FormBuilder,
-    private processStudioService: ProcessStudioService) { }
+    private forgeService: ForgeService) { }
 
   /**
    * Initializes the component
@@ -76,12 +76,12 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
    * Renders the form
    */
   public async renderForm(): Promise<void> {
-    this.processStudioService.formRendererConfig = this.formRendererConfig;
+    this.forgeService.formRendererConfig = this.formRendererConfig;
     this.validateInputs();
 
     this.didFinishRendering = false;
     this.finishedRendering.emit(false);
-    this.entityTemplateModel = await this.processStudioService.getEntityTemplate();
+    this.entityTemplateModel = await this.forgeService.getEntityTemplate();
     this.didFinishRendering = true;
     this.finishedRendering.emit(true);
   }
@@ -101,7 +101,7 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
 
     // Create the submission form and submit it
     const submissionForm = this.createSubmissionForm();
-    const res = await this.processStudioService.createEntity(submissionForm);
+    const res = await this.forgeService.createEntity(submissionForm);
 
     // Notify the parent compnent the form has been submitted
     this.didFinishRendering = true;
@@ -145,8 +145,8 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
    * Validates all required fields to render the form have been passed by the parent component
    */
   private validateInputs(): void {
-    if (!this.formRendererConfig.processStudioApiUrl) {
-      throw new Error('Process Studio API URL is required.');
+    if (!this.formRendererConfig.forgeApiUrl) {
+      throw new Error('Softheon Forge API URL is required.');
     }
 
     if (!this.formRendererConfig.accountName) {

@@ -12,12 +12,12 @@
             </div>
         </div>
         <div sws-form--primary full-width>
-            <input sws-form__input type="text" name="processStudioApiUrl" id="processStudioApiUrl"
-                onclick="this.setAttribute('value', this.value);" formControlName="processStudioApiUrl" required>
-            <label sws-form__label for="processStudioApiUrl">Process Studio API URL</label>
-            <div *ngIf="processStudioApiUrl.invalid && (processStudioApiUrl.dirty || processStudioApiUrl.touched)">
-                <div *ngIf="processStudioApiUrl.errors.required">
-                    <span sws-label--danger>Process Studio API URL is required.</span>
+            <input sws-form__input type="text" name="forgeApiUrl" id="forgeApiUrl"
+                onclick="this.setAttribute('value', this.value);" formControlName="forgeApiUrl" required>
+            <label sws-form__label for="forgeApiUrl">Softheon Forge API URL</label>
+            <div *ngIf="forgeApiUrl.invalid && (forgeApiUrl.dirty || forgeApiUrl.touched)">
+                <div *ngIf="forgeApiUrl.errors.required">
+                    <span sws-label--danger>Softheon Forge API URL is required.</span>
                 </div>
             </div>
             <div sws-form__bar></div>
@@ -48,9 +48,9 @@
     <button m-t-30 sws-button--primary (click)="renderForm()">Update</button>
 </form>
 <div class="content">
-    <process-studio *ngIf="formRendererConfig" [formRendererConfig]="formRendererConfig"
+    <forge *ngIf="formRendererConfig" [formRendererConfig]="formRendererConfig"
         (finishedRendering)="onFinishedRendering($event)" (formSubmitted)="formSubmitted($event)">
-    </process-studio>
+    </forge>
 </div>
 <div class="modal-light" *ngIf="!didFinishRendering">
     <div sws-spinner-container-full>

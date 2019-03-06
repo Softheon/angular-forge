@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { ProcessStudioService } from './process-studio.service';
+import { ForgeService } from './forge.service';
 
 import { getEntityTemplateResMock, createEntityResMock } from '../mocks/httpMocks';
 import { formRendererConfigMock } from '../mocks/configMocks';
 
-describe('ProcessStudioService', () => {
-    let processStudioService: ProcessStudioService;
+describe('ForgeService', () => {
+    let forgeService: ForgeService;
     let httpMock: HttpTestingController;
 
     beforeEach(() => {
@@ -16,23 +16,23 @@ describe('ProcessStudioService', () => {
                 HttpClientTestingModule
             ],
             providers: [
-                ProcessStudioService
+                ForgeService
             ]
         });
 
-        processStudioService = TestBed.get(ProcessStudioService);
+        forgeService = TestBed.get(ForgeService);
         httpMock = TestBed.get(HttpTestingController);
-        processStudioService.formRendererConfig = formRendererConfigMock;
+        forgeService.formRendererConfig = formRendererConfigMock;
     });
 
     it('should be created', () => {
-        expect(processStudioService).toBeTruthy();
+        expect(forgeService).toBeTruthy();
     });
 
     it('#getEntityTemplate should get entity templates', (done) => {
-        const url = `${processStudioService.formRendererConfig.processStudioApiUrl}/v1/entityTemplate/${processStudioService.formRendererConfig.accountName}/${processStudioService.formRendererConfig.formName}`;
+        const url = `${forgeService.formRendererConfig.forgeApiUrl}/v1/entityTemplate/${forgeService.formRendererConfig.accountName}/${forgeService.formRendererConfig.formName}`;
 
-        processStudioService.getEntityTemplate().then((res: any) => {
+        forgeService.getEntityTemplate().then((res: any) => {
             expect(res).toEqual(getEntityTemplateResMock);
             done();
         });
@@ -44,9 +44,9 @@ describe('ProcessStudioService', () => {
     });
 
     it('#createEntity should create entity', (done) => {
-        const url = `${processStudioService.formRendererConfig.processStudioApiUrl}/v1/${processStudioService.formRendererConfig.accountName}/${processStudioService.formRendererConfig.formName}`;
+        const url = `${forgeService.formRendererConfig.forgeApiUrl}/v1/${forgeService.formRendererConfig.accountName}/${forgeService.formRendererConfig.formName}`;
 
-        processStudioService.createEntity(createEntityResMock).then((res: any) => {
+        forgeService.createEntity(createEntityResMock).then((res: any) => {
             expect(res).toEqual(createEntityResMock);
             done();
         });

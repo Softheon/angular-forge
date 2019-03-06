@@ -4,5 +4,5 @@ export const formRendererConfigMock: FormRendererConfig = {
     accountName: 'Test Account',
     formName: 'Test Enity Template',
     oauthToken: 'Access_Token',
-    processStudioApiUrl: 'Test URL'
+    forgeApiUrl: 'Test URL'
   };

@@ -1,8 +1,8 @@
 export interface FormRendererConfig {
     /**
-     * The URL for Process Studio
+     * The URL for Softheon Forge
      */
-    processStudioApiUrl: string;
+    forgeApiUrl: string;
 
     /**
      * The account name

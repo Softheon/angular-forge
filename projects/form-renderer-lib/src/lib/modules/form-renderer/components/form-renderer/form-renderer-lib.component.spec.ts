@@ -3,9 +3,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FormRendererLibComponent } from './form-renderer-lib.component';
 
-import { ProcessStudioService } from '../../../../core/services/process-studio.service';
+import { ForgeService } from '../../../../core/services/forge.service';
 
-import { processStudioServiceMock } from '../../../../core/mocks/processStudioServiceMock';
+import { forgeServiceMock } from '../../../../core/mocks/forgeServiceMock';
 import { formRendererConfigMock } from '../../../../core/mocks/configMocks';
 import { getEntityTemplateResMock } from '../../../../core/mocks/httpMocks';
 
@@ -21,7 +21,7 @@ describe('FormRendererLibComponent', () => {
         ReactiveFormsModule
       ],
       providers: [
-        { provide: ProcessStudioService, useValue: processStudioServiceMock }
+        { provide: ForgeService, useValue: forgeServiceMock }
       ]
     })
       .compileComponents();
@@ -88,23 +88,23 @@ describe('FormRendererLibComponent', () => {
     }
   });
 
-  it('validate input should throw Process Studio API URL is required', (done) => {
+  it('validate input should throw Softheon Forge API URL is required', (done) => {
     component.formRendererConfig = {
-      processStudioApiUrl: null,
+      forgeApiUrl: null,
       accountName: 'TEST',
       formName: 'TEST',
       oauthToken: 'TEST'
     };
 
     component.renderForm().catch((err: Error) => {
-      expect(err.message).toEqual('Process Studio API URL is required.');
+      expect(err.message).toEqual('Softheon Forge API URL is required.');
       done();
     });
   });
 
   it('validate input should throw Account Name is required', (done) => {
     component.formRendererConfig = {
-      processStudioApiUrl: 'TEST',
+      forgeApiUrl: 'TEST',
       accountName: null,
       formName: 'TEST',
       oauthToken: 'TEST'
@@ -118,7 +118,7 @@ describe('FormRendererLibComponent', () => {
 
   it('validate input should throw Entity Template Name is required', (done) => {
     component.formRendererConfig = {
-      processStudioApiUrl: 'TEST',
+      forgeApiUrl: 'TEST',
       accountName: 'TEST',
       formName: null,
       oauthToken: 'TEST'
@@ -132,7 +132,7 @@ describe('FormRendererLibComponent', () => {
 
   it('validate input should throw OAuth Token is required', (done) => {
     component.formRendererConfig = {
-      processStudioApiUrl: 'TEST',
+      forgeApiUrl: 'TEST',
       accountName: 'TEST',
       formName: 'TEST',
       oauthToken: null

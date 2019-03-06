@@ -17,14 +17,14 @@ export class FormComponent implements OnInit {
     public form: FormGroup;
 
     /**
-     * The OAuth token which will be used by the Process Studio form rendering library
+     * The OAuth token which will be used by the Softheon Forge form rendering library
      */
     public get oauthToken() { return this.form.get('oauthToken'); }
 
     /**
-     * The API endpoint for hte process studio form rendering library
+     * The API endpoint for the Softheon Forge form rendering library
      */
-    public get processStudioApiUrl() { return this.form.get('processStudioApiUrl'); }
+    public get forgeApiUrl() { return this.form.get('forgeApiUrl'); }
 
     /**
      * The account name the entity template belongs to
@@ -60,8 +60,8 @@ export class FormComponent implements OnInit {
     public ngOnInit(): void {
         this.form = this.fb.group({
             oauthToken: ['', Validators.required],
-            processStudioApiUrl: ['https://localhost/ProcessStudio', Validators.required],
-            accountName: ['Process Studio', Validators.required],
+            forgeApiUrl: ['https://localhost/Forge', Validators.required],
+            accountName: ['Forge', Validators.required],
             formName: ['Airplane', Validators.required]
         });
     }
@@ -79,7 +79,7 @@ export class FormComponent implements OnInit {
 
         this.formRendererConfig = {
             oauthToken: this.oauthToken.value.trim(),
-            processStudioApiUrl: this.processStudioApiUrl.value.trim(),
+            forgeApiUrl: this.forgeApiUrl.value.trim(),
             accountName: this.accountName.value.trim(),
             formName: this.formName.value.trim()
         };
