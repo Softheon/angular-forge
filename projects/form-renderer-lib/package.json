@@ -1,6 +1,11 @@
 {
   "name": "form-renderer-lib",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Softheon/angular-forge.git"
+  },
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
