@@ -18,4 +18,9 @@ export interface FormRendererConfig {
      * The OAuth Token
      */
     oauthToken: string;
+
+    /**
+     * Ask for Form Name
+     */
+    displayFormName: boolean;
 }

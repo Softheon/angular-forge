@@ -56,7 +56,7 @@ describe('FormRendererLibComponent', () => {
     });
 
     expect(labels.length === 1);
-    expect(labels[0].textContent).toEqual('Name');
+    expect(labels[0].textContent).toEqual('Airplane Name');
   });
 
   it('should render form', async () => {
@@ -93,7 +93,8 @@ describe('FormRendererLibComponent', () => {
       forgeApiUrl: null,
       accountName: 'TEST',
       formName: 'TEST',
-      oauthToken: 'TEST'
+      oauthToken: 'TEST',
+      displayFormName: true
     };
 
     component.renderForm().catch((err: Error) => {
@@ -107,7 +108,8 @@ describe('FormRendererLibComponent', () => {
       forgeApiUrl: 'TEST',
       accountName: null,
       formName: 'TEST',
-      oauthToken: 'TEST'
+      oauthToken: 'TEST',
+      displayFormName: true
     };
 
     component.renderForm().catch((err: Error) => {
@@ -121,7 +123,8 @@ describe('FormRendererLibComponent', () => {
       forgeApiUrl: 'TEST',
       accountName: 'TEST',
       formName: null,
-      oauthToken: 'TEST'
+      oauthToken: 'TEST',
+      displayFormName: true
     };
 
     component.renderForm().catch((err: Error) => {
@@ -135,7 +138,8 @@ describe('FormRendererLibComponent', () => {
       forgeApiUrl: 'TEST',
       accountName: 'TEST',
       formName: 'TEST',
-      oauthToken: null
+      oauthToken: null,
+      displayFormName: true
     };
 
     component.renderForm().catch((err: Error) => {

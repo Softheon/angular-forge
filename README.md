@@ -40,6 +40,7 @@ Parameters supported by this object:
 2. `oauthToken` - Auth token that will be applied as 'Authorization' header during file send.
 3. `accountName` - Name of the account.
 4. `formName` - Name of the form.
+5. `displayFormName` - Whether the form name should be displayed and edited.
 
 ### Events
 

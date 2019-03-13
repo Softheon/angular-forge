@@ -81,7 +81,8 @@ export class FormComponent implements OnInit {
             oauthToken: this.oauthToken.value.trim(),
             forgeApiUrl: this.forgeApiUrl.value.trim(),
             accountName: this.accountName.value.trim(),
-            formName: this.formName.value.trim()
+            formName: this.formName.value.trim(),
+            displayFormName: false
         };
     }
 

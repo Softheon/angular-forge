@@ -1,16 +1,18 @@
 <form [formGroup]="entityForm">
     <div *ngIf="didFinishRendering">
-        <h3>{{entityTemplateModel.name}}</h3>
-        <div sws-form full-width>
-            <input sws-form__input type="text" name="entityName" id="entityName"
-                onchange="this.setAttribute('value', this.value);" formControlName="entityName" required>
-            <label sws-form__label for="entityName">Name</label>
-            <div *ngIf="entityName.invalid && (entityName.dirty || entityName.touched)">
-                <div *ngIf="entityName.errors.required">
-                    <span sws-label--danger>Entity name is required.</span>
+        <div *ngIf="formRendererConfig.displayFormName">
+            <h3>{{entityTemplateModel.name}}</h3>
+            <div sws-form full-width>
+                <input sws-form__input type="text" name="entityName" id="entityName"
+                    onchange="this.setAttribute('value', this.value);" formControlName="entityName" required>
+                <label sws-form__label for="entityName">{{entityTemplateModel.name}} Name</label>
+                <div *ngIf="entityName.invalid && (entityName.dirty || entityName.touched)">
+                    <div *ngIf="entityName.errors.required">
+                        <span sws-label--danger>Entity name is required.</span>
+                    </div>
                 </div>
+                <div sws-form__bar></div>
             </div>
-            <div sws-form__bar></div>
         </div>
         <div *ngFor="let profile of entityTemplateModel?.profiles">
             <h4>{{profile.name}}</h4>

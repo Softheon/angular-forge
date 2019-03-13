@@ -59,7 +59,7 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
    */
   public ngOnInit(): void {
     this.entityForm = this.fb.group({
-      entityName: ['', Validators.required]
+      entityName: ['', this.formRendererConfig.displayFormName ? Validators.required : []]
     });
     this.renderForm();
   }
@@ -114,7 +114,11 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
    */
   private createSubmissionForm(): any {
     const submissionForm: any = {};
-    submissionForm.Name = (<HTMLInputElement>document.getElementById('entityName')).value;
+    if (this.formRendererConfig.displayFormName) {
+      submissionForm.Name = (<HTMLInputElement>document.getElementById('entityName')).value;
+    } else {
+      submissionForm.Name = `${new Date(Date.now()).toLocaleString()} - ${this.entityTemplateModel.name}`;
+    }
 
     for (let i = 0; i < this.entityTemplateModel.profiles.length; i++) {
       const profileTemplate = this.entityTemplateModel.profiles[i];
