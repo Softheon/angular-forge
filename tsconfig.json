@@ -29,6 +29,12 @@
       ],
       "form-renderer-lib/*": [
         "dist/form-renderer-lib/*"
+      ],
+      "@softheon/angular-forge": [
+        "dist/form-renderer-lib"
+      ],
+      "@softheon/angular-forge/*": [
+        "dist/form-renderer-lib/*"
       ]
     }
   }
