@@ -1,6 +1,6 @@
-import { Display } from '../../abstract/form-display';
+import { FormDisplay } from '../../abstract/form-display';
 
-export class TextFieldDisplay extends Display {
+export class TextFieldDisplay extends FormDisplay {
     /**
      * The description is text that will appear below the input field.
      */

@@ -1,7 +1,7 @@
 /**
  * Custom display attributes for a generic component
  */
-export abstract class Display {
+export abstract class FormDisplay {
     /**
      * The label for the component
      */

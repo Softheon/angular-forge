@@ -7,13 +7,17 @@ import { FormsModule } from '@angular/forms';
 import { BuilderComponent } from './components/builder/builder.component';
 import { TextFieldFormComponent } from '../../shared/form-components/concrete/text-field-form-component/text-field.component';
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
+import { NumberComponent } from '../../shared/form-components/concrete/number/number.component';
+import { NumberDirective } from '../../shared/directives/number.directive';
 
 
 @NgModule({
   declarations: [
     BuilderComponent,
     TextFieldFormComponent,
-    ForgeComponent
+    NumberComponent,
+    ForgeComponent,
+    NumberDirective
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,8 @@ import { ForgeComponent } from '../../shared/form-components/concrete/forge-comp
     BuilderComponent
   ],
   entryComponents: [
-    TextFieldFormComponent
+    TextFieldFormComponent,
+    NumberComponent
   ]
 })
 export class FormBuilderModule { }
