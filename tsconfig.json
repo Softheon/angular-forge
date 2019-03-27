@@ -18,23 +18,17 @@
       "dom"
     ],
     "paths": {
-      "form-renderer": [
-        "dist/form-renderer"
+      "forge-lib": [
+        "dist/forge-lib"
       ],
-      "form-renderer/*": [
-        "dist/form-renderer/*"
-      ],
-      "form-renderer-lib": [
-        "dist/form-renderer-lib"
-      ],
-      "form-renderer-lib/*": [
-        "dist/form-renderer-lib/*"
+      "forge-lib/*": [
+        "dist/forge-lib/*"
       ],
       "@softheon/angular-forge": [
-        "dist/form-renderer-lib"
+        "dist/forge-lib"
       ],
       "@softheon/angular-forge/*": [
-        "dist/form-renderer-lib/*"
+        "dist/forge-lib/*"
       ]
     }
   }

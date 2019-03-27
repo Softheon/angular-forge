@@ -3,44 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "form-renderer": {
-      "root": "projects/form-renderer",
-      "sourceRoot": "projects/form-renderer/src",
-      "projectType": "library",
-      "prefix": "process-studio",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/form-renderer/tsconfig.lib.json",
-            "project": "projects/form-renderer/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/form-renderer/src/test.ts",
-            "tsConfig": "projects/form-renderer/tsconfig.spec.json",
-            "karmaConfig": "projects/form-renderer/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/form-renderer/tsconfig.lib.json",
-              "projects/form-renderer/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "form-renderer-tester": {
-      "root": "projects/form-renderer-tester/",
-      "sourceRoot": "projects/form-renderer-tester/src",
+    "forge-lib-tester": {
+      "root": "projects/forge-lib-tester/",
+      "sourceRoot": "projects/forge-lib-tester/src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -48,17 +13,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/form-renderer-tester",
-            "index": "projects/form-renderer-tester/src/index.html",
-            "main": "projects/form-renderer-tester/src/main.ts",
-            "polyfills": "projects/form-renderer-tester/src/polyfills.ts",
-            "tsConfig": "projects/form-renderer-tester/tsconfig.app.json",
+            "outputPath": "dist/forge-lib-tester",
+            "index": "projects/forge-lib-tester/src/index.html",
+            "main": "projects/forge-lib-tester/src/main.ts",
+            "polyfills": "projects/forge-lib-tester/src/polyfills.ts",
+            "tsConfig": "projects/forge-lib-tester/tsconfig.app.json",
             "assets": [
-              "projects/form-renderer-tester/src/favicon.ico",
-              "projects/form-renderer-tester/src/assets"
+              "projects/forge-lib-tester/src/favicon.ico",
+              "projects/forge-lib-tester/src/assets"
             ],
             "styles": [
-              "projects/form-renderer-tester/src/styles.css"
+              "projects/forge-lib-tester/src/styles.css"
             ],
             "scripts": []
           },
@@ -66,8 +31,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/form-renderer-tester/src/environments/environment.ts",
-                  "with": "projects/form-renderer-tester/src/environments/environment.prod.ts"
+                  "replace": "projects/forge-lib-tester/src/environments/environment.ts",
+                  "with": "projects/forge-lib-tester/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -92,34 +57,34 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "form-renderer-tester:build"
+            "browserTarget": "forge-lib-tester:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "form-renderer-tester:build:production"
+              "browserTarget": "forge-lib-tester:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "form-renderer-tester:build"
+            "browserTarget": "forge-lib-tester:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/form-renderer-tester/src/test.ts",
-            "polyfills": "projects/form-renderer-tester/src/polyfills.ts",
-            "tsConfig": "projects/form-renderer-tester/tsconfig.spec.json",
-            "karmaConfig": "projects/form-renderer-tester/karma.conf.js",
+            "main": "projects/forge-lib-tester/src/test.ts",
+            "polyfills": "projects/forge-lib-tester/src/polyfills.ts",
+            "tsConfig": "projects/forge-lib-tester/tsconfig.spec.json",
+            "karmaConfig": "projects/forge-lib-tester/karma.conf.js",
             "styles": [
-              "projects/form-renderer-tester/src/styles.css"
+              "projects/forge-lib-tester/src/styles.css"
             ],
             "scripts": [],
             "assets": [
-              "projects/form-renderer-tester/src/favicon.ico",
-              "projects/form-renderer-tester/src/assets"
+              "projects/forge-lib-tester/src/favicon.ico",
+              "projects/forge-lib-tester/src/assets"
             ]
           }
         },
@@ -127,8 +92,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/form-renderer-tester/tsconfig.app.json",
-              "projects/form-renderer-tester/tsconfig.spec.json"
+              "projects/forge-lib-tester/tsconfig.app.json",
+              "projects/forge-lib-tester/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -137,27 +102,27 @@
         }
       }
     },
-    "form-renderer-tester-e2e": {
-      "root": "projects/form-renderer-tester-e2e/",
+    "forge-lib-tester-e2e": {
+      "root": "projects/forge-lib-tester-e2e/",
       "projectType": "application",
       "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/form-renderer-tester-e2e/protractor.conf.js",
-            "devServerTarget": "form-renderer-tester:serve"
+            "protractorConfig": "projects/forge-lib-tester-e2e/protractor.conf.js",
+            "devServerTarget": "forge-lib-tester:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "form-renderer-tester:serve:production"
+              "devServerTarget": "forge-lib-tester:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "projects/form-renderer-tester-e2e/tsconfig.e2e.json",
+            "tsConfig": "projects/forge-lib-tester-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -165,33 +130,33 @@
         }
       }
     },
-    "form-renderer-lib": {
-      "root": "projects/form-renderer-lib",
-      "sourceRoot": "projects/form-renderer-lib/src",
+    "forge-lib": {
+      "root": "projects/forge-lib",
+      "sourceRoot": "projects/forge-lib/src",
       "projectType": "library",
-      "prefix": "process-studio",
+      "prefix": "forge-renderer",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/form-renderer-lib/tsconfig.lib.json",
-            "project": "projects/form-renderer-lib/ng-package.json"
+            "tsConfig": "projects/forge-lib/tsconfig.lib.json",
+            "project": "projects/forge-lib/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/form-renderer-lib/src/test.ts",
-            "tsConfig": "projects/form-renderer-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/form-renderer-lib/karma.conf.js"
+            "main": "projects/forge-lib/src/test.ts",
+            "tsConfig": "projects/forge-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/forge-lib/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/form-renderer-lib/tsconfig.lib.json",
-              "projects/form-renderer-lib/tsconfig.spec.json"
+              "projects/forge-lib/tsconfig.lib.json",
+              "projects/forge-lib/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -201,5 +166,5 @@
       }
     }
   },
-  "defaultProject": "form-renderer"
+  "defaultProject": "forge-lib-tester"
 }

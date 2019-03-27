@@ -32,7 +32,7 @@ export class AppModule { }
 
 ### Properties
 
-- `formRendererConfig` - (`FormRendererConfig`) - configuration object. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/form-renderer-tester/src/app/form/form.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/master/projects/form-renderer-tester/src/app/form/form.component.html)
+- `formRendererConfig` - (`FormRendererConfig`) - configuration object. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/forge-lib-tester/src/app/form/form.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/master/projects/forge-lib-tester/src/app/form/form.component.html)
 
 Parameters supported by this object:
 
@@ -44,9 +44,9 @@ Parameters supported by this object:
 
 ### Events
 
-- `finishedRendering` - fires after the form finishes rendering. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/form-renderer-tester/src/app/form/form.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/masterprojects/form-renderer-tester/src/app/form/form.component.html).
+- `finishedRendering` - fires after the form finishes rendering. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/forge-lib-tester/src/app/form/form.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/masterprojects/forge-lib-tester/src/app/form/form.component.html).
 
-- `formSubmitted` - fires after the form is submitted. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/form-renderer-tester/src/app/form/form.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/masterprojects/form-renderer-tester/src/app/form/form.component.html).
+- `formSubmitted` - fires after the form is submitted. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/forge-lib-tester/src/app/form/form.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/masterprojects/forge-lib-tester/src/app/form/form.component.html).
 
 ## Troubleshooting
 
