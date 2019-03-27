@@ -10,7 +10,7 @@ export abstract class Display {
     /**
      * Whether to hide the label for the component
      */
-    public hideLabel: boolean = false;
+    public hideLabel: boolean;
 
     /**
      * The tooltip for the component

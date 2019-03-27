@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { TextFieldFormComponent } from './text-field.component';
@@ -13,6 +13,8 @@ describe('TextFieldFormComponent', () => {
   const tooltip = 'Enter your user name here';
   const prefix = '$';
   const suffix = 'ish';
+  const minLength = 2;
+  const maxLength = 10;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -99,20 +101,24 @@ describe('TextFieldFormComponent', () => {
     expect(inputElement.attributes['required']).toBeTruthy();
   });
 
-  it('should show required error message', () => {
-    component.validation.required = true;
-    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector(`#input_${id}`);
-    inputElement.value = 'Test';
-    fixture.detectChanges();
-    inputElement.value = '';
-    fixture.detectChanges();
-
-  });
-
   it('should validate optional', () => {
     component.validation.required = false;
     fixture.detectChanges();
     const inputElement: HTMLInputElement = fixture.nativeElement.querySelector(`#input_${id}`);
     expect(inputElement.attributes['required']).not.toBeTruthy();
+  });
+
+  it('should set minimum length', () => {
+    component.validation.minimumLength = minLength;
+    fixture.detectChanges();
+    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector(`#input_${id}`);
+    expect(+inputElement.attributes['minlength'].value).toEqual(minLength);
+  });
+
+  it('should set maximum length', () => {
+    component.validation.minimumLength = minLength;
+    fixture.detectChanges();
+    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector(`#input_${id}`);
+    expect(+inputElement.attributes['minlength'].value).toEqual(minLength);
   });
 });

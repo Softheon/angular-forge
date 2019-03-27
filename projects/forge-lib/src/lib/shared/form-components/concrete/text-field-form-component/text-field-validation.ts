@@ -7,10 +7,10 @@ export class TextFieldValidation extends FormValidation {
     /**
      * Minimum length of the text field
      */
-    public minimumLength: number = 2;
+    public minimumLength: number;
 
     /**
      * Maximum length of the text field
      */
-    public maximumLength: number = 10;
+    public maximumLength: number;
 }
