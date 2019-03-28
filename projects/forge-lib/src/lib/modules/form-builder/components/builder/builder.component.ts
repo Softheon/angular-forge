@@ -13,7 +13,6 @@ import { NumberComponent } from '../../../../shared/form-components/concrete/num
 export class BuilderComponent implements OnInit {
 
   private index: number = 0;
-
   public components: Array<string> = [
     'Text Field',
     'Number Field'

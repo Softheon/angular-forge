@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ViewContainerRef, ViewChild, ComponentFactory
 
 import { FormComponent } from '../../abstract/form-component';
 import { registry } from '../../registry';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 
 
 @Component({
@@ -14,14 +16,29 @@ export class ForgeComponent implements OnInit {
 
   @Input() public component: FormComponent;
 
+  public dialogRef: MatDialogRef<any>;
+
+  public hovered = false;
+
   constructor(
-    private resolver: ComponentFactoryResolver
+    private resolver: ComponentFactoryResolver,
+    private dialog: MatDialog
   ) { }
 
   public ngOnInit(): void {
     const factory = this.resolver.resolveComponentFactory(registry.get(this.component.constructor.name));
     this.vc.clear();
+
     const newComponent = this.vc.createComponent(factory);
     newComponent.instance.id = this.component.id;
+    this.component = newComponent.instance;
+    this.dialogRef = this.dialog.open(FieldEditorComponent, {
+      data: {
+        field: this.component,
+      },
+      width: "80vw"
+    });
+
   }
 }
+

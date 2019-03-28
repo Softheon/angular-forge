@@ -1,0 +1,39 @@
+<div flex-container>
+  <div flex-container-column class="flex-col">
+    <div sws-form full-width>
+      <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'">
+      <label sws-form__label [for]="'label_input'">Label</label>
+    </div>
+    <div sws-checkbox>
+      <input id="hide_label" [(ngModel)]="this.field.display.hideLabel" type="checkbox" checked="unchecked" />
+      <label for="hide_label">Hide label</label>
+    </div>
+    <div sws-textarea>
+      <textarea [(ngModel)]="this.field.display.tooltip" name="tooltip" id="tooltip" rows="4" cols="50"></textarea>
+      <label sws-textarea__label for="tooltip">Tooltip</label>
+    </div>
+    <div sws-checkbox>
+      <input id="disabled" [(ngModel)]="this.field.display.disabled" type="checkbox" checked="unchecked" />
+      <label for="disabled">Disabled</label>
+    </div>
+    <!-- <div sws-form full-width>
+      <input [(ngModel)]="" sws-form__input type="'text'" [name]="'placeholder_input'">
+      <label sws-form__label [for]="'placeholder_input'">Label</label>
+    </div> -->
+    <div sws-form full-width>
+      <input [(ngModel)]="this.field.display.description" sws-form__input type="'text'" [name]="'description_input'">
+      <label sws-form__label [for]="'label_input'">Description</label>
+    </div>
+     <div sws-form full-width>
+      <input [(ngModel)]="this.field.display.prefix" sws-form__input type="'text'" [name]="'prefix_input'">
+      <label sws-form__label [for]="'label_input'">Prefix</label>
+    </div>
+    <div sws-form full-width>
+      <input [(ngModel)]="this.field.display.suffix" sws-form__input type="'text'" [name]="'suffix_input'">
+      <label sws-form__label [for]="'label_input'">Suffix</label>
+    </div>
+  </div> 
+  <div flex-container-column class="flex-col">
+    Preview
+  </div>
+</div>

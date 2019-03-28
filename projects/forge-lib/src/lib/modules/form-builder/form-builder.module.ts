@@ -11,6 +11,8 @@ import { NumberComponent } from '../../shared/form-components/concrete/number/nu
 import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
+import { MatDialogModule } from '@angular/material';
+import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
 
 
 @NgModule({
@@ -21,20 +23,24 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
     ForgeComponent,
     NumberDirective,
     MaxValidatorDirective,
-    MinValidatorDirective
+    MinValidatorDirective,
+    FieldEditorComponent
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     DragDropModule,
+    MatDialogModule,
     FormsModule
   ],
   exports: [
-    BuilderComponent
+    BuilderComponent,
+    FieldEditorComponent
   ],
   entryComponents: [
     TextFieldFormComponent,
-    NumberComponent
+    NumberComponent,
+    FieldEditorComponent
   ]
 })
 export class FormBuilderModule { }
