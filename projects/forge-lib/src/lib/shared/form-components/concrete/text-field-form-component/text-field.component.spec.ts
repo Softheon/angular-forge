@@ -15,6 +15,7 @@ describe('TextFieldFormComponent', () => {
   const suffix = 'ish';
   const minLength = 2;
   const maxLength = 10;
+  const defaultValue = 'Default Value';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -116,9 +117,15 @@ describe('TextFieldFormComponent', () => {
   });
 
   it('should set maximum length', () => {
-    component.validation.minimumLength = minLength;
+    component.validation.maximumLength = maxLength;
     fixture.detectChanges();
     const inputElement: HTMLInputElement = fixture.nativeElement.querySelector(`#input_${id}`);
-    expect(+inputElement.attributes['minlength'].value).toEqual(minLength);
+    expect(+inputElement.attributes['maxlength'].value).toEqual(maxLength);
+  });
+
+  it('should set default value', () => {
+    component.data.defaultValue = defaultValue;
+    component.ngOnInit();
+    expect(component.getValue()).toEqual(defaultValue);
   });
 });

@@ -6,9 +6,9 @@ import { Directive, Input, HostListener, ElementRef } from '@angular/core';
 export class NumberDirective {
     constructor(private el: ElementRef) { }
 
-    @Input() requireDecimal: boolean = true;
+    @Input() requireDecimal: boolean;
 
-    @Input() decimalPlaces: number;
+    @Input() decimalPlaces: number = Number.MAX_SAFE_INTEGER;
 
     @HostListener('keyup', ['$event']) onkeyUp(_) {
         const value: string = this.el.nativeElement.value;
@@ -22,6 +22,19 @@ export class NumberDirective {
         if (this.requireDecimal) {
             if (!value.includes('.')) {
                 this.el.nativeElement.value = value + '.0';
+            }
+        }
+
+        // Make sure only the specified number of decimal places are allowed
+        if (this.decimalPlaces && this.decimalPlaces !== 0) {
+            if (value.includes('.')) {
+                const splitOnDecimal = value.split('.');
+                const leftPart = splitOnDecimal[0];
+                let rightPart = splitOnDecimal[1];
+                if (rightPart.length > this.decimalPlaces) {
+                    rightPart = rightPart.substring(0, this.decimalPlaces);
+                    this.el.nativeElement.value = `${leftPart}.${rightPart}`;
+                }
             }
         }
     }

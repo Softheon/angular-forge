@@ -4,7 +4,7 @@
   <div sws-form full-width>
     <input [id]="'input_' + id" [(ngModel)]="value" sws-form__input type="text" #name="ngModel" [name]="'input_' + id"
       [disabled]="display.disabled" minlength="{{validation.minimumLength}}" maxlength="{{validation.maximumLength}}"
-      [required]="validation.required">
+      [required]="validation.required" onkeyup="this.setAttribute('value', this.value);">
     <label sws-form__label [id]="'label_' + id" [for]="id" *ngIf="!display.hideLabel">{{display.label}}</label>
     <div *ngIf="name.invalid && (name.dirty || name.touched)">'
       <div *ngIf="validation.customErrorMessage">

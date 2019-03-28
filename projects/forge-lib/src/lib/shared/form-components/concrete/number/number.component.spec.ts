@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { NumberComponent } from './number.component';
+import { NumberDirective } from '../../../directives/number.directive';
+import { MinValidatorDirective } from '../../../validators/minValidator';
+import { MaxValidatorDirective } from '../../../validators/maxValidator';
 
 describe('NumberComponent', () => {
   let component: NumberComponent;
@@ -8,9 +12,17 @@ describe('NumberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NumberComponent ]
+      declarations: [
+        NumberComponent,
+        NumberDirective,
+        MinValidatorDirective,
+        MaxValidatorDirective
+      ],
+      imports: [
+        FormsModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

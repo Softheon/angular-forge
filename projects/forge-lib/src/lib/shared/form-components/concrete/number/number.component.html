@@ -1,35 +1,37 @@
 <div flex-container-row>
-    <button [id]="'prefix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25 m-r-0
-      *ngIf="display.prefix">{{display.prefix}}</button>
-    <div sws-form full-width>
-      <input [id]="'input_' + id" forgeNumber [(ngModel)]="value" sws-form__input type="text" #name="ngModel" [name]="'input_' + id"
-        [disabled]="display.disabled" minlength="{{validation.minimumLength}}" maxlength="{{validation.maximumLength}}"
-        [required]="validation.required">
-      <label sws-form__label [id]="'label_' + id" [for]="id" *ngIf="!display.hideLabel">{{display.label}}</label>
-      <div *ngIf="name.invalid && (name.dirty || name.touched)">'
-        <div *ngIf="validation.customErrorMessage">
-          <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
+  <button [id]="'prefix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25 m-r-0
+    *ngIf="display.prefix">{{display.prefix}}</button>
+  <div sws-form full-width>
+    <input [id]="'input_' + id" forgeNumber [requireDecimal]="data.requireDecimal" [decimalPlaces]="data.decimalPlaces"
+      [(ngModel)]="value" sws-form__input type="text" #name="ngModel" [name]="'input_' + id"
+      [disabled]="display.disabled" [required]="validation.required" [minValue]="data.minValue"
+      [maxValue]="data.maxValue" onkeyup="this.setAttribute('value', this.value);">
+    <label sws-form__label [id]="'label_' + id" [for]="id" *ngIf="!display.hideLabel">{{display.label}}</label>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">'
+      <div *ngIf="validation.customErrorMessage">
+        <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
+      </div>
+      <div *ngIf="!validation.customErrorMessage">
+        <div *ngIf="name.errors.minValue">
+          <span [id]="'min' + id" sws-label--danger m-t-30>{{display.label}} must be greater
+            than {{data.minValue}}</span>
         </div>
-        <div *ngIf="!validation.customErrorMessage">
-          <div *ngIf="name.errors.required">
-            <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
-          </div>
-          <div *ngIf="name.errors.minlength">
-            <span [id]="'minimum_message' + id" sws-label--danger m-t-30>{{display.label}} must be at least {{validation.minimumLength}} characters
-              long.</span>
-          </div>
+        <div *ngIf="name.errors.maxValue">
+          <span [id]="'max' + id" sws-label--danger m-t-30>{{display.label}} must be less
+            than {{data.maxValue}}</span>
         </div>
       </div>
-      <div sws-form__bar></div>
     </div>
-    <button [id]="'suffix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25
-      *ngIf="display.suffix">{{display.suffix}}</button>
-    <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
-      <div sws-icon-flat--secondary rounded>
-        <i class="fas fa-lightbulb"></i>
-      </div>
-      <div sws-tooltip--text>
-        <p> {{display.tooltip}} </p>
-      </div>
+    <div sws-form__bar></div>
+  </div>
+  <button [id]="'suffix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25
+    *ngIf="display.suffix">{{display.suffix}}</button>
+  <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
+    <div sws-icon-flat--secondary rounded>
+      <i class="fas fa-lightbulb"></i>
+    </div>
+    <div sws-tooltip--text>
+      <p> {{display.tooltip}} </p>
     </div>
   </div>
+</div>
