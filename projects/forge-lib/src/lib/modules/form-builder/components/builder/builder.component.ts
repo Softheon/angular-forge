@@ -3,9 +3,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
 import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field-form-component/text-field.component';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { FieldEditorComponent } from '../field-editor/field-editor.component';
-
+import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -20,13 +18,9 @@ export class BuilderComponent implements OnInit {
     'Number Field'
   ];
 
-  public dialogRef: MatDialogRef<any>;
-
-
-
   public forgeComponents: Array<FormComponent> = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   public ngOnInit(): void {
   }
@@ -37,21 +31,20 @@ export class BuilderComponent implements OnInit {
     } else if (event.previousContainer.id === 'forgeComponents' && event.previousContainer === event.container) {
       // TODO
     } else if (event.previousContainer.id === 'components' && event.previousContainer !== event.container) {
-      const comp = new TextFieldFormComponent();
-      comp.id = 'text_field_' + this.index++;
-      comp.display.hideLabel = false;
-      comp.display.label = "test";
-      // this.dialogRef = this.dialog.open(FieldEditorComponent, {
-      //   data: {
-      //     field: comp,
-      //   },
-      //   width: "80vw"
-      // });
-      this.forgeComponents.push(comp);
+      if (event.previousContainer.data[event.previousIndex] === 'Text Field') {
+        this.addComponent(new TextFieldFormComponent(), `text_field_${this.index++}`);
+      } else if (event.previousContainer.data[event.previousIndex] === 'Number Field') {
+        this.addComponent(new NumberComponent(), `number_${this.index++}`);
+      }
     }
   }
 
   public noReturnPredicate(): boolean {
     return false;
+  }
+
+  public addComponent(component: any, id: string): void {
+    component.id = id;
+    this.forgeComponents.push(component);
   }
 }

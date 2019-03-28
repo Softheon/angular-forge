@@ -1,6 +1,7 @@
-import { Display } from './form-display';
+import { FormDisplay } from './form-display';
 import { ComponentActions } from './component-actions';
 import { FormValidation } from './form-validation';
+import { FormData } from './form-data';
 
 /**
  * Abstract Form Component
@@ -19,7 +20,7 @@ export abstract class FormComponent implements ComponentActions {
     /**
      * Display attributes
      */
-    abstract display: Display;
+    abstract display: FormDisplay;
 
     /**
      * Form validation attributes

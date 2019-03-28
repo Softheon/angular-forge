@@ -7,15 +7,19 @@ import { FormsModule } from '@angular/forms';
 import { BuilderComponent } from './components/builder/builder.component';
 import { TextFieldFormComponent } from '../../shared/form-components/concrete/text-field-form-component/text-field.component';
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
+import { NumberComponent } from '../../shared/form-components/concrete/number/number.component';
+import { NumberDirective } from '../../shared/directives/number.directive';
 import { MatDialogModule } from '@angular/material';
-import { FieldEditorComponent } from './components/field-editor/field-editor.component';
+import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
 
 
 @NgModule({
   declarations: [
     BuilderComponent,
     TextFieldFormComponent,
+    NumberComponent,
     ForgeComponent,
+    NumberDirective,
     FieldEditorComponent
   ],
   imports: [
@@ -31,6 +35,7 @@ import { FieldEditorComponent } from './components/field-editor/field-editor.com
   ],
   entryComponents: [
     TextFieldFormComponent,
+    NumberComponent,
     FieldEditorComponent
   ]
 })
