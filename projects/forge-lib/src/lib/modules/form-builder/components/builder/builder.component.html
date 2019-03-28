@@ -1,14 +1,8 @@
 <div class="example-container">
   <h2>Basic Components</h2>
 
-  <div
-    cdkDropList
-    #componentList="cdkDropList"
-    [cdkDropListData]="components"
-    [cdkDropListConnectedTo]="[doneList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)"
-    [cdkDropListEnterPredicate]="noReturnPredicate"
+  <div cdkDropList #componentList="cdkDropList" [cdkDropListData]="components" [cdkDropListConnectedTo]="[doneList]"
+    class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate"
     id="components">
     <div class="example-box" *ngFor="let component of components" cdkDrag>{{component}}</div>
   </div>
@@ -17,15 +11,18 @@
 <div class="form-container">
   <h2>Form</h2>
 
-  <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="forgeComponents"
-    [cdkDropListConnectedTo]="[componentList]"    
-    class="form-list"
-    (cdkDropListDropped)="drop($event)"
-    [cdkDropListDisabled]="true"
-    id="forgeComponents">
-    <div class="form-box" *ngFor="let forgeComponent of forgeComponents" cdkDrag><forge-builder-component full-width [component]="forgeComponent"></forge-builder-component></div>
+  <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="forgeComponents"
+    [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"
+    [cdkDropListDisabled]="true" id="forgeComponents">
+    <div class="form-box" *ngFor="let forgeComponent of forgeComponents; index as i" cdkDrag>
+      <div full-width (mouseenter)="hovered[i] = true" (mouseleave)="hovered[i] = false">
+        <div flex-container-row style="justify-content:flex-end" *ngIf="hovered[i] == true">
+          <div class="fa fa-cog" (click)="editComponent(i)">
+          </div>
+        </div>
+        <forge-builder-component full-width [component]="forgeComponent">
+        </forge-builder-component>
+      </div>
+    </div>
   </div>
 </div>

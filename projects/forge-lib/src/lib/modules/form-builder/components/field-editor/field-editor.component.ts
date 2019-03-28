@@ -1,30 +1,26 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field-form-component/text-field.component';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'forge-renderer-field-editor',
   templateUrl: './field-editor.component.html',
   styleUrls: ['./field-editor.component.css']
 })
-export class FieldEditorComponent implements OnInit {
+export class FieldEditorComponent implements OnDestroy {
 
   public field: TextFieldFormComponent;
 
   //TODO:: Figure out why using data: FormComponent throws weird compilation errors
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) data: any
-    ) {
+    @Inject(MAT_DIALOG_DATA) data: any,
+    public dialogRef: MatDialogRef<FieldEditorComponent>
+  ) {
     this.field = data.field;
-    this.field.display.hideLabel = false;
-  }
-
-  ngOnInit() {
-    console.log(this.field);
   }
 
   ngOnDestroy(): void {
-    console.log(this.field)    
+    this.dialogRef.close(this.field);
   }
 }
