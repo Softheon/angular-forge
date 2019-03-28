@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewContainerRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
 
 import { FormComponent } from '../../abstract/form-component';
-import { registry } from '../../registry';
+import { getRegistryType } from '../../registry';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 
@@ -26,7 +26,7 @@ export class ForgeComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    const factory = this.resolver.resolveComponentFactory(registry.get(this.component.constructor.name));
+    const factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.constructor.name));
     this.vc.clear();
 
     const newComponent = this.vc.createComponent(factory);
@@ -36,7 +36,7 @@ export class ForgeComponent implements OnInit {
       data: {
         field: this.component,
       },
-      width: "80vw"
+      width: '80vw'
     });
     this.dialogRef.afterClosed().subscribe((data: any) => {
       this.component = data;

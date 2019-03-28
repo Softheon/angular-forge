@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FormComponent } from '../../abstract/form-component';
 import { TextFieldDisplay } from './text-field-display';
@@ -10,7 +10,7 @@ import { TextFieldData } from './text-field-data';
   templateUrl: './text-field.component.html',
   styleUrls: ['./text-field.component.scss']
 })
-export class TextFieldFormComponent extends FormComponent {
+export class TextFieldFormComponent extends FormComponent implements OnInit {
   /**
    * The ID of the component
    */
@@ -40,6 +40,13 @@ export class TextFieldFormComponent extends FormComponent {
    * Value model
    */
   public value: string;
+
+  /**
+   * Initializes the component
+   */
+  public ngOnInit(): void {
+    this.value = this.data.defaultValue;
+  }
 
   /**
    * Gets the value of the component

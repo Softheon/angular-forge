@@ -9,6 +9,8 @@ import { TextFieldFormComponent } from '../../shared/form-components/concrete/te
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
 import { NumberComponent } from '../../shared/form-components/concrete/number/number.component';
 import { NumberDirective } from '../../shared/directives/number.directive';
+import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
+import { MinValidatorDirective } from '../../shared/validators/minValidator';
 import { MatDialogModule } from '@angular/material';
 import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
 
@@ -20,6 +22,8 @@ import { FieldEditorComponent } from '../form-builder/components/field-editor/fi
     NumberComponent,
     ForgeComponent,
     NumberDirective,
+    MaxValidatorDirective,
+    MinValidatorDirective,
     FieldEditorComponent
   ],
   imports: [
