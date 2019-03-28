@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
-import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field-form-component/text-field.component';
+import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';

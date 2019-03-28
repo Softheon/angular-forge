@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 
-import { TextFieldFormComponent } from './concrete/text-field-form-component/text-field.component';
+import { TextFieldFormComponent } from './concrete/text-field/text-field.component';
 import { NumberComponent } from './concrete/number/number.component';
 import { FormComponent } from './abstract/form-component';
 

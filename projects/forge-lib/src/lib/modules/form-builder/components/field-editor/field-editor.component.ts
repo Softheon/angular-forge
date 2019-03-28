@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field-form-component/text-field.component';
+import { Component, Inject, OnDestroy } from '@angular/core';
+import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
   templateUrl: './field-editor.component.html',
   styleUrls: ['./field-editor.component.css']
 })
-export class FieldEditorComponent implements OnDestroy {
+export class FieldEditorComponent {
 
   public field: TextFieldFormComponent;
 
@@ -18,9 +18,5 @@ export class FieldEditorComponent implements OnDestroy {
     public dialogRef: MatDialogRef<FieldEditorComponent>
   ) {
     this.field = data.field;
-  }
-
-  ngOnDestroy(): void {
-    this.dialogRef.close(this.field);
   }
 }

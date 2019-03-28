@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ForgeComponent } from './forge-component.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { TextFieldFormComponent } from '../text-field-form-component/text-field.component';
+import { TextFieldFormComponent } from '../text-field/text-field.component';
 
 describe('ForgeComponent', () => {
   let component: ForgeComponent;

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NumberData } from './number-data';
 import { NumberValidation } from './number-validation';
 import { FormComponent } from '../../abstract/form-component';
-import { TextFieldDisplay } from '../text-field-form-component/text-field-display';
+import { TextFieldDisplay } from '../text-field/text-field-display';
 
 @Component({
   selector: 'forge-builder-number',
