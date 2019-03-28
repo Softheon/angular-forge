@@ -1,18 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TextFieldFormComponent } from '../text-field-form-component/text-field.component';
 import { NumberData } from './number-data';
+import { NumberValidation } from './number-validation';
+import { FormComponent } from '../../abstract/form-component';
+import { TextFieldDisplay } from '../text-field-form-component/text-field-display';
 
 @Component({
   selector: 'forge-builder-number',
   templateUrl: './number.component.html',
   styleUrls: ['./number.component.css']
 })
-export class NumberComponent extends TextFieldFormComponent implements OnInit {
+export class NumberComponent extends FormComponent implements OnInit {
+  /**
+   * ID of the component
+   */
+  id: string;
+
+  /**
+   * Component type
+   */
+  public type: string = 'Number';
+
+  /**
+   * Form display attributes
+   */
+  public display: TextFieldDisplay = new TextFieldDisplay();
+
   /**
    * Data attributes
    */
   public data: NumberData = new NumberData();
+
+  /**
+   * Number validation attributes
+   */
+  public validation: NumberValidation = new NumberValidation();
+
+  /**
+   * Value model
+   */
+  public value: string;
 
   /**
    * Gets the value of the component

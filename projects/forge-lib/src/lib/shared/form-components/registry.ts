@@ -1,9 +1,16 @@
-import { FormComponent } from './abstract/form-component';
+import { Type } from '@angular/core';
+
 import { TextFieldFormComponent } from './concrete/text-field-form-component/text-field.component';
 import { NumberComponent } from './concrete/number/number.component';
+import { FormComponent } from './abstract/form-component';
 
-export const registry: Map<string, new () => FormComponent>
-    = new Map([
-        [TextFieldFormComponent.name, TextFieldFormComponent],
-        [NumberComponent.name, NumberComponent]
-    ]);
+export const getRegistryType = (name: string): Type<FormComponent> => {
+    switch (name) {
+        case TextFieldFormComponent.name: {
+            return TextFieldFormComponent;
+        }
+        case NumberComponent.name: {
+            return NumberComponent;
+        }
+    }
+};

@@ -7,7 +7,6 @@ describe('TextFieldFormComponent', () => {
   let component: TextFieldFormComponent;
   let fixture: ComponentFixture<TextFieldFormComponent>;
 
-
   const id = '0';
   const label = 'User Name';
   const tooltip = 'Enter your user name here';

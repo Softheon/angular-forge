@@ -4,8 +4,8 @@
   <div sws-form full-width>
     <input [id]="'input_' + id" forgeNumber [requireDecimal]="data.requireDecimal" [decimalPlaces]="data.decimalPlaces"
       [(ngModel)]="value" sws-form__input type="text" #name="ngModel" [name]="'input_' + id"
-      [disabled]="display.disabled" [required]="validation.required" [minValue]="data.minValue"
-      [maxValue]="data.maxValue" onkeyup="this.setAttribute('value', this.value);">
+      [disabled]="display.disabled" [required]="validation.required" [minValue]="validation.minValue"
+      [maxValue]="validation.maxValue" onkeyup="this.setAttribute('value', this.value);">
     <label sws-form__label [id]="'label_' + id" [for]="id" *ngIf="!display.hideLabel">{{display.label}}</label>
     <div *ngIf="name.invalid && (name.dirty || name.touched)">'
       <div *ngIf="validation.customErrorMessage">
@@ -14,11 +14,11 @@
       <div *ngIf="!validation.customErrorMessage">
         <div *ngIf="name.errors.minValue">
           <span [id]="'min' + id" sws-label--danger m-t-30>{{display.label}} must be greater
-            than {{data.minValue}}</span>
+            than {{validation.minValue}}</span>
         </div>
         <div *ngIf="name.errors.maxValue">
           <span [id]="'max' + id" sws-label--danger m-t-30>{{display.label}} must be less
-            than {{data.maxValue}}</span>
+            than {{validation.maxValue}}</span>
         </div>
       </div>
     </div>

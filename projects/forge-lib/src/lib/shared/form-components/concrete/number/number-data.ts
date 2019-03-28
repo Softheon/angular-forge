@@ -13,14 +13,4 @@ export class NumberData extends FormData {
      * Whether decimal places are required
      */
     public requireDecimal: number;
-
-    /**
-     * The minimum value allowed
-     */
-    public minValue: number;
-
-    /**
-     * The maximum value allowed
-     */
-    public maxValue: number;
 }

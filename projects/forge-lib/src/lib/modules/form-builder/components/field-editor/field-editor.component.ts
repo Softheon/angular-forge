@@ -15,16 +15,16 @@ export class FieldEditorComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any
-    ) {
-    this.field = data.field;
+  ) {
+    this.field = data.field; 
     this.field.display.hideLabel = false;
   }
 
   ngOnInit() {
-    console.log(this.field);
+    // console.log(this.field);
   }
 
   ngOnDestroy(): void {
-    console.log(this.field)    
+    // console.log(this.field)
   }
 }
