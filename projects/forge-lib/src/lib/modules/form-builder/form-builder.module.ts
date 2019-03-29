@@ -13,6 +13,7 @@ import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
 import { MatDialogModule } from '@angular/material';
 import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
+import { TextAreaComponent } from '../../shared/form-components/concrete/text-area/text-area.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FieldEditorComponent } from '../form-builder/components/field-editor/fi
     NumberDirective,
     MaxValidatorDirective,
     MinValidatorDirective,
-    FieldEditorComponent
+    FieldEditorComponent,
+    TextAreaComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { FieldEditorComponent } from '../form-builder/components/field-editor/fi
   entryComponents: [
     TextFieldFormComponent,
     NumberComponent,
-    FieldEditorComponent
+    FieldEditorComponent,
+    TextAreaComponent
   ]
 })
 export class FormBuilderModule { }

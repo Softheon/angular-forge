@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
 import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
+import { TextAreaComponent } from '../../../../shared/form-components/concrete/text-area/text-area.component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -17,7 +18,8 @@ export class BuilderComponent implements OnInit {
   public index: number = 0;
   public components: Array<string> = [
     'Text Field',
-    'Number Field'
+    'Number Field',
+    'Text Area'
   ];
 
   public hovered: Boolean[] = [];
@@ -42,6 +44,8 @@ export class BuilderComponent implements OnInit {
         this.addComponent(new TextFieldFormComponent(), `text_field_${this.index++}`);
       } else if (event.previousContainer.data[event.previousIndex] === 'Number Field') {
         this.addComponent(new NumberComponent(), `number_${this.index++}`);
+      } else if (event.previousContainer.data[event.previousIndex] === 'Text Area') {
+        this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
       }
     }
   }
@@ -55,12 +59,12 @@ export class BuilderComponent implements OnInit {
     this.forgeComponents.push(component);
   }
 
-  public editComponent(index: number): void{
+  public editComponent(index: number): void {
     this.dialogRef = this.dialog.open(FieldEditorComponent, {
       data: {
         field: this.forgeComponents[index],
       },
-      width: "80vw"
+      width: '80vw'
     });
   }
 }
