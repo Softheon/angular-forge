@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ForgeComponent } from './forge-component.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { TextFieldFormComponent } from '../text-field/text-field.component';
+import { TextFieldComponent } from '../text-field/text-field.component';
 
 describe('ForgeComponent', () => {
   let component: ForgeComponent;
@@ -13,14 +13,14 @@ describe('ForgeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ForgeComponent,
-        TextFieldFormComponent
+        TextFieldComponent
       ],
       imports: [
         FormsModule
       ]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [TextFieldFormComponent]
+        entryComponents: [TextFieldComponent]
       }
     })
       .compileComponents();
@@ -29,7 +29,7 @@ describe('ForgeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ForgeComponent);
     component = fixture.componentInstance;
-    component.component = new TextFieldFormComponent();
+    component.component = new TextFieldComponent();
     fixture.detectChanges();
   });
 

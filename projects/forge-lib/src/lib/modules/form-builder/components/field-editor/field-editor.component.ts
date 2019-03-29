@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
-import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
+import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class FieldEditorComponent {
 
-  public field: TextFieldFormComponent;
+  public field: TextFieldComponent;
 
   //TODO:: Figure out why using data: FormComponent throws weird compilation errors
 

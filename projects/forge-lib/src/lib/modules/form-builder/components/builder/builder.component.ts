@@ -3,7 +3,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
-import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
+import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 import { TextAreaComponent } from '../../../../shared/form-components/concrete/text-area/text-area.component';
@@ -41,7 +41,7 @@ export class BuilderComponent implements OnInit {
     } else if (event.previousContainer.id === 'components' && event.previousContainer !== event.container) {
       this.hovered.push(false);
       if (event.previousContainer.data[event.previousIndex] === 'Text Field') {
-        this.addComponent(new TextFieldFormComponent(), `text_field_${this.index++}`);
+        this.addComponent(new TextFieldComponent(), `text_field_${this.index++}`);
       } else if (event.previousContainer.data[event.previousIndex] === 'Number Field') {
         this.addComponent(new NumberComponent(), `number_${this.index++}`);
       } else if (event.previousContainer.data[event.previousIndex] === 'Text Area') {

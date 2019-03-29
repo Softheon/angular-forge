@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
+import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { TextAreaDisplay } from './text-area-display';
 import { TextAreaValidation } from './text-area-validation';
 
@@ -12,7 +12,7 @@ import { TextAreaValidation } from './text-area-validation';
   templateUrl: './text-area.component.html',
   styleUrls: ['./text-area.component.css']
 })
-export class TextAreaComponent extends TextFieldFormComponent implements OnInit {
+export class TextAreaComponent extends TextFieldComponent implements OnInit {
   /**
    * Text area display attributes
    */

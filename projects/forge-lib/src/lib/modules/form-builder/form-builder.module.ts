@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { BuilderComponent } from './components/builder/builder.component';
-import { TextFieldFormComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
+import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
 import { NumberComponent } from '../../shared/form-components/concrete/number/number.component';
 import { NumberDirective } from '../../shared/directives/number.directive';
@@ -19,7 +19,7 @@ import { TextAreaComponent } from '../../shared/form-components/concrete/text-ar
 @NgModule({
   declarations: [
     BuilderComponent,
-    TextFieldFormComponent,
+    TextFieldComponent,
     NumberComponent,
     ForgeComponent,
     NumberDirective,
@@ -40,7 +40,7 @@ import { TextAreaComponent } from '../../shared/form-components/concrete/text-ar
     FieldEditorComponent
   ],
   entryComponents: [
-    TextFieldFormComponent,
+    TextFieldComponent,
     NumberComponent,
     FieldEditorComponent,
     TextAreaComponent

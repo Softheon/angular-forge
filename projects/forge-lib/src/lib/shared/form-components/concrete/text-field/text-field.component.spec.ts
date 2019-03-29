@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { TextFieldFormComponent } from './text-field.component';
+import { TextFieldComponent } from './text-field.component';
 
 describe('TextFieldFormComponent', () => {
-  let component: TextFieldFormComponent;
-  let fixture: ComponentFixture<TextFieldFormComponent>;
+  let component: TextFieldComponent;
+  let fixture: ComponentFixture<TextFieldComponent>;
 
   const id = '0';
   const label = 'User Name';
@@ -19,7 +19,7 @@ describe('TextFieldFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TextFieldFormComponent
+        TextFieldComponent
       ],
       imports: [
         FormsModule
@@ -29,7 +29,7 @@ describe('TextFieldFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextFieldFormComponent);
+    fixture = TestBed.createComponent(TextFieldComponent);
     component = fixture.componentInstance;
     component.id = id;
     fixture.detectChanges();
