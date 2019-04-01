@@ -6,7 +6,8 @@
       [(ngModel)]="value" sws-form__input type="text" #name="ngModel" [name]="'input_' + id"
       [disabled]="display.disabled" [required]="validation.required" [minValue]="validation.minValue"
       [maxValue]="validation.maxValue" onkeyup="this.setAttribute('value', this.value);">
-    <label sws-form__label [id]="'label_' + id" [for]="id" *ngIf="!display.hideLabel">{{display.label}}</label>
+    <label sws-form__label [id]="'label_' + id" [for]="'label_' + id"
+      *ngIf="!display.hideLabel">{{display.label}}</label>
     <div *ngIf="name.invalid && (name.dirty || name.touched)">'
       <div *ngIf="validation.customErrorMessage">
         <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
@@ -35,3 +36,4 @@
     </div>
   </div>
 </div>
+<p *ngIf="display.description">{{display.description}}</p>

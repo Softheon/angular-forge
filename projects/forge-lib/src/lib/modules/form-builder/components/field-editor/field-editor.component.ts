@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy, Input } from '@angular/core';
 import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field-form-component/text-field.component';
+import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
 
@@ -8,9 +9,9 @@ import { FormsService } from '../../../../../lib/core/services/forms.service';
   templateUrl: './field-editor.component.html',
   styleUrls: ['./field-editor.component.css']
 })
-export class FieldEditorComponent implements OnDestroy {
+export class FieldEditorComponent {
 
-  public field: TextFieldFormComponent;
+  public field: TextFieldComponent;
 
   public index = 0;
 

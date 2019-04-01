@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
-import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field-form-component/text-field.component';
+import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 import { FormsService } from '../../../../core/services/forms.service';
+import { TextAreaComponent } from '../../../../shared/form-components/concrete/text-area/text-area.component';
+import { CheckboxComponent } from '../../../../shared/form-components/concrete/checkbox/checkbox.component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -18,7 +20,9 @@ export class BuilderComponent implements OnInit {
   public index: number = 0;
   public components: Array<string> = [
     'Text Field',
-    'Number Field'
+    'Number Field',
+    'Text Area',
+    'Checkbox'
   ];
 
   public hovered: Boolean[] = [];
@@ -41,9 +45,13 @@ export class BuilderComponent implements OnInit {
     } else if (event.previousContainer.id === 'components' && event.previousContainer !== event.container) {
       this.hovered.push(false);
       if (event.previousContainer.data[event.previousIndex] === 'Text Field') {
-        this.addComponent(new TextFieldFormComponent(), `text_field_${this.index++}`);
+        this.addComponent(new TextFieldComponent(), `text_field_${this.index++}`);
       } else if (event.previousContainer.data[event.previousIndex] === 'Number Field') {
         this.addComponent(new NumberComponent(), `number_${this.index++}`);
+      } else if (event.previousContainer.data[event.previousIndex] === 'Text Area') {
+        this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
+      } else if (event.previousContainer.data[event.previousIndex] === 'Checkbox') {
+        this.addComponent(new CheckboxComponent(), `checkbox_${this.index++}`);
       }
     }
   }
@@ -71,7 +79,7 @@ export class BuilderComponent implements OnInit {
         field: this.formsService.components[index],
         isEdit: true
       },
-      width: "80vw"
+      width: '80vw'
     });
   }
 }

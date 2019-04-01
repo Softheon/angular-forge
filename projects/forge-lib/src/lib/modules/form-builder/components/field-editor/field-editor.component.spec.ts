@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { FieldEditorComponent } from './field-editor.component';
-import { TextFieldFormComponent } from '../../../../shared/form-components/concrete/text-field-form-component/text-field.component';
+import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 
 describe('FieldEditorComponent', () => {
   let component: FieldEditorComponent;
@@ -18,7 +18,7 @@ describe('FieldEditorComponent', () => {
         FormsModule
       ],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { field: new TextFieldFormComponent() } },
+        { provide: MAT_DIALOG_DATA, useValue: { field: new TextFieldComponent() } },
         { provide: MatDialogRef, useValue: {} }
       ]
     })

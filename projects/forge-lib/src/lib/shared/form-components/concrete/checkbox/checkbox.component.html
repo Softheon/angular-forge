@@ -1,0 +1,13 @@
+<div sws-checkbox>
+  <input [id]="'checkbox_' + id" type="checkbox" [(ngModel)]="value" [checked]="data.defaultValue" [(ngModel)]="value" [disabled]="display.disabled" />
+  <label *ngIf="!display.hideLabel" [id]="'label_' + id" [for]="'checkbox_' + id">{{display.label}}</label>
+</div>
+<div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
+  <div sws-icon-flat--secondary rounded>
+    <i class="fas fa-lightbulb"></i>
+  </div>
+  <div sws-tooltip--text>
+    <p> {{display.tooltip}} </p>
+  </div>
+</div>
+<p *ngIf="display.description">{{display.description}}</p>

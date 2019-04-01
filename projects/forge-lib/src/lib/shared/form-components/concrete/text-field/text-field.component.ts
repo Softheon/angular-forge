@@ -5,12 +5,15 @@ import { TextFieldDisplay } from './text-field-display';
 import { TextFieldValidation } from './text-field-validation';
 import { TextFieldData } from './text-field-data';
 
+/**
+ * Text field form component
+ */
 @Component({
   selector: 'forge-builder-text-field',
   templateUrl: './text-field.component.html',
   styleUrls: ['./text-field.component.scss']
 })
-export class TextFieldFormComponent extends FormComponent implements OnInit {
+export class TextFieldComponent extends FormComponent implements OnInit {
   /**
    * The ID of the component
    */
