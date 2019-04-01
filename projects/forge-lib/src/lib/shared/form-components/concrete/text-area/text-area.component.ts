@@ -8,7 +8,7 @@ import { TextAreaValidation } from './text-area-validation';
  * Text area component
  */
 @Component({
-  selector: 'forge-builder-text-area',
+  selector: 'forge-text-area',
   templateUrl: './text-area.component.html',
   styleUrls: ['./text-area.component.css']
 })

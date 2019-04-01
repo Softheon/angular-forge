@@ -6,7 +6,7 @@ import { CheckboxDisplay } from './checkbox-display';
 import { CheckboxValidation } from './checkbox-validation';
 
 @Component({
-  selector: 'forge-renderer-checkbox',
+  selector: 'forge-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.css']
 })

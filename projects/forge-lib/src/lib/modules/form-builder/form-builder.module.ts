@@ -15,6 +15,7 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
 import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
 import { TextAreaComponent } from '../../shared/form-components/concrete/text-area/text-area.component';
 import { CheckboxComponent } from '../../shared/form-components/concrete/checkbox/checkbox.component';
+import { RatingComponent } from '../../shared/form-components/concrete/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CheckboxComponent } from '../../shared/form-components/concrete/checkbo
     MinValidatorDirective,
     FieldEditorComponent,
     TextAreaComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    RatingComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { CheckboxComponent } from '../../shared/form-components/concrete/checkbo
     NumberComponent,
     FieldEditorComponent,
     TextAreaComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    RatingComponent
   ]
 })
 export class FormBuilderModule { }

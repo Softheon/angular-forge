@@ -5,6 +5,7 @@ import { NumberComponent } from './concrete/number/number.component';
 import { FormComponent } from './abstract/form-component';
 import { TextAreaComponent } from './concrete/text-area/text-area.component';
 import { CheckboxComponent } from './concrete/checkbox/checkbox.component';
+import { RatingComponent } from './concrete/rating/rating.component';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
     switch (name) {
@@ -19,6 +20,9 @@ export const getRegistryType = (name: string): Type<FormComponent> => {
         }
         case CheckboxComponent.name: {
             return CheckboxComponent;
+        }
+        case RatingComponent.name: {
+            return RatingComponent;
         }
     }
 };
