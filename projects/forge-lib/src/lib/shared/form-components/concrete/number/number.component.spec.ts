@@ -45,10 +45,6 @@ describe('NumberComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('#getValue should get value', () => {
     component.value = 'Test Value';
     expect(component.getValue()).toEqual('Test Value');

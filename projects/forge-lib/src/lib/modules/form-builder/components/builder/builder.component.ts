@@ -7,6 +7,7 @@ import { TextFieldComponent } from '../../../../shared/form-components/concrete/
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 import { TextAreaComponent } from '../../../../shared/form-components/concrete/text-area/text-area.component';
+import { CheckboxComponent } from '../../../../shared/form-components/concrete/checkbox/checkbox.component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -19,7 +20,8 @@ export class BuilderComponent implements OnInit {
   public components: Array<string> = [
     'Text Field',
     'Number Field',
-    'Text Area'
+    'Text Area',
+    'Checkbox'
   ];
 
   public hovered: Boolean[] = [];
@@ -46,6 +48,8 @@ export class BuilderComponent implements OnInit {
         this.addComponent(new NumberComponent(), `number_${this.index++}`);
       } else if (event.previousContainer.data[event.previousIndex] === 'Text Area') {
         this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
+      } else if (event.previousContainer.data[event.previousIndex] === 'Checkbox') {
+        this.addComponent(new CheckboxComponent(), `checkbox_${this.index++}`);
       }
     }
   }

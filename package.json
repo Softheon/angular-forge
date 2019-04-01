@@ -6,6 +6,7 @@
     "start": "ng serve forge-lib-tester",
     "build": "ng build forge-lib-tester --prod",
     "build-lib": "ng build forge-lib && npm run copy",
+    "build-lib-watch": "ng build forge-lib --watch",
     "test": "ng test forge-lib-tester",
     "test-lib": "ng test forge-lib",
     "lint": "ng lint",

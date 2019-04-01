@@ -40,8 +40,7 @@ export class ForgeComponent implements OnInit {
     });
     this.dialogRef.afterClosed().subscribe((data: any) => {
       this.component = data;
-    }) 
-
+    });
   }
 }
 

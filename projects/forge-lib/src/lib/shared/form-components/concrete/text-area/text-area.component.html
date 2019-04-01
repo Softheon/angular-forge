@@ -7,7 +7,8 @@
         [name]="'text_area_' + id" [disabled]="display.disabled" minlength="{{validation.minimumLength}}"
         maxlength="{{validation.maximumLength}}" [required]="validation.required" [rows]="display.rows"
         [cols]="display.cols"></textarea>
-      <label sws-form__label [id]="'label_' + id" [for]="id" *ngIf="!display.hideLabel">{{display.label}}</label>
+      <label sws-form__label [id]="'label_' + id" [id]="'label_' + id"
+        *ngIf="!display.hideLabel">{{display.label}}</label>
       <div *ngIf="name.invalid && (name.dirty || name.touched)">
         <div *ngIf="validation.customErrorMessage">
           <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>

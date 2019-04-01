@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material';
 
 import { BuilderComponent } from './components/builder/builder.component';
 import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
@@ -11,10 +12,9 @@ import { NumberComponent } from '../../shared/form-components/concrete/number/nu
 import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
-import { MatDialogModule } from '@angular/material';
 import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
 import { TextAreaComponent } from '../../shared/form-components/concrete/text-area/text-area.component';
-
+import { CheckboxComponent } from '../../shared/form-components/concrete/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { TextAreaComponent } from '../../shared/form-components/concrete/text-ar
     MaxValidatorDirective,
     MinValidatorDirective,
     FieldEditorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +44,8 @@ import { TextAreaComponent } from '../../shared/form-components/concrete/text-ar
     TextFieldComponent,
     NumberComponent,
     FieldEditorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    CheckboxComponent
   ]
 })
 export class FormBuilderModule { }
