@@ -13,6 +13,12 @@ import { TextAreaValidation } from './text-area-validation';
   styleUrls: ['./text-area.component.css']
 })
 export class TextAreaComponent extends TextFieldComponent implements OnInit {
+
+  /**
+ * Component type
+ */
+  public type: string = 'Text Area';
+
   /**
    * Text area display attributes
    */

@@ -16,22 +16,7 @@
       <input id="disabled" [(ngModel)]="this.field.display.disabled" type="checkbox" checked="unchecked" />
       <label for="disabled">Disabled</label>
     </div>
-    <!-- <div sws-form full-width>
-      <input [(ngModel)]="" sws-form__input type="'text'" [name]="'placeholder_input'">
-      <label sws-form__label [for]="'placeholder_input'">Label</label>
-    </div> -->
-    <div sws-form full-width>
-      <input [(ngModel)]="this.field.display.description" sws-form__input type="'text'" [name]="'description_input'">
-      <label sws-form__label [for]="'label_input'">Description</label>
-    </div>
-    <div sws-form full-width>
-      <input [(ngModel)]="this.field.display.prefix" sws-form__input type="'text'" [name]="'prefix_input'">
-      <label sws-form__label [for]="'label_input'">Prefix</label>
-    </div>
-    <div sws-form full-width>
-      <input [(ngModel)]="this.field.display.suffix" sws-form__input type="'text'" [name]="'suffix_input'">
-      <label sws-form__label [for]="'label_input'">Suffix</label>
-    </div>
+    <ng-container #vcEditor></ng-container>
   </div>
   <div flex-container-column class="flex-col">
     Preview
