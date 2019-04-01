@@ -6,6 +6,7 @@ import { TextFieldFormComponent } from '../../../../shared/form-components/concr
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
+import { FormsService } from '../../../../core/services/forms.service';
 
 @Component({
   selector: 'forge-form-builder',
@@ -26,7 +27,8 @@ export class BuilderComponent implements OnInit {
 
   public forgeComponents: Array<FormComponent> = [];
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,
+    public formsService: FormsService) { }
 
   public ngOnInit(): void {
   }
@@ -55,10 +57,19 @@ export class BuilderComponent implements OnInit {
     this.forgeComponents.push(component);
   }
 
-  public editComponent(index: number): void{
+  public deleteComponent(index: number): void {
+    console.log("deleting " + index);
+    this.forgeComponents.splice(index, 1);
+    this.formsService.components.splice(index, 1);
+
+    console.log(this.forgeComponents);
+  }
+
+  public editComponent(index: number): void {
     this.dialogRef = this.dialog.open(FieldEditorComponent, {
       data: {
-        field: this.forgeComponents[index],
+        field: this.formsService.components[index],
+        isEdit: true
       },
       width: "80vw"
     });

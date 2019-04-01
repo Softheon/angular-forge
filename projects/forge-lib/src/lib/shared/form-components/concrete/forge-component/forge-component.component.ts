@@ -16,6 +16,8 @@ export class ForgeComponent implements OnInit {
 
   @Input() public component: FormComponent;
 
+  @Input() public createModal = true;
+
   public dialogRef: MatDialogRef<any>;
 
   public hovered = false;
@@ -32,16 +34,20 @@ export class ForgeComponent implements OnInit {
     const newComponent = this.vc.createComponent(factory);
     newComponent.instance.id = this.component.id;
     this.component = newComponent.instance;
-    this.dialogRef = this.dialog.open(FieldEditorComponent, {
-      data: {
-        field: this.component,
-      },
-      width: '80vw'
-    });
-    this.dialogRef.afterClosed().subscribe((data: any) => {
-      this.component = data;
-    }) 
-
+    if (this.createModal) {
+      setTimeout(() => {
+      this.dialogRef = this.dialog.open(FieldEditorComponent, {
+        data: {
+          field: this.component,
+          isEdit: false
+        },
+        width: '80vw'
+      });
+        this.dialogRef.afterClosed().subscribe((data: any) => {
+          this.component = data;
+        })
+      });
+    }
   }
 }
 

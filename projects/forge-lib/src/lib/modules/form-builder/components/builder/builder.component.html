@@ -17,7 +17,9 @@
     <div class="form-box" *ngFor="let forgeComponent of forgeComponents; index as i" cdkDrag>
       <div full-width (mouseenter)="hovered[i] = true" (mouseleave)="hovered[i] = false">
         <div flex-container-row style="justify-content:flex-end" *ngIf="hovered[i] == true">
-          <div class="fa fa-cog" (click)="editComponent(i)">
+          <div class="fa fa-cog" (click)="editComponent(i)" m-r-10>
+          </div>
+          <div class="fa fa-times" (click)="deleteComponent(i)">
           </div>
         </div>
         <forge-builder-component full-width [component]="forgeComponent">

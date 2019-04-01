@@ -78,6 +78,7 @@
             "polyfills": "projects/forge-lib-tester/src/polyfills.ts",
             "tsConfig": "projects/forge-lib-tester/tsconfig.spec.json",
             "karmaConfig": "projects/forge-lib-tester/karma.conf.js",
+            "codeCoverage": true,
             "styles": [
               "projects/forge-lib-tester/src/styles.css"
             ],

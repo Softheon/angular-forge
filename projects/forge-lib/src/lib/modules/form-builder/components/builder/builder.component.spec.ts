@@ -1,8 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatDialogModule } from '@angular/material'
+import { MatDialogRef } from '@angular/material';
+
+import { FormsService } from '../../../../core/services/forms.service';
 
 import { BuilderComponent } from './builder.component';
+
+import { formsServiceMock } from '../../../../core/mocks/formsServiceMock';
 
 describe('BuilderComponent', () => {
   let component: BuilderComponent;
@@ -14,10 +20,15 @@ describe('BuilderComponent', () => {
         BuilderComponent
        ],
        imports: [
-         DragDropModule
+         DragDropModule,
+         MatDialogModule
        ],
        schemas: [
           CUSTOM_ELEMENTS_SCHEMA
+       ],
+       providers: [
+         {provide: FormsService, useValue: formsServiceMock},
+         { provide: MatDialogRef, useValue: {} }
        ]
     })
     .compileComponents();
