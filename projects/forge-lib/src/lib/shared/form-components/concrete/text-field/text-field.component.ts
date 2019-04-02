@@ -49,6 +49,10 @@ export class TextFieldComponent extends FormComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.value = this.data.defaultValue;
+
+    if (!this.display.label) {
+      this.display.label = 'Text Field';
+    }
   }
 
   /**

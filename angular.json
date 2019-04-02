@@ -149,7 +149,8 @@
           "options": {
             "main": "projects/forge-lib/src/test.ts",
             "tsConfig": "projects/forge-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/forge-lib/karma.conf.js"
+            "karmaConfig": "projects/forge-lib/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {
