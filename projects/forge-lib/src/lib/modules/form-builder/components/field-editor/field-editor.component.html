@@ -3,7 +3,7 @@
     <mat-tab-group>
       <mat-tab label="Display">
         <div sws-form full-width>
-          <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'">
+          <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'" onkeyup="this.setAttribute('value', this.value);">
           <label sws-form__label [for]="'label_input'">Label</label>
         </div>
         <div sws-checkbox>

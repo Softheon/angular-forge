@@ -1,12 +1,12 @@
 <div sws-form full-width>
-  <input [(ngModel)]="this.component.display.description" sws-form__input type="'text'" [name]="'description_input'">
+  <input [(ngModel)]="this.component.display.description" sws-form__input type="'text'" [name]="'description_input'" onkeyup="this.setAttribute('value', this.value);">
   <label sws-form__label [for]="'label_input'">Description</label>
 </div>
 <div sws-form full-width>
-  <input [(ngModel)]="this.component.display.minRatingDesc" sws-form__input type="'text'" [name]="'prefix_input'">
+  <input [(ngModel)]="this.component.display.minRatingDesc" sws-form__input type="'text'" [name]="'prefix_input'" onkeyup="this.setAttribute('value', this.value);">
   <label sws-form__label [for]="'label_input'">Minimum Rating Description</label>
 </div>
 <div sws-form full-width>
-  <input [(ngModel)]="this.component.display.maxRatingDesc" sws-form__input type="'text'" [name]="'prefix_input'">
+  <input [(ngModel)]="this.component.display.maxRatingDesc" sws-form__input type="'text'" [name]="'prefix_input'" onkeyup="this.setAttribute('value', this.value);">
   <label sws-form__label [for]="'label_input'">Maximum Rating Description</label>
 </div>
