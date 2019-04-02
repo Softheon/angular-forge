@@ -58,6 +58,10 @@ export class RatingComponent extends FormComponent implements OnInit {
     for (let i = this.data.minRating; i <= this.data.maxRating; i++) {
       this.ratings.push(i);
     }
+
+    if (!this.display.label) {
+      this.display.label = 'Rating';
+    }
   }
 
   /**
