@@ -3,7 +3,8 @@
     <mat-tab-group>
       <mat-tab label="Display">
         <div sws-form full-width>
-          <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'" onkeyup="this.setAttribute('value', this.value);">
+          <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'"
+            onkeyup="this.setAttribute('value', this.value);">
           <label sws-form__label [for]="'label_input'">Label</label>
         </div>
         <div sws-checkbox>
@@ -21,16 +22,24 @@
         <ng-container #vcDisplay></ng-container>
       </mat-tab>
       <mat-tab label="Data">
-        <div flex-container>
-
-          <ng-container #vcData></ng-container>
+        <div sws-form full-width>
+          <input [(ngModel)]="this.field.data.defaultValue" sws-form__input type="'text'" [name]="'label_default_value'"
+            onkeyup="this.setAttribute('value', this.value);">
+          <label sws-form__label [for]="'label_default_value'">Default Value</label>
         </div>
+        <ng-container #vcData></ng-container>
       </mat-tab>
       <mat-tab label="Validation">
-        <div flex-container>
-
-          <ng-container #vcValidation></ng-container>
+        <div sws-checkbox>
+          <input id="data_required" [(ngModel)]="this.field.validation.required" type="checkbox" checked="unchecked" />
+          <label for="data_required">Required?</label>
         </div>
+        <div sws-form full-width>
+          <input [(ngModel)]="this.field.validation.customErrorMessage" sws-form__input type="'text'"
+            [name]="'data_custom_error_message'" onkeyup="this.setAttribute('value', this.value);">
+          <label sws-form__label [for]="'data_custom_error_message'">Label</label>
+        </div>
+        <ng-container #vcValidation></ng-container>
       </mat-tab>
       <mat-tab label="Api">
         <div flex-container>

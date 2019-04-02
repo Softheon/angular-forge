@@ -59,26 +59,38 @@ export class FieldEditorComponent {
     switch (this.field.type) {
       case "Text Field": {
         this.displayName = "TextFieldEditorDisplayComponent";
+        this.dataName = "TextFieldEditorDataComponent";
+        this.validationName = "TextFieldEditorValidationComponent";
         break;
       }
       case "Number": {
         this.displayName = "NumberEditorDisplayComponent";
+        this.dataName = "NumberEditorDataComponent";
+        this.validationName = "NumberEditorValidationComponent";
         break;
       }
       case "Text Area": {
         this.displayName = "TextAreaEditorDisplayComponent";
+        this.dataName = "TextAreaEditorDataComponent";
+        this.validationName = "TextAreaEditorValidationComponent";
         break;
       }
       case "Checkbox": {
         this.displayName = "CheckboxEditorDisplayComponent";
+        this.dataName = "CheckboxEditorDataComponent";
+        this.validationName = "CheckboxEditorValidationComponent";
         break;
       }
       case "Email": {
         this.displayName = "EmailEditorDisplayComponent";
+        this.dataName = "EmailEditorDataComponent";
+        this.validationName = "EmailEditorValidationComponent";
         break;
       }
       case "Rating": {
         this.displayName = "RatingEditorDisplayComponent";
+        this.dataName = "RatingEditorDataComponent";
+        this.validationName = "RatingEditorValidationComponent";
         break;
       }
       default: {
@@ -87,9 +99,8 @@ export class FieldEditorComponent {
     }
 
     this.createDynamicComponents(this.displayName, this.vcDisplay);
-    // TODO:: Other tabs
-    // this.createDynamicComponents(this.dataName, this.vcData);
-    // this.createDynamicComponents(this.validationName, this.vcValidation);
+    this.createDynamicComponents(this.dataName, this.vcData);
+    this.createDynamicComponents(this.validationName, this.vcValidation);
   }
 
   private createDynamicComponents(name: string, vc: ViewContainerRef): void {
