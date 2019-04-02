@@ -1,27 +1,53 @@
 <div flex-container>
-  <div flex-container-column class="flex-col">
-    <div sws-form full-width>
-      <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'">
-      <label sws-form__label [for]="'label_input'">Label</label>
-    </div>
-    <div sws-checkbox>
-      <input id="hide_label" [(ngModel)]="this.field.display.hideLabel" type="checkbox" checked="unchecked" />
-      <label for="hide_label">Hide label</label>
-    </div>
-    <div sws-textarea>
-      <textarea [(ngModel)]="this.field.display.tooltip" name="tooltip" id="tooltip" rows="4" cols="50"></textarea>
-      <label sws-textarea__label for="tooltip">Tooltip</label>
-    </div>
-    <div sws-checkbox>
-      <input id="disabled" [(ngModel)]="this.field.display.disabled" type="checkbox" checked="unchecked" />
-      <label for="disabled">Disabled</label>
-    </div>
-    <ng-container #vcEditor></ng-container>
+  <div flex-container-column class="flex-col" m-r-10>
+    <mat-tab-group>
+      <mat-tab label="Display">
+        <div sws-form full-width>
+          <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'">
+          <label sws-form__label [for]="'label_input'">Label</label>
+        </div>
+        <div sws-checkbox>
+          <input id="hide_label" [(ngModel)]="this.field.display.hideLabel" type="checkbox" checked="unchecked" />
+          <label for="hide_label">Hide label</label>
+        </div>
+        <div sws-textarea>
+          <textarea [(ngModel)]="this.field.display.tooltip" name="tooltip" id="tooltip" rows="4" cols="50"></textarea>
+          <label sws-textarea__label for="tooltip">Tooltip</label>
+        </div>
+        <div sws-checkbox>
+          <input id="disabled" [(ngModel)]="this.field.display.disabled" type="checkbox" checked="unchecked" />
+          <label for="disabled">Disabled</label>
+        </div>
+        <ng-container #vcDisplay></ng-container>
+      </mat-tab>
+      <mat-tab label="Data">
+        <div flex-container>
+
+          <ng-container #vcData></ng-container>
+        </div>
+      </mat-tab>
+      <mat-tab label="Validation">
+        <div flex-container>
+
+          <ng-container #vcValidation></ng-container>
+        </div>
+      </mat-tab>
+      <mat-tab label="Api">
+        <div flex-container>
+        </div>
+      </mat-tab>
+      <mat-tab label="Conditional">
+        <div flex-container>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
-  <div flex-container-column class="flex-col">
-    Preview
-    <div>
+  <div flex-container-column class="flex-col" m-l-10>
+    <div p-t-50>
+      Preview
+      <div>
         Live preview coming soon
+      </div>
     </div>
   </div>
 </div>

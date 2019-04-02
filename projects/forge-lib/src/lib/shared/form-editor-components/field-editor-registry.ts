@@ -1,23 +1,23 @@
 import { Type } from '@angular/core';
-import { FormEditorComponent } from './abstract/form-editor/form-editor-component';
-import { TextFieldEditorComponent } from './concrete/text-field-editor/text-field-editor.component';
-import { NumberEditorComponent } from './concrete/number-editor/number-editor.component';
-import { TextAreaEditorComponent } from './concrete/text-area-editor/text-area-editor.component';
-import { CheckboxEditorComponent } from './concrete/checkbox-editor/checkbox-editor.component';
+import { FormEditorDisplayComponent } from './abstract/form-editor/display/form-editor-display-component';
+import { TextFieldEditorDisplayComponent } from './concrete/text-field-editor/display/text-field-editor-display.component';
+import { NumberEditorDisplayComponent } from './concrete/number-editor/display/number-editor-display.component';
+import { TextAreaEditorDisplayComponent } from './concrete/text-area-editor/display/text-area-editor-display.component';
+import { CheckboxEditorDisplayComponent } from './concrete/checkbox-editor/display/checkbox-editor-display.component';
 
-export const getRegistryType = (name: string): Type<FormEditorComponent> => {
+export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> => {
     switch (name) {
-        case TextFieldEditorComponent.name: {
-            return TextFieldEditorComponent;
+        case TextFieldEditorDisplayComponent.name: {
+            return TextFieldEditorDisplayComponent;
         }
-         case NumberEditorComponent.name: {
-             return NumberEditorComponent;
+         case NumberEditorDisplayComponent.name: {
+             return NumberEditorDisplayComponent;
          }
-         case TextAreaEditorComponent.name: {
-             return TextAreaEditorComponent;
+         case TextAreaEditorDisplayComponent.name: {
+             return TextAreaEditorDisplayComponent;
          }
-         case CheckboxEditorComponent.name: {
-             return CheckboxEditorComponent;
+         case CheckboxEditorDisplayComponent.name: {
+             return CheckboxEditorDisplayComponent;
          }
     }
 };

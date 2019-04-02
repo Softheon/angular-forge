@@ -7,7 +7,7 @@ import { TextFieldComponent } from '../../../../shared/form-components/concrete/
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 import { FormsService } from '../../../../core/services/forms.service';
-import { TextAreaComponent } from '../../../../shared/form-components/concrete/text-area/text-area.component';
+import { TextAreaComponent } from '../../../../shared//form-components/concrete/text-area/text-area.component';
 import { CheckboxComponent } from '../../../../shared/form-components/concrete/checkbox/checkbox.component';
 
 @Component({

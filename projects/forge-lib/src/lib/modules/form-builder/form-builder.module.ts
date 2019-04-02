@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatTabsModule } from '@angular/material';
 
 import { BuilderComponent } from './components/builder/builder.component';
 import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
-import { TextFieldEditorComponent } from '../../shared/form-editor-components/concrete/text-field-editor/text-field-editor.component';
+import { TextFieldEditorDisplayComponent } from '../../shared/form-editor-components/concrete/text-field-editor/display/text-field-editor-display.component';
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
 import { NumberComponent } from '../../shared/form-components/concrete/number/number.component';
 import { NumberDirective } from '../../shared/directives/number.directive';
@@ -16,32 +16,33 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
 import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
 import { TextAreaComponent } from '../../shared/form-components/concrete/text-area/text-area.component';
 import { CheckboxComponent } from '../../shared/form-components/concrete/checkbox/checkbox.component';
-import { NumberEditorComponent } from '../../shared/form-editor-components/concrete/number-editor/number-editor.component';
-import { TextAreaEditorComponent } from '../../shared/form-editor-components/concrete/text-area-editor/text-area-editor.component';
-import { CheckboxEditorComponent } from '../../shared/form-editor-components/concrete/checkbox-editor/checkbox-editor.component';
+import { NumberEditorDisplayComponent } from '../../shared/form-editor-components/concrete/number-editor/display/number-editor-display.component';
+import { TextAreaEditorDisplayComponent } from '../../shared/form-editor-components/concrete/text-area-editor/display/text-area-editor-display.component';
+import { CheckboxEditorDisplayComponent } from '../../shared/form-editor-components/concrete/checkbox-editor/display/checkbox-editor-display.component';
 
 @NgModule({
   declarations: [
     BuilderComponent,
     TextFieldComponent,
-    TextFieldEditorComponent,
+    TextFieldEditorDisplayComponent,
     NumberComponent,
-    NumberEditorComponent,
+    NumberEditorDisplayComponent,
     ForgeComponent,
     NumberDirective,
     MaxValidatorDirective,
     MinValidatorDirective,
     FieldEditorComponent,
     TextAreaComponent,
-    TextAreaEditorComponent,
+    TextAreaEditorDisplayComponent,
     CheckboxComponent,
-    CheckboxEditorComponent
+    CheckboxEditorDisplayComponent
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     DragDropModule,
     MatDialogModule,
+    MatTabsModule,
     FormsModule
   ],
   exports: [
@@ -50,14 +51,14 @@ import { CheckboxEditorComponent } from '../../shared/form-editor-components/con
   ],
   entryComponents: [
     TextFieldComponent,
-    TextFieldEditorComponent,
+    TextFieldEditorDisplayComponent,
     NumberComponent,
-    NumberEditorComponent,
+    NumberEditorDisplayComponent,
     FieldEditorComponent,
     TextAreaComponent,
-    TextAreaEditorComponent,
+    TextAreaEditorDisplayComponent,
     CheckboxComponent,
-    CheckboxEditorComponent
+    CheckboxEditorDisplayComponent
   ]
 })
 export class FormBuilderModule { }

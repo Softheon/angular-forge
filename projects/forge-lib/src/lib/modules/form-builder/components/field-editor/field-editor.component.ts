@@ -12,13 +12,24 @@ import { getRegistryType } from '../../../../shared/form-editor-components/field
 })
 export class FieldEditorComponent {
 
-  @ViewChild('vcEditor', { read: ViewContainerRef }) vc: ViewContainerRef;
+  @ViewChild('vcDisplay', { read: ViewContainerRef }) vcDisplay: ViewContainerRef;
+
+  @ViewChild('vcData', { read: ViewContainerRef }) vcData: ViewContainerRef;
+
+  @ViewChild('vcValidation', { read: ViewContainerRef }) vcValidation: ViewContainerRef;
 
   public field: FormComponent;
 
   public index = 0;
 
   public isEdit: Boolean = false;
+
+  public displayName = "";
+
+  public dataName = "";
+
+  public validationName = "";
+
 
   //TODO:: Figure out why using data: FormComponent throws weird compilation errors
 
@@ -34,37 +45,7 @@ export class FieldEditorComponent {
 
   public ngOnInit(): void {
     console.log(this.field);
-    let name = "TextFieldEditorComponent";
-
-    //Match the type to the editor value
-    switch (this.field.type) {
-      case "Text Field": {
-        name = "TextFieldEditorComponent";
-        break;
-      }
-      case "Number": {
-        name = "NumberEditorComponent";
-        break;
-      }
-      case "Text Area": {
-        name = "TextAreaEditorComponent";
-        break;
-      }
-      case "Checkbox": {
-        name = "CheckboxEditorComponent";
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-
-    const factory = this.resolver.resolveComponentFactory(getRegistryType(name));
-    this.vc.clear();
-
-    const newComponent = this.vc.createComponent(factory);
- 
-    newComponent.instance.component = this.field;    
+    this.setDynamicComponents();
   }
 
   public ngOnDestroy(): void {
@@ -72,5 +53,41 @@ export class FieldEditorComponent {
       this.formsService.components.push(this.field)
     }
     this.dialogRef.close(this.field);
+  }
+
+  private setDynamicComponents(): void {
+    switch (this.field.type) {
+      case "Text Field": {
+        this.displayName = "TextFieldEditorDisplayComponent";
+        break;
+      }
+      case "Number": {
+        this.displayName = "NumberEditorDisplayComponent";
+        break;
+      }
+      case "Text Area": {
+        this.displayName = "TextAreaEditorDisplayComponent";
+        break;
+      }
+      case "Checkbox": {
+        this.displayName = "CheckboxEditorDisplayComponent";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    this.createDynamicComponents(this.displayName, this.vcDisplay);
+    // TODO:: Other tabs
+    // this.createDynamicComponents(this.dataName, this.vcData);
+    // this.createDynamicComponents(this.validationName, this.vcValidation);
+  }
+
+  private createDynamicComponents(name: string, vc: ViewContainerRef): void {
+    const factory = this.resolver.resolveComponentFactory(getRegistryType(name));
+    vc.clear();
+    const newComponent = vc.createComponent(factory);
+    newComponent.instance.component = this.field;
   }
 }
