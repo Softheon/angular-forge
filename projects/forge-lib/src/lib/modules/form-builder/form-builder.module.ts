@@ -16,6 +16,7 @@ import { FieldEditorComponent } from '../form-builder/components/field-editor/fi
 import { TextAreaComponent } from '../../shared/form-components/concrete/text-area/text-area.component';
 import { CheckboxComponent } from '../../shared/form-components/concrete/checkbox/checkbox.component';
 import { RatingComponent } from '../../shared/form-components/concrete/rating/rating.component';
+import { EmailComponent } from '../../shared/form-components/concrete/email/email.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RatingComponent } from '../../shared/form-components/concrete/rating/ra
     FieldEditorComponent,
     TextAreaComponent,
     CheckboxComponent,
-    RatingComponent
+    RatingComponent,
+    EmailComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { RatingComponent } from '../../shared/form-components/concrete/rating/ra
     FieldEditorComponent,
     TextAreaComponent,
     CheckboxComponent,
-    RatingComponent
+    RatingComponent,
+    EmailComponent
   ]
 })
 export class FormBuilderModule { }
