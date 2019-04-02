@@ -5,11 +5,6 @@ import { FormDisplay } from '../../abstract/form-display';
  */
 export class RatingDisplay extends FormDisplay {
     /**
-     * The description is text that will appear below the input field.
-     */
-    public description: string;
-
-    /**
      * Minimum rating description
      */
     public minRatingDesc: string;

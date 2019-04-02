@@ -3,6 +3,11 @@
  */
 export abstract class FormDisplay {
     /**
+     * The description is text that will appear below the input field.
+     */
+    public description: string;
+
+    /**
      * The label for the component
      */
     public label: string;
