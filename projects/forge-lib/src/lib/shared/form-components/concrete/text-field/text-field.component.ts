@@ -9,7 +9,7 @@ import { TextFieldData } from './text-field-data';
  * Text field form component
  */
 @Component({
-  selector: 'forge-builder-text-field',
+  selector: 'forge-text-field',
   templateUrl: './text-field.component.html',
   styleUrls: ['./text-field.component.scss']
 })

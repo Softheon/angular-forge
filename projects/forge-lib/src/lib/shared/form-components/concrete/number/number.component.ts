@@ -6,7 +6,7 @@ import { FormComponent } from '../../abstract/form-component';
 import { TextFieldDisplay } from '../text-field/text-field-display';
 
 @Component({
-  selector: 'forge-builder-number',
+  selector: 'forge-number',
   templateUrl: './number.component.html',
   styleUrls: ['./number.component.css']
 })

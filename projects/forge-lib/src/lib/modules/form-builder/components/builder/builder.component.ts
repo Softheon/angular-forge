@@ -9,6 +9,8 @@ import { FieldEditorComponent } from '../../../../modules/form-builder/component
 import { FormsService } from '../../../../core/services/forms.service';
 import { TextAreaComponent } from '../../../../shared//form-components/concrete/text-area/text-area.component';
 import { CheckboxComponent } from '../../../../shared/form-components/concrete/checkbox/checkbox.component';
+import { RatingComponent } from '../../../../shared/form-components/concrete/rating/rating.component';
+import { EmailComponent } from '../../../../shared/form-components/concrete/email/email.component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -22,7 +24,9 @@ export class BuilderComponent implements OnInit {
     'Text Field',
     'Number Field',
     'Text Area',
-    'Checkbox'
+    'Checkbox',
+    'Rating',
+    'Email'
   ];
 
   public hovered: Boolean[] = [];
@@ -52,6 +56,10 @@ export class BuilderComponent implements OnInit {
         this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
       } else if (event.previousContainer.data[event.previousIndex] === 'Checkbox') {
         this.addComponent(new CheckboxComponent(), `checkbox_${this.index++}`);
+      } else if (event.previousContainer.data[event.previousIndex] === 'Rating') {
+        this.addComponent(new RatingComponent(), `rating_${this.index++}`);
+      } else if (event.previousContainer.data[event.previousIndex] === 'Email') {
+        this.addComponent(new EmailComponent(), `email_${this.index++}`);
       }
     }
   }

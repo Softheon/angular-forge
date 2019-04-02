@@ -1,9 +1,9 @@
-import { TextFieldDisplay } from '../../../../shared/form-components/concrete/text-field/text-field-display';
+import { FormDisplay } from '../../abstract/form-display';
 
 /**
  * Text area attributes
  */
-export class TextAreaDisplay extends TextFieldDisplay {
+export class TextAreaDisplay extends FormDisplay {
     /**
      * Number of rows allowed in the text area
      */
@@ -13,4 +13,9 @@ export class TextAreaDisplay extends TextFieldDisplay {
      * Number of columns allowed in the text area
      */
     public cols: number;
+
+    /**
+     * The description is text that will appear below the input field.
+     */
+    public description: string;
 }
