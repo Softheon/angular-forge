@@ -41,6 +41,9 @@ export class CheckboxComponent extends FormComponent implements OnInit {
    */
   public value: boolean;
 
+  /**
+   * Initializes the component
+   */
   public ngOnInit(): void {
     this.value = this.data.defaultValue;
 
