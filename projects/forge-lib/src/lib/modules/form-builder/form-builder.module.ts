@@ -21,6 +21,8 @@ import { TextAreaEditorDisplayComponent } from '../../shared/form-editor-compone
 import { CheckboxEditorDisplayComponent } from '../../shared/form-editor-components/concrete/checkbox-editor/display/checkbox-editor-display.component';
 import { RatingComponent } from '../../shared/form-components/concrete/rating/rating.component';
 import { EmailComponent } from '../../shared/form-components/concrete/email/email.component';
+import { RatingEditorDisplayComponent } from '../../shared/form-editor-components/concrete/rating-editor/display/rating-editor-display.component';
+import { EmailEditorDisplayComponent } from '../../shared/form-editor-components/concrete/email-editor/display/email-editor-display.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { EmailComponent } from '../../shared/form-components/concrete/email/emai
     CheckboxComponent,
     CheckboxEditorDisplayComponent,
     RatingComponent,
-    EmailComponent
+    RatingEditorDisplayComponent,
+    EmailComponent,
+    EmailEditorDisplayComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +68,9 @@ import { EmailComponent } from '../../shared/form-components/concrete/email/emai
     CheckboxComponent,
     CheckboxEditorDisplayComponent,
     RatingComponent,
-    EmailComponent
+    RatingEditorDisplayComponent,
+    EmailComponent,
+    EmailEditorDisplayComponent
   ]
 })
 export class FormBuilderModule { }

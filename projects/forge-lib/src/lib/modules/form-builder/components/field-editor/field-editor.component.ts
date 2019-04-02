@@ -73,6 +73,14 @@ export class FieldEditorComponent {
         this.displayName = "CheckboxEditorDisplayComponent";
         break;
       }
+      case "Email": {
+        this.displayName = "EmailEditorDisplayComponent";
+        break;
+      }
+      case "Rating": {
+        this.displayName = "RatingEditorDisplayComponent";
+        break;
+      }
       default: {
         break;
       }

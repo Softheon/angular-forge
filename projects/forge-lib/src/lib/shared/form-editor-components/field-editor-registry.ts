@@ -4,6 +4,8 @@ import { TextFieldEditorDisplayComponent } from './concrete/text-field-editor/di
 import { NumberEditorDisplayComponent } from './concrete/number-editor/display/number-editor-display.component';
 import { TextAreaEditorDisplayComponent } from './concrete/text-area-editor/display/text-area-editor-display.component';
 import { CheckboxEditorDisplayComponent } from './concrete/checkbox-editor/display/checkbox-editor-display.component';
+import { RatingEditorDisplayComponent } from './concrete/rating-editor/display/rating-editor-display.component';
+import { EmailEditorDisplayComponent } from './concrete/email-editor/display/email-editor-display.component';
 
 export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> => {
     switch (name) {
@@ -19,5 +21,11 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
          case CheckboxEditorDisplayComponent.name: {
              return CheckboxEditorDisplayComponent;
          }
+         case RatingEditorDisplayComponent.name: {
+            return RatingEditorDisplayComponent;
+        }
+        case EmailEditorDisplayComponent.name: {
+            return EmailEditorDisplayComponent;
+        }
     }
 };
