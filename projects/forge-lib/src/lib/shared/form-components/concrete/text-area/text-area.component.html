@@ -1,6 +1,4 @@
 <div flex-container-row>
-  <button [id]="'prefix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25 m-r-0
-    *ngIf="display.prefix">{{display.prefix}}</button>
   <div flex-container-column full-width border-box>
     <div sws-textarea full-width>
       <textarea [id]="'text_area_' + id" [(ngModel)]="value" sws-form__input type="text" #name="ngModel"
@@ -26,8 +24,6 @@
       </div>
     </div>
   </div>
-  <button [id]="'suffix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25
-    *ngIf="display.suffix">{{display.suffix}}</button>
   <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
     <div sws-icon-flat--secondary rounded>
       <i class="fas fa-lightbulb"></i>

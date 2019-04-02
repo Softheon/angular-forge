@@ -10,8 +10,6 @@ describe('TextAreaComponent', () => {
   const id = '0';
   const label = 'User Name';
   const tooltip = 'Enter your user name here';
-  const prefix = '$';
-  const suffix = 'ish';
   const minLength = 2;
   const maxLength = 10;
   const defaultValue = 'Default Value';
@@ -80,20 +78,6 @@ describe('TextAreaComponent', () => {
     fixture.detectChanges();
     const inputElement: HTMLInputElement = fixture.nativeElement.querySelector(`#text_area_${id}`);
     expect(inputElement.attributes['ng-reflect-is-disabled'].value).toEqual('false');
-  });
-
-  it('should display prefix', () => {
-    component.display.prefix = prefix;
-    fixture.detectChanges();
-    const button = fixture.nativeElement.querySelector(`#prefix_${id}`);
-    expect(button.innerHTML).toEqual(prefix);
-  });
-
-  it('should display suffix', () => {
-    component.display.suffix = suffix;
-    fixture.detectChanges();
-    const button: HTMLButtonElement = fixture.nativeElement.querySelector(`#suffix_${id}`);
-    expect(button.innerHTML).toEqual(suffix);
   });
 
   it('should validate required', () => {
