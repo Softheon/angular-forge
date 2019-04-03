@@ -7,7 +7,7 @@ export class NumberData extends FormData {
     /**
      * Number of decimal places allowed
      */
-    public decimalPlaces: number = Number.MAX_SAFE_INTEGER;
+    public decimalPlaces: number = -1;
 
     /**
      * Whether decimal places are required

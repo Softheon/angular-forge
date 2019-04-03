@@ -26,7 +26,7 @@ export class NumberDirective {
         }
 
         // Make sure only the specified number of decimal places are allowed
-        if (this.decimalPlaces && this.decimalPlaces !== 0) {
+        if (this.decimalPlaces && this.decimalPlaces >= 0) {
             if (value.includes('.')) {
                 const splitOnDecimal = value.split('.');
                 const leftPart = splitOnDecimal[0];
