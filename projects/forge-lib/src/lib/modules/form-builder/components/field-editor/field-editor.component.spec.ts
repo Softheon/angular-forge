@@ -7,7 +7,8 @@ import { FieldEditorComponent } from './field-editor.component';
 import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { TextFieldEditorDisplayComponent } from '../../../../shared/form-editor-components/concrete/text-field-editor/display/text-field-editor-display.component';
-
+import { TextFieldEditorDataComponent } from '../../../../shared/form-editor-components/concrete/text-field-editor/data/text-field-editor-data.component';
+import { TextFieldEditorValidationComponent } from '../../../../shared/form-editor-components/concrete/text-field-editor/validation/text-field-editor-validation.component';
 
 describe('FieldEditorComponent', () => {
   let component: FieldEditorComponent;
@@ -17,7 +18,9 @@ describe('FieldEditorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         FieldEditorComponent,
-        TextFieldEditorDisplayComponent
+        TextFieldEditorDisplayComponent,
+        TextFieldEditorDataComponent,
+        TextFieldEditorValidationComponent
       ],
       imports: [
         FormsModule
@@ -31,7 +34,11 @@ describe('FieldEditorComponent', () => {
       ]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [TextFieldEditorDisplayComponent]
+        entryComponents: [
+          TextFieldEditorDisplayComponent,
+          TextFieldEditorDataComponent,
+          TextFieldEditorValidationComponent
+        ]
       }
     })
       .compileComponents();

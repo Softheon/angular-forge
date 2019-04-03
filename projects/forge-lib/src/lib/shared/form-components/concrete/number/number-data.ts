@@ -12,5 +12,5 @@ export class NumberData extends FormData {
     /**
      * Whether decimal places are required
      */
-    public requireDecimal: number;
+    public requireDecimal: boolean;
 }

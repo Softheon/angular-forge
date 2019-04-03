@@ -23,14 +23,30 @@ import { RatingComponent } from '../../shared/form-components/concrete/rating/ra
 import { EmailComponent } from '../../shared/form-components/concrete/email/email.component';
 import { RatingEditorDisplayComponent } from '../../shared/form-editor-components/concrete/rating-editor/display/rating-editor-display.component';
 import { EmailEditorDisplayComponent } from '../../shared/form-editor-components/concrete/email-editor/display/email-editor-display.component';
+import { TextFieldEditorDataComponent } from '../../shared/form-editor-components/concrete/text-field-editor/data/text-field-editor-data.component';
+import { TextFieldEditorValidationComponent } from '../../shared/form-editor-components/concrete/text-field-editor/validation/text-field-editor-validation.component';
+import { NumberEditorDataComponent } from '../../shared/form-editor-components/concrete/number-editor/data/number-editor-data.component';
+import { NumberEditorValidationComponent } from '../../shared/form-editor-components/concrete/number-editor/validation/number-editor-validation.component';
+import { TextAreaEditorDataComponent } from '../../shared/form-editor-components/concrete/text-area-editor/data/text-area-editor-data.component';
+import { TextAreaEditorValidationComponent } from '../../shared/form-editor-components/concrete/text-area-editor/validation/text-area-editor-validation.component';
+import { CheckboxEditorDataComponent } from '../../shared/form-editor-components/concrete/checkbox-editor/data/checkbox-editor-data.component';
+import { CheckboxEditorValidationComponent } from '../../shared/form-editor-components/concrete/checkbox-editor/validation/checkbox-editor-validation.component';
+import { RatingEditorDataComponent } from '../../shared/form-editor-components/concrete/rating-editor/data/rating-editor-data.component';
+import { RatingEditorValidationComponent } from '../../shared/form-editor-components/concrete/rating-editor/validation/rating-editor-validation.component';
+import { EmailEditorDataComponent } from '../../shared/form-editor-components/concrete/email-editor/data/email-editor-data.component';
+import { EmailEditorValidationComponent } from '../../shared/form-editor-components/concrete/email-editor/validation/email-editor-validation.component';
 
 @NgModule({
   declarations: [
     BuilderComponent,
     TextFieldComponent,
     TextFieldEditorDisplayComponent,
+    TextFieldEditorDataComponent,
+    TextFieldEditorValidationComponent,
     NumberComponent,
     NumberEditorDisplayComponent,
+    NumberEditorDataComponent,
+    NumberEditorValidationComponent,
     ForgeComponent,
     NumberDirective,
     MaxValidatorDirective,
@@ -38,12 +54,20 @@ import { EmailEditorDisplayComponent } from '../../shared/form-editor-components
     FieldEditorComponent,
     TextAreaComponent,
     TextAreaEditorDisplayComponent,
+    TextAreaEditorDataComponent,
+    TextAreaEditorValidationComponent,
     CheckboxComponent,
     CheckboxEditorDisplayComponent,
+    CheckboxEditorDataComponent,
+    CheckboxEditorValidationComponent,
     RatingComponent,
     RatingEditorDisplayComponent,
+    RatingEditorDataComponent,
+    RatingEditorValidationComponent,
     EmailComponent,
-    EmailEditorDisplayComponent
+    EmailEditorDisplayComponent,
+    EmailEditorDataComponent,
+    EmailEditorValidationComponent
   ],
   imports: [
     CommonModule,
@@ -60,17 +84,29 @@ import { EmailEditorDisplayComponent } from '../../shared/form-editor-components
   entryComponents: [
     TextFieldComponent,
     TextFieldEditorDisplayComponent,
+    TextFieldEditorDataComponent,
+    TextFieldEditorValidationComponent,
     NumberComponent,
     NumberEditorDisplayComponent,
+    NumberEditorDataComponent,
+    NumberEditorValidationComponent,
     FieldEditorComponent,
     TextAreaComponent,
     TextAreaEditorDisplayComponent,
+    TextAreaEditorDataComponent,
+    TextAreaEditorValidationComponent,
     CheckboxComponent,
     CheckboxEditorDisplayComponent,
+    CheckboxEditorDataComponent,
+    CheckboxEditorValidationComponent,
     RatingComponent,
     RatingEditorDisplayComponent,
+    RatingEditorDataComponent,
+    RatingEditorValidationComponent,
     EmailComponent,
-    EmailEditorDisplayComponent
+    EmailEditorDisplayComponent,
+    EmailEditorDataComponent,
+    EmailEditorValidationComponent
   ]
 })
 export class FormBuilderModule { }

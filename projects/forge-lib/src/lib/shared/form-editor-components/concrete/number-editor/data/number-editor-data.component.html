@@ -1,0 +1,10 @@
+<div sws-checkbox>
+  <input id="data_require_decimal" [(ngModel)]="this.component.data.requireDecimal" type="checkbox"
+    checked="unchecked" />
+  <label for="data_require_decimal">Require Decimal</label>
+</div>
+<div sws-form full-width *ngIf="this.component.data.requireDecimal">
+  <input [(ngModel)]="this.component.data.decimalPlaces" sws-form__input type="'text'" [name]="'data_decimal_Places'"
+    onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'data_decimal_Places'">Decimal Places</label>
+</div>

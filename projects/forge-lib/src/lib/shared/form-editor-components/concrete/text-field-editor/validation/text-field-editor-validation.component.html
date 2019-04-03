@@ -1,0 +1,10 @@
+<div sws-form full-width>
+  <input [(ngModel)]="this.component.validation.minimumLength" sws-form__input type="'text'"
+    [name]="'validation_minimum_length'" onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'validation_minimum_length'">Minimum Length</label>
+</div>
+<div sws-form full-width>
+  <input [(ngModel)]="this.component.validation.maximumLength" sws-form__input type="'text'"
+    [name]="'validation_maximum_length'" onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'validation_maximum_length'">Maximum Length</label>
+</div>

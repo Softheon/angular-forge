@@ -1,43 +1,94 @@
 <div flex-container>
   <div flex-container-column class="flex-col" m-r-10>
     <mat-tab-group>
-      <mat-tab label="Display">
-        <div sws-form full-width>
-          <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'" onkeyup="this.setAttribute('value', this.value);">
-          <label sws-form__label [for]="'label_input'">Label</label>
-        </div>
-        <div sws-checkbox>
-          <input id="hide_label" [(ngModel)]="this.field.display.hideLabel" type="checkbox" checked="unchecked" />
-          <label for="hide_label">Hide label</label>
-        </div>
-        <div sws-textarea>
-          <textarea [(ngModel)]="this.field.display.tooltip" name="tooltip" id="tooltip" rows="4" cols="50"></textarea>
-          <label sws-textarea__label for="tooltip">Tooltip</label>
-        </div>
-        <div sws-checkbox>
-          <input id="disabled" [(ngModel)]="this.field.display.disabled" type="checkbox" checked="unchecked" />
-          <label for="disabled">Disabled</label>
+      <mat-tab label="Display" p-t-15>
+        <div *ngIf="showAbstractDisplay">
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'"
+              onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'label_input'">Label</label>
+          </div>
+          <div sws-checkbox>
+            <input id="hide_label" [(ngModel)]="this.field.display.hideLabel" type="checkbox" checked="unchecked" />
+            <label for="hide_label">Hide label</label>
+          </div>
+          <div sws-textarea>
+            <textarea [(ngModel)]="this.field.display.tooltip" name="tooltip" id="tooltip" rows="4"
+              cols="50"></textarea>
+            <label sws-textarea__label for="tooltip">Tooltip</label>
+          </div>
+          <div sws-checkbox>
+            <input id="disabled" [(ngModel)]="this.field.display.disabled" type="checkbox" checked="unchecked" />
+            <label for="disabled">Disabled</label>
+          </div>
         </div>
         <ng-container #vcDisplay></ng-container>
       </mat-tab>
-      <mat-tab label="Data">
+      <mat-tab label="Data" p-t-15>
+        <div *ngIf="showAbstractData">
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.data.defaultValue" sws-form__input type="'text'"
+              [name]="'label_default_value'" onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'label_default_value'">Default Value</label>
+          </div>
+        </div>
+        <ng-container #vcData></ng-container>
+      </mat-tab>
+      <mat-tab label="Validation" p-t-15>
+        <div *ngIf="showAbstractValidation">
+          <div sws-checkbox>
+            <input id="data_required" [(ngModel)]="this.field.validation.required" type="checkbox"
+              checked="unchecked" />
+            <label for="data_required">Required?</label>
+          </div>
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.validation.customErrorMessage" sws-form__input type="'text'"
+              [name]="'data_custom_error_message'" onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'data_custom_error_message'">Custom Error Message</label>
+          </div>
+        </div>
+        <ng-container #vcValidation></ng-container>
+      </mat-tab>
+      <mat-tab label="Api" p-t-15>
         <div flex-container>
-
-          <ng-container #vcData></ng-container>
+          <!-- <div sws-form full-width>
+            <input [(ngModel)]="this.field.api.accountName" sws-form__input type="'text'" [name]="'api_account_name'"
+              onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'api_account_name'">Account Name</label>
+          </div>
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.api.entityTemplateName" sws-form__input type="'text'" [name]="'entity_template_name'"
+              onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'entity_template_name'">Entity Template Name</label>
+          </div>
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.api.profileName" sws-form__input type="'text'" [name]="'profile_name'"
+              onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'profile_name'">Profile Name</label>
+          </div>
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.api.fieldName" sws-form__input type="'text'" [name]="'field_name'"
+              onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'field_name'">Field Name</label>
+          </div> -->
         </div>
       </mat-tab>
-      <mat-tab label="Validation">
+      <mat-tab label="Conditional" p-t-15>
         <div flex-container>
-
-          <ng-container #vcValidation></ng-container>
-        </div>
-      </mat-tab>
-      <mat-tab label="Api">
-        <div flex-container>
-        </div>
-      </mat-tab>
-      <mat-tab label="Conditional">
-        <div flex-container>
+          <!-- <div sws-checkbox>
+            <input id="conditional_display" [(ngModel)]="this.field.conditional.display" type="checkbox" checked="unchecked" />
+            <label for="conditional_display">Display</label>
+          </div>
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.conditional.component" sws-form__input type="'text'" [name]="'conditional_component'"
+              onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'conditional_component'">Component</label>
+          </div>
+          <div sws-form full-width>
+            <input [(ngModel)]="this.field.conditional.value" sws-form__input type="'text'" [name]="'conditional_value'"
+              onkeyup="this.setAttribute('value', this.value);">
+            <label sws-form__label [for]="'conditional_value'">Value</label>
+          </div> -->
         </div>
       </mat-tab>
     </mat-tab-group>
