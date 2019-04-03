@@ -1,3 +1,5 @@
-<p>
-  text-area-editor-validation works!
-</p>
+<div sws-form full-width>
+  <input [(ngModel)]="this.component.validation.regularExpression" sws-form__input type="'text'"
+    [name]="'validation_regular_expression'" onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'validation_regular_expression'">Regular Expression</label>
+</div>

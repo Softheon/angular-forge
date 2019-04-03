@@ -1,3 +1,10 @@
-<p>
-  rating-editor-data works!
-</p>
+<div sws-form full-width>
+  <input [(ngModel)]="this.component.data.minRating" sws-form__input type="'text'" [name]="'data_min_rating'"
+    onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'data_min_rating'">Minimum Rating</label>
+</div>
+<div sws-form full-width>
+  <input [(ngModel)]="this.component.data.maxRating" sws-form__input type="'text'" [name]="'data_max_rating'"
+    onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'data_max_rating'">Maximum Rating</label>
+</div>

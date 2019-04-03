@@ -30,6 +30,12 @@ export class FieldEditorComponent {
 
   public validationName = "";
 
+  public showAbstractDisplay = true;
+
+  public showAbstractData = true;
+
+  public showAbstractValidation = true;
+
 
   //TODO:: Figure out why using data: FormComponent throws weird compilation errors
 
@@ -61,36 +67,54 @@ export class FieldEditorComponent {
         this.displayName = "TextFieldEditorDisplayComponent";
         this.dataName = "TextFieldEditorDataComponent";
         this.validationName = "TextFieldEditorValidationComponent";
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
         break;
       }
       case "Number": {
         this.displayName = "NumberEditorDisplayComponent";
         this.dataName = "NumberEditorDataComponent";
         this.validationName = "NumberEditorValidationComponent";
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
         break;
       }
       case "Text Area": {
         this.displayName = "TextAreaEditorDisplayComponent";
         this.dataName = "TextAreaEditorDataComponent";
         this.validationName = "TextAreaEditorValidationComponent";
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
         break;
       }
       case "Checkbox": {
         this.displayName = "CheckboxEditorDisplayComponent";
         this.dataName = "CheckboxEditorDataComponent";
         this.validationName = "CheckboxEditorValidationComponent";
+        this.showAbstractDisplay = true;
+        this.showAbstractData = false;
+        this.showAbstractValidation = true;
         break;
       }
       case "Email": {
         this.displayName = "EmailEditorDisplayComponent";
         this.dataName = "EmailEditorDataComponent";
         this.validationName = "EmailEditorValidationComponent";
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
         break;
       }
       case "Rating": {
         this.displayName = "RatingEditorDisplayComponent";
         this.dataName = "RatingEditorDataComponent";
         this.validationName = "RatingEditorValidationComponent";
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
         break;
       }
       default: {

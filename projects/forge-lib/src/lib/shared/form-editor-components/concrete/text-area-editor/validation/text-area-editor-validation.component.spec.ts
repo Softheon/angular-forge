@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextAreaEditorValidationComponent } from './text-area-editor-validation.component';
+import { TextAreaComponent } from '../../../../form-components/concrete/text-area/text-area.component';
+import { FormsModule } from '@angular/forms';
 
 describe('TextAreaEditorValidationComponent', () => {
   let component: TextAreaEditorValidationComponent;
@@ -8,7 +10,13 @@ describe('TextAreaEditorValidationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TextAreaEditorValidationComponent ]
+      declarations: [ 
+        TextAreaEditorValidationComponent,
+        TextAreaComponent
+      ],
+      imports: [
+        FormsModule
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +24,7 @@ describe('TextAreaEditorValidationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextAreaEditorValidationComponent);
     component = fixture.componentInstance;
+    component.component = new TextAreaComponent();
     fixture.detectChanges();
   });
 
