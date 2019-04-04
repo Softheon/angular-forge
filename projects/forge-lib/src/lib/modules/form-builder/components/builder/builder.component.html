@@ -9,7 +9,11 @@
 </div>
 
 <div class="form-container">
-  <h2>Form</h2>
+  <div sws-form full-width>
+    <input [(ngModel)]="this.formsService.form.name" sws-form__input type="'text'" [name]="'data_max_rating'"
+      onkeyup="this.setAttribute('value', this.value);">
+    <label sws-form__label [for]="'data_max_rating'">Form Name</label>
+  </div>
 
   <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="forgeComponents"
     [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"

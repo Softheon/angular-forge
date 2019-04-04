@@ -12,32 +12,65 @@ import { getRegistryType } from '../../../../shared/form-editor-components/field
 })
 export class FieldEditorComponent {
 
+  /**
+   * View child for display tab
+   */
   @ViewChild('vcDisplay', { read: ViewContainerRef }) vcDisplay: ViewContainerRef;
 
+  /**
+   * View child for data tab
+   */
   @ViewChild('vcData', { read: ViewContainerRef }) vcData: ViewContainerRef;
 
+  /**
+   * View child for validation tab
+   */
   @ViewChild('vcValidation', { read: ViewContainerRef }) vcValidation: ViewContainerRef;
 
+  /**
+   * the form component
+   */
   public field: FormComponent;
 
+  /**
+   * the current index
+   */
   public index = 0;
 
+  /**
+   * whether or not we are editing the field
+   */
   public isEdit: Boolean = false;
 
+  /**
+   * the display component name
+   */
   public displayName = "";
 
+  /**
+   * the data component name
+   */
   public dataName = "";
 
+  /**
+   * the validation component name
+   */
   public validationName = "";
 
+  /**
+   * whether or not to show the abstract fields for the display tab
+   */
   public showAbstractDisplay = true;
 
+  /**
+   * whether or not to show the abstract fields for the data tab
+   */
   public showAbstractData = true;
 
+  /**
+   * whether or not to show the abstract fields for the data tab
+   */
   public showAbstractValidation = true;
-
-
-  //TODO:: Figure out why using data: FormComponent throws weird compilation errors
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
@@ -49,18 +82,26 @@ export class FieldEditorComponent {
     this.field = data.field;
   }
 
+  /**
+   * Actions to take on the init life-cycle
+   */
   public ngOnInit(): void {
-    console.log(this.field);
     this.setDynamicComponents();
   }
 
+  /**
+   * actions to take on the destroy life-cycle
+   */
   public ngOnDestroy(): void {
     if (!this.isEdit) {
-      this.formsService.components.push(this.field)
+      this.formsService.form.components.push(this.field)
     }
     this.dialogRef.close(this.field);
   }
 
+  /**
+   * Set which dynamic components to render
+   */
   private setDynamicComponents(): void {
     switch (this.field.type) {
       case "Text Field": {
@@ -127,6 +168,11 @@ export class FieldEditorComponent {
     this.createDynamicComponents(this.validationName, this.vcValidation);
   }
 
+  /**
+   * Create the dynamic components
+   * @param name the name of the component to render
+   * @param vc the view container to render too
+   */
   private createDynamicComponents(name: string, vc: ViewContainerRef): void {
     const factory = this.resolver.resolveComponentFactory(getRegistryType(name));
     vc.clear();
