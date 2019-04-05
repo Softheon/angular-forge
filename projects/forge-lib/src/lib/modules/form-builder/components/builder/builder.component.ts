@@ -67,27 +67,31 @@ export class BuilderComponent implements OnInit {
       // TODO
     } else if (event.previousContainer.id === 'components' && event.previousContainer !== event.container) {
       this.hovered.push(false);
-      // Switch statement for which component to build
-      switch (event.previousContainer.data[event.previousIndex]) {
-        case 'Text Field': {
-          this.addComponent(new TextFieldComponent(), `text_field_${this.index++}`);
-          break;
-        } case 'Number Field': {
-          this.addComponent(new NumberComponent(), `number_${this.index++}`);
-          break;
-        } case 'Text Area': {
-          this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
-          break;
-        } case 'Checkbox': {
-          this.addComponent(new CheckboxComponent(), `checkbox_${this.index++}`);
-          break;
-        } case 'Rating': {
-          this.addComponent(new RatingComponent(), `rating_${this.index++}`);
-          break;
-        } case 'Email': {
-          this.addComponent(new EmailComponent(), `email_${this.index++}`);
-          break;
-        }
+     this.generateComponent(event.previousContainer.data[event.previousIndex]);
+    }
+  }
+
+  public generateComponent(data: string){
+     // Switch statement for which component to build
+     switch (data) {
+      case 'Text Field': {
+        this.addComponent(new TextFieldComponent(), `text_field_${this.index++}`);
+        break;
+      } case 'Number Field': {
+        this.addComponent(new NumberComponent(), `number_${this.index++}`);
+        break;
+      } case 'Text Area': {
+        this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
+        break;
+      } case 'Checkbox': {
+        this.addComponent(new CheckboxComponent(), `checkbox_${this.index++}`);
+        break;
+      } case 'Rating': {
+        this.addComponent(new RatingComponent(), `rating_${this.index++}`);
+        break;
+      } case 'Email': {
+        this.addComponent(new EmailComponent(), `email_${this.index++}`);
+        break;
       }
     }
   }

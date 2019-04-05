@@ -158,9 +158,6 @@ export class FieldEditorComponent {
         this.showAbstractValidation = true;
         break;
       }
-      default: {
-        break;
-      }
     }
 
     this.createDynamicComponents(this.displayName, this.vcDisplay);

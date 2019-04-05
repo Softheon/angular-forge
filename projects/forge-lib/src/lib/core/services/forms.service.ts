@@ -27,6 +27,7 @@ export class FormsService {
         return i;
       }
     }
+    return -1;
   }
 
   /**
