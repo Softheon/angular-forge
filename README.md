@@ -32,7 +32,7 @@ export class AppModule { }
 
 ## Angular Form Builder
 
-The Form builder part of this library allows you create custom forms for your entities by providing a simple configuration to a <forge-builder> Angular component, this will show the form builder within your application.
+The Form builder part of this library allows you to create custom forms for your entities by providing a simple configuration to a '<forge-form-builder>' Angular component, this will show the form builder within your application.
 
 ```html
 <forge-form-builder [formBuilderConfig]="formBuilderConfig">
