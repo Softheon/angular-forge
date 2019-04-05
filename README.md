@@ -1,8 +1,10 @@
-# Softheon Forge - Angular Form Rendering Library
+# Softheon Forge
+
+## Angular Form Rendering
 
 This Angular library allows forms to be dynamically built for forms created in Softheon Forge. By providing a simple configuration to a ```<forge>``` Angular component, this library will dynamically render a form within the front end application.
 
-## Using within your application
+### Using within your application
 
 You can easily render a form within your Angular 7 application by referencing your form through a configuration as shown below.
 
@@ -10,7 +12,7 @@ You can easily render a form within your Angular 7 application by referencing yo
 <forge [formRendererConfig]="formRendererConfig">
 ```
 
-## Usage
+### Usage
 
 First you will need to install it as a dependency within your project.
 
@@ -22,6 +24,32 @@ You can now include the module in your Angular application as follow.
 import { FormRendererLibModule } from '@softheon/angular-forge'
 @NgModule({
     imports: [ BrowserModule, CommonModule, FormRendererLibModule ],
+    declarations: [ AppComponent ],
+    bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+```
+
+## Angular Form Builder
+
+The Form builder part of this library allows you to create custom forms for your entities by providing a simple configuration to a '<forge-form-builder>' Angular component, this will show the form builder within your application.
+
+```html
+<forge-form-builder [formBuilderConfig]="formBuilderConfig">
+```
+
+### Usage
+
+First you will need to install it as a dependency within your project.
+
+npm install --save @softheon/angular-forge
+
+You can now include the module in your Angular application as follow.
+
+```js
+import { FormBuilderModule } from '@softheon/angular-forge'
+@NgModule({
+    imports: [ BrowserModule, CommonModule, FormBuilderModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ]
 })

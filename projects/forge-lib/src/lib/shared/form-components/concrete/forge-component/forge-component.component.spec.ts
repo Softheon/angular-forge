@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ForgeComponent } from './forge-component.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { TextFieldComponent } from '../text-field/text-field.component';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material';
 
 describe('ForgeComponent', () => {
   let component: ForgeComponent;
@@ -16,7 +17,12 @@ describe('ForgeComponent', () => {
         TextFieldComponent
       ],
       imports: [
-        FormsModule
+        FormsModule,
+        MatDialogModule
+      ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: { field: new TextFieldComponent() } },
+        { provide: MatDialogRef, useValue: {} }
       ]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
@@ -33,7 +39,7 @@ describe('ForgeComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

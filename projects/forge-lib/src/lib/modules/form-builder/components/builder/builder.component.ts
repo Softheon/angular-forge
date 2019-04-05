@@ -19,7 +19,14 @@ import { EmailComponent } from '../../../../shared/form-components/concrete/emai
 })
 export class BuilderComponent implements OnInit {
 
+  /**
+   * The Index
+   */
   public index: number = 0;
+
+  /**
+   * List of components
+   */
   public components: Array<string> = [
     'Text Field',
     'Number Field',
@@ -29,10 +36,19 @@ export class BuilderComponent implements OnInit {
     'Email'
   ];
 
+  /**
+   * Array of what index in the component list is being hovered over
+   */
   public hovered: Boolean[] = [];
 
+  /**
+   * The material dialog reference
+   */
   public dialogRef: MatDialogRef<any>;
 
+  /**
+   * The list of forge components that have been created
+   */
   public forgeComponents: Array<FormComponent> = [];
 
   constructor(private dialog: MatDialog,
@@ -41,6 +57,9 @@ export class BuilderComponent implements OnInit {
   public ngOnInit(): void {
   }
 
+  /**
+   * Actions to take when an object has been dragged into the components box
+   */
   public drop(event: CdkDragDrop<string[]>): void {
     if (event.previousContainer.id === 'components' && event.previousContainer === event.container) {
       return; // Prevent dragging within the components container
@@ -48,43 +67,69 @@ export class BuilderComponent implements OnInit {
       // TODO
     } else if (event.previousContainer.id === 'components' && event.previousContainer !== event.container) {
       this.hovered.push(false);
-      if (event.previousContainer.data[event.previousIndex] === 'Text Field') {
+     this.generateComponent(event.previousContainer.data[event.previousIndex]);
+    }
+  }
+
+  public generateComponent(data: string){
+     // Switch statement for which component to build
+     switch (data) {
+      case 'Text Field': {
         this.addComponent(new TextFieldComponent(), `text_field_${this.index++}`);
-      } else if (event.previousContainer.data[event.previousIndex] === 'Number Field') {
+        break;
+      } case 'Number Field': {
         this.addComponent(new NumberComponent(), `number_${this.index++}`);
-      } else if (event.previousContainer.data[event.previousIndex] === 'Text Area') {
+        break;
+      } case 'Text Area': {
         this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
-      } else if (event.previousContainer.data[event.previousIndex] === 'Checkbox') {
+        break;
+      } case 'Checkbox': {
         this.addComponent(new CheckboxComponent(), `checkbox_${this.index++}`);
-      } else if (event.previousContainer.data[event.previousIndex] === 'Rating') {
+        break;
+      } case 'Rating': {
         this.addComponent(new RatingComponent(), `rating_${this.index++}`);
-      } else if (event.previousContainer.data[event.previousIndex] === 'Email') {
+        break;
+      } case 'Email': {
         this.addComponent(new EmailComponent(), `email_${this.index++}`);
+        break;
       }
     }
   }
 
+  /**
+   * The no return predicate
+   */
   public noReturnPredicate(): boolean {
     return false;
   }
 
+  /**
+   * Add a component to the list of components
+   * @param component the component to add
+   * @param id the id of the component
+   */
   public addComponent(component: any, id: string): void {
     component.id = id;
     this.forgeComponents.push(component);
   }
 
+  /**
+   * Delete a component from the components on the page and from the service
+   */
   public deleteComponent(index: number): void {
     console.log("deleting " + index);
     this.forgeComponents.splice(index, 1);
-    this.formsService.components.splice(index, 1);
-
-    console.log(this.forgeComponents);
+    this.formsService.form.components.splice(index, 1);
   }
 
+  /**
+   * Open the components builder modal back up
+   * @param index the index of he component
+   */
   public editComponent(index: number): void {
     this.dialogRef = this.dialog.open(FieldEditorComponent, {
       data: {
-        field: this.formsService.components[index],
+        field: this.formsService.form.components[index],
         isEdit: true
       },
       width: '80vw'
