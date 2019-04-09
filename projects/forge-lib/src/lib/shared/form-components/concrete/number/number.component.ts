@@ -4,6 +4,7 @@ import { NumberData } from './number-data';
 import { NumberValidation } from './number-validation';
 import { FormComponent } from '../../abstract/form-component';
 import { TextFieldDisplay } from '../text-field/text-field-display';
+import { FormApi } from '../../abstract/form-api';
 
 @Component({
   selector: 'forge-number',
@@ -40,6 +41,11 @@ export class NumberComponent extends FormComponent implements OnInit {
    * Value model
    */
   public value: string;
+
+  /**
+ * Api data attributes
+ */
+  public api: FormApi = new FormApi();
 
   /**
    * Gets the value of the component

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatTabsModule } from '@angular/material';
 
@@ -35,6 +34,7 @@ import { RatingEditorDataComponent } from '../../shared/form-editor-components/c
 import { RatingEditorValidationComponent } from '../../shared/form-editor-components/concrete/rating-editor/validation/rating-editor-validation.component';
 import { EmailEditorDataComponent } from '../../shared/form-editor-components/concrete/email-editor/data/email-editor-data.component';
 import { EmailEditorValidationComponent } from '../../shared/form-editor-components/concrete/email-editor/validation/email-editor-validation.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -70,8 +70,8 @@ import { EmailEditorValidationComponent } from '../../shared/form-editor-compone
     EmailEditorValidationComponent
   ],
   imports: [
+    BrowserModule,
     CommonModule,
-    BrowserAnimationsModule,
     DragDropModule,
     MatDialogModule,
     MatTabsModule,

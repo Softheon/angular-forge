@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormComponent } from '../../shared/form-components/abstract/form-component';
 import { Form } from '../../shared/models/form';
+import { EntityTemplateModel } from '../../shared/models/entityTemplateModel';
+import { FormBuilderConfig } from '../../configs/form-builder-lib-config';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -13,7 +16,14 @@ export class FormsService {
    */
   public form: Form = new Form();
 
-  constructor() { 
+  public entities: Array<EntityTemplateModel> = [];
+
+  /**
+   * Form builder configuration
+   */
+  public formBuilderConfig: FormBuilderConfig;
+
+  constructor(private http: HttpClient) {
     this.form.components = new Array<FormComponent>();
     this.form.name = "";
   }
@@ -40,5 +50,30 @@ export class FormsService {
     }
 
     return JSON.stringify(formJson);
+  }
+
+  /**
+ * Gets the entity template
+ */
+  public async getEntityTemplates(): Promise<Array<EntityTemplateModel>> {
+    const url = `${this.formBuilderConfig.forgeApiUrl}/v1/entityTemplate/${this.formBuilderConfig.accountName}`;
+    const headers = this.getHeader(this.formBuilderConfig.oauthToken);
+
+    return this.http.get<Array<EntityTemplateModel>>(url, { headers: headers })
+      .toPromise()
+      .then(value => {
+        console.log(value);
+        return value as Array<EntityTemplateModel>;
+      }).catch(error => {
+        return Promise.reject(error);
+      });
+  }
+
+  /**
+ * Gets the HTTP Header
+ * @param oauthToken OAuth Token
+ */
+  private getHeader(oauthToken: string): HttpHeaders {
+    return new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${oauthToken}` });
   }
 }

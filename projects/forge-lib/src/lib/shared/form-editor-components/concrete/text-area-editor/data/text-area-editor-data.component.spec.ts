@@ -8,9 +8,9 @@ describe('TextAreaEditorDataComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TextAreaEditorDataComponent ]
+      declarations: [TextAreaEditorDataComponent],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

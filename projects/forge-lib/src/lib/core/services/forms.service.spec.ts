@@ -5,6 +5,7 @@ import { FormsService } from './forms.service';
 import { Form } from '../../shared/models/form';
 import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('FormsService', () => {
 
@@ -16,7 +17,8 @@ describe('FormsService', () => {
         TextFieldComponent
       ],
       imports: [
-        FormsModule
+        FormsModule,
+        HttpClientModule
       ],
       providers: [FormsService]
     })

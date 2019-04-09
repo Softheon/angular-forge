@@ -4,6 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
 import { getRegistryType } from '../../../../shared/form-editor-components/field-editor-registry';
+import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateModel';
+import { EntityTemplateModel } from 'projects/forge-lib/src/lib/shared/models/entityTemplateModel';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -31,6 +33,11 @@ export class FieldEditorComponent {
    * the form component
    */
   public field: FormComponent;
+
+  /**
+   * The profile that has been selected
+   */
+  public selectedProfile: ProfileTemplateModel
 
   /**
    * the current index
@@ -96,7 +103,13 @@ export class FieldEditorComponent {
     if (!this.isEdit) {
       this.formsService.form.components.push(this.field)
     }
-    this.dialogRef.close(this.field);
+    if (this.dialogRef.close) {
+      this.dialogRef.close(this.field);
+    }
+  }
+
+  public selectEntityTemplate(entity: EntityTemplateModel): void {
+    // if()
   }
 
   /**
