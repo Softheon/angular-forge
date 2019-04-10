@@ -4,6 +4,7 @@ import { FormComponent } from '../../abstract/form-component';
 import { RatingDisplay } from './rating-display';
 import { RatingValidation } from './rating-validation';
 import { RatingData } from './rating-data';
+import { FormApi } from '../../abstract/form-api';
 
 /**
  * Rating component
@@ -43,6 +44,11 @@ export class RatingComponent extends FormComponent implements OnInit {
    * The selected rating value
    */
   public value: number;
+
+  /**
+ * Api data attributes
+ */
+  public api: FormApi = new FormApi();
 
   /**
    * List of ratings

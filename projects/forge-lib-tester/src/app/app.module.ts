@@ -10,6 +10,7 @@ import { ResultsComponent } from './results/results.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormComponent } from './form/form.component';
 import { BuilderComponent } from './builder/builder.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BuilderComponent } from './builder/builder.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormRendererLibModule,
     FormsModule,
     ReactiveFormsModule,

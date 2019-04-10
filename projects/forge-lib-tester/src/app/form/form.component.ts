@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { FormRendererConfig } from 'forge-lib/public_api';
-
+import { FormRendererConfig } from '../../../../../projects/forge-lib/src/lib/configs/form-renderer-lib-config'
 @Component({
     selector: 'app-form',
     templateUrl: './form.component.html',

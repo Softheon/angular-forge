@@ -5,6 +5,7 @@ import { TextAreaValidation } from './text-area-validation';
 import { FormComponent } from '../../abstract/form-component';
 import { FormData } from '../../abstract/form-data';
 import { TextAreaData } from './text-area-data';
+import { FormApi } from '../../abstract/form-api';
 
 /**
  * Text area component
@@ -45,6 +46,11 @@ export class TextAreaComponent extends FormComponent implements OnInit {
    * The value of the text area
    */
   public value: string;
+
+    /**
+   * Api data attributes
+   */
+  public api: FormApi = new FormApi();
 
   /**
    * Gets the value

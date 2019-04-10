@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -12,6 +12,7 @@ import { CheckboxComponent } from '../../../../shared/form-components/concrete/c
 import { RatingComponent } from '../../../../shared/form-components/concrete/rating/rating.component';
 import { EmailComponent } from '../../../../shared/form-components/concrete/email/email.component';
 import { AttachmentComponent } from '../../../../shared/form-components/concrete/attachment/attachment.component';
+import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-config';
 
 @Component({
   selector: 'forge-form-builder',
@@ -20,6 +21,9 @@ import { AttachmentComponent } from '../../../../shared/form-components/concrete
 })
 export class BuilderComponent implements OnInit {
 
+
+  @Input() formBuilderConfig: FormBuilderConfig
+  
   /**
    * The Index
    */
@@ -65,6 +69,10 @@ export class BuilderComponent implements OnInit {
    * Initializes the component
    */
   public ngOnInit(): void {
+    this.formsService.formBuilderConfig = this.formBuilderConfig;
+    this.formsService.getEntityTemplates().then((res) => {
+      this.formsService.entities = res
+    });
   }
 
   /**
@@ -151,5 +159,13 @@ export class BuilderComponent implements OnInit {
       },
       width: '80vw'
     });
+  }
+
+  /**
+   * Creates the form in the repository
+   */
+  public createForm(): void{
+    console.log('creating that form like a bad boii');
+    this.formsService.postCreateForm();
   }
 }

@@ -4,6 +4,7 @@ import { FormComponent } from '../../abstract/form-component';
 import { CheckboxData } from './checkbox-data';
 import { CheckboxDisplay } from './checkbox-display';
 import { CheckboxValidation } from './checkbox-validation';
+import { FormApi } from '../../abstract/form-api';
 
 @Component({
   selector: 'forge-checkbox',
@@ -35,6 +36,11 @@ export class CheckboxComponent extends FormComponent implements OnInit {
    * Checkbox data attributes
    */
   public data: CheckboxData = new CheckboxData;
+
+  /**
+   * Api data attributes
+   */
+  public api: FormApi = new FormApi();
 
   /**
    * Checkbox value
