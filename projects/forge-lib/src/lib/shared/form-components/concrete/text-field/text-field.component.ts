@@ -4,6 +4,7 @@ import { FormComponent } from '../../abstract/form-component';
 import { TextFieldDisplay } from './text-field-display';
 import { TextFieldValidation } from './text-field-validation';
 import { TextFieldData } from './text-field-data';
+import { FormApi } from '../../abstract/form-api';
 
 /**
  * Text field form component
@@ -38,6 +39,11 @@ export class TextFieldComponent extends FormComponent implements OnInit {
    * Validation attributes
    */
   public validation: TextFieldValidation = new TextFieldValidation();
+
+  /**
+   * api attributes
+   */
+  public api: FormApi = new FormApi();
 
   /**
    * Value model

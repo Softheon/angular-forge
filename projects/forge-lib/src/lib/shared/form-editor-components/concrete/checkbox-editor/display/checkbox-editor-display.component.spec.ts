@@ -8,7 +8,7 @@ describe('CheckboxEditorDisplayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxEditorDisplayComponent ]
+      declarations: [ CheckboxEditorDisplayComponent ],
     })
     .compileComponents();
   }));

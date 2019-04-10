@@ -18,7 +18,7 @@ describe('FormRendererLibComponent', () => {
       declarations: [FormRendererLibComponent],
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
       ],
       providers: [
         { provide: ForgeService, useValue: forgeServiceMock }

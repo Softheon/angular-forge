@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -11,6 +11,7 @@ import { TextAreaComponent } from '../../../../shared//form-components/concrete/
 import { CheckboxComponent } from '../../../../shared/form-components/concrete/checkbox/checkbox.component';
 import { RatingComponent } from '../../../../shared/form-components/concrete/rating/rating.component';
 import { EmailComponent } from '../../../../shared/form-components/concrete/email/email.component';
+import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-config';
 
 @Component({
   selector: 'forge-form-builder',
@@ -19,6 +20,9 @@ import { EmailComponent } from '../../../../shared/form-components/concrete/emai
 })
 export class BuilderComponent implements OnInit {
 
+
+  @Input() formBuilderConfig: FormBuilderConfig
+  
   /**
    * The Index
    */
@@ -55,6 +59,10 @@ export class BuilderComponent implements OnInit {
     public formsService: FormsService) { }
 
   public ngOnInit(): void {
+    this.formsService.formBuilderConfig = this.formBuilderConfig;
+    this.formsService.getEntityTemplates().then((res) => {
+      this.formsService.entities = res
+    });
   }
 
   /**
@@ -117,7 +125,6 @@ export class BuilderComponent implements OnInit {
    * Delete a component from the components on the page and from the service
    */
   public deleteComponent(index: number): void {
-    console.log("deleting " + index);
     this.forgeComponents.splice(index, 1);
     this.formsService.form.components.splice(index, 1);
   }
@@ -134,5 +141,13 @@ export class BuilderComponent implements OnInit {
       },
       width: '80vw'
     });
+  }
+
+  /**
+   * Creates the form in the repository
+   */
+  public createForm(): void{
+    console.log("creating that form like a bad boii");
+    this.formsService.postCreateForm();
   }
 }

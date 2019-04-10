@@ -50,28 +50,38 @@
         <ng-container #vcValidation></ng-container>
       </mat-tab>
       <mat-tab label="Api" p-t-15>
-        <div flex-container>
-          <!-- <div sws-form full-width>
-            <input [(ngModel)]="this.field.api.accountName" sws-form__input type="'text'" [name]="'api_account_name'"
-              onkeyup="this.setAttribute('value', this.value);">
-            <label sws-form__label [for]="'api_account_name'">Account Name</label>
-          </div>
-          <div sws-form full-width>
-            <input [(ngModel)]="this.field.api.entityTemplateName" sws-form__input type="'text'" [name]="'entity_template_name'"
-              onkeyup="this.setAttribute('value', this.value);">
-            <label sws-form__label [for]="'entity_template_name'">Entity Template Name</label>
-          </div>
-          <div sws-form full-width>
-            <input [(ngModel)]="this.field.api.profileName" sws-form__input type="'text'" [name]="'profile_name'"
-              onkeyup="this.setAttribute('value', this.value);">
-            <label sws-form__label [for]="'profile_name'">Profile Name</label>
-          </div>
-          <div sws-form full-width>
-            <input [(ngModel)]="this.field.api.fieldName" sws-form__input type="'text'" [name]="'field_name'"
-              onkeyup="this.setAttribute('value', this.value);">
-            <label sws-form__label [for]="'field_name'">Field Name</label>
-          </div> -->
+        <div sws-form full-width>
+          <input [(ngModel)]="this.field.api.accountName" sws-form__input type="'text'" [name]="'api_account_name'"
+            onkeyup="this.setAttribute('value', this.value);" disabled>
+          <label sws-form__label [for]="'api_account_name'">{{this.formsService.formBuilderConfig.accountName}}</label>
         </div>
+        <div full-width>
+          <div sws-select--primary>
+            <select id="this.field.api.entityTemplateName" [(ngModel)]="this.field.api.entityTemplateName"
+              onclick="this.setAttribute('value', this.value);" (change)="selectEntityTemplate()">
+              <option selected disabled>Select an Entity</option>
+              <option *ngFor="let entity of this.formsService.entities" (value)="entity.name">{{entity.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div full-width>
+          <div *ngIf="this.selectedEntity" sws-select--primary>
+            <select id="this.field.api.entityProfileName" [(ngModel)]="this.field.api.profileName"
+              onclick="this.setAttribute('value', this.value);" (change)="selectEntityProfile()">
+              <option selected disabled>Select an Field</option>
+              <option *ngFor="let profile of this.selectedEntity.profiles" (value)="profile.name">{{profile.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div full-width>
+            <div *ngIf=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      "this.selectedProfile" sws-select--primary>
+              <select id="this.field.api.entityFieldName" [(ngModel)]="this.field.api.fieldName"
+                onclick="this.setAttribute('value', this.value);">
+                <option selected disabled>Select an Field</option>
+                <option *ngFor="let field of this.selectedProfile.fields" (value)="field.name">{{field.name}}</option>
+              </select>
+            </div>
+          </div>
       </mat-tab>
       <mat-tab label="Conditional" p-t-15>
         <div flex-container>

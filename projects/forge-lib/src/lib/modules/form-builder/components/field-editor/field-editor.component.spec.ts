@@ -32,6 +32,8 @@ import { EmailEditorValidationComponent } from '../../../..//shared/form-editor-
 import { NumberDirective } from '../../../../shared/directives/number.directive';
 import { MinValidatorDirective } from '../../../../shared/validators/minValidator';
 import { MaxValidatorDirective } from '../../../../shared/validators/maxValidator';
+import { HttpClientModule } from '@angular/common/http';
+import { FormApi } from 'projects/forge-lib/src/lib/shared/form-components/abstract/form-api';
 
 describe('FieldEditorComponent', () => {
   let component: FieldEditorComponent;
@@ -69,7 +71,8 @@ describe('FieldEditorComponent', () => {
         EmailEditorValidationComponent
       ],
       imports: [
-        FormsModule
+        FormsModule,
+        HttpClientModule
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -113,11 +116,11 @@ describe('FieldEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FieldEditorComponent);
     component = fixture.componentInstance;
-    component.field = new TextFieldComponent();
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    component.field = new TextFieldComponent();
     expect(component).toBeTruthy();
   });
 
