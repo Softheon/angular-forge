@@ -11,6 +11,7 @@ import { TextAreaComponent } from '../../../../shared//form-components/concrete/
 import { CheckboxComponent } from '../../../../shared/form-components/concrete/checkbox/checkbox.component';
 import { RatingComponent } from '../../../../shared/form-components/concrete/rating/rating.component';
 import { EmailComponent } from '../../../../shared/form-components/concrete/email/email.component';
+import { AttachmentComponent } from '../../../../shared/form-components/concrete/attachment/attachment.component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -33,7 +34,8 @@ export class BuilderComponent implements OnInit {
     'Text Area',
     'Checkbox',
     'Rating',
-    'Email'
+    'Email',
+    'Attachment'
   ];
 
   /**
@@ -51,9 +53,17 @@ export class BuilderComponent implements OnInit {
    */
   public forgeComponents: Array<FormComponent> = [];
 
+  /**
+   * Constructs the component
+   * @param dialog Dialog
+   * @param formsService Forms service
+   */
   constructor(private dialog: MatDialog,
     public formsService: FormsService) { }
 
+  /**
+   * Initializes the component
+   */
   public ngOnInit(): void {
   }
 
@@ -67,13 +77,17 @@ export class BuilderComponent implements OnInit {
       // TODO
     } else if (event.previousContainer.id === 'components' && event.previousContainer !== event.container) {
       this.hovered.push(false);
-     this.generateComponent(event.previousContainer.data[event.previousIndex]);
+      this.generateComponent(event.previousContainer.data[event.previousIndex]);
     }
   }
 
-  public generateComponent(data: string){
-     // Switch statement for which component to build
-     switch (data) {
+  /**
+   * Generates and adds the component to the list
+   * @param type Component type
+   */
+  public generateComponent(type: string) {
+    // Switch statement for which component to build
+    switch (type) {
       case 'Text Field': {
         this.addComponent(new TextFieldComponent(), `text_field_${this.index++}`);
         break;
@@ -91,6 +105,9 @@ export class BuilderComponent implements OnInit {
         break;
       } case 'Email': {
         this.addComponent(new EmailComponent(), `email_${this.index++}`);
+        break;
+      } case 'Attachment': {
+        this.addComponent(new AttachmentComponent(this.formsService), `attachment_${this.index++}`);
         break;
       }
     }
@@ -117,7 +134,7 @@ export class BuilderComponent implements OnInit {
    * Delete a component from the components on the page and from the service
    */
   public deleteComponent(index: number): void {
-    console.log("deleting " + index);
+    console.log('deleting ' + index);
     this.forgeComponents.splice(index, 1);
     this.formsService.form.components.splice(index, 1);
   }

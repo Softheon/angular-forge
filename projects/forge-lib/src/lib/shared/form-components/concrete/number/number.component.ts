@@ -14,7 +14,7 @@ export class NumberComponent extends FormComponent implements OnInit {
   /**
    * ID of the component
    */
-  id: string;
+  public id: string;
 
   /**
    * Component type

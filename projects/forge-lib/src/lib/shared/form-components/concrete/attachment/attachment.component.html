@@ -1,0 +1,62 @@
+<div flex-container-column flex-center>
+  <div id="fileDropContainer">
+    <div [id]="'dropzone_' + id" ng2FileDrop [uploader]="uploader"
+      class="card bg-faded text-center file-drop-zone" m-v-30 p-v-50>
+      <span m-t-30 text-primary>
+        <i class="fas fa-cloud-upload-alt fa-5x"></i>
+      </span>
+      <p *ngIf="!display.hideLabel" h3 class="weight-600" m-t-20>
+        {{display.label}}
+      </p>
+      <p h5 class="weight-500">
+        {{display.description}}
+      </p>
+      <p *ngIf="validation.allowedFileExtensions" class="weight-500">
+        {{validation.allowedFileExtensions.join(', ')}}
+      </p>
+      <button sws-button--primary m-v-30 (click)="fileSelect.click()"
+        onclick="document.getElementById('choose-file-btn').blur()" type="button" id="choose-file-btn">
+        CHOOSE FILE
+      </button>
+      <span class="hideFileSelect">
+        <input type="file" #fileSelect ng2FileSelect [uploader]="uploader" multiple />
+      </span>
+    </div>
+  </div>
+  <div full-width *ngIf="uploader?.queue?.length">
+    <table sws-table full-width id="fileDropTable">
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Size
+        </th>
+        <th>
+          Actions
+        </th>
+      </tr>
+      <tr *ngFor="let item of uploader.queue">
+        <td>
+          <strong>{{ item?.file?.name }}</strong>
+        </td>
+        <td *ngIf="uploader.options.isHTML5">
+          {{ item?.file?.size / 1024 / 1024 | number: '.2' }} MB
+        </td>
+        <td>
+          <button sws-icon-flat--danger (click)="removeItem(item)" id="item-remove-btn">
+            <span text-danger><i class="fas fa-trash fa-2x"></i></span>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div m-b-40>
+    <div class="invalid-warning" *ngIf="isMaxSizeOver">
+      The limit size of attachments is {{uploader.options.maxFileSize / 1024 / 1024}}MB.
+    </div>
+    <div class="invalid-warning" *ngIf="uploader?.queue?.length === uploader.options.queueLimit">
+      The limit number of attachments is {{uploader.options.queueLimit}}.
+    </div>
+  </div>
+</div>
