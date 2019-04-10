@@ -46,7 +46,9 @@ export class FormsService {
   public createFormJson(): string {
     let formJson = {
       "name": this.form.name,
-      "components": this.form.components
+      "comment": "created by form builder",
+      "description": "",
+      "layout": { "components": this.form.components }
     }
 
     return JSON.stringify(formJson);
@@ -62,12 +64,45 @@ export class FormsService {
     return this.http.get<Array<EntityTemplateModel>>(url, { headers: headers })
       .toPromise()
       .then(value => {
-        console.log(value);
         return value as Array<EntityTemplateModel>;
       }).catch(error => {
         return Promise.reject(error);
       });
   }
+
+  /**
+  * Gets the entity template
+  */
+  public async getEntityTemplate(templateName: string): Promise<EntityTemplateModel> {
+    const url = `${this.formBuilderConfig.forgeApiUrl}/v1/entityTemplate/${this.formBuilderConfig.accountName}/${templateName}`;
+    const headers = this.getHeader(this.formBuilderConfig.oauthToken);
+
+    return this.http.get<EntityTemplateModel>(url, { headers: headers })
+      .toPromise()
+      .then(value => {
+        return value as EntityTemplateModel;
+      }).catch(error => {
+        return Promise.reject(error);
+      });
+  }
+
+    /**
+ * Gets the entity template
+ */
+public async postCreateForm(): Promise<Array<EntityTemplateModel>> {
+  const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}`;
+  const headers = this.getHeader(this.formBuilderConfig.oauthToken);
+  let body = this.createFormJson();
+
+  return this.http.post<Array<EntityTemplateModel>>(url, body, { headers: headers })
+    .toPromise()
+    .then(value => {
+      console.log(value);
+      return value as Array<EntityTemplateModel>;
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+}
 
   /**
  * Gets the HTTP Header

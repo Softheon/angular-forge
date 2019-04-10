@@ -142,4 +142,12 @@ export class BuilderComponent implements OnInit {
       width: '80vw'
     });
   }
+
+  /**
+   * Creates the form in the repository
+   */
+  public createForm(): void{
+    console.log("creating that form like a bad boii");
+    this.formsService.postCreateForm();
+  }
 }

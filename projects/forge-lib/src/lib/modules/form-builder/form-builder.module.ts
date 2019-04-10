@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatTabsModule } from '@angular/material';
+import { BrowserAnimationsModule } from'@angular/platform-browser/animations';
 
 import { BuilderComponent } from './components/builder/builder.component';
 import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
@@ -72,6 +73,7 @@ import { BrowserModule } from '@angular/platform-browser';
   imports: [
     BrowserModule,
     CommonModule,
+    BrowserAnimationsModule,
     DragDropModule,
     MatDialogModule,
     MatTabsModule,

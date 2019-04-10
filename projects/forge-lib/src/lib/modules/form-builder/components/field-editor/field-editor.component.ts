@@ -37,7 +37,13 @@ export class FieldEditorComponent {
   /**
    * The profile that has been selected
    */
-  public selectedProfile: ProfileTemplateModel
+  public selectedProfile: ProfileTemplateModel;
+
+
+  /**
+   * The selected entity template
+   */
+  public selectedEntity: EntityTemplateModel;
 
   /**
    * the current index
@@ -108,8 +114,25 @@ export class FieldEditorComponent {
     }
   }
 
-  public selectEntityTemplate(entity: EntityTemplateModel): void {
-    // if()
+  public selectEntityTemplate(): void {
+    console.log(this.field.api.entityTemplateName);
+
+    for (let i = 0; i < this.formsService.entities.length; i++) {
+      if (this.formsService.entities[i].name == this.field.api.entityTemplateName) {
+        this.formsService.getEntityTemplate(this.field.api.entityTemplateName).then((result) => {
+          this.selectedEntity = result;
+        });
+      }
+    }
+  }
+
+  public selectEntityProfile(): void {
+    console.log(this.field.api.profileName);
+    for (let i = 0; i < this.selectedEntity.profiles.length; i++) {
+      if (this.selectedEntity.profiles[i].name == this.field.api.profileName) {
+        this.selectedProfile = this.selectedEntity.profiles[i];
+      }
+    }
   }
 
   /**
