@@ -86,6 +86,20 @@ export class FormsService {
       });
   }
 
+  public async getForm(formName: string): Promise<Form> {
+    const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}/${formName}`;
+    const headers = this.getHeader(this.formBuilderConfig.oauthToken);
+
+    return this.http.get<EntityTemplateModel>(url, { headers: headers })
+      .toPromise()
+      .then(value => {
+        this.mapFormResponse(value);
+        return this.form;
+      }).catch(error => {
+        return Promise.reject(error);
+      });
+  }
+
     /**
  * Gets the entity template
  */
@@ -110,5 +124,14 @@ public async postCreateForm(): Promise<Array<EntityTemplateModel>> {
  */
   private getHeader(oauthToken: string): HttpHeaders {
     return new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${oauthToken}` });
+  }
+
+  /**
+   * maps the response from the api to a form.
+   * @param res the response from the form api
+   */
+  private mapFormResponse(res: any): void {
+    this.form.name = res.name;
+    this.form.components = res.layout.components
   }
 }

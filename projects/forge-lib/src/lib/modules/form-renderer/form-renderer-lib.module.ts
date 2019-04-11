@@ -7,19 +7,30 @@ import { IntegerDirective } from '../../shared/directives/integer.directive';
 import { FloatDirective } from '../../shared/directives/float.directive';
 
 import { FormRendererLibComponent } from './components/form-renderer/form-renderer-lib.component';
+import { CustomFormRendererLibComponent } from './components/custom-form-renderer/custom-form-renderer-lib.component';
+import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
+import { FormBuilderComponentsModule } from '../form-builder/form-builder-components.module';
 
 @NgModule({
   declarations: [
     FormRendererLibComponent,
     IntegerDirective,
-    FloatDirective
+    FloatDirective,
+    CustomFormRendererLibComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormBuilderComponentsModule
   ],
-  exports: [FormRendererLibComponent]
+  exports: [
+    FormRendererLibComponent,
+    CustomFormRendererLibComponent
+  ],
+  entryComponents: [
+    FieldEditorComponent
+  ]
 })
 export class FormRendererLibModule { }

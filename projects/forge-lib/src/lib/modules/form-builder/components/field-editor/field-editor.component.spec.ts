@@ -33,6 +33,7 @@ import { NumberDirective } from '../../../../shared/directives/number.directive'
 import { MinValidatorDirective } from '../../../../shared/validators/minValidator';
 import { MaxValidatorDirective } from '../../../../shared/validators/maxValidator';
 import { HttpClientModule } from '@angular/common/http';
+import { FormBuilderConfig } from '../../../../configs/form-builder-lib-config';
 import { FormApi } from 'projects/forge-lib/src/lib/shared/form-components/abstract/form-api';
 
 describe('FieldEditorComponent', () => {
@@ -116,6 +117,11 @@ describe('FieldEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FieldEditorComponent);
     component = fixture.componentInstance;
+    component.formsService.formBuilderConfig = {
+      oauthToken: "",
+      forgeApiUrl: "",
+      accountName: ""
+    }
     fixture.detectChanges();
   });
 
@@ -145,7 +151,7 @@ describe('FieldEditorComponent', () => {
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
-    it('should create with email component', () => {
+  it('should create with email component', () => {
     component.field = new EmailComponent;
     component.ngOnInit();
     expect(component).toBeTruthy();

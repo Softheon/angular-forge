@@ -28,21 +28,30 @@ export class ForgeComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    const factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.constructor.name));
+    let factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.type));
+    // if(this.component.constructor.name != 'undefined')
+    // {
+    //   factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.constructor.name));
+    // }
     this.vc.clear();
 
     const newComponent = this.vc.createComponent(factory);
-    newComponent.instance.id = this.component.id;
+    newComponent.instance.id = this.component.id;   
+    newComponent.instance.api = this.component.api;
+    newComponent.instance.data = this.component.data;
+    newComponent.instance.display = this.component.display;
+    newComponent.instance.validation = this.component.validation;
     this.component = newComponent.instance;
+
     if (this.createModal) {
       setTimeout(() => {
-      this.dialogRef = this.dialog.open(FieldEditorComponent, {
-        data: {
-          field: this.component,
-          isEdit: false
-        },
-        width: '80vw'
-      });
+        this.dialogRef = this.dialog.open(FieldEditorComponent, {
+          data: {
+            field: this.component,
+            isEdit: false
+          },
+          width: '80vw'
+        });
         this.dialogRef.afterClosed().subscribe((data: any) => {
           this.component = data;
         })

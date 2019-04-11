@@ -9,6 +9,7 @@ import { RatingComponent } from './concrete/rating/rating.component';
 import { EmailComponent } from './concrete/email/email.component';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
+    console.log(name);
     switch (name) {
         case TextFieldComponent.name: {
             return TextFieldComponent;
@@ -26,6 +27,24 @@ export const getRegistryType = (name: string): Type<FormComponent> => {
             return RatingComponent;
         }
         case EmailComponent.name: {
+            return EmailComponent;
+        }
+        case "Text Field": {
+            return TextFieldComponent;
+        }
+        case "Number": {
+            return NumberComponent;
+        }
+        case "Text Area": {
+            return TextAreaComponent;
+        }
+        case "Checkbox": {
+            return CheckboxComponent;
+        }
+        case "Rating": {
+            return RatingComponent;
+        }
+        case "Email": {
             return EmailComponent;
         }
     }
