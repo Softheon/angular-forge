@@ -5,10 +5,10 @@
       <span m-t-30 text-primary>
         <i class="fas fa-cloud-upload-alt fa-5x"></i>
       </span>
-      <p *ngIf="!display.hideLabel" h3 class="weight-600" m-t-20>
+      <p [id]="'label_' + id" *ngIf="!display.hideLabel" h3 class="weight-600" m-t-20>
         {{display.label}}
       </p>
-      <p h5 class="weight-500">
+      <p [id]="'description_' + id" h5 class="weight-500">
         {{display.description}}
       </p>
       <p *ngIf="validation.allowedFileExtensions" class="weight-500">

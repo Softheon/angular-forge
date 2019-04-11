@@ -103,8 +103,8 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * actions to take on the destroy life-cycle
-   */
+     * actions to take on the destroy life-cycle
+     */
   public ngOnDestroy(): void {
     if (!this.isEdit) {
       this.formsService.form.components.push(this.field)

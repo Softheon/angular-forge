@@ -115,7 +115,7 @@ export class BuilderComponent implements OnInit {
         this.addComponent(new EmailComponent(), `email_${this.index++}`);
         break;
       } case 'Attachment': {
-        this.addComponent(new AttachmentComponent(this.formsService), `attachment_${this.index++}`);
+        this.addComponent(new AttachmentComponent(), `attachment_${this.index++}`);
         break;
       }
     }

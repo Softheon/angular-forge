@@ -6,8 +6,8 @@ import { FormComponent } from '../../abstract/form-component';
 import { AttachmentValidation } from './attachment-validation';
 import { AttachmentData } from './attachment-data';
 import { AttachmentDisplay } from './attachment-display';
-import { FormsService } from '../../../../core/services/forms.service';
 import { mimeType } from './mimeTypes';
+import { FormApi } from '../../abstract/form-api';
 
 const URL = 'blah';
 
@@ -48,17 +48,14 @@ export class AttachmentComponent extends FormComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({ url: URL });
 
   /**
+   * The api attributes
+   */
+  public api: FormApi;
+
+  /**
    * Is over file size limit
    */
   public isMaxSizeOver: boolean;
-
-  /**
-   * Constructs the component
-   * @param formService The form service
-   */
-  constructor(private formService: FormsService) {
-    super();
-  }
 
   /**
    * Initializes the component

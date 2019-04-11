@@ -41,8 +41,11 @@ export class AttachmentEditorValidationComponent extends FormEditorDisplayCompon
    */
   public ngOnDestroy(): void {
     this.component.validation.allowedFileExtensions = [];
+    if (!this.selectedFileExtensions) {
+      return;
+    }
     this.selectedFileExtensions.split(',').forEach(extension => {
-      if (mimeType[extension]) {
+      if (mimeType[extension.trim()]) {
         this.component.validation.allowedFileExtensions.push(extension);
       }
     });
