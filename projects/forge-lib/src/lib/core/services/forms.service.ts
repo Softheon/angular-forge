@@ -111,7 +111,6 @@ public async postCreateForm(): Promise<Array<EntityTemplateModel>> {
   return this.http.post<Array<EntityTemplateModel>>(url, body, { headers: headers })
     .toPromise()
     .then(value => {
-      console.log(value);
       return value as Array<EntityTemplateModel>;
     }).catch(error => {
       return Promise.reject(error);

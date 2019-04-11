@@ -10,7 +10,6 @@ import { EmailComponent } from './concrete/email/email.component';
 import { AttachmentComponent } from './concrete/attachment/attachment.component';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
-    console.log(name);
     switch (name) {
         case TextFieldComponent.name: {
             return TextFieldComponent;
