@@ -20,6 +20,9 @@ import { RatingEditorValidationComponent } from '../../shared/form-editor-compon
 import { EmailEditorDisplayComponent } from '../../shared/form-editor-components/concrete/email-editor/display/email-editor-display.component';
 import { EmailEditorDataComponent } from '../../shared/form-editor-components/concrete/email-editor/data/email-editor-data.component';
 import { EmailEditorValidationComponent } from '../../shared/form-editor-components/concrete/email-editor/validation/email-editor-validation.component';
+import { AttachmentEditorDataComponent } from '../../shared/form-editor-components/concrete/attachment-editor/data/attachment-editor-data.component';
+import { AttachmentEditorDisplayComponent } from '../../shared/form-editor-components/concrete/attachment-editor/display/attachment-editor-display.component';
+import { AttachmentEditorValidationComponent } from '../../shared/form-editor-components/concrete/attachment-editor/validation/attachment-editor-validation.component';
 
 @NgModule({
     imports: [
@@ -44,7 +47,10 @@ import { EmailEditorValidationComponent } from '../../shared/form-editor-compone
         RatingEditorValidationComponent,
         EmailEditorDisplayComponent,
         EmailEditorDataComponent,
-        EmailEditorValidationComponent
+        EmailEditorValidationComponent,
+        AttachmentEditorDataComponent,
+        AttachmentEditorDisplayComponent,
+        AttachmentEditorValidationComponent
     ],
     exports: [
         TextFieldEditorDisplayComponent,
@@ -64,7 +70,10 @@ import { EmailEditorValidationComponent } from '../../shared/form-editor-compone
         RatingEditorValidationComponent,
         EmailEditorDisplayComponent,
         EmailEditorDataComponent,
-        EmailEditorValidationComponent
+        EmailEditorValidationComponent,
+        AttachmentEditorDataComponent,
+        AttachmentEditorDisplayComponent,
+        AttachmentEditorValidationComponent
     ],
     entryComponents: [
         TextFieldEditorDisplayComponent,
@@ -84,7 +93,10 @@ import { EmailEditorValidationComponent } from '../../shared/form-editor-compone
         RatingEditorValidationComponent,
         EmailEditorDisplayComponent,
         EmailEditorDataComponent,
-        EmailEditorValidationComponent
+        EmailEditorValidationComponent,
+        AttachmentEditorDataComponent,
+        AttachmentEditorDisplayComponent,
+        AttachmentEditorValidationComponent
     ]
 })
 export class FormBuilderEditorsModule { }

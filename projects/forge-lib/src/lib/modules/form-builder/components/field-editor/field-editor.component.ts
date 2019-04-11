@@ -12,7 +12,7 @@ import { EntityTemplateModel } from 'projects/forge-lib/src/lib/shared/models/en
   templateUrl: './field-editor.component.html',
   styleUrls: ['./field-editor.component.css']
 })
-export class FieldEditorComponent {
+export class FieldEditorComponent implements OnInit, OnDestroy {
 
   /**
    * View child for display tab
@@ -58,17 +58,17 @@ export class FieldEditorComponent {
   /**
    * the display component name
    */
-  public displayName = "";
+  public displayName = '';
 
   /**
    * the data component name
    */
-  public dataName = "";
+  public dataName = '';
 
   /**
    * the validation component name
    */
-  public validationName = "";
+  public validationName = '';
 
   /**
    * whether or not to show the abstract fields for the display tab
@@ -103,8 +103,8 @@ export class FieldEditorComponent {
   }
 
   /**
-   * actions to take on the destroy life-cycle
-   */
+     * actions to take on the destroy life-cycle
+     */
   public ngOnDestroy(): void {
     if (!this.isEdit) {
       this.formsService.form.components.push(this.field)
@@ -140,58 +140,67 @@ export class FieldEditorComponent {
    */
   private setDynamicComponents(): void {
     switch (this.field.type) {
-      case "Text Field": {
-        this.displayName = "TextFieldEditorDisplayComponent";
-        this.dataName = "TextFieldEditorDataComponent";
-        this.validationName = "TextFieldEditorValidationComponent";
+      case 'Text Field': {
+        this.displayName = 'TextFieldEditorDisplayComponent';
+        this.dataName = 'TextFieldEditorDataComponent';
+        this.validationName = 'TextFieldEditorValidationComponent';
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
         break;
       }
-      case "Number": {
-        this.displayName = "NumberEditorDisplayComponent";
-        this.dataName = "NumberEditorDataComponent";
-        this.validationName = "NumberEditorValidationComponent";
+      case 'Number': {
+        this.displayName = 'NumberEditorDisplayComponent';
+        this.dataName = 'NumberEditorDataComponent';
+        this.validationName = 'NumberEditorValidationComponent';
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
         break;
       }
-      case "Text Area": {
-        this.displayName = "TextAreaEditorDisplayComponent";
-        this.dataName = "TextAreaEditorDataComponent";
-        this.validationName = "TextAreaEditorValidationComponent";
+      case 'Text Area': {
+        this.displayName = 'TextAreaEditorDisplayComponent';
+        this.dataName = 'TextAreaEditorDataComponent';
+        this.validationName = 'TextAreaEditorValidationComponent';
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
         break;
       }
-      case "Checkbox": {
-        this.displayName = "CheckboxEditorDisplayComponent";
-        this.dataName = "CheckboxEditorDataComponent";
-        this.validationName = "CheckboxEditorValidationComponent";
+      case 'Checkbox': {
+        this.displayName = 'CheckboxEditorDisplayComponent';
+        this.dataName = 'CheckboxEditorDataComponent';
+        this.validationName = 'CheckboxEditorValidationComponent';
         this.showAbstractDisplay = true;
         this.showAbstractData = false;
         this.showAbstractValidation = true;
         break;
       }
-      case "Email": {
-        this.displayName = "EmailEditorDisplayComponent";
-        this.dataName = "EmailEditorDataComponent";
-        this.validationName = "EmailEditorValidationComponent";
+      case 'Email': {
+        this.displayName = 'EmailEditorDisplayComponent';
+        this.dataName = 'EmailEditorDataComponent';
+        this.validationName = 'EmailEditorValidationComponent';
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
         break;
       }
-      case "Rating": {
-        this.displayName = "RatingEditorDisplayComponent";
-        this.dataName = "RatingEditorDataComponent";
-        this.validationName = "RatingEditorValidationComponent";
+      case 'Rating': {
+        this.displayName = 'RatingEditorDisplayComponent';
+        this.dataName = 'RatingEditorDataComponent';
+        this.validationName = 'RatingEditorValidationComponent';
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
+        break;
+      }
+      case 'Attachment': {
+        this.displayName = 'AttachmentEditorDisplayComponent';
+        this.dataName = 'AttachmentEditorDataComponent';
+        this.validationName = 'AttachmentEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = false;
+        this.showAbstractValidation = false;
         break;
       }
     }

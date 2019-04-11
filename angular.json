@@ -168,5 +168,10 @@
       }
     }
   },
-  "defaultProject": "forge-lib-tester"
+  "defaultProject": "forge-lib-tester",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

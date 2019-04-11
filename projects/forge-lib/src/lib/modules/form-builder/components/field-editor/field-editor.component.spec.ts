@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FieldEditorComponent } from './field-editor.component';
 import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
@@ -32,9 +33,6 @@ import { EmailEditorValidationComponent } from '../../../..//shared/form-editor-
 import { NumberDirective } from '../../../../shared/directives/number.directive';
 import { MinValidatorDirective } from '../../../../shared/validators/minValidator';
 import { MaxValidatorDirective } from '../../../../shared/validators/maxValidator';
-import { HttpClientModule } from '@angular/common/http';
-import { FormBuilderConfig } from '../../../../configs/form-builder-lib-config';
-import { FormApi } from 'projects/forge-lib/src/lib/shared/form-components/abstract/form-api';
 
 describe('FieldEditorComponent', () => {
   let component: FieldEditorComponent;
@@ -118,9 +116,9 @@ describe('FieldEditorComponent', () => {
     fixture = TestBed.createComponent(FieldEditorComponent);
     component = fixture.componentInstance;
     component.formsService.formBuilderConfig = {
-      oauthToken: "",
-      forgeApiUrl: "",
-      accountName: ""
+      oauthToken: '',
+      forgeApiUrl: '',
+      accountName: ''
     }
     fixture.detectChanges();
   });
@@ -131,28 +129,28 @@ describe('FieldEditorComponent', () => {
   });
 
   it('should create with number component', () => {
-    component.field = new NumberComponent;
+    component.field = new NumberComponent();
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
 
   it('should create with Text Area component', () => {
-    component.field = new TextAreaComponent;
+    component.field = new TextAreaComponent();
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
   it('should create with Checkbox component', () => {
-    component.field = new CheckboxComponent;
+    component.field = new CheckboxComponent();
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
   it('should create with Rating component', () => {
-    component.field = new RatingComponent;
+    component.field = new RatingComponent();
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
   it('should create with email component', () => {
-    component.field = new EmailComponent;
+    component.field = new EmailComponent();
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
