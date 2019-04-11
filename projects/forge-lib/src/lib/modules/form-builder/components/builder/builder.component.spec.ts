@@ -69,12 +69,12 @@ describe('BuilderComponent', () => {
   });
 
   it('should have more than one item in forgeComponents after addComponent()', () => {
-    component.addComponent(new TextFieldComponent(), "any");
+    component.addComponent(new TextFieldComponent(), 'any');
     expect(component.forgeComponents.length).toBeGreaterThan(0);
   });
 
   it('should have 0 components after adding one then deleting one in forgeComponents', () => {
-    component.addComponent(new TextFieldComponent(), "any");
+    component.addComponent(new TextFieldComponent(), 'any');
     component.deleteComponent(0);
     expect(component.forgeComponents.length).toBe(0);
   })
@@ -86,12 +86,13 @@ describe('BuilderComponent', () => {
   // });
 
   it('generate all component types', () => {
-    component.generateComponent("Text Field");
-    component.generateComponent("Number Field");
-    component.generateComponent("Text Area");
-    component.generateComponent("Checkbox");
-    component.generateComponent("Rating");
-    component.generateComponent("Email");
+    component.generateComponent('Text Field');
+    component.generateComponent('Number Field');
+    component.generateComponent('Text Area');
+    component.generateComponent('Checkbox');
+    component.generateComponent('Rating');
+    component.generateComponent('Email');
+    component.generateComponent('Attachment');
     expect(component.forgeComponents.length).toBe(component.components.length);
   });
 });

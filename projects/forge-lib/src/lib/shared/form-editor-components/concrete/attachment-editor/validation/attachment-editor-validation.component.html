@@ -1,0 +1,18 @@
+<div sws-form full-width>
+  <input [(ngModel)]="component.validation.maximumFileSize" sws-form__input type="'text'" name="data_maximum_file_size"
+    onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label for="data_maximum_file_size">Maximum File Size (B)</label>
+</div>
+<div sws-form full-width>
+  <input [(ngModel)]="component.validation.maximumQueueSize" sws-form__input type="'text'"
+    name="data_maximum_queue_size" onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label for="data_maximum_queue_size">Maximum Queue Size</label>
+</div>
+<div sws-form full-width>
+  <input sws-form__input list="fileExtensions" name="fileExtensionsInput" type="text"
+    [(ngModel)]="selectedFileExtensions" onkeyup="this.setAttribute('value', this.value);">
+  <datalist id="fileExtensions">
+    <option *ngFor="let type of mimeTypes" [value]="type"></option>
+  </datalist>
+  <label sws-form__label for="fileExtensionsInput">File Extensions (Separate by commas)</label>
+</div>

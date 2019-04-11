@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
 import { NumberComponent } from '../../shared/form-components/concrete/number/number.component';
@@ -9,6 +11,8 @@ import { TextAreaComponent } from '../../shared/form-components/concrete/text-ar
 import { CheckboxComponent } from '../../shared/form-components/concrete/checkbox/checkbox.component';
 import { RatingComponent } from '../../shared/form-components/concrete/rating/rating.component';
 import { EmailComponent } from '../../shared/form-components/concrete/email/email.component';
+import { AttachmentComponent } from '../../shared/form-components/concrete/attachment/attachment.component';
+
 import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
@@ -16,7 +20,8 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        FileUploadModule
     ],
     declarations: [
         TextFieldComponent,
@@ -28,7 +33,8 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         EmailComponent,
         NumberDirective,
         MaxValidatorDirective,
-        MinValidatorDirective
+        MinValidatorDirective,
+        AttachmentComponent
     ],
     exports: [
         TextFieldComponent,
@@ -40,7 +46,8 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         EmailComponent,
         NumberDirective,
         MaxValidatorDirective,
-        MinValidatorDirective
+        MinValidatorDirective,
+        AttachmentComponent
     ],
     entryComponents: [
         TextFieldComponent,
@@ -49,7 +56,8 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         TextAreaComponent,
         CheckboxComponent,
         RatingComponent,
-        EmailComponent
+        EmailComponent,
+        AttachmentComponent
     ]
 })
 export class FormBuilderComponentsModule { }
