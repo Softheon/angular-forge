@@ -1,0 +1,65 @@
+<form [formGroup]="form" class="content">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <div sws-form--primary full-width>
+      <input sws-form__input type="text" name="oauthToken" id="oauthToken"
+        onkeyup="this.setAttribute('value', this.value);" formControlName="oauthToken" required>
+      <label sws-form__label for="oauthToken">OAuth Token</label>
+      <div sws-form__bar></div>
+      <div *ngIf="oauthToken.invalid && (oauthToken.dirty || oauthToken.touched)">
+        <div *ngIf="oauthToken.errors.required">
+          <span sws-label--danger>OAuth token is required.</span>
+        </div>
+      </div>
+    </div>
+    <div sws-form--primary full-width>
+      <input sws-form__input type="text" name="forgeApiUrl" id="forgeApiUrl"
+        onclick="this.setAttribute('value', this.value);" formControlName="forgeApiUrl" required>
+      <label sws-form__label for="forgeApiUrl">Softheon Forge API URL</label>
+      <div *ngIf="forgeApiUrl.invalid && (forgeApiUrl.dirty || forgeApiUrl.touched)">
+        <div *ngIf="forgeApiUrl.errors.required">
+          <span sws-label--danger>Softheon Forge API URL is required.</span>
+        </div>
+      </div>
+      <div sws-form__bar></div>
+    </div>
+    <div sws-form--primary full-width>
+      <input sws-form__input type="text" name="accountName" id="accountName"
+        onclick="this.setAttribute('value', this.value);" formControlName="accountName" required>
+      <label sws-form__label for="accountName">Account Name</label>
+      <div *ngIf="accountName.invalid && (accountName.dirty || accountName.touched)">
+        <div *ngIf="accountName.errors.required">
+          <span sws-label--danger>Account name is required.</span>
+        </div>
+      </div>
+      <div sws-form__bar></div>
+    </div>
+    <div sws-form--primary full-width>
+      <input sws-form__input type="text" name="formName" id="formName" onclick="this.setAttribute('value', this.value);"
+        formControlName="formName" required>
+      <label sws-form__label for="formName">Entity Template Name</label>
+      <div *ngIf="formName.invalid && (formName.dirty || formName.touched)">
+        <div *ngIf="formName.errors.required">
+          <span sws-label--danger>Entity template name is required.</span>
+        </div>
+      </div>
+      <div sws-form__bar></div>
+    </div>
+  </div>
+  <button m-t-30 sws-button--primary (click)="renderForm()">Update</button>
+</form>
+<div sws-card--1 style="max-width:80%;margin-left:10%;margin-right:10%">
+  <div class="content">
+    <custom-forge-form-renderer *ngIf="formRendererConfig" [formRendererConfig]="formRendererConfig"
+      (finishedRendering)="onFinishedRendering($event)" (formSubmitted)="formSubmitted($event)">
+    </custom-forge-form-renderer>
+  </div>
+  <div class="modal-light" *ngIf="!didFinishRendering">
+    <div sws-spinner-container-full>
+      <div sws-spinner--lg></div>
+      <div sws-spinner__content>
+        <i class="fab fa-telegram-plane fa-3x" text-primary></i>
+        <p>Processing...</p>
+      </div>
+    </div>
+  </div>
+</div>

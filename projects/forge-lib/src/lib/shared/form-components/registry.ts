@@ -32,5 +32,23 @@ export const getRegistryType = (name: string): Type<FormComponent> => {
         case AttachmentComponent.name: {
             return AttachmentComponent;
         }
+        case "Text Field": {
+            return TextFieldComponent;
+        }
+        case "Number": {
+            return NumberComponent;
+        }
+        case "Text Area": {
+            return TextAreaComponent;
+        }
+        case "Checkbox": {
+            return CheckboxComponent;
+        }
+        case "Rating": {
+            return RatingComponent;
+        }
+        case "Email": {
+            return EmailComponent;
+        }
     }
 };

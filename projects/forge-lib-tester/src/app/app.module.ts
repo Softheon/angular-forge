@@ -11,13 +11,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormComponent } from './form/form.component';
 import { BuilderComponent } from './builder/builder.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomFormComponent } from './custom-form/custom-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultsComponent,
     FormComponent,
-    BuilderComponent
+    BuilderComponent,
+    CustomFormComponent
   ],
   imports: [
     BrowserModule,

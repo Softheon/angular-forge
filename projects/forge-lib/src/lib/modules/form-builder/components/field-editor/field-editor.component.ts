@@ -115,8 +115,6 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
   }
 
   public selectEntityTemplate(): void {
-    console.log(this.field.api.entityTemplateName);
-
     for (let i = 0; i < this.formsService.entities.length; i++) {
       if (this.formsService.entities[i].name == this.field.api.entityTemplateName) {
         this.formsService.getEntityTemplate(this.field.api.entityTemplateName).then((result) => {
@@ -127,7 +125,6 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
   }
 
   public selectEntityProfile(): void {
-    console.log(this.field.api.profileName);
     for (let i = 0; i < this.selectedEntity.profiles.length; i++) {
       if (this.selectedEntity.profiles[i].name == this.field.api.profileName) {
         this.selectedProfile = this.selectedEntity.profiles[i];

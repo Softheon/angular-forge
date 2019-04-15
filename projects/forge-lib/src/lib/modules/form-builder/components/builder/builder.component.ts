@@ -142,7 +142,6 @@ export class BuilderComponent implements OnInit {
    * Delete a component from the components on the page and from the service
    */
   public deleteComponent(index: number): void {
-    console.log('deleting ' + index);
     this.forgeComponents.splice(index, 1);
     this.formsService.form.components.splice(index, 1);
   }
@@ -165,7 +164,6 @@ export class BuilderComponent implements OnInit {
    * Creates the form in the repository
    */
   public createForm(): void{
-    console.log('creating that form like a bad boii');
     this.formsService.postCreateForm();
   }
 }
