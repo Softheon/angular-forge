@@ -28,12 +28,12 @@ describe('CustomFormRendererLibComponent', () => {
     fixture = TestBed.createComponent(CustomFormRendererLibComponent);
     component = fixture.componentInstance;
     component.formRendererConfig = {
-      oauthToken: "",     
-      forgeApiUrl: "",     
+      oauthToken: "",
+      forgeApiUrl: "",
       accountName: "",
       formName: "",
       displayFormName: false
-      }
+    }
     fixture.detectChanges();
   });
 

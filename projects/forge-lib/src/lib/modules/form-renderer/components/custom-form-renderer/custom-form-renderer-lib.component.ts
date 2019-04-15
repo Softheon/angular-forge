@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ViewContainerRef, ViewChild, ComponentFactoryResolver, Output, EventEmitter } from '@angular/core';
 import { FormRendererConfig } from 'projects/forge-lib/src/public_api';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EntityTemplateModel } from 'projects/forge-lib/src/lib/shared/models/entityTemplateModel';
-import { FormsService } from 'projects/forge-lib/src/lib/core/services/forms.service';
+import { FormsService } from '../../../../../lib/core/services/forms.service';
 
 @Component({
   selector: 'custom-forge-form-renderer',
@@ -36,14 +35,14 @@ export class CustomFormRendererLibComponent implements OnInit {
   public entityForm: FormGroup;
 
   /**
+   * list of entity names
+   */
+  public entityNames: string[] = [];
+
+  /**
    * Whether the form finished rendering
   */
   public didFinishRendering: boolean = false;
-
-  /**
-   * The entity template model
-   */
-  public entityTemplateModel: EntityTemplateModel;
 
   /**
    * Constructs the component
@@ -57,12 +56,14 @@ export class CustomFormRendererLibComponent implements OnInit {
   /**
    * Initializes the component
    */
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     this.entityForm = this.fb.group({
       entityName: ['', this.formRendererConfig.displayFormName ? Validators.required : []]
     });
     this.formsService.formBuilderConfig = this.formRendererConfig;
-    this.renderForm();
+    if (this.formsService.formBuilderConfig) {
+      await this.renderForm();
+    }
   }
 
   /**
@@ -82,19 +83,71 @@ export class CustomFormRendererLibComponent implements OnInit {
    * Submits the form and creates a new entity
    */
   public async submit(): Promise<void> {
+    if (!this.entityForm.valid) {
+      this.markFormGroupTouched(this.entityForm);
+      return;
+    }
+
+    // Let the parent component know we are submitting the form
+    this.didFinishRendering = false;
+    this.finishedRendering.emit(false);
+
+    // Create the submission form and submit it
+    let submissionForms = await this.createSubmissionForm();
+    let results = [];
+    for (let i = 0; i < this.entityNames.length; i++) {
+      this.formsService.createEntity(this.entityNames[i], submissionForms[i][this.entityNames[i]]).then((res) => {
+        results.push(res);
+      })
+    }
+    // Notify the parent component the form has been submitted
+    this.didFinishRendering = true;
+    this.finishedRendering.emit(true);
+    // this.formSubmitted.emit(results);
   }
 
   /**
    * Creates the form to be submitted
    */
-  private createSubmissionForm(): any {
+  private async createSubmissionForm(): Promise<any[]> {
+    const submissionForms: any = [];
+    let createdFormValue = false;
+    // Loop through each of the components in your form
+    for (let i = 0; i < this.formsService.form.components.length; i++) {
+      let component = this.formsService.form.components[i];
+      // If the form value doesn't have a value in it's api field skip it
+      if (component.api.entityTemplateName) {
+        // If we have a submission form for the template
+        for (let x = 0; x < this.entityNames.length; x++) {
+          if (submissionForms[x][component.api.entityTemplateName]) {
+            // if the submission forms profile doesn't exist create it
+            if (!submissionForms[x][component.api.entityTemplateName][component.api.profileName]) {
+              submissionForms[x][component.api.entityTemplateName][component.api.profileName] = {}
+            }
+            //Add the field name and it's value to the submission form
+            submissionForms[x][component.api.entityTemplateName][component.api.profileName][component.api.fieldName] = component.getValue();
+            createdFormValue = true;
+          }
+        }
+        //if the list of submissions doesn't have one for the template the component is trying to update create one and add everything
+        if (!createdFormValue) {
+          let res = await this.formsService.getEntityTemplate(component.api.entityTemplateName);
+          let submissionForm = {};
+          submissionForm[res.name] = {};
+          this.entityNames.push(res.name)
+          if (this.formRendererConfig.displayFormName) {
+            submissionForm[res.name].Name = (<HTMLInputElement>document.getElementById('entityName')).value;
+          } else {
+            submissionForm[res.name].Name = `${new Date(Date.now()).toLocaleString()} - ${res.name}`;
+          }
+          submissionForm[res.name][component.api.profileName] = {}
+          submissionForm[res.name][component.api.profileName][component.api.fieldName] = component.getValue();
+          submissionForms.push(submissionForm);
+        }
+      }
+    }
 
-  }
-
-  /**
-   * Validates all required fields to render the form have been passed by the parent component
-   */
-  private validateInputs(): void {
+    return submissionForms;
   }
 
   /**
@@ -108,5 +161,14 @@ export class CustomFormRendererLibComponent implements OnInit {
         this.markFormGroupTouched(control);
       }
     });
+  }
+
+  /**
+   * tracker for re-rendering *ngFor
+   * @param index index of the item
+   * @param item the component;
+   */
+  public trackComponentById(index, item): any {
+    return item.id;
   }
 }

@@ -3,9 +3,10 @@ import { TestBed } from '@angular/core/testing';
 import { FormsService } from './forms.service';
 
 import { Form } from '../../shared/models/form';
-import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FileUploadModule } from 'ng2-file-upload';
+import { FormBuilderComponentsModule } from '../../modules/form-builder/form-builder-components.module';
 
 describe('FormsService', () => {
 
@@ -14,11 +15,12 @@ describe('FormsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TextFieldComponent
       ],
       imports: [
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        FileUploadModule,
+        FormBuilderComponentsModule
       ],
       providers: [FormsService]
     })
@@ -51,3 +53,18 @@ describe('FormsService', () => {
     expect(val.length).toBeGreaterThan(0);
   })
 });
+
+ import { Component, NgModule } from '@angular/core';
+ @Component({
+   template: '<div> </div>'
+ })
+ class TextFieldComponent {   
+    id;
+    type;
+    display;
+    validation;
+    data;
+    api;
+    getValue;
+    constructor() {}
+ }

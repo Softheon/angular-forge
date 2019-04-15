@@ -16,6 +16,7 @@ import { AttachmentComponent } from '../../shared/form-components/concrete/attac
 import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
+import { ForgeRendererComponent } from '../../shared/form-components/concrete/forge-renderer-component/forge-renderer-component.component';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
     declarations: [
         TextFieldComponent,
         ForgeComponent,
+        ForgeRendererComponent,
         NumberComponent,
         TextAreaComponent,
         CheckboxComponent,
@@ -39,6 +41,7 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
     exports: [
         TextFieldComponent,
         ForgeComponent,
+        ForgeRendererComponent,
         NumberComponent,
         TextAreaComponent,
         CheckboxComponent,
@@ -52,6 +55,7 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
     entryComponents: [
         TextFieldComponent,
         ForgeComponent,
+        ForgeRendererComponent,
         NumberComponent,
         TextAreaComponent,
         CheckboxComponent,
