@@ -25,11 +25,6 @@ export class CustomFormRendererLibComponent implements OnInit {
   @Output() public formSubmitted = new EventEmitter<any>();
 
   /**
-   * Gets the form control for the entity name input
-   */
-  public get entityName() { return this.entityForm.get('entityName'); }
-
-  /**
    * The entity form group
    */
   public entityForm: FormGroup;
@@ -146,7 +141,6 @@ export class CustomFormRendererLibComponent implements OnInit {
         }
       }
     }
-
     return submissionForms;
   }
 
