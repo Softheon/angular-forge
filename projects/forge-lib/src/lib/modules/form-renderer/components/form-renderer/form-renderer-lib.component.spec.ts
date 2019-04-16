@@ -8,9 +8,8 @@ import { ForgeService } from '../../../../core/services/forge.service';
 import { forgeServiceMock } from '../../../../core/mocks/forgeServiceMock';
 import { formRendererConfigMock } from '../../../../core/mocks/configMocks';
 import { getEntityTemplateResMock } from '../../../../core/mocks/httpMocks';
-import { EntityTemplateModel } from 'forge-lib/lib/shared/models/entityTemplateModel';
-import { ProfileTemplateModel } from 'forge-lib/lib/shared/models/profileTemplateModel';
-import { FieldTemplateModel } from 'forge-lib/lib/shared/models/fieldTemplateModel';
+import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateModel';
+import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
 
 describe('FormRendererLibComponent', () => {
   let component: FormRendererLibComponent;
