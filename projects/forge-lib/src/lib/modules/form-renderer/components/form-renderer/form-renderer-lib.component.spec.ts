@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 
 import { FormRendererLibComponent } from './form-renderer-lib.component';
 
@@ -8,6 +8,8 @@ import { ForgeService } from '../../../../core/services/forge.service';
 import { forgeServiceMock } from '../../../../core/mocks/forgeServiceMock';
 import { formRendererConfigMock } from '../../../../core/mocks/configMocks';
 import { getEntityTemplateResMock } from '../../../../core/mocks/httpMocks';
+import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateModel';
+import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
 
 describe('FormRendererLibComponent', () => {
   let component: FormRendererLibComponent;
@@ -146,5 +148,30 @@ describe('FormRendererLibComponent', () => {
       expect(err.message).toEqual('OAuth Token is required.');
       done();
     });
+  });
+
+  it('calls submit and still is valid', () => {
+    component.ngOnChanges(null);
+    component.submit();
+
+    component.entityForm = new FormGroup({
+      optionA: new FormControl(false),
+      optionB: new FormControl(false),
+    });
+
+    component.formRendererConfig.displayFormName = null;
+    component.entityTemplateModel = getEntityTemplateResMock;
+    let profiles = new Array<ProfileTemplateModel>();
+    profiles.push(component.entityTemplateModel.profiles[0]);
+    let fields = new Array<FieldTemplateModel>();
+    fields.push(profiles[0].fields[0]);
+    profiles[0].fields = fields;
+    profiles[0].fields[0].type = "Test";
+    component.entityTemplateModel.profiles = profiles;
+    
+    component.renderForm();
+    let res = component.submit()
+    
+    expect(res).toBeDefined();
   });
 });

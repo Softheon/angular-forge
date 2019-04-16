@@ -160,38 +160,39 @@ export class FormsService {
    */
   private mapFormResponse(res: any): void {
     this.form.name = res.name;
-    res.layout.components.forEach((component) => {
-
-      switch (component.type) {
-        case "Attachment": {
-          this.form.components.push(Object.assign(new AttachmentComponent(), component));
-          break;
+    if (res && res.layout) {
+      res.layout.components.forEach((component) => {
+        switch (component.type) {
+          case "Attachment": {
+            this.form.components.push(Object.assign(new AttachmentComponent(), component));
+            break;
+          }
+          case "Checkbox": {
+            this.form.components.push(Object.assign(new CheckboxComponent(), component));
+            break;
+          }
+          case "Email": {
+            this.form.components.push(Object.assign(new EmailComponent(), component));
+            break;
+          }
+          case "Number": {
+            this.form.components.push(Object.assign(new NumberComponent(), component));
+            break;
+          }
+          case "Rating": {
+            this.form.components.push(Object.assign(new RatingComponent(), component));
+            break;
+          }
+          case "Text Area": {
+            this.form.components.push(Object.assign(new TextAreaComponent(), component));
+            break;
+          }
+          case "Text Field": {
+            this.form.components.push(Object.assign(new TextFieldComponent(), component));
+            break;
+          }
         }
-        case "Checkbox": {
-          this.form.components.push(Object.assign(new CheckboxComponent(), component));
-          break;
-        }
-        case "Email": {
-          this.form.components.push(Object.assign(new EmailComponent(), component));
-          break;
-        }
-        case "Number": {
-          this.form.components.push(Object.assign(new NumberComponent(), component));
-          break;
-        }
-        case "Rating": {
-          this.form.components.push(Object.assign(new RatingComponent(), component));
-          break;
-        }
-        case "Text Area": {
-          this.form.components.push(Object.assign(new TextAreaComponent(), component));
-          break;
-        }
-        case "Text Field": {
-          this.form.components.push(Object.assign(new TextFieldComponent(), component));
-          break;
-        }
-      }
-    });
+      });
+    }
   }
 }

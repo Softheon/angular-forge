@@ -5,6 +5,11 @@ import { CustomFormRendererLibComponent } from './custom-form-renderer-lib.compo
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FormsService } from '../../../../../lib/core/services/forms.service';
+import { formsServiceMock } from '../../../../core/mocks/formsServiceMock';
+import { Form } from '../../../../../../src/lib/shared/models/form';
+
+
 describe('CustomFormRendererLibComponent', () => {
   let component: CustomFormRendererLibComponent;
   let fixture: ComponentFixture<CustomFormRendererLibComponent>;
@@ -19,6 +24,9 @@ describe('CustomFormRendererLibComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule
+      ],
+      providers: [
+        { provide: FormsService, useValue: formsServiceMock }
       ]
     })
       .compileComponents();
@@ -34,10 +42,37 @@ describe('CustomFormRendererLibComponent', () => {
       formName: "",
       displayFormName: false
     }
+    component.formsService.form = new Form();
+    component.formsService.form.components = [];
+    component.formsService.form.components.push(new TextFieldComponent())
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set didFinishRendering true', async () => {
+    await component.renderForm();
+    expect(component.didFinishRendering).toBe(true);
+  });
+
+  it('should call markFormGroupTouched', async () => {
+    await component.submit();
+    expect(component).toBeTruthy();
+  });
 });
+import { Component, NgModule } from '@angular/core';
+@Component({
+  template: '<div> </div>'
+})
+class TextFieldComponent {   
+   id = "test";
+   type = "Text Field";
+   display;
+   validation;
+   data;
+   api = {entityTemplateName: "test", accountName: "test", profileName: "", fieldName: ""};
+   getValue(): any { return "test"};
+   constructor() {}
+}

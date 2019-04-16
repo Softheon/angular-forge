@@ -38,10 +38,11 @@ describe('ForgeComponent', () => {
     fixture = TestBed.createComponent(ForgeComponent);
     component = fixture.componentInstance;
     component.component = new TextFieldComponent();
+    component.createModal = false;
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
