@@ -1,12 +1,12 @@
 <p [id]="'label_' + id" h5 m-b-5 semibold *ngIf="!display.hideLabel">{{display.label}}</p>
 <p [id]="'description_' + id" h6 m-t-5 *ngIf="display.description">{{display.description}}</p>
-<div flex-container-row flex-wrap>
-  <div flex-container-column>
-    <div sws-button-group--jet m-a-0>
-      <div *ngFor="let rating of ratings">
-        <input [id]="'input_' + id + rating" type="radio" name="formgroup1" (click)="selectRating(rating)"
+<div full-width flex-container-row flex-wrap>
+  <div full-width flex-container-column>
+    <div full-width sws-button-group--jet m-a-0>
+      <div [style.width]=" 100 * (100/ratings.length) + '%'" *ngFor="let rating of ratings">
+        <input full-width flex-space-evenly [id]="'input_' + id + rating" type="radio" [name]="'formgroup_' + id" (click)="selectRating(rating)"
           [checked]="rating === data.defaultValue" [disabled]="display.disabled">
-        <label [id]="'label_' + id + rating" [for]="'input_' + id + rating">{{rating}}</label>
+        <label class="rating-label" [id]="'label_' + id + rating" full-width [for]="'input_' + id + rating">{{rating}}</label>
       </div>
     </div>
     <div flex-container-row flex-space-between>

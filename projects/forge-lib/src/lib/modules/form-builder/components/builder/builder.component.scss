@@ -35,6 +35,9 @@
     margin: 0 25px 25px 0;
     display: inline-block;
     vertical-align: top;
+    position: sticky;
+    position: -webkit-sticky;
+    top:0;
 }
 
 .example-list {
