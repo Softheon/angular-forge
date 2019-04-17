@@ -1,38 +1,40 @@
-<div class="example-container">
-  <h2>Basic Components</h2>
+<div>
+  <div class="example-container">
+    <h2>Basic Components</h2>
 
-  <div cdkDropList #componentList="cdkDropList" [cdkDropListData]="components" [cdkDropListConnectedTo]="[doneList]"
-    class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate"
-    id="components">
-    <div class="example-box" *ngFor="let component of components" cdkDrag>{{component}}</div>
-  </div>
-</div>
-
-<div class="form-container">
-  <div sws-form full-width>
-    <input [(ngModel)]="this.formsService.form.name" sws-form__input type="'text'" [name]="'data_max_rating'"
-      onkeyup="this.setAttribute('value', this.value);">
-    <label sws-form__label [for]="'data_max_rating'">Form Name</label>
+    <div cdkDropList #componentList="cdkDropList" [cdkDropListData]="components" [cdkDropListConnectedTo]="[doneList]"
+      class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate"
+      id="components">
+      <div class="example-box" *ngFor="let component of components" cdkDrag>{{component}}</div>
+    </div>
   </div>
 
-  <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="forgeComponents"
-    [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"
-    [cdkDropListDisabled]="true" id="forgeComponents">
-    <div class="form-box" *ngFor="let forgeComponent of forgeComponents; index as i" cdkDrag>
-      <div full-width (mouseenter)="hovered[i] = true" (mouseleave)="hovered[i] = false">
-        <div flex-container-row style="justify-content:flex-end" *ngIf="hovered[i] == true">
-          <div class="fa fa-cog" (click)="editComponent(i)" m-r-10>
+  <div class="form-container">
+    <div sws-form full-width>
+      <input [(ngModel)]="this.formsService.form.name" sws-form__input type="'text'" [name]="'data_max_rating'"
+        onkeyup="this.setAttribute('value', this.value);">
+      <label sws-form__label [for]="'data_max_rating'">Form Name</label>
+    </div>
+
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="forgeComponents"
+      [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"
+      [cdkDropListDisabled]="true" id="forgeComponents">
+      <div class="form-box" *ngFor="let forgeComponent of forgeComponents; index as i" cdkDrag>
+        <div full-width (mouseenter)="hovered[i] = true" (mouseleave)="hovered[i] = false">
+          <div flex-container-row style="justify-content:flex-end" *ngIf="hovered[i] == true">
+            <div class="fa fa-cog" (click)="editComponent(i)" m-r-10>
+            </div>
+            <div class="fa fa-times" (click)="deleteComponent(i)">
+            </div>
           </div>
-          <div class="fa fa-times" (click)="deleteComponent(i)">
-          </div>
+          <forge-builder-component full-width [component]="forgeComponent">
+          </forge-builder-component>
         </div>
-        <forge-builder-component full-width [component]="forgeComponent">
-        </forge-builder-component>
       </div>
     </div>
   </div>
 </div>
 
 <div>
-    <button m-t-30 sws-button--primary (click)="createForm()">Create</button>
+  <button m-t-30 sws-button--primary (click)="createForm()">Create</button>
 </div>
