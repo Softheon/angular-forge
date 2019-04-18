@@ -10,7 +10,7 @@
   </div>
 
   <div class="form-container">
-    <div sws-form full-width>
+    <div sws-form input-active full-width>
       <input [(ngModel)]="this.formsService.form.name" sws-form__input type="'text'" [name]="'data_max_rating'"
         onkeyup="this.setAttribute('value', this.value);">
       <label sws-form__label [for]="'data_max_rating'">Form Name</label>
@@ -19,7 +19,7 @@
     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="forgeComponents"
       [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"
       [cdkDropListDisabled]="true" id="forgeComponents">
-      <div class="form-box" *ngFor="let forgeComponent of forgeComponents; index as i" cdkDrag>
+      <div class="form-box" *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag>
         <div full-width (mouseenter)="hovered[i] = true" (mouseleave)="hovered[i] = false">
           <div flex-container-row style="justify-content:flex-end" *ngIf="hovered[i] == true">
             <div class="fa fa-cog" (click)="editComponent(i)" m-r-10>

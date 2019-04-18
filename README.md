@@ -70,6 +70,14 @@ Parameters supported by this object:
 4. `formName` - Name of the form.
 5. `displayFormName` - Whether the form name should be displayed and edited.
 
+- `formBuilderConfig` - (`FormBuilderConfig`) - configuration object. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/forge-lib-tester/src/app/builder/builder.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/master/projects/forge-lib-tester/src/app/builder/builder.component.html)
+
+Parameters supported by this object:
+
+1. `forgeApiUrl` - URL of Softheon Forge API.
+2. `oauthToken` - Auth token that will be applied as 'Authorization' header during file send.
+3. `accountName` - Name of the account.
+
 ### Events
 
 - `finishedRendering` - fires after the form finishes rendering. See using in [ts demo](https://github.com/Softheon/angular-forge/blob/master/projects/forge-lib-tester/src/app/form/form.component.ts) and [html demo](https://github.com/Softheon/angular-forge/blob/masterprojects/forge-lib-tester/src/app/form/form.component.html).

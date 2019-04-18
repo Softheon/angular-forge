@@ -1,7 +1,7 @@
 <div flex-container-row>
   <button [id]="'prefix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25 m-r-0
     *ngIf="display.prefix">{{display.prefix}}</button>
-  <div sws-form full-width>
+  <div sws-form input-active full-width>
     <input [id]="'input_' + id" forgeNumber [requireDecimal]="data.requireDecimal" [decimalPlaces]="data.decimalPlaces"
       [(ngModel)]="value" sws-form__input type="text" #name="ngModel" [name]="'input_' + id"
       [disabled]="display.disabled" [required]="validation.required" [minValue]="validation.minValue"

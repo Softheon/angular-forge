@@ -1,3 +1,13 @@
 .flex-col{
-flex: 1
+    flex: 1
+}
+
+.mat-tab-body-wrapper {
+    position: relative;
+    margin-top: 5px;
+    padding-right: 10px;
+    overflow: hidden;
+    display: flex;
+    transition: height .5s cubic-bezier(.35,0,.25,1);
+    border-right: 2px solid rgb(156, 156, 156)
 }
