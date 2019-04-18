@@ -4,6 +4,7 @@ import { FormComponent } from '../../abstract/form-component';
 import { getRegistryType } from '../../registry';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
+import { FormsService } from '../../../../../lib/core/services/forms.service';
 
 
 @Component({
@@ -24,16 +25,12 @@ export class ForgeComponent implements OnInit {
 
   constructor(
     private resolver: ComponentFactoryResolver,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private formsService: FormsService
   ) { }
 
   public ngOnInit(): void {
     let factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.type));
-    // if(this.component.constructor.name != 'undefined')
-    // {
-    //   factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.constructor.name));
-    // }
-    this.vc.clear();
 
     const newComponent = this.vc.createComponent(factory);
     newComponent.instance.id = this.component.id;   
@@ -42,6 +39,13 @@ export class ForgeComponent implements OnInit {
     newComponent.instance.display = this.component.display;
     newComponent.instance.validation = this.component.validation;
     this.component = newComponent.instance;
+
+    for(let i = 0; i < this.formsService.form.components.length; i++){
+      if (this.formsService.form.components[i].id === newComponent.instance.id) {
+        this.component = newComponent.instance;
+        this.formsService.form.components[i] = this.component;
+      }
+    }
 
     if (this.createModal) {
       setTimeout(() => {

@@ -2,7 +2,7 @@
     <div *ngIf="didFinishRendering">
         <div *ngIf="formRendererConfig.displayFormName">
             <h3>{{entityTemplateModel.name}}</h3>
-            <div sws-form full-width>
+            <div sws-form input-active full-width>
                 <input sws-form__input type="text" name="entityName" id="entityName"
                     onchange="this.setAttribute('value', this.value);" formControlName="entityName" required>
                 <label sws-form__label for="entityName">{{entityTemplateModel.name}} Name</label>

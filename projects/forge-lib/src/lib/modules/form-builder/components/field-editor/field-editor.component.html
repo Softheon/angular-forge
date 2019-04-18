@@ -3,7 +3,7 @@
     <mat-tab-group>
       <mat-tab label="Display" p-t-15>
         <div *ngIf="showAbstractDisplay">
-          <div sws-form full-width>
+          <div sws-form input-active full-width>
             <input [(ngModel)]="this.field.display.label" sws-form__input type="'text'" [name]="'label_input'"
               onkeyup="this.setAttribute('value', this.value);">
             <label sws-form__label [for]="'label_input'">Label</label>
@@ -26,7 +26,7 @@
       </mat-tab>
       <mat-tab label="Data" p-t-15>
         <div *ngIf="showAbstractData">
-          <div sws-form full-width>
+          <div sws-form input-active full-width>
             <input [(ngModel)]="this.field.data.defaultValue" sws-form__input type="'text'"
               [name]="'label_default_value'" onkeyup="this.setAttribute('value', this.value);">
             <label sws-form__label [for]="'label_default_value'">Default Value</label>
@@ -41,7 +41,7 @@
               checked="unchecked" />
             <label for="data_required">Required?</label>
           </div>
-          <div sws-form full-width>
+          <div sws-form input-active full-width>
             <input [(ngModel)]="this.field.validation.customErrorMessage" sws-form__input type="'text'"
               [name]="'data_custom_error_message'" onkeyup="this.setAttribute('value', this.value);">
             <label sws-form__label [for]="'data_custom_error_message'">Custom Error Message</label>
@@ -50,7 +50,7 @@
         <ng-container #vcValidation></ng-container>
       </mat-tab>
       <mat-tab label="Api" p-t-15>
-        <div sws-form full-width>
+        <div sws-form input-active full-width>
           <input [(ngModel)]="this.field.api.accountName" sws-form__input type="'text'" [name]="'api_account_name'"
             onkeyup="this.setAttribute('value', this.value);" disabled>
           <label sws-form__label [for]="'api_account_name'">{{this.formsService.formBuilderConfig.accountName}}</label>
@@ -69,19 +69,20 @@
             <select id="this.field.api.entityProfileName" [(ngModel)]="this.field.api.profileName"
               onclick="this.setAttribute('value', this.value);" (change)="selectEntityProfile()">
               <option selected disabled>Select an Field</option>
-              <option *ngFor="let profile of this.selectedEntity.profiles" (value)="profile.name">{{profile.name}}</option>
+              <option *ngFor="let profile of this.selectedEntity.profiles" (value)="profile.name">{{profile.name}}
+              </option>
             </select>
           </div>
         </div>
         <div full-width>
-            <div *ngIf=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      "this.selectedProfile" sws-select--primary>
-              <select id="this.field.api.entityFieldName" [(ngModel)]="this.field.api.fieldName"
-                onclick="this.setAttribute('value', this.value);">
-                <option selected disabled>Select an Field</option>
-                <option *ngFor="let field of this.selectedProfile.fields" (value)="field.name">{{field.name}}</option>
-              </select>
-            </div>
+          <div *ngIf="this.selectedProfile" sws-select--primary>
+            <select id="this.field.api.entityFieldName" [(ngModel)]="this.field.api.fieldName"
+              onclick="this.setAttribute('value', this.value);">
+              <option selected disabled>Select an Field</option>
+              <option *ngFor="let field of this.selectedProfile.fields" (value)="field.name">{{field.name}}</option>
+            </select>
           </div>
+        </div>
       </mat-tab>
       <mat-tab label="Conditional" p-t-15>
         <div flex-container>
@@ -89,12 +90,12 @@
             <input id="conditional_display" [(ngModel)]="this.field.conditional.display" type="checkbox" checked="unchecked" />
             <label for="conditional_display">Display</label>
           </div>
-          <div sws-form full-width>
+          <div sws-form input-active full-width>
             <input [(ngModel)]="this.field.conditional.component" sws-form__input type="'text'" [name]="'conditional_component'"
               onkeyup="this.setAttribute('value', this.value);">
             <label sws-form__label [for]="'conditional_component'">Component</label>
           </div>
-          <div sws-form full-width>
+          <div sws-form input-active full-width>
             <input [(ngModel)]="this.field.conditional.value" sws-form__input type="'text'" [name]="'conditional_value'"
               onkeyup="this.setAttribute('value', this.value);">
             <label sws-form__label [for]="'conditional_value'">Value</label>
@@ -103,11 +104,12 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-  <div flex-container-column class="flex-col" m-l-10>
+  <div flex-container-column class="flex-col" m-l-30>
     <div p-t-50>
       Preview
       <div>
-        Live preview coming soon
+        <forge-builder-component full-width [component]="field" [createModal]="false"> 
+        </forge-builder-component>
       </div>
     </div>
   </div>

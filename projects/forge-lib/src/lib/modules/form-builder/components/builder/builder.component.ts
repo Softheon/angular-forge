@@ -23,7 +23,7 @@ export class BuilderComponent implements OnInit {
 
 
   @Input() formBuilderConfig: FormBuilderConfig
-  
+
   /**
    * The Index
    */
@@ -135,7 +135,7 @@ export class BuilderComponent implements OnInit {
    */
   public addComponent(component: any, id: string): void {
     component.id = id;
-    this.forgeComponents.push(component);
+    this.formsService.form.components.push(component);
   }
 
   /**
@@ -163,7 +163,16 @@ export class BuilderComponent implements OnInit {
   /**
    * Creates the form in the repository
    */
-  public createForm(): void{
+  public createForm(): void {
     this.formsService.postCreateForm();
+  }
+
+  /**
+ * tracker for re-rendering *ngFor
+ * @param index index of the item
+ * @param item the component;
+ */
+  public trackComponentById(index, item): any {
+    return item.id;
   }
 }
