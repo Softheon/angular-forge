@@ -8,6 +8,7 @@ import { CheckboxComponent } from './concrete/checkbox/checkbox.component';
 import { RatingComponent } from './concrete/rating/rating.component';
 import { EmailComponent } from './concrete/email/email.component';
 import { AttachmentComponent } from './concrete/attachment/attachment.component';
+import { MultiSelectComponent } from './concrete/multi-select/multi-select-component';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
     switch (name) {
@@ -29,26 +30,29 @@ export const getRegistryType = (name: string): Type<FormComponent> => {
         case EmailComponent.name: {
             return EmailComponent;
         }
-        case AttachmentComponent.name: {
+        case 'Attachment': {
             return AttachmentComponent;
         }
-        case "Text Field": {
+        case 'Text Field': {
             return TextFieldComponent;
         }
-        case "Number": {
+        case 'Number': {
             return NumberComponent;
         }
-        case "Text Area": {
+        case 'Text Area': {
             return TextAreaComponent;
         }
-        case "Checkbox": {
+        case 'Checkbox': {
             return CheckboxComponent;
         }
-        case "Rating": {
+        case 'Rating': {
             return RatingComponent;
         }
-        case "Email": {
+        case 'Email': {
             return EmailComponent;
+        }
+        case 'Checkbox Group': {
+            return MultiSelectComponent;
         }
     }
 };

@@ -1,4 +1,5 @@
 import { FieldType } from './field-type';
+import { Option } from './option';
 
 /**
  * Field Template model
@@ -10,6 +11,9 @@ export class FieldTemplateModel {
 
   /** Gets or sets the type. */
   public type: string;
+
+  /** The options */
+  public options?: Option[];
 
    /**
     * Constructs a Field Object

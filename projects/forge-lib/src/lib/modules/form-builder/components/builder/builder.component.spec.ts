@@ -3,16 +3,15 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatDialogModule } from '@angular/material'
 import { MatDialogRef } from '@angular/material';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { FormsModule } from '@angular/forms';
 
 import { FormsService } from '../../../../core/services/forms.service';
 
 import { BuilderComponent } from './builder.component';
 
 import { formsServiceMock } from '../../../../core/mocks/formsServiceMock';
-import { FormsModule } from '@angular/forms';
-
-import { Form } from 'projects/forge-lib/src/lib/shared/models/form';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { Form } from '../../../../shared/models/form';
 
 describe('BuilderComponent', () => {
   let component: BuilderComponent;

@@ -12,11 +12,12 @@ import { CheckboxComponent } from '../../shared/form-components/concrete/checkbo
 import { RatingComponent } from '../../shared/form-components/concrete/rating/rating.component';
 import { EmailComponent } from '../../shared/form-components/concrete/email/email.component';
 import { AttachmentComponent } from '../../shared/form-components/concrete/attachment/attachment.component';
+import { ForgeRendererComponent } from '../../shared/form-components/concrete/forge-renderer-component/forge-renderer-component.component';
+import { MultiSelectComponent } from '../../shared/form-components/concrete/multi-select/multi-select-component';
 
 import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
-import { ForgeRendererComponent } from '../../shared/form-components/concrete/forge-renderer-component/forge-renderer-component.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import { ForgeRendererComponent } from '../../shared/form-components/concrete/fo
         NumberDirective,
         MaxValidatorDirective,
         MinValidatorDirective,
-        AttachmentComponent
+        AttachmentComponent,
+        MultiSelectComponent
     ],
     exports: [
         TextFieldComponent,
@@ -50,7 +52,8 @@ import { ForgeRendererComponent } from '../../shared/form-components/concrete/fo
         NumberDirective,
         MaxValidatorDirective,
         MinValidatorDirective,
-        AttachmentComponent
+        AttachmentComponent,
+        MultiSelectComponent
     ],
     entryComponents: [
         TextFieldComponent,
@@ -61,7 +64,8 @@ import { ForgeRendererComponent } from '../../shared/form-components/concrete/fo
         CheckboxComponent,
         RatingComponent,
         EmailComponent,
-        AttachmentComponent
+        AttachmentComponent,
+        MultiSelectComponent
     ]
 })
 export class FormBuilderComponentsModule { }

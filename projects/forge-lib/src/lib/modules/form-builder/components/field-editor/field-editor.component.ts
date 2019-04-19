@@ -5,7 +5,8 @@ import { FormsService } from '../../../../../lib/core/services/forms.service';
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
 import { getRegistryType } from '../../../../shared/form-editor-components/field-editor-registry';
 import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateModel';
-import { EntityTemplateModel } from 'projects/forge-lib/src/lib/shared/models/entityTemplateModel';
+import { EntityTemplateModel } from '../../../../shared/models/entityTemplateModel';
+import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -39,11 +40,15 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
    */
   public selectedProfile: ProfileTemplateModel;
 
-
   /**
    * The selected entity template
    */
   public selectedEntity: EntityTemplateModel;
+
+  /**
+   * The selected field template
+   */
+  public selectedField: FieldTemplateModel;
 
   /**
    * the current index
@@ -114,9 +119,12 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Selects the entity template
+   */
   public selectEntityTemplate(): void {
     for (let i = 0; i < this.formsService.entities.length; i++) {
-      if (this.formsService.entities[i].name == this.field.api.entityTemplateName) {
+      if (this.formsService.entities[i].name === this.field.api.entityTemplateName) {
         this.formsService.getEntityTemplate(this.field.api.entityTemplateName).then((result) => {
           this.selectedEntity = result;
         });
@@ -124,10 +132,24 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Selects the entity profile
+   */
   public selectEntityProfile(): void {
     for (let i = 0; i < this.selectedEntity.profiles.length; i++) {
-      if (this.selectedEntity.profiles[i].name == this.field.api.profileName) {
+      if (this.selectedEntity.profiles[i].name === this.field.api.profileName) {
         this.selectedProfile = this.selectedEntity.profiles[i];
+      }
+    }
+  }
+
+  /**
+   * Selects the entity field
+   */
+  public selectEntityField(): void {
+    for (let i = 0; i < this.selectedProfile.fields.length; i++) {
+      if (this.selectedProfile.fields[i].name === this.field.api.fieldName) {
+        this.field.api.options = this.selectedProfile.fields[i].options.slice(1, this.selectedProfile.fields[i].options.length);
       }
     }
   }
