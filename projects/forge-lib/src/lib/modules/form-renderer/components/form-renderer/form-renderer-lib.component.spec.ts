@@ -6,10 +6,10 @@ import { FormRendererLibComponent } from './form-renderer-lib.component';
 import { ForgeService } from '../../../../core/services/forge.service';
 
 import { forgeServiceMock } from '../../../../core/mocks/forgeServiceMock';
-import { formRendererConfigMock } from '../../../../core/mocks/configMocks';
 import { getEntityTemplateResMock } from '../../../../core/mocks/httpMocks';
 import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateModel';
 import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
+import { formRendererConfigMock } from 'projects/forge-lib/src/lib/core/mocks/configMocks';
 
 describe('FormRendererLibComponent', () => {
   let component: FormRendererLibComponent;
@@ -32,7 +32,8 @@ describe('FormRendererLibComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FormRendererLibComponent);
     component = fixture.componentInstance;
-    component.formRendererConfig = formRendererConfigMock;
+    component.formRendererConfig = JSON.parse(JSON.stringify(formRendererConfigMock));
+    component.entityTemplateModel = JSON.parse(JSON.stringify(getEntityTemplateResMock));
     fixture.detectChanges();
   });
 
@@ -160,18 +161,18 @@ describe('FormRendererLibComponent', () => {
     });
 
     component.formRendererConfig.displayFormName = null;
-    component.entityTemplateModel = getEntityTemplateResMock;
-    let profiles = new Array<ProfileTemplateModel>();
+    component.entityTemplateModel = JSON.parse(JSON.stringify(getEntityTemplateResMock));
+    const profiles = new Array<ProfileTemplateModel>();
     profiles.push(component.entityTemplateModel.profiles[0]);
-    let fields = new Array<FieldTemplateModel>();
+    const fields = new Array<FieldTemplateModel>();
     fields.push(profiles[0].fields[0]);
     profiles[0].fields = fields;
-    profiles[0].fields[0].type = "Test";
+    profiles[0].fields[0].type = 'Test';
     component.entityTemplateModel.profiles = profiles;
-    
+
     component.renderForm();
-    let res = component.submit()
-    
+    const res = component.submit();
+
     expect(res).toBeDefined();
   });
 });

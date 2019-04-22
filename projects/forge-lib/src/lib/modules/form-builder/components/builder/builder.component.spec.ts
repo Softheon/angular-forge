@@ -69,14 +69,14 @@ describe('BuilderComponent', () => {
 
   it('should have more than one item in forgeComponents after addComponent()', () => {
     component.addComponent(new TextFieldComponent(), 'any');
-    expect(component.forgeComponents.length).toBeGreaterThan(0);
+    expect(component.formsService.form.components.length).toBeGreaterThan(0);
   });
 
   it('should have 0 components after adding one then deleting one in forgeComponents', () => {
     component.addComponent(new TextFieldComponent(), 'any');
     component.deleteComponent(0);
-    expect(component.forgeComponents.length).toBe(0);
-  })
+    expect(component.formsService.form.components.length).toBe(0);
+  });
 
   // it('calls without throwing error on edit', () => {
   //   component.addComponent(new TextFieldComponent(), "any");
@@ -92,7 +92,8 @@ describe('BuilderComponent', () => {
     component.generateComponent('Rating');
     component.generateComponent('Email');
     component.generateComponent('Attachment');
-    expect(component.forgeComponents.length).toBe(component.components.length);
+    component.generateComponent('Checkbox Group');
+    expect(component.formsService.form.components.length).toBe(component.components.length);
   });
 });
 
