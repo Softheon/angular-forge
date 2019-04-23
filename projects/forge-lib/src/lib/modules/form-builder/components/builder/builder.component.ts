@@ -5,7 +5,6 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
 import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
 import { NumberComponent } from '../../../../shared/form-components/concrete/number/number.component';
-import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 import { FormsService } from '../../../../core/services/forms.service';
 import { TextAreaComponent } from '../../../../shared//form-components/concrete/text-area/text-area.component';
 import { CheckboxComponent } from '../../../../shared/form-components/concrete/checkbox/checkbox.component';
@@ -14,11 +13,8 @@ import { EmailComponent } from '../../../../shared/form-components/concrete/emai
 import { AttachmentComponent } from '../../../../shared/form-components/concrete/attachment/attachment.component';
 import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-config';
 import { MultiSelectComponent } from '../../../../shared/form-components/concrete/multi-select/multi-select-component';
-<<<<<<< HEAD
-import { Form } from 'projects/forge-lib/src/lib/shared/models/form';
-=======
+import { Form } from '../../../../shared/models/form';
 import { ComponentTypes } from '../../../../shared/constants/component-types';
->>>>>>> e34f35f93ebd1a184b1895747c1cc5d404df61b8
 
 @Component({
   selector: 'forge-form-builder',
@@ -55,11 +51,6 @@ export class BuilderComponent implements OnInit {
   public hovered: Boolean[] = [];
 
   /**
-   * The material dialog reference
-   */
-  public dialogRef: MatDialogRef<any>;
-
-  /**
    * List of existing forms
    */
   public existingForms: Array<Form>;
@@ -70,12 +61,17 @@ export class BuilderComponent implements OnInit {
   public forgeComponents: Array<FormComponent> = [];
 
   /**
+   * The selected form component
+   */
+  public selectedComponent: FormComponent;
+
+  /**
    * Constructs the component
-   * @param dialog Dialog
    * @param formsService Forms service
    */
-  constructor(private dialog: MatDialog,
-    public formsService: FormsService) { }
+  constructor(
+    public formsService: FormsService
+  ) { }
 
   /**
    * Initializes the component
@@ -184,13 +180,7 @@ export class BuilderComponent implements OnInit {
    * @param index the index of he component
    */
   public editComponent(index: number): void {
-    this.dialogRef = this.dialog.open(FieldEditorComponent, {
-      data: {
-        field: this.formsService.form.components[index],
-        isEdit: true
-      },
-      width: '80vw'
-    });
+    this.selectedComponent = this.formsService.form.components[index];
   }
 
   /**

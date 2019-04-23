@@ -1,5 +1,5 @@
 <div flex-container>
-  <div flex-container-column class="flex-col" m-r-10>
+  <div m-r-10>
     <mat-tab-group>
       <mat-tab label="Display" p-t-15>
         <div *ngIf="showAbstractDisplay">
@@ -103,14 +103,5 @@
         </div>
       </mat-tab>
     </mat-tab-group>
-  </div>
-  <div flex-container-column class="flex-col" m-l-30>
-    <div p-t-50>
-      Preview
-      <div>
-        <forge-builder-component full-width [component]="field" [createModal]="false"> 
-        </forge-builder-component>
-      </div>
-    </div>
   </div>
 </div>
