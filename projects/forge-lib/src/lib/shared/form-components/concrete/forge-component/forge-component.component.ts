@@ -30,17 +30,17 @@ export class ForgeComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    let factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.type));
+    const factory = this.resolver.resolveComponentFactory(getRegistryType(this.component.type));
 
     const newComponent = this.vc.createComponent(factory);
-    newComponent.instance.id = this.component.id;   
+    newComponent.instance.id = this.component.id;
     newComponent.instance.api = this.component.api;
     newComponent.instance.data = this.component.data;
     newComponent.instance.display = this.component.display;
     newComponent.instance.validation = this.component.validation;
     this.component = newComponent.instance;
 
-    for(let i = 0; i < this.formsService.form.components.length; i++){
+    for (let i = 0; i < this.formsService.form.components.length; i++) {
       if (this.formsService.form.components[i].id === newComponent.instance.id) {
         this.component = newComponent.instance;
         this.formsService.form.components[i] = this.component;

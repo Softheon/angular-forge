@@ -5,6 +5,7 @@ import { NumberValidation } from './number-validation';
 import { FormComponent } from '../../abstract/form-component';
 import { TextFieldDisplay } from '../text-field/text-field-display';
 import { FormApi } from '../../abstract/form-api';
+import { ComponentTypes } from '../../../constants/component-types';
 
 @Component({
   selector: 'forge-number',
@@ -20,7 +21,7 @@ export class NumberComponent extends FormComponent implements OnInit {
   /**
    * Component type
    */
-  public type: string = 'Number';
+  public type: string = ComponentTypes.NumberField;
 
   /**
    * Form display attributes
