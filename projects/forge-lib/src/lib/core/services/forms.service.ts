@@ -114,6 +114,26 @@ export class FormsService {
       });
   }
 
+  /**
+   * Get a list of all the forms for the drawer
+   */
+  public async getForms(): Promise<Array<Form>> {
+    const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}`;
+    const headers = this.getHeader(this.formBuilderConfig.oauthToken);
+
+    return this.http.get<Array<Form>>(url, { headers: headers })
+      .toPromise()
+      .then(value => {
+        return value
+      }).catch(error => {
+        return Promise.reject(error);
+      });
+  }
+
+  /**
+   * Get a form by name
+   * @param formName the name of the form
+   */
   public async getForm(formName: string): Promise<Form> {
     const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}/${formName}`;
     const headers = this.getHeader(this.formBuilderConfig.oauthToken);
@@ -133,11 +153,31 @@ export class FormsService {
 * Gets the entity template
 */
   public async postCreateForm(): Promise<Array<EntityTemplateModel>> {
+
+    let res = await this.getForm(this.form.name);
+    if(res.name){
+      debugger;
+      return this.putCreateForm();
+    }
     const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}`;
     const headers = this.getHeader(this.formBuilderConfig.oauthToken);
     let body = this.createFormJson();
 
     return this.http.post<Array<EntityTemplateModel>>(url, body, { headers: headers })
+      .toPromise()
+      .then(value => {
+        return value as Array<EntityTemplateModel>;
+      }).catch(error => {
+        return Promise.reject(error);
+      });
+  }
+
+  public async putCreateForm(): Promise<Array<EntityTemplateModel>> {
+    const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}`;
+    const headers = this.getHeader(this.formBuilderConfig.oauthToken);
+    let body = this.createFormJson();
+
+    return this.http.put<Array<EntityTemplateModel>>(url, body, { headers: headers })
       .toPromise()
       .then(value => {
         return value as Array<EntityTemplateModel>;

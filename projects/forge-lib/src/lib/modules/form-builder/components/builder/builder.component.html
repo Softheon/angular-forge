@@ -1,4 +1,12 @@
-<div>
+<div *ngIf="!formsService.form.name">
+  <div>
+    <h2>Edit Existing Form</h2>
+    <div *ngFor="let form of existingForms" (click)="editForm(form.name)">{{form.name}}</div>
+  </div>
+    <button m-t-30 sws-button--primary (click)="createNewForm()">Create New Form</button>
+</div>
+
+<div *ngIf="formsService.form.name">
   <div class="example-container">
     <h2>Basic Components</h2>
 
@@ -19,7 +27,8 @@
     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="forgeComponents"
       [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"
       [cdkDropListDisabled]="true" id="forgeComponents">
-      <div class="form-box" *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag>
+      <div class="form-box"
+        *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag>
         <div full-width (mouseenter)="hovered[i] = true" (mouseleave)="hovered[i] = false">
           <div flex-container-row style="justify-content:flex-end" *ngIf="hovered[i] == true">
             <div class="fa fa-cog" (click)="editComponent(i)" m-r-10>
@@ -33,8 +42,8 @@
       </div>
     </div>
   </div>
-</div>
 
-<div>
-  <button m-t-30 sws-button--primary (click)="createForm()">Create</button>
+  <div>
+    <button m-t-30 sws-button--primary (click)="createForm()">Create</button>
+  </div>
 </div>

@@ -14,6 +14,7 @@ import { EmailComponent } from '../../../../shared/form-components/concrete/emai
 import { AttachmentComponent } from '../../../../shared/form-components/concrete/attachment/attachment.component';
 import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-config';
 import { MultiSelectComponent } from '../../../../shared/form-components/concrete/multi-select/multi-select-component';
+import { Form } from 'projects/forge-lib/src/lib/shared/models/form';
 
 @Component({
   selector: 'forge-form-builder',
@@ -55,6 +56,11 @@ export class BuilderComponent implements OnInit {
   public dialogRef: MatDialogRef<any>;
 
   /**
+   * List of existing forms
+   */
+  public existingForms: Array<Form>;
+
+  /**
    * The list of forge components that have been created
    */
   public forgeComponents: Array<FormComponent> = [];
@@ -70,11 +76,29 @@ export class BuilderComponent implements OnInit {
   /**
    * Initializes the component
    */
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     this.formsService.formBuilderConfig = this.formBuilderConfig;
     this.formsService.getEntityTemplates().then((res) => {
       this.formsService.entities = res
     });
+
+    this.formsService.form.name = null;
+    this.existingForms = await this.formsService.getForms();
+  }
+
+  /**
+   * Select a form to edit
+   * @param formName the name of the form to edit
+   */
+  public async editForm(formName: string): Promise<void> {
+    this.formsService.form = await this.formsService.getForm(formName)
+  }
+
+  /**
+   * Create a new form
+   */
+  public createNewForm(): void {
+    this.formsService.form.name = 'New Form';
   }
 
   /**
