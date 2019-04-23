@@ -5,6 +5,7 @@ import { FormApi } from '../../abstract/form-api';
 import { MultiSelectDisplay } from './multi-select-display';
 import { MultiSelectValidation } from './multi-select-validation';
 import { MultiSelectData } from './multi-select-data';
+import { ComponentTypes } from '../../../constants/component-types';
 
 /**
  * Multi Select component
@@ -23,7 +24,7 @@ export class MultiSelectComponent extends FormComponent {
   /**
    * The multi select component type
    */
-  public type: string = 'Checkbox Group';
+  public type: string = ComponentTypes.CheckboxGroup;
 
   /**
    * Form display attributes

@@ -8,6 +8,7 @@ import { AttachmentData } from './attachment-data';
 import { AttachmentDisplay } from './attachment-display';
 import { mimeType } from './mimeTypes';
 import { FormApi } from '../../abstract/form-api';
+import { ComponentTypes } from '../../../constants/component-types';
 
 const URL = 'blah';
 
@@ -25,7 +26,7 @@ export class AttachmentComponent extends FormComponent implements OnInit {
   /**
    * The type of the component
    */
-  public type: string = 'Attachment';
+  public type: string = ComponentTypes.Attachment;
 
   /**
    * Display attributes

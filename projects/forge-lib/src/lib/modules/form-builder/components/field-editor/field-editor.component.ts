@@ -7,6 +7,7 @@ import { getRegistryType } from '../../../../shared/form-editor-components/field
 import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateModel';
 import { EntityTemplateModel } from '../../../../shared/models/entityTemplateModel';
 import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
+import { ComponentTypes } from '../../../../shared/constants/component-types';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -159,7 +160,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
    */
   private setDynamicComponents(): void {
     switch (this.field.type) {
-      case 'Text Field': {
+      case ComponentTypes.TextField: {
         this.displayName = 'TextFieldEditorDisplayComponent';
         this.dataName = 'TextFieldEditorDataComponent';
         this.validationName = 'TextFieldEditorValidationComponent';
@@ -168,7 +169,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractValidation = true;
         break;
       }
-      case 'Number': {
+      case ComponentTypes.NumberField: {
         this.displayName = 'NumberEditorDisplayComponent';
         this.dataName = 'NumberEditorDataComponent';
         this.validationName = 'NumberEditorValidationComponent';
@@ -177,7 +178,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractValidation = true;
         break;
       }
-      case 'Text Area': {
+      case ComponentTypes.TextArea: {
         this.displayName = 'TextAreaEditorDisplayComponent';
         this.dataName = 'TextAreaEditorDataComponent';
         this.validationName = 'TextAreaEditorValidationComponent';
@@ -186,7 +187,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractValidation = true;
         break;
       }
-      case 'Checkbox': {
+      case ComponentTypes.Checkbox: {
         this.displayName = 'CheckboxEditorDisplayComponent';
         this.dataName = 'CheckboxEditorDataComponent';
         this.validationName = 'CheckboxEditorValidationComponent';
@@ -195,7 +196,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractValidation = true;
         break;
       }
-      case 'Email': {
+      case ComponentTypes.Email: {
         this.displayName = 'EmailEditorDisplayComponent';
         this.dataName = 'EmailEditorDataComponent';
         this.validationName = 'EmailEditorValidationComponent';
@@ -204,7 +205,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractValidation = true;
         break;
       }
-      case 'Rating': {
+      case ComponentTypes.Rating: {
         this.displayName = 'RatingEditorDisplayComponent';
         this.dataName = 'RatingEditorDataComponent';
         this.validationName = 'RatingEditorValidationComponent';
@@ -213,7 +214,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractValidation = true;
         break;
       }
-      case 'Attachment': {
+      case ComponentTypes.Attachment: {
         this.displayName = 'AttachmentEditorDisplayComponent';
         this.dataName = 'AttachmentEditorDataComponent';
         this.validationName = 'AttachmentEditorValidationComponent';
@@ -221,6 +222,14 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractData = false;
         this.showAbstractValidation = false;
         break;
+      }
+      case ComponentTypes.CheckboxGroup: {
+        this.displayName = 'MultiSelectEditorDisplayComponent';
+        this.dataName = 'MultiSelectEditorDataComponent';
+        this.validationName = 'MultiSelectEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
       }
     }
 

@@ -5,6 +5,7 @@ import { MatDialogModule } from '@angular/material'
 import { MatDialogRef } from '@angular/material';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 
 import { FormsService } from '../../../../core/services/forms.service';
 
@@ -12,6 +13,37 @@ import { BuilderComponent } from './builder.component';
 
 import { formsServiceMock } from '../../../../core/mocks/formsServiceMock';
 import { Form } from '../../../../shared/models/form';
+import { ComponentTypes } from '../../../../shared/constants/component-types';
+
+@Component({
+  selector: 'forge-text-field',
+  template: '<div> </div>'
+})
+export class TextFieldComponent { }
+
+@Component({
+  selector: 'forge-renderer-text-field-editor-data',
+  template: '<div> </div>'
+})
+export class TextFieldEditorDataComponent { }
+
+@Component({
+  selector: 'forge-renderer-text-field-editor-display',
+  template: '<div> </div>',
+})
+export class TextFieldEditorDisplayComponent { }
+
+@Component({
+  selector: 'forge-renderer-text-field-editor-validation',
+  template: '<div></div>',
+})
+export class TextFieldEditorValidationComponent { }
+
+@Component({
+  selector: 'forge-renderer-field-editor',
+  template: '<div> </div>',
+})
+export class FieldEditorComponent { }
 
 describe('BuilderComponent', () => {
   let component: BuilderComponent;
@@ -85,46 +117,14 @@ describe('BuilderComponent', () => {
   // });
 
   it('generate all component types', () => {
-    component.generateComponent('Text Field');
-    component.generateComponent('Number Field');
-    component.generateComponent('Text Area');
-    component.generateComponent('Checkbox');
-    component.generateComponent('Rating');
-    component.generateComponent('Email');
-    component.generateComponent('Attachment');
-    component.generateComponent('Checkbox Group');
+    component.generateComponent(ComponentTypes.TextField);
+    component.generateComponent(ComponentTypes.NumberField);
+    component.generateComponent(ComponentTypes.TextArea);
+    component.generateComponent(ComponentTypes.Checkbox);
+    component.generateComponent(ComponentTypes.Rating);
+    component.generateComponent(ComponentTypes.Email);
+    component.generateComponent(ComponentTypes.Attachment);
+    component.generateComponent(ComponentTypes.CheckboxGroup);
     expect(component.formsService.form.components.length).toBe(component.components.length);
   });
 });
-
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'forge-text-field',
-  template: '<div> </div>'
-})
-export class TextFieldComponent { }
-
-@Component({
-  selector: 'forge-renderer-text-field-editor-data',
-  template: '<div> </div>'
-})
-export class TextFieldEditorDataComponent { }
-
-@Component({
-  selector: 'forge-renderer-text-field-editor-display',
-  template: '<div> </div>',
-})
-export class TextFieldEditorDisplayComponent { }
-
-@Component({
-  selector: 'forge-renderer-text-field-editor-validation',
-  template: '<div></div>',
-})
-export class TextFieldEditorValidationComponent { }
-
-@Component({
-  selector: 'forge-renderer-field-editor',
-  template: '<div> </div>',
-})
-export class FieldEditorComponent { }
