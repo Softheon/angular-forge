@@ -222,6 +222,14 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
         this.showAbstractValidation = false;
         break;
       }
+      case 'Checkbox Group': {
+        this.displayName = 'MultiSelectEditorDisplayComponent';
+        this.dataName = 'MultiSelectEditorDataComponent';
+        this.validationName = 'MultiSelectEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
+      }
     }
 
     this.createDynamicComponents(this.displayName, this.vcDisplay);

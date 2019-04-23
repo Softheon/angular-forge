@@ -24,6 +24,10 @@ import { AttachmentEditorDataComponent } from '../../shared/form-editor-componen
 import { AttachmentEditorDisplayComponent } from '../../shared/form-editor-components/concrete/attachment-editor/display/attachment-editor-display.component';
 import { AttachmentEditorValidationComponent } from '../../shared/form-editor-components/concrete/attachment-editor/validation/attachment-editor-validation.component';
 
+import { MultiSelectEditorDataComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/data/multi-select-editor-data.component';
+import { MultiSelectEditorDisplayComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/display/multi-select-editor-display.component';
+import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/validation/multi-select-editor-validation.component';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -50,7 +54,10 @@ import { AttachmentEditorValidationComponent } from '../../shared/form-editor-co
         EmailEditorValidationComponent,
         AttachmentEditorDataComponent,
         AttachmentEditorDisplayComponent,
-        AttachmentEditorValidationComponent
+        AttachmentEditorValidationComponent,
+        MultiSelectEditorDataComponent,
+        MultiSelectEditorDisplayComponent,
+        MultiSelectEditorValidationComponent
     ],
     exports: [
         TextFieldEditorDisplayComponent,
@@ -73,7 +80,10 @@ import { AttachmentEditorValidationComponent } from '../../shared/form-editor-co
         EmailEditorValidationComponent,
         AttachmentEditorDataComponent,
         AttachmentEditorDisplayComponent,
-        AttachmentEditorValidationComponent
+        AttachmentEditorValidationComponent,
+        MultiSelectEditorDataComponent,
+        MultiSelectEditorDisplayComponent,
+        MultiSelectEditorValidationComponent
     ],
     entryComponents: [
         TextFieldEditorDisplayComponent,
@@ -96,7 +106,10 @@ import { AttachmentEditorValidationComponent } from '../../shared/form-editor-co
         EmailEditorValidationComponent,
         AttachmentEditorDataComponent,
         AttachmentEditorDisplayComponent,
-        AttachmentEditorValidationComponent
+        AttachmentEditorValidationComponent,
+        MultiSelectEditorDataComponent,
+        MultiSelectEditorDisplayComponent,
+        MultiSelectEditorValidationComponent
     ]
 })
 export class FormBuilderEditorsModule { }
