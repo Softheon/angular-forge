@@ -68,7 +68,7 @@
           <div *ngIf="this.selectedEntity" sws-select--primary>
             <select id="this.field.api.entityProfileName" [(ngModel)]="this.field.api.profileName"
               onclick="this.setAttribute('value', this.value);" (change)="selectEntityProfile()">
-              <option selected disabled>Select an Field</option>
+              <option selected disabled>Select a Profile</option>
               <option *ngFor="let profile of this.selectedEntity.profiles" (value)="profile.name">{{profile.name}}
               </option>
             </select>
@@ -77,7 +77,7 @@
         <div full-width>
           <div *ngIf="this.selectedProfile" sws-select--primary>
             <select id="this.field.api.entityFieldName" [(ngModel)]="this.field.api.fieldName"
-              onclick="this.setAttribute('value', this.value);">
+              onclick="this.setAttribute('value', this.value);" (blur)="selectEntityField()">
               <option selected disabled>Select an Field</option>
               <option *ngFor="let field of this.selectedProfile.fields" (value)="field.name">{{field.name}}</option>
             </select>

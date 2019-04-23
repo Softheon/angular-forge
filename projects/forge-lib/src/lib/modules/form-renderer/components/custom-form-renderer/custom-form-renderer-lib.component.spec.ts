@@ -1,14 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { CustomFormRendererLibComponent } from './custom-form-renderer-lib.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CustomFormRendererLibComponent } from './custom-form-renderer-lib.component';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
 import { formsServiceMock } from '../../../../core/mocks/formsServiceMock';
 import { Form } from '../../../../../../src/lib/shared/models/form';
-
 
 describe('CustomFormRendererLibComponent', () => {
   let component: CustomFormRendererLibComponent;
@@ -36,15 +34,15 @@ describe('CustomFormRendererLibComponent', () => {
     fixture = TestBed.createComponent(CustomFormRendererLibComponent);
     component = fixture.componentInstance;
     component.formRendererConfig = {
-      oauthToken: "",
-      forgeApiUrl: "",
-      accountName: "",
-      formName: "",
+      oauthToken: '',
+      forgeApiUrl: '',
+      accountName: '',
+      formName: '',
       displayFormName: false
     }
     component.formsService.form = new Form();
     component.formsService.form.components = [];
-    component.formsService.form.components.push(new TextFieldComponent())
+    component.formsService.form.components.push(new TextFieldComponent());
     fixture.detectChanges();
   });
 
@@ -66,13 +64,13 @@ import { Component, NgModule } from '@angular/core';
 @Component({
   template: '<div> </div>'
 })
-class TextFieldComponent {   
-   id = "test";
-   type = "Text Field";
-   display;
-   validation;
-   data;
-   api = {entityTemplateName: "test", accountName: "test", profileName: "", fieldName: ""};
-   getValue(): any { return "test"};
-   constructor() {}
+class TextFieldComponent {
+  id = 'test';
+  type = 'Text Field';
+  display;
+  validation;
+  data;
+  api = { entityTemplateName: 'test', accountName: 'test', profileName: '', fieldName: '', options: null };
+  getValue(): any { return 'test'; }
+  constructor() { }
 }

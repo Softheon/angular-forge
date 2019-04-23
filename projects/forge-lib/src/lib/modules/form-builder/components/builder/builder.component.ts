@@ -13,6 +13,7 @@ import { RatingComponent } from '../../../../shared/form-components/concrete/rat
 import { EmailComponent } from '../../../../shared/form-components/concrete/email/email.component';
 import { AttachmentComponent } from '../../../../shared/form-components/concrete/attachment/attachment.component';
 import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-config';
+import { MultiSelectComponent } from '../../../../shared/form-components/concrete/multi-select/multi-select-component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -22,7 +23,7 @@ import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-c
 export class BuilderComponent implements OnInit {
 
 
-  @Input() formBuilderConfig: FormBuilderConfig
+  @Input() formBuilderConfig: FormBuilderConfig;
 
   /**
    * The Index
@@ -39,7 +40,8 @@ export class BuilderComponent implements OnInit {
     'Checkbox',
     'Rating',
     'Email',
-    'Attachment'
+    'Attachment',
+    'Checkbox Group'
   ];
 
   /**
@@ -116,6 +118,9 @@ export class BuilderComponent implements OnInit {
         break;
       } case 'Attachment': {
         this.addComponent(new AttachmentComponent(), `attachment_${this.index++}`);
+        break;
+      } case 'Checkbox Group': {
+        this.addComponent(new MultiSelectComponent(), `multiselect_${this.index++}`);
         break;
       }
     }
