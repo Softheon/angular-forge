@@ -9,49 +9,32 @@ import { RatingComponent } from './concrete/rating/rating.component';
 import { EmailComponent } from './concrete/email/email.component';
 import { AttachmentComponent } from './concrete/attachment/attachment.component';
 import { MultiSelectComponent } from './concrete/multi-select/multi-select-component';
+import { ComponentTypes } from '../constants/component-types';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
     switch (name) {
-        case TextFieldComponent.name: {
+        case ComponentTypes.TextField: {
             return TextFieldComponent;
         }
-        case NumberComponent.name: {
+        case ComponentTypes.NumberField: {
             return NumberComponent;
         }
-        case TextAreaComponent.name: {
+        case ComponentTypes.TextArea: {
             return TextAreaComponent;
         }
-        case CheckboxComponent.name: {
+        case ComponentTypes.Checkbox: {
             return CheckboxComponent;
         }
-        case RatingComponent.name: {
+        case ComponentTypes.Rating: {
             return RatingComponent;
         }
-        case EmailComponent.name: {
+        case ComponentTypes.Email: {
             return EmailComponent;
         }
-        case 'Attachment': {
+        case ComponentTypes.Attachment: {
             return AttachmentComponent;
         }
-        case 'Text Field': {
-            return TextFieldComponent;
-        }
-        case 'Number': {
-            return NumberComponent;
-        }
-        case 'Text Area': {
-            return TextAreaComponent;
-        }
-        case 'Checkbox': {
-            return CheckboxComponent;
-        }
-        case 'Rating': {
-            return RatingComponent;
-        }
-        case 'Email': {
-            return EmailComponent;
-        }
-        case 'Checkbox Group': {
+        case ComponentTypes.CheckboxGroup: {
             return MultiSelectComponent;
         }
     }

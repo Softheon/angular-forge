@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { TextAreaDisplay } from './text-area-display';
 import { TextAreaValidation } from './text-area-validation';
 import { FormComponent } from '../../abstract/form-component';
-import { FormData } from '../../abstract/form-data';
 import { TextAreaData } from './text-area-data';
 import { FormApi } from '../../abstract/form-api';
+import { ComponentTypes } from '../../../constants/component-types';
 
 /**
  * Text area component
@@ -25,7 +25,7 @@ export class TextAreaComponent extends FormComponent implements OnInit {
   /**
    * The text area type
    */
-  public type: string = 'Text Area';
+  public type: string = ComponentTypes.TextArea;
 
   /**
    * Data attributes
@@ -47,9 +47,9 @@ export class TextAreaComponent extends FormComponent implements OnInit {
    */
   public value: string;
 
-    /**
-   * Api data attributes
-   */
+  /**
+ * Api data attributes
+ */
   public api: FormApi = new FormApi();
 
   /**

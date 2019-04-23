@@ -2,11 +2,27 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
 
 import { CustomFormRendererLibComponent } from './custom-form-renderer-lib.component';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
 import { formsServiceMock } from '../../../../core/mocks/formsServiceMock';
 import { Form } from '../../../../../../src/lib/shared/models/form';
+import { ComponentTypes } from '../../../../../../src/lib/shared/constants/component-types';
+
+@Component({
+  template: '<div> </div>'
+})
+class TextFieldComponent {
+  id = 'test';
+  type = ComponentTypes.TextField;
+  display;
+  validation;
+  data;
+  api = { entityTemplateName: 'test', accountName: 'test', profileName: '', fieldName: '', options: null };
+  getValue(): any { return 'test'; }
+  constructor() { }
+}
 
 describe('CustomFormRendererLibComponent', () => {
   let component: CustomFormRendererLibComponent;
@@ -39,8 +55,8 @@ describe('CustomFormRendererLibComponent', () => {
       accountName: '',
       formName: '',
       displayFormName: false
-    }
-    component.formsService.form = new Form();
+    },
+      component.formsService.form = new Form();
     component.formsService.form.components = [];
     component.formsService.form.components.push(new TextFieldComponent());
     fixture.detectChanges();
@@ -60,17 +76,4 @@ describe('CustomFormRendererLibComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-import { Component, NgModule } from '@angular/core';
-@Component({
-  template: '<div> </div>'
-})
-class TextFieldComponent {
-  id = 'test';
-  type = 'Text Field';
-  display;
-  validation;
-  data;
-  api = { entityTemplateName: 'test', accountName: 'test', profileName: '', fieldName: '', options: null };
-  getValue(): any { return 'test'; }
-  constructor() { }
-}
+

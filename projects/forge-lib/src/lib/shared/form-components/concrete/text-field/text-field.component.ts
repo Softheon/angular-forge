@@ -5,6 +5,7 @@ import { TextFieldDisplay } from './text-field-display';
 import { TextFieldValidation } from './text-field-validation';
 import { TextFieldData } from './text-field-data';
 import { FormApi } from '../../abstract/form-api';
+import { ComponentTypes } from '../../../constants/component-types';
 
 /**
  * Text field form component
@@ -23,7 +24,7 @@ export class TextFieldComponent extends FormComponent implements OnInit {
   /**
    * Component type
    */
-  public type: string = 'Text Field';
+  public type: string = ComponentTypes.TextField;
 
   /**
    * Display attributes

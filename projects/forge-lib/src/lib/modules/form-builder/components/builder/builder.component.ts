@@ -14,6 +14,7 @@ import { EmailComponent } from '../../../../shared/form-components/concrete/emai
 import { AttachmentComponent } from '../../../../shared/form-components/concrete/attachment/attachment.component';
 import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-config';
 import { MultiSelectComponent } from '../../../../shared/form-components/concrete/multi-select/multi-select-component';
+import { ComponentTypes } from '../../../../shared/constants/component-types';
 
 @Component({
   selector: 'forge-form-builder',
@@ -34,14 +35,14 @@ export class BuilderComponent implements OnInit {
    * List of components
    */
   public components: Array<string> = [
-    'Text Field',
-    'Number Field',
-    'Text Area',
-    'Checkbox',
-    'Rating',
-    'Email',
-    'Attachment',
-    'Checkbox Group'
+    ComponentTypes.TextField,
+    ComponentTypes.NumberField,
+    ComponentTypes.TextArea,
+    ComponentTypes.Checkbox,
+    ComponentTypes.Rating,
+    ComponentTypes.Email,
+    ComponentTypes.Attachment,
+    ComponentTypes.CheckboxGroup
   ];
 
   /**
@@ -98,29 +99,29 @@ export class BuilderComponent implements OnInit {
   public generateComponent(type: string) {
     // Switch statement for which component to build
     switch (type) {
-      case 'Text Field': {
-        this.addComponent(new TextFieldComponent(), `text_field_${this.index++}`);
+      case ComponentTypes.TextField: {
+        this.addComponent(new TextFieldComponent(), `${ComponentTypes.TextField}_${this.index++}`);
         break;
-      } case 'Number Field': {
-        this.addComponent(new NumberComponent(), `number_${this.index++}`);
+      } case ComponentTypes.NumberField: {
+        this.addComponent(new NumberComponent(), `${ComponentTypes.NumberField}_${this.index++}`);
         break;
-      } case 'Text Area': {
-        this.addComponent(new TextAreaComponent(), `text_area_${this.index++}`);
+      } case ComponentTypes.TextArea: {
+        this.addComponent(new TextAreaComponent(), `${ComponentTypes.TextArea}_${this.index++}`);
         break;
-      } case 'Checkbox': {
-        this.addComponent(new CheckboxComponent(), `checkbox_${this.index++}`);
+      } case ComponentTypes.Checkbox: {
+        this.addComponent(new CheckboxComponent(), `${ComponentTypes.Checkbox}_${this.index++}`);
         break;
-      } case 'Rating': {
-        this.addComponent(new RatingComponent(), `rating_${this.index++}`);
+      } case ComponentTypes.Rating: {
+        this.addComponent(new RatingComponent(), `${ComponentTypes.Rating}_${this.index++}`);
         break;
-      } case 'Email': {
-        this.addComponent(new EmailComponent(), `email_${this.index++}`);
+      } case ComponentTypes.Email: {
+        this.addComponent(new EmailComponent(), `${ComponentTypes.Email}_${this.index++}`);
         break;
-      } case 'Attachment': {
-        this.addComponent(new AttachmentComponent(), `attachment_${this.index++}`);
+      } case ComponentTypes.Attachment: {
+        this.addComponent(new AttachmentComponent(), `${ComponentTypes.Attachment}_${this.index++}`);
         break;
-      } case 'Checkbox Group': {
-        this.addComponent(new MultiSelectComponent(), `multiselect_${this.index++}`);
+      } case ComponentTypes.CheckboxGroup: {
+        this.addComponent(new MultiSelectComponent(), `${ComponentTypes.CheckboxGroup}_${this.index++}`);
         break;
       }
     }

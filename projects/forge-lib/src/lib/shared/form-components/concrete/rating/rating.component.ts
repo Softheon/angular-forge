@@ -5,6 +5,7 @@ import { RatingDisplay } from './rating-display';
 import { RatingValidation } from './rating-validation';
 import { RatingData } from './rating-data';
 import { FormApi } from '../../abstract/form-api';
+import { ComponentTypes } from '../../../constants/component-types';
 
 /**
  * Rating component
@@ -23,7 +24,7 @@ export class RatingComponent extends FormComponent implements OnInit {
   /**
    * The type of the component
    */
-  public type: string = 'Rating';
+  public type: string = ComponentTypes.Rating;
 
   /**
    * The display attributes

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TextFieldComponent } from '../text-field/text-field.component';
+import { ComponentTypes } from '../../../constants/component-types';
 
 /**
  * Email component
@@ -14,7 +15,7 @@ export class EmailComponent extends TextFieldComponent implements OnInit {
   /**
    * Component type
    */
-  public type = 'Email';
+  public type = ComponentTypes.Email;
 
   /**
    * Initializes the component

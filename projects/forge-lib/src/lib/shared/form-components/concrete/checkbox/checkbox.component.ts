@@ -5,6 +5,7 @@ import { CheckboxData } from './checkbox-data';
 import { CheckboxDisplay } from './checkbox-display';
 import { CheckboxValidation } from './checkbox-validation';
 import { FormApi } from '../../abstract/form-api';
+import { ComponentTypes } from '../../../constants/component-types';
 
 @Component({
   selector: 'forge-checkbox',
@@ -20,7 +21,7 @@ export class CheckboxComponent extends FormComponent implements OnInit {
   /**
    * Checkbox type
    */
-  public type: string = 'Checkbox';
+  public type: string = ComponentTypes.Checkbox;
 
   /**
    * Checkbox display attributes
