@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
 import { TextFieldComponent } from '../../../../shared/form-components/concrete/text-field/text-field.component';
@@ -44,11 +43,6 @@ export class BuilderComponent implements OnInit {
     ComponentTypes.Attachment,
     ComponentTypes.CheckboxGroup
   ];
-
-  /**
-   * Array of what index in the component list is being hovered over
-   */
-  public hovered: Boolean[] = [];
 
   /**
    * List of existing forms
@@ -110,7 +104,6 @@ export class BuilderComponent implements OnInit {
     } else if (event.previousContainer.id === 'forgeComponents' && event.previousContainer === event.container) {
       // TODO
     } else if (event.previousContainer.id === 'components' && event.previousContainer !== event.container) {
-      this.hovered.push(false);
       this.generateComponent(event.previousContainer.data[event.previousIndex]);
     }
   }
@@ -170,9 +163,17 @@ export class BuilderComponent implements OnInit {
   /**
    * Delete a component from the components on the page and from the service
    */
-  public deleteComponent(index: number): void {
-    this.forgeComponents.splice(index, 1);
-    this.formsService.form.components.splice(index, 1);
+  public deleteComponent(): void {
+    for(let i = 0; i<this.formsService.form.components.length; i++)
+    {
+      if(this.formsService.form.components[i].id == this.selectedComponent.id)
+      {
+        this.forgeComponents.splice(i, 1);
+        this.formsService.form.components.splice(i, 1);
+        this.selectedComponent = null;
+        break;
+      }
+    }
   }
 
   /**
