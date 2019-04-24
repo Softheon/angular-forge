@@ -14,5 +14,8 @@ export const formsServiceMock = {
     },
     async createEntity(): Promise<any>{
         return Promise.resolve(createEntityResMock)
+    },
+    async getForms(): Promise<Array<Form>>{
+        return Promise.resolve([]);
     }
 };

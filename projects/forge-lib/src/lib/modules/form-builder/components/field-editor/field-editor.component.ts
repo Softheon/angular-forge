@@ -94,6 +94,10 @@ export class FieldEditorComponent implements OnInit {
    * Actions to take on the init life-cycle
    */
   public ngOnInit(): void {
+    if(this.field)
+    {
+      this.setDynamicComponents();
+    }
   }
 
   /**
