@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormRendererConfig } from 'projects/forge-lib/src/public_api';
+import { FormRendererConfig } from '../../../../forge-lib/src/public_api';
 import { Router } from '@angular/router';
 
 @Component({
