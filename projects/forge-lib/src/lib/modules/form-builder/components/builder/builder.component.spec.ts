@@ -106,7 +106,9 @@ describe('BuilderComponent', () => {
 
   it('should have 0 components after adding one then deleting one in forgeComponents', () => {
     component.addComponent(new TextFieldComponent(), 'any');
-    component.deleteComponent(0);
+    component.formsService.form.components[0].id  = 'test';
+    component.selectedComponent = component.formsService.form.components[0];
+    component.deleteComponent();
     expect(component.formsService.form.components.length).toBe(0);
   });
 

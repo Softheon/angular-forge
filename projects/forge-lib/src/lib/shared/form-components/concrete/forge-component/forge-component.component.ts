@@ -2,10 +2,7 @@ import { Component, OnInit, Input, ViewContainerRef, ViewChild, ComponentFactory
 
 import { FormComponent } from '../../abstract/form-component';
 import { getRegistryType } from '../../registry';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { FieldEditorComponent } from '../../../../modules/form-builder/components/field-editor/field-editor.component';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
-
 
 @Component({
   selector: 'forge-builder-component',
@@ -19,13 +16,10 @@ export class ForgeComponent implements OnInit {
 
   @Input() public createModal = true;
 
-  public dialogRef: MatDialogRef<any>;
-
   public hovered = false;
 
   constructor(
     private resolver: ComponentFactoryResolver,
-    private dialog: MatDialog,
     private formsService: FormsService
   ) { }
 
@@ -45,22 +39,7 @@ export class ForgeComponent implements OnInit {
         this.component = newComponent.instance;
         this.formsService.form.components[i] = this.component;
       }
-    }
-
-    if (this.createModal) {
-      setTimeout(() => {
-        this.dialogRef = this.dialog.open(FieldEditorComponent, {
-          data: {
-            field: this.component,
-            isEdit: false
-          },
-          width: '80vw'
-        });
-        this.dialogRef.afterClosed().subscribe((data: any) => {
-          this.component = data;
-        })
-      });
-    }
+    }  
   }
 }
 

@@ -115,6 +115,7 @@ describe('FieldEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FieldEditorComponent);
     component = fixture.componentInstance;
+    component.field = new TextFieldComponent();
     component.formsService.formBuilderConfig = {
       oauthToken: '',
       forgeApiUrl: '',
@@ -154,5 +155,4 @@ describe('FieldEditorComponent', () => {
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
-
 });

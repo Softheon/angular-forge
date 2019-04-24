@@ -1,7 +1,16 @@
-<div>
+<div *ngIf="!formsService.form.name">
+  <div class="example-container">
+    <h2>Edit Existing Form</h2>
+    <div class="form-list">
+      <div class="existing-box" *ngFor="let form of existingForms" (click)="editForm(form.name)">{{form.name}}</div>
+    </div>
+    <button m-t-30 sws-button--primary (click)="createNewForm()">Create New Form</button>
+  </div>
+</div>
+
+<div *ngIf="formsService.form.name">
   <div class="example-container">
     <h2>Basic Components</h2>
-
     <div cdkDropList #componentList="cdkDropList" [cdkDropListData]="components" [cdkDropListConnectedTo]="[doneList]"
       class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate"
       id="components">
@@ -19,22 +28,23 @@
     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="forgeComponents"
       [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"
       [cdkDropListDisabled]="true" id="forgeComponents">
-      <div class="form-box" *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag>
-        <div full-width (mouseenter)="hovered[i] = true" (mouseleave)="hovered[i] = false">
-          <div flex-container-row style="justify-content:flex-end" *ngIf="hovered[i] == true">
-            <div class="fa fa-cog" (click)="editComponent(i)" m-r-10>
-            </div>
-            <div class="fa fa-times" (click)="deleteComponent(i)">
-            </div>
-          </div>
+      <div [ngClass]="{ 'fa-selected': forgeComponent?.id === selectedComponent?.id}" class="form-box"
+        *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag>
+        <div full-width (click)="editComponent(i)">
           <forge-builder-component full-width [component]="forgeComponent">
           </forge-builder-component>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div>
-  <button m-t-30 sws-button--primary (click)="createForm()">Create</button>
+  <div class="form-container" *ngIf="selectedComponent">
+    <forge-renderer-field-editor [field]="selectedComponent">
+    </forge-renderer-field-editor>
+    <button m-t-30 sws-button--primary (click)="deleteComponent()">Delete selected component</button>
+  </div>
+
+  <div>
+    <button m-t-30 sws-button--primary (click)="createForm()">Create</button>
+  </div>
 </div>

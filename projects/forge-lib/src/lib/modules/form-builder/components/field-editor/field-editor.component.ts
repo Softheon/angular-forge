@@ -1,6 +1,5 @@
-import { Component, OnInit, Inject, OnDestroy, ViewContainerRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ComponentFactoryResolver, Input, SimpleChanges } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
 import { FormComponent } from '../../../../shared/form-components/abstract/form-component';
 import { getRegistryType } from '../../../../shared/form-editor-components/field-editor-registry';
@@ -14,7 +13,7 @@ import { ComponentTypes } from '../../../../shared/constants/component-types';
   templateUrl: './field-editor.component.html',
   styleUrls: ['./field-editor.component.css']
 })
-export class FieldEditorComponent implements OnInit, OnDestroy {
+export class FieldEditorComponent implements OnInit {
 
   /**
    * View child for display tab
@@ -34,7 +33,7 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
   /**
    * the form component
    */
-  public field: FormComponent;
+  @Input() public field: FormComponent;
 
   /**
    * The profile that has been selected
@@ -55,11 +54,6 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
    * the current index
    */
   public index = 0;
-
-  /**
-   * whether or not we are editing the field
-   */
-  public isEdit: Boolean = false;
 
   /**
    * the display component name
@@ -92,32 +86,29 @@ export class FieldEditorComponent implements OnInit, OnDestroy {
   public showAbstractValidation = true;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) data: any,
     private resolver: ComponentFactoryResolver,
-    public dialogRef: MatDialogRef<FieldEditorComponent>,
     public formsService: FormsService
-  ) {
-    this.isEdit = data.isEdit;
-    this.field = data.field;
-  }
+  ) {  }
 
   /**
    * Actions to take on the init life-cycle
    */
   public ngOnInit(): void {
-    this.setDynamicComponents();
+    if(this.field)
+    {
+      this.setDynamicComponents();
+    }
   }
 
   /**
-     * actions to take on the destroy life-cycle
-     */
-  public ngOnDestroy(): void {
-    // if (!this.isEdit) {
-    //   this.formsService.form.components.push(this.field)
-    // }
-    if (this.dialogRef.close) {
-      this.dialogRef.close(this.field);
-    }
+   * Actions to take on changes life-cycle 
+   * @param changes changes to inputs
+   */
+  public ngOnChanges(changes: SimpleChanges): void {
+    if(changes.field.currentValue !==  changes.field.previousValue )
+    {
+      this.setDynamicComponents();
+    }   
   }
 
   /**
