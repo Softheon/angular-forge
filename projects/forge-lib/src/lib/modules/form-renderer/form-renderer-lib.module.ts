@@ -16,6 +16,7 @@ import { FormBuilderComponentsModule } from '../form-builder/form-builder-compon
     FormRendererLibComponent,
     IntegerDirective,
     FloatDirective,
+    FieldEditorComponent,
     CustomFormRendererLibComponent
   ],
   imports: [
