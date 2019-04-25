@@ -8,7 +8,6 @@ import { FloatDirective } from '../../shared/directives/float.directive';
 
 import { FormRendererLibComponent } from './components/form-renderer/form-renderer-lib.component';
 import { CustomFormRendererLibComponent } from './components/custom-form-renderer/custom-form-renderer-lib.component';
-import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
 import { FormBuilderComponentsModule } from '../form-builder/form-builder-components.module';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { FormBuilderComponentsModule } from '../form-builder/form-builder-compon
     FormRendererLibComponent,
     IntegerDirective,
     FloatDirective,
-    FieldEditorComponent,
     CustomFormRendererLibComponent
   ],
   imports: [
@@ -29,9 +27,6 @@ import { FormBuilderComponentsModule } from '../form-builder/form-builder-compon
   exports: [
     FormRendererLibComponent,
     CustomFormRendererLibComponent
-  ],
-  entryComponents: [
-    FieldEditorComponent
   ]
 })
 export class FormRendererLibModule { }
