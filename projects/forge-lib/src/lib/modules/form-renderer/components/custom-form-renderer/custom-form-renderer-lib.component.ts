@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewContainerRef, ViewChild, ComponentFactoryResolver, Output, EventEmitter } from '@angular/core';
-import { FormRendererConfig } from '../../../../../../../forge-lib/src/public_api';
+import { FormRendererConfig } from '../../../../configs/form-renderer-lib-config';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
 
