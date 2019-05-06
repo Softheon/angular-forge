@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { FormRendererLibModule, FormBuilderModule} from 'forge-lib';
+import { FormRendererLibModule, FormBuilderLibModule} from 'forge-lib';
 
 import { AppComponent } from './app.component';
 import { ResultsComponent } from './results/results.component';
@@ -29,7 +29,7 @@ import { CustomFormComponent } from './custom-form/custom-form.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     AppRoutingModule,
-    FormBuilderModule
+    FormBuilderLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]
