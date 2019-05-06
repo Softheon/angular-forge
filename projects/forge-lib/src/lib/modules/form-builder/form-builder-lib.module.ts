@@ -9,7 +9,7 @@ import { FormBuilderComponentsModule } from './form-builder-components.module';
 import { FormBuilderEditorsModule } from './form-builder-editors.module';
 
 import { BuilderComponent } from './components/builder/builder.component';
-import { FieldEditorComponent } from '../form-builder/components/field-editor/field-editor.component';
+import { FieldEditorComponent } from './components/field-editor/field-editor.component';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
@@ -36,4 +36,4 @@ import { BrowserModule } from '@angular/platform-browser';
     FieldEditorComponent
   ]
 })
-export class FormBuilderModule { }
+export class FormBuilderLibModule { }
