@@ -8,3 +8,4 @@ export * from './lib/modules/form-renderer/form-renderer-lib.module';
 export * from './lib/modules/form-builder/components/builder/builder.component';
 export * from './lib/modules/form-builder/form-builder-lib.module';
 export * from './lib/configs/form-renderer-lib-config';
+export * from './lib/configs/form-builder-lib-config';
