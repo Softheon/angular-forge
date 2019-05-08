@@ -65,7 +65,7 @@
           </div>
         </div>
         <div full-width>
-          <div *ngIf="this.selectedEntity" sws-select--primary>
+          <div *ngIf="this.selectedEntity && this.field.type != 'Attachment'" sws-select--primary>
             <select id="this.field.api.entityProfileName" [(ngModel)]="this.field.api.profileName"
               onclick="this.setAttribute('value', this.value);" (change)="selectEntityProfile()">
               <option selected disabled>Select a Profile</option>
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div full-width>
-          <div *ngIf="this.selectedProfile" sws-select--primary>
+          <div *ngIf="this.selectedProfile && this.field.type != 'Attachment'" sws-select--primary>
             <select id="this.field.api.entityFieldName" [(ngModel)]="this.field.api.fieldName"
               onclick="this.setAttribute('value', this.value);" (blur)="selectEntityField()">
               <option selected disabled>Select an Field</option>

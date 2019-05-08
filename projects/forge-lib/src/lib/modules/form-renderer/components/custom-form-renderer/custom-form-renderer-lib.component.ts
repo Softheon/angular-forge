@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewContainerRef, ViewChild, ComponentFactory
 import { FormRendererConfig } from '../../../../configs/form-renderer-lib-config';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
+import { ComponentTypes } from '../../../../../lib/shared/constants/component-types';
 
 @Component({
   selector: 'custom-forge-form-renderer',
@@ -98,7 +99,7 @@ export class CustomFormRendererLibComponent implements OnInit {
     // Notify the parent component the form has been submitted
     this.didFinishRendering = true;
     this.finishedRendering.emit(true);
-    // this.formSubmitted.emit(results);
+    this.formSubmitted.emit(results);
   }
 
   /**
@@ -115,30 +116,40 @@ export class CustomFormRendererLibComponent implements OnInit {
         // If we have a submission form for the template
         for (let x = 0; x < this.entityNames.length; x++) {
           if (submissionForms[x][component.api.entityTemplateName]) {
-            // if the submission forms profile doesn't exist create it
-            if (!submissionForms[x][component.api.entityTemplateName][component.api.profileName]) {
-              submissionForms[x][component.api.entityTemplateName][component.api.profileName] = {}
+            if (component.type == ComponentTypes.Attachment) {
+              submissionForms[x][component.api.entityTemplateName].Attachments = []
+              submissionForms[x][component.api.entityTemplateName].Attachments.push(component.getValue());
             }
-            //Add the field name and it's value to the submission form
-            submissionForms[x][component.api.entityTemplateName][component.api.profileName][component.api.fieldName] = component.getValue();
-            createdFormValue = true;
+            // if the submission forms profile doesn't exist create it
+            else if (!submissionForms[x][component.api.entityTemplateName][component.api.profileName]) {
+              submissionForms[x][component.api.entityTemplateName][component.api.profileName] = {}
+              //Add the field name and it's value to the submission form
+              submissionForms[x][component.api.entityTemplateName][component.api.profileName][component.api.fieldName] = component.getValue();
+              createdFormValue = true;
+            }
           }
         }
         //if the list of submissions doesn't have one for the template the component is trying to update create one and add everything
-        if (!createdFormValue) {
-          let res = await this.formsService.getEntityTemplate(component.api.entityTemplateName);
-          let submissionForm = {};
-          submissionForm[res.name] = {};
-          this.entityNames.push(res.name)
-          if (this.formRendererConfig.displayFormName) {
-            submissionForm[res.name].Name = (<HTMLInputElement>document.getElementById('entityName')).value;
-          } else {
-            submissionForm[res.name].Name = `${new Date(Date.now()).toLocaleString()} - ${res.name}`;
-          }
-          submissionForm[res.name][component.api.profileName] = {}
-          submissionForm[res.name][component.api.profileName][component.api.fieldName] = component.getValue();
-          submissionForms.push(submissionForm);
-        }
+         if (!createdFormValue) {
+           let res = await this.formsService.getEntityTemplate(component.api.entityTemplateName);
+           let submissionForm = {};
+           submissionForm[res.name] = {};
+           this.entityNames.push(res.name)
+           if (this.formRendererConfig.displayFormName) {
+             submissionForm[res.name].Name = (<HTMLInputElement>document.getElementById('entityName')).value;
+           } else {
+             submissionForm[res.name].Name = `${new Date(Date.now()).toLocaleString()} - ${res.name}`;
+           }
+           if (component.type == ComponentTypes.Attachment) {
+             submissionForm[res.name].Attachments = []
+             submissionForm[res.name].Attachments.push(component.getValue());
+           }
+           else {
+             submissionForm[res.name][component.api.profileName] = {}
+             submissionForm[res.name][component.api.profileName][component.api.fieldName] = component.getValue();
+           }
+           submissionForms.push(submissionForm);
+         }
       }
     }
     return submissionForms;

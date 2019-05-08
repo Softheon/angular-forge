@@ -142,10 +142,12 @@ export class FormsService {
       .toPromise()
       .then(value => {
         this.mapFormResponse(value);
-        console.log(this.form);
         return this.form;
       }).catch(error => {
-        return Promise.reject(error);
+        if (error.statusText != 'OK') {
+          return Promise.reject(error);
+        }
+        return Promise.resolve(new Form());
       });
   }
 
@@ -155,8 +157,7 @@ export class FormsService {
   public async postCreateForm(): Promise<Array<EntityTemplateModel>> {
 
     let res = await this.getForm(this.form.name);
-    if(res.name){
-      debugger;
+    if (res.name) {
       return this.putCreateForm();
     }
     const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}`;
