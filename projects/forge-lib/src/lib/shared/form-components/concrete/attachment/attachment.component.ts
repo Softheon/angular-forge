@@ -59,6 +59,11 @@ export class AttachmentComponent extends FormComponent implements OnInit {
   public isMaxSizeOver: boolean;
 
   /**
+   * the value to eventually return
+   */
+  public value: Array<any> = [];
+
+  /**
    * Initializes the component
    */
   public ngOnInit(): void {
@@ -75,13 +80,27 @@ export class AttachmentComponent extends FormComponent implements OnInit {
       queueLimit: this.validation.maximumQueueSize
     };
     this.uploader.setOptions(fileOptions);
-  }
+    this.uploader.onAfterAddingFile = (fileItem) => {
+      let fileCount: number = this.uploader.queue.length;
+      if (fileCount > 0) {
+        let fileReader = new FileReader();
+        fileReader.onloadend = (e) => {
+          let imageData = fileReader.result;
+          let rawData = (imageData as string).split("base64,");
+          if (rawData.length > 1) {
+            this.value.push({ file: this.uploader.queue[this.uploader.queue.length - 1].file, blob: rawData[1] });
+          }
+        }
+        fileReader.readAsDataURL(fileItem._file);
+      }   
+    }
+  };
 
   /**
    * Gets the value
    */
   public getValue(): any {
-    throw new Error('Method not implemented.');
+    return this.value;
   }
 
   /**
@@ -89,6 +108,7 @@ export class AttachmentComponent extends FormComponent implements OnInit {
    * @param item The file item to remove
    */
   public removeItem(item: FileItem): void {
+    //TODO:: Delete files from "value" when removed from here
     this.isMaxSizeOver = false;
     item.remove();
   }
@@ -98,7 +118,7 @@ export class AttachmentComponent extends FormComponent implements OnInit {
    */
   public getAllowedMimeTypes(): string[] {
     const res: string[] = new Array<string>();
-    if (this.validation.allowedFileExtensions) {
+    if (this.validation.allowedFileExtensions && this.validation.allowedFileExtensions.length > 0) {
       this.validation.allowedFileExtensions.forEach(item => {
         const type = mimeType[item];
         if (type) {
