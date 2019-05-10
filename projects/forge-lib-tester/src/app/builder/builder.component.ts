@@ -49,7 +49,8 @@ export class BuilderComponent implements OnInit {
     this.form = this.fb.group({
       oauthToken: ['', Validators.required],
       forgeApiUrl: ['https://mc2-reg-mswb-01.softheon.com/Forge', Validators.required],
-      accountName: ['2', Validators.required]
+      accountName: ['2', Validators.required],
+      formName: ['']
     });
   }
 
@@ -65,7 +66,8 @@ export class BuilderComponent implements OnInit {
     this.formBuilderConfig = {
       oauthToken: this.oauthToken.value.trim(),
       forgeApiUrl: this.forgeApiUrl.value.trim(),
-      accountName: this.accountName.value.trim()
+      accountName: this.accountName.value.trim(),
+      formName: this.formName.value.trim()
     };
   }
 
@@ -81,6 +83,4 @@ export class BuilderComponent implements OnInit {
       }
     });
   }
-
-
 }

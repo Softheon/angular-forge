@@ -117,8 +117,7 @@ export class CustomFormRendererLibComponent implements OnInit {
         for (let x = 0; x < this.entityNames.length; x++) {
           if (submissionForms[x][component.api.entityTemplateName]) {
             if (component.type == ComponentTypes.Attachment) {
-              submissionForms[x][component.api.entityTemplateName].Attachments = []
-              submissionForms[x][component.api.entityTemplateName].Attachments.push(component.getValue());
+              submissionForms[x][component.api.entityTemplateName].Attachments = component.getValue();
             }
             // if the submission forms profile doesn't exist create it
             else if (!submissionForms[x][component.api.entityTemplateName][component.api.profileName]) {
@@ -141,8 +140,7 @@ export class CustomFormRendererLibComponent implements OnInit {
              submissionForm[res.name].Name = `${new Date(Date.now()).toLocaleString()} - ${res.name}`;
            }
            if (component.type == ComponentTypes.Attachment) {
-             submissionForm[res.name].Attachments = []
-             submissionForm[res.name].Attachments.push(component.getValue());
+             submissionForm[res.name].Attachments = component.getValue()
            }
            else {
              submissionForm[res.name][component.api.profileName] = {}

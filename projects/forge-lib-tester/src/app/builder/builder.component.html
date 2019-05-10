@@ -33,6 +33,12 @@
             </div>
             <div sws-form__bar></div>
         </div>
+        <div sws-form--primary full-width>
+            <input sws-form__input type="text" name="formName" id="formName" onclick="this.setAttribute('value', this.value);"
+              formControlName="formName">
+            <label sws-form__label for="formName">Entity Template Name</label>
+            <div sws-form__bar></div>
+          </div>
     </div>
     <button m-t-30 sws-button--primary (click)="setConfigs()">Update</button>
 </form>

@@ -134,14 +134,17 @@ export class FormsService {
    * Get a form by name
    * @param formName the name of the form
    */
-  public async getForm(formName: string): Promise<Form> {
+  public async getForm(formName: string, shouldMap: boolean = true): Promise<Form> {
     const url = `${this.formBuilderConfig.forgeApiUrl}/v1/form/${this.formBuilderConfig.accountName}/${formName}`;
     const headers = this.getHeader(this.formBuilderConfig.oauthToken);
 
     return this.http.get<EntityTemplateModel>(url, { headers: headers })
       .toPromise()
       .then(value => {
-        this.mapFormResponse(value);
+        if(shouldMap)
+        {
+          this.mapFormResponse(value);
+        }
         return this.form;
       }).catch(error => {
         if (error.statusText != 'OK') {
@@ -155,8 +158,7 @@ export class FormsService {
 * Gets the entity template
 */
   public async postCreateForm(): Promise<Array<EntityTemplateModel>> {
-
-    let res = await this.getForm(this.form.name);
+    let res = await this.getForm(this.form.name, false);
     if (res.name) {
       return this.putCreateForm();
     }

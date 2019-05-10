@@ -75,9 +75,10 @@ export class BuilderComponent implements OnInit {
     this.formsService.getEntityTemplates().then((res) => {
       this.formsService.entities = res
     });
-
-    this.formsService.form.name = null;
-    this.existingForms = await this.formsService.getForms();
+    if(this.formBuilderConfig.formName)
+    {
+      this.editForm(this.formBuilderConfig.formName);
+    }
   }
 
   /**
