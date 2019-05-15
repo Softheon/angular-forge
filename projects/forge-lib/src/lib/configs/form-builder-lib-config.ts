@@ -13,4 +13,9 @@ export interface FormBuilderConfig {
      * The OAuth Token
      */
     oauthToken: string;
+
+    /**
+     *  the Form Name, If provided load that form to edit instead of a new form
+     */
+    formName?: string;
 }
