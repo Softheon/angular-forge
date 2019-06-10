@@ -1,0 +1,15 @@
+<div sws-form input-active full-width>
+  <input [(ngModel)]="this.component.display.placeholder" sws-form__input type="'text'" [name]="'placeholder_input'"
+      onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'label_input'">Placeholder</label>
+</div>
+<div sws-form input-active full-width>
+  <input [(ngModel)]="this.component.display.description" sws-form__input type="'text'" [name]="'description_input'"
+      onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'label_input'">Description</label>
+</div>
+<div sws-form input-active full-width>
+  <input [(ngModel)]="this.component.display.dateFormat" sws-form__input type="'text'" [name]="'dateFormat_input'"
+      onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'label_input'">Date Format</label>
+</div>

@@ -30,6 +30,9 @@ import { MultiSelectEditorValidationComponent } from './concrete/multi-select-ed
 import { CurrencyEditorDisplayComponent } from './concrete/currency-editor/display/currency-editor-display.component';
 import { CurrencyEditorDataComponent } from './concrete/currency-editor/data/currency-editor-data.component';
 import { CurrencyEditorValidationComponent } from './concrete/currency-editor/validation/currency-editor-validation.component';
+import { DateTimeEditorDisplayComponent } from './concrete/date-time-editor/display/date-time-editor-display.component';
+import { DateTimeEditorDataComponent } from './concrete/date-time-editor/data/date-time-editor-data.component';
+import { DateTimeEditorValidationComponent } from './concrete/date-time-editor/validation/date-time-editor-validation.component';
 
 export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> => {
     switch (name) {
@@ -61,7 +64,9 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         case CurrencyEditorDisplayComponent.name: {
             return CurrencyEditorDisplayComponent;
         }
-
+        case DateTimeEditorDisplayComponent.name: {
+            return DateTimeEditorDisplayComponent;
+        }
 
         // DATA
         case TextFieldEditorDataComponent.name: {
@@ -91,6 +96,9 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         case CurrencyEditorDataComponent.name: {
             return CurrencyEditorDataComponent;
         }
+        case DateTimeEditorDataComponent.name: {
+            return DateTimeEditorDataComponent;
+        }
 
         // Validation
         case TextFieldEditorValidationComponent.name: {
@@ -119,6 +127,9 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         }
         case CurrencyEditorValidationComponent.name: {
             return CurrencyEditorValidationComponent;
+        }
+        case DateTimeEditorValidationComponent.name: {
+            return DateTimeEditorValidationComponent;
         }
     }
 };

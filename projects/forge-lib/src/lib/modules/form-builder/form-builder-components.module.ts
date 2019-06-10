@@ -19,6 +19,7 @@ import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
 import { CurrencyComponent } from '../../shared/form-components/concrete/currency/currency.component';
+import { DateTimeComponent } from '../../shared/form-components/concrete/date-time/date-time.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { CurrencyComponent } from '../../shared/form-components/concrete/currenc
         MinValidatorDirective,
         AttachmentComponent,
         MultiSelectComponent,
-        CurrencyComponent
+        CurrencyComponent,
+        DateTimeComponent
     ],
     exports: [
         TextFieldComponent,
@@ -56,7 +58,8 @@ import { CurrencyComponent } from '../../shared/form-components/concrete/currenc
         MinValidatorDirective,
         AttachmentComponent,
         MultiSelectComponent,
-        CurrencyComponent
+        CurrencyComponent,
+        DateTimeComponent
     ],
     entryComponents: [
         TextFieldComponent,
@@ -69,7 +72,8 @@ import { CurrencyComponent } from '../../shared/form-components/concrete/currenc
         EmailComponent,
         AttachmentComponent,
         MultiSelectComponent,
-        CurrencyComponent
+        CurrencyComponent,
+        DateTimeComponent
     ]
 })
 export class FormBuilderComponentsModule { }

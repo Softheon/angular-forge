@@ -28,4 +28,7 @@ export class ComponentTypes {
 
     /** Currency component type */
     public static readonly Currency: string = 'Currency';
+
+    /** Date time component type */
+    public static readonly DateTime: string = 'Date Time';
 }

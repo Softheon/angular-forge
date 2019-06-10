@@ -30,6 +30,9 @@ import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-c
 import { CurrencyEditorDataComponent } from '../../shared/form-editor-components/concrete/currency-editor/data/currency-editor-data.component';
 import { CurrencyEditorDisplayComponent } from '../../shared/form-editor-components/concrete/currency-editor/display/currency-editor-display.component';
 import { CurrencyEditorValidationComponent } from '../../shared/form-editor-components/concrete/currency-editor/validation/currency-editor-validation.component';
+import { DateTimeEditorDataComponent } from '../../shared/form-editor-components/concrete/date-time-editor/data/date-time-editor-data.component';
+import { DateTimeEditorDisplayComponent } from '../../shared/form-editor-components/concrete/date-time-editor/display/date-time-editor-display.component';
+import { DateTimeEditorValidationComponent } from '../../shared/form-editor-components/concrete/date-time-editor/validation/date-time-editor-validation.component';
 
 @NgModule({
     imports: [
@@ -63,7 +66,10 @@ import { CurrencyEditorValidationComponent } from '../../shared/form-editor-comp
         MultiSelectEditorValidationComponent,
         CurrencyEditorDataComponent,
         CurrencyEditorDisplayComponent,
-        CurrencyEditorValidationComponent
+        CurrencyEditorValidationComponent,
+        DateTimeEditorDataComponent,
+        DateTimeEditorDisplayComponent,
+        DateTimeEditorValidationComponent
     ],
     exports: [
         TextFieldEditorDisplayComponent,
@@ -92,7 +98,10 @@ import { CurrencyEditorValidationComponent } from '../../shared/form-editor-comp
         MultiSelectEditorValidationComponent,
         CurrencyEditorDataComponent,
         CurrencyEditorDisplayComponent,
-        CurrencyEditorValidationComponent
+        CurrencyEditorValidationComponent,
+        DateTimeEditorDataComponent,
+        DateTimeEditorDisplayComponent,
+        DateTimeEditorValidationComponent
     ],
     entryComponents: [
         TextFieldEditorDisplayComponent,
@@ -121,7 +130,10 @@ import { CurrencyEditorValidationComponent } from '../../shared/form-editor-comp
         MultiSelectEditorValidationComponent,
         CurrencyEditorDataComponent,
         CurrencyEditorDisplayComponent,
-        CurrencyEditorValidationComponent
+        CurrencyEditorValidationComponent,
+        DateTimeEditorDataComponent,
+        DateTimeEditorDisplayComponent,
+        DateTimeEditorValidationComponent
     ]
 })
 export class FormBuilderEditorsModule { }

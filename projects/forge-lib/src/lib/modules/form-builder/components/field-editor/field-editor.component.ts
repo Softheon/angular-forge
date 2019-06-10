@@ -230,6 +230,14 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractData = true;
         this.showAbstractValidation = true;
       }
+      case ComponentTypes.DateTime: {
+        this.displayName = 'DateTimeEditorDisplayComponent';
+        this.dataName = 'DateTimeEditorDataComponent';
+        this.validationName = 'DateTimeEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
+      }
     }
 
     this.createDynamicComponents(this.displayName, this.vcDisplay);

@@ -11,6 +11,7 @@ import { AttachmentComponent } from './concrete/attachment/attachment.component'
 import { MultiSelectComponent } from './concrete/multi-select/multi-select-component';
 import { ComponentTypes } from '../constants/component-types';
 import { CurrencyComponent } from './concrete/currency/currency.component';
+import { DateTimeComponent } from './concrete/date-time/date-time.component';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
     switch (name) {
@@ -40,6 +41,9 @@ export const getRegistryType = (name: string): Type<FormComponent> => {
         }
         case ComponentTypes.Currency: {
             return CurrencyComponent;
+        }
+        case ComponentTypes.DateTime: {
+            return DateTimeComponent;
         }
     }
 };
