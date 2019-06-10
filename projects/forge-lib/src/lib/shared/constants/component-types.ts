@@ -25,4 +25,7 @@ export class ComponentTypes {
 
     /** Checkbox group component type */
     public static readonly CheckboxGroup: string = 'Checkbox Group';
+
+    /** Currency component type */
+    public static readonly Currency: string = 'Currency';
 }

@@ -10,6 +10,7 @@ import { EmailComponent } from './concrete/email/email.component';
 import { AttachmentComponent } from './concrete/attachment/attachment.component';
 import { MultiSelectComponent } from './concrete/multi-select/multi-select-component';
 import { ComponentTypes } from '../constants/component-types';
+import { CurrencyComponent } from './concrete/currency/currency.component';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
     switch (name) {
@@ -36,6 +37,9 @@ export const getRegistryType = (name: string): Type<FormComponent> => {
         }
         case ComponentTypes.CheckboxGroup: {
             return MultiSelectComponent;
+        }
+        case ComponentTypes.Currency: {
+            return CurrencyComponent;
         }
     }
 };

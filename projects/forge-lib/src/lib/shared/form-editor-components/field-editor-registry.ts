@@ -27,6 +27,9 @@ import { RatingEditorValidationComponent } from './concrete/rating-editor/valida
 import { EmailEditorValidationComponent } from './concrete/email-editor/validation/email-editor-validation.component';
 import { AttachmentEditorValidationComponent } from './concrete/attachment-editor/validation/attachment-editor-validation.component';
 import { MultiSelectEditorValidationComponent } from './concrete/multi-select-editor/validation/multi-select-editor-validation.component';
+import { CurrencyEditorDisplayComponent } from './concrete/currency-editor/display/currency-editor-display.component';
+import { CurrencyEditorDataComponent } from './concrete/currency-editor/data/currency-editor-data.component';
+import { CurrencyEditorValidationComponent } from './concrete/currency-editor/validation/currency-editor-validation.component';
 
 export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> => {
     switch (name) {
@@ -55,6 +58,10 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         case MultiSelectEditorDisplayComponent.name: {
             return MultiSelectEditorDisplayComponent;
         }
+        case CurrencyEditorDisplayComponent.name: {
+            return CurrencyEditorDisplayComponent;
+        }
+
 
         // DATA
         case TextFieldEditorDataComponent.name: {
@@ -81,6 +88,9 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         case MultiSelectEditorDataComponent.name: {
             return MultiSelectEditorDataComponent;
         }
+        case CurrencyEditorDataComponent.name: {
+            return CurrencyEditorDataComponent;
+        }
 
         // Validation
         case TextFieldEditorValidationComponent.name: {
@@ -106,6 +116,9 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         }
         case MultiSelectEditorValidationComponent.name: {
             return MultiSelectEditorValidationComponent;
+        }
+        case CurrencyEditorValidationComponent.name: {
+            return CurrencyEditorValidationComponent;
         }
     }
 };

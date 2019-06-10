@@ -18,6 +18,7 @@ import { MultiSelectComponent } from '../../shared/form-components/concrete/mult
 import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
+import { CurrencyComponent } from '../../shared/form-components/concrete/currency/currency.component';
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         MaxValidatorDirective,
         MinValidatorDirective,
         AttachmentComponent,
-        MultiSelectComponent
+        MultiSelectComponent,
+        CurrencyComponent
     ],
     exports: [
         TextFieldComponent,
@@ -53,7 +55,8 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         MaxValidatorDirective,
         MinValidatorDirective,
         AttachmentComponent,
-        MultiSelectComponent
+        MultiSelectComponent,
+        CurrencyComponent
     ],
     entryComponents: [
         TextFieldComponent,
@@ -65,7 +68,8 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         RatingComponent,
         EmailComponent,
         AttachmentComponent,
-        MultiSelectComponent
+        MultiSelectComponent,
+        CurrencyComponent
     ]
 })
 export class FormBuilderComponentsModule { }

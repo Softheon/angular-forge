@@ -222,6 +222,14 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractData = true;
         this.showAbstractValidation = true;
       }
+      case ComponentTypes.Currency: {
+        this.displayName = 'CurrencyEditorDisplayComponent';
+        this.dataName = 'CurrencyEditorDataComponent';
+        this.validationName = 'CurrencyEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
+      }
     }
 
     this.createDynamicComponents(this.displayName, this.vcDisplay);

@@ -27,6 +27,9 @@ import { AttachmentEditorValidationComponent } from '../../shared/form-editor-co
 import { MultiSelectEditorDataComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/data/multi-select-editor-data.component';
 import { MultiSelectEditorDisplayComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/display/multi-select-editor-display.component';
 import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/validation/multi-select-editor-validation.component';
+import { CurrencyEditorDataComponent } from '../../shared/form-editor-components/concrete/currency-editor/data/currency-editor-data.component';
+import { CurrencyEditorDisplayComponent } from '../../shared/form-editor-components/concrete/currency-editor/display/currency-editor-display.component';
+import { CurrencyEditorValidationComponent } from '../../shared/form-editor-components/concrete/currency-editor/validation/currency-editor-validation.component';
 
 @NgModule({
     imports: [
@@ -57,7 +60,10 @@ import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-c
         AttachmentEditorValidationComponent,
         MultiSelectEditorDataComponent,
         MultiSelectEditorDisplayComponent,
-        MultiSelectEditorValidationComponent
+        MultiSelectEditorValidationComponent,
+        CurrencyEditorDataComponent,
+        CurrencyEditorDisplayComponent,
+        CurrencyEditorValidationComponent
     ],
     exports: [
         TextFieldEditorDisplayComponent,
@@ -83,7 +89,10 @@ import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-c
         AttachmentEditorValidationComponent,
         MultiSelectEditorDataComponent,
         MultiSelectEditorDisplayComponent,
-        MultiSelectEditorValidationComponent
+        MultiSelectEditorValidationComponent,
+        CurrencyEditorDataComponent,
+        CurrencyEditorDisplayComponent,
+        CurrencyEditorValidationComponent
     ],
     entryComponents: [
         TextFieldEditorDisplayComponent,
@@ -109,7 +118,10 @@ import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-c
         AttachmentEditorValidationComponent,
         MultiSelectEditorDataComponent,
         MultiSelectEditorDisplayComponent,
-        MultiSelectEditorValidationComponent
+        MultiSelectEditorValidationComponent,
+        CurrencyEditorDataComponent,
+        CurrencyEditorDisplayComponent,
+        CurrencyEditorValidationComponent
     ]
 })
 export class FormBuilderEditorsModule { }
