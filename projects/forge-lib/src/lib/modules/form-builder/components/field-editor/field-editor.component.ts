@@ -238,6 +238,14 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractData = true;
         this.showAbstractValidation = true;
       }
+      case ComponentTypes.PhoneNumber: {
+        this.displayName = 'PhoneNumberEditorDisplayComponent';
+        this.dataName = 'PhoneNumberEditorDataComponent';
+        this.validationName = 'PhoneNumberEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
+      }
     }
 
     this.createDynamicComponents(this.displayName, this.vcDisplay);

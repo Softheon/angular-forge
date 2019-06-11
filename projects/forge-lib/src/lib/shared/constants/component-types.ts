@@ -31,4 +31,7 @@ export class ComponentTypes {
 
     /** Date time component type */
     public static readonly DateTime: string = 'Date Time';
+
+    /** Phone number component type */
+    public static readonly PhoneNumber: string = 'Phone Number';
 }

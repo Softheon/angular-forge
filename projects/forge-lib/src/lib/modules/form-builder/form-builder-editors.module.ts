@@ -33,6 +33,9 @@ import { CurrencyEditorValidationComponent } from '../../shared/form-editor-comp
 import { DateTimeEditorDataComponent } from '../../shared/form-editor-components/concrete/date-time-editor/data/date-time-editor-data.component';
 import { DateTimeEditorDisplayComponent } from '../../shared/form-editor-components/concrete/date-time-editor/display/date-time-editor-display.component';
 import { DateTimeEditorValidationComponent } from '../../shared/form-editor-components/concrete/date-time-editor/validation/date-time-editor-validation.component';
+import { PhoneNumberEditorDataComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/data/phone-number-editor-data.component';
+import { PhoneNumberEditorDisplayComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/display/phone-number-editor-display.component';
+import { PhoneNumberEditorValidationComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/validation/phone-number-editor-validation.component';
 
 @NgModule({
     imports: [
@@ -69,7 +72,10 @@ import { DateTimeEditorValidationComponent } from '../../shared/form-editor-comp
         CurrencyEditorValidationComponent,
         DateTimeEditorDataComponent,
         DateTimeEditorDisplayComponent,
-        DateTimeEditorValidationComponent
+        DateTimeEditorValidationComponent,
+        PhoneNumberEditorDataComponent,
+        PhoneNumberEditorDisplayComponent,
+        PhoneNumberEditorValidationComponent
     ],
     exports: [
         TextFieldEditorDisplayComponent,
@@ -101,7 +107,10 @@ import { DateTimeEditorValidationComponent } from '../../shared/form-editor-comp
         CurrencyEditorValidationComponent,
         DateTimeEditorDataComponent,
         DateTimeEditorDisplayComponent,
-        DateTimeEditorValidationComponent
+        DateTimeEditorValidationComponent,
+        PhoneNumberEditorDataComponent,
+        PhoneNumberEditorDisplayComponent,
+        PhoneNumberEditorValidationComponent
     ],
     entryComponents: [
         TextFieldEditorDisplayComponent,
@@ -133,7 +142,10 @@ import { DateTimeEditorValidationComponent } from '../../shared/form-editor-comp
         CurrencyEditorValidationComponent,
         DateTimeEditorDataComponent,
         DateTimeEditorDisplayComponent,
-        DateTimeEditorValidationComponent
+        DateTimeEditorValidationComponent,
+        PhoneNumberEditorDataComponent,
+        PhoneNumberEditorDisplayComponent,
+        PhoneNumberEditorValidationComponent
     ]
 })
 export class FormBuilderEditorsModule { }
