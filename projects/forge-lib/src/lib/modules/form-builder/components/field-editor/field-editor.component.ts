@@ -221,6 +221,7 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
+        break;
       }
       case ComponentTypes.Currency: {
         this.displayName = 'CurrencyEditorDisplayComponent';
@@ -229,6 +230,7 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
+        break;
       }
       case ComponentTypes.DateTime: {
         this.displayName = 'DateTimeEditorDisplayComponent';
@@ -237,6 +239,7 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
+        break;
       }
       case ComponentTypes.PhoneNumber: {
         this.displayName = 'PhoneNumberEditorDisplayComponent';
@@ -245,6 +248,7 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
+        break;
       }
     }
 
