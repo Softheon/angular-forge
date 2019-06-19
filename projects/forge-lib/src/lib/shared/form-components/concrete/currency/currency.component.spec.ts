@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CurrencyComponent } from './currency.component';
+import { FormsModule } from '@angular/forms';
+import { NumberDirective } from '../../../directives/number.directive';
 
 describe('CurrencyComponent', () => {
   let component: CurrencyComponent;
@@ -8,7 +10,10 @@ describe('CurrencyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CurrencyComponent ]
+      declarations: [ CurrencyComponent,
+      NumberDirective
+     ],
+      imports: [FormsModule]
     })
     .compileComponents();
   }));

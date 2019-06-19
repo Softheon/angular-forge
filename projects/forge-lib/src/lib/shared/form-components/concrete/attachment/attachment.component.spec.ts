@@ -31,7 +31,8 @@ describe('AttachmentComponent', () => {
   });
 
   it('#getValue should throw error', () => {
-    expect(component.getValue).toThrowError('Method not implemented.');
+    component.value = [];
+    expect(component.getValue()).toEqual([]);
   });
 
   it('#removeItem should remove item', () => {

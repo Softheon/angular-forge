@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CurrencyEditorDataComponent } from './currency-editor-data.component';
+import { FormsModule } from '@angular/forms';
+import { CurrencyComponent } from '../../../../form-components/concrete/currency/currency.component';
+import { NumberDirective } from '../../../../directives/number.directive';
 
 describe('CurrencyEditorDataComponent', () => {
   let component: CurrencyEditorDataComponent;
@@ -8,7 +11,15 @@ describe('CurrencyEditorDataComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CurrencyEditorDataComponent ]
+      declarations: [ 
+        CurrencyEditorDataComponent,
+        CurrencyComponent,
+        NumberDirective 
+      ],
+      imports: [
+        FormsModule,
+
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +27,7 @@ describe('CurrencyEditorDataComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CurrencyEditorDataComponent);
     component = fixture.componentInstance;
+    component.component = new CurrencyComponent();
     fixture.detectChanges();
   });
 

@@ -127,6 +127,9 @@ describe('BuilderComponent', () => {
     component.generateComponent(ComponentTypes.Email);
     component.generateComponent(ComponentTypes.Attachment);
     component.generateComponent(ComponentTypes.CheckboxGroup);
+    component.generateComponent(ComponentTypes.Currency);
+    component.generateComponent(ComponentTypes.DateTime);
+    component.generateComponent(ComponentTypes.PhoneNumber);
     expect(component.formsService.form.components.length).toBe(component.components.length);
   });
 });
