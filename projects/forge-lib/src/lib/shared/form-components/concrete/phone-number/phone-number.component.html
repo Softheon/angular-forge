@@ -1,6 +1,7 @@
 <div flex-container-row>
   <div sws-form input-active full-width>
-    <input [id]="'input_' + id" forgeNumber [(ngModel)]="value" sws-form__input type="text" #name="ngModel"
+    <input [id]="'input_' + id" forgePhoneNumber [inputMask]="display.inputMask" [(ngModel)]="value" sws-form__input
+      type="text" #name="ngModel" minlength="{{validation.minimumLength}}" maxlength="{{validation.maximumLength}}"
       [name]="'input_' + id" [disabled]="display.disabled" [required]="validation.required"
       onkeyup="this.setAttribute('value', this.value);">
     <label sws-form__label [id]="'label_' + id" [for]="'label_' + id"
@@ -10,6 +11,14 @@
         <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
       </div>
       <div *ngIf="!validation.customErrorMessage">
+        <div *ngIf="name.errors.required">
+          <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
+        </div>
+        <div *ngIf="name.errors.minlength">
+          <span [id]="'minimum_message' + id" sws-label--danger m-t-30>{{display.label}} must be at least
+            {{validation.minimumLength}} characters
+            long.</span>
+        </div>
       </div>
     </div>
     <div sws-form__bar></div>
