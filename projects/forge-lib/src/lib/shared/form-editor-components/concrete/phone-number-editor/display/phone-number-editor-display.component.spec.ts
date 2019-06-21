@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhoneNumberEditorDisplayComponent } from './phone-number-editor-display.component';
 import { FormsModule } from '@angular/forms';
 import { PhoneNumberComponent } from '../../../../form-components/concrete/phone-number/phone-number.component';
+import { PhoneNumberDirective } from '../../../../directives/phone-number.directive';
 
 describe('PhoneNumberEditorDisplayComponent', () => {
   let component: PhoneNumberEditorDisplayComponent;
@@ -12,7 +13,8 @@ describe('PhoneNumberEditorDisplayComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ 
         PhoneNumberEditorDisplayComponent,
-        PhoneNumberComponent
+        PhoneNumberComponent,
+        PhoneNumberDirective
       ],
       imports: [
         FormsModule

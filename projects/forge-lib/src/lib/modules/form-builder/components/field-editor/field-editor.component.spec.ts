@@ -45,6 +45,7 @@ import { PhoneNumberComponent } from '../../../..//shared/form-components/concre
 import { PhoneNumberEditorDisplayComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/display/phone-number-editor-display.component';
 import { PhoneNumberEditorDataComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/data/phone-number-editor-data.component';
 import { PhoneNumberEditorValidationComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/validation/phone-number-editor-validation.component';
+import { PhoneNumberDirective } from '../../../../shared/directives/phone-number.directive';
 
 describe('FieldEditorComponent', () => {
   let component: FieldEditorComponent;
@@ -91,7 +92,8 @@ describe('FieldEditorComponent', () => {
         PhoneNumberComponent,
         PhoneNumberEditorDisplayComponent,
         PhoneNumberEditorDataComponent,
-        PhoneNumberEditorValidationComponent
+        PhoneNumberEditorValidationComponent,
+        PhoneNumberDirective
       ],
       imports: [
         FormsModule,
