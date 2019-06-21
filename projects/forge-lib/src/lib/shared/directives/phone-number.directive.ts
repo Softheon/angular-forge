@@ -46,8 +46,8 @@ export class PhoneNumberDirective {
             return;
         }
 
-        // Don't allow more than specified numbers
-        if (value.replace(/[^0-9]/g, "").length == this.inputMask.split("x").length - 1) {
+        // Don't allow more than specified numbers, but allow when mask is 0
+        if ((value.replace(/[^0-9]/g, "").length == this.inputMask.split("x").length - 1) && (this.inputMask.split("x").length - 1 != 0)) {
             e.preventDefault();
             return;
         }
