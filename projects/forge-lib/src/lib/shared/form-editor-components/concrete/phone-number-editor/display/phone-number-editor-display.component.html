@@ -1,7 +1,7 @@
 <div flex-container-row>
   <div sws-form input-active full-width>
     <input [(ngModel)]="this.component.display.inputMask" sws-form__input type="'text'" [name]="'mask_input'"
-      onkeyup="this.setAttribute('value', this.value);">
+      onkeyup="this.setAttribute('value', this.value);" (keyup)="resetValue();">
     <label sws-form__label [for]="'label_input'">Input Mask</label>
   </div>
   <div sws-tooltip-left--light m-t-20>

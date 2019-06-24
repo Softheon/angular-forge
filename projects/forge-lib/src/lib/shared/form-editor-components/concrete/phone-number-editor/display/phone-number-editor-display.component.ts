@@ -23,4 +23,10 @@ export class PhoneNumberEditorDisplayComponent extends FormEditorDisplayComponen
   public ngOnInit(): void {
   }
 
+  /**
+   * Resets phone number value when format is modified
+   */
+  public resetValue(): void {
+    this.component.value = "";
+  }
 }
