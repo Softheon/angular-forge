@@ -23,5 +23,12 @@ export class DateTimeEditorDisplayComponent extends FormEditorDisplayComponent i
   public ngOnInit(): void {
   }
 
+  /**
+   * Emits updated date format to date time component
+   */
+  public emitDateFormat(): void {
+    // TODO: validation here only update on valid dates
+    this.component.updateDateFormat(this.component.display.dateFormat);
+  }
 }
 

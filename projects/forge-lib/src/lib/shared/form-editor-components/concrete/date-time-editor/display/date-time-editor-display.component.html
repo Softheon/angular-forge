@@ -10,6 +10,6 @@
 </div>
 <div sws-form input-active full-width>
   <input [(ngModel)]="this.component.display.dateFormat" sws-form__input type="'text'" [name]="'dateFormat_input'"
-      onkeyup="this.setAttribute('value', this.value);">
+      onkeyup="this.setAttribute('value', this.value);" (keyup)="emitDateFormat();">
   <label sws-form__label [for]="'label_input'">Date Format</label>
 </div>

@@ -5,6 +5,7 @@ import { FormComponent } from '../../abstract/form-component';
 import { FormApi } from '../../abstract/form-api';
 import { DateTimeValidation } from './date-time-validation';
 import { DateTimeData } from './date-time-data';
+import { IAngularMyDpOptions, IMyDateModel } from 'angular-mydatepicker';
 
 /**
  * Datetime component
@@ -50,6 +51,24 @@ export class DateTimeComponent extends FormComponent implements OnInit {
    */
   public value: string;
 
+  /**
+   * Date model for angular-mydatepicker
+   */
+  public myDpModel: IMyDateModel = {
+    isRange: false,
+    singleDate:
+    {
+      jsDate: new Date()
+    }
+  };
+
+  /**
+   * Date options for angular-mydatepicker
+   */
+  public myDpOptions: IAngularMyDpOptions = {
+    dateRange: false,
+    dateFormat: 'mm/dd/yyyy'
+  };
 
   /**
    * Initializes the component
@@ -57,6 +76,7 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   public ngOnInit(): void {
     if (!this.display.label) {
       this.display.label = 'Date Time';
+      this.display.dateFormat = 'mm/dd/yyyy';
     }
   }
 
@@ -65,5 +85,28 @@ export class DateTimeComponent extends FormComponent implements OnInit {
    */
   public getValue(): string {
     return this.value;
+  }
+
+  /**
+   * Updates value model on date model updates
+   */
+  public onInputFieldChanged(event: any): void {
+    this.value = this.myDpModel.singleDate.jsDate.toString();
+  }
+
+  /**
+   * Updates date options on date format updates
+   */
+  public updateDateFormat(updatedFormat: string): void {
+    let copy = this.getCopyOfOptions();
+    copy.dateFormat = updatedFormat;
+    this.myDpOptions = copy;
+  }
+
+  /**
+   * Returns copy of myDpOptions
+   */
+  public getCopyOfOptions(): IAngularMyDpOptions {
+    return JSON.parse(JSON.stringify(this.myDpOptions));
   }
 }

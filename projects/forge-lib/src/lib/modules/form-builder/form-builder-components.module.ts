@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 
 import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
@@ -27,7 +28,8 @@ import { PhoneNumberComponent } from '../../shared/form-components/concrete/phon
     imports: [
         CommonModule,
         FormsModule,
-        FileUploadModule
+        FileUploadModule,
+        AngularMyDatePickerModule
     ],
     declarations: [
         TextFieldComponent,
