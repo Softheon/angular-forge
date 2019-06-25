@@ -1,15 +1,37 @@
 <div sws-form input-active full-width>
   <input [(ngModel)]="this.component.display.placeholder" sws-form__input type="'text'" [name]="'placeholder_input'"
-      onkeyup="this.setAttribute('value', this.value);">
+    onkeyup="this.setAttribute('value', this.value);">
   <label sws-form__label [for]="'label_input'">Placeholder</label>
 </div>
 <div sws-form input-active full-width>
   <input [(ngModel)]="this.component.display.description" sws-form__input type="'text'" [name]="'description_input'"
-      onkeyup="this.setAttribute('value', this.value);">
+    onkeyup="this.setAttribute('value', this.value);">
   <label sws-form__label [for]="'label_input'">Description</label>
 </div>
-<div sws-form input-active full-width>
-  <input [(ngModel)]="this.component.display.dateFormat" sws-form__input type="'text'" [name]="'dateFormat_input'"
+<div flex-container-row>
+  <div sws-form input-active full-width>
+    <input [(ngModel)]="this.component.display.dateFormat" sws-form__input type="'text'" [name]="'dateFormat_input'"
       onkeyup="this.setAttribute('value', this.value);" (keyup)="emitDateFormat();">
-  <label sws-form__label [for]="'label_input'">Date Format</label>
+    <label sws-form__label [for]="'label_input'">Date Format</label>
+    <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)">'
+      <div *ngIf="validation.customErrorMessage">
+        <div *ngIf="name.errors.minlength">
+          <span [id]="'minimum_message' + id" sws-label--danger m-t-30>{{display.label}} must be at least
+            {{validation.minimumLength}} characters
+            long.</span>
+        </div>
+      </div>
+    </div> -->
+    <div sws-form__bar></div>
+  </div>
+  <div sws-tooltip-left--light m-t-20>
+    <div sws-icon-flat--secondary rounded>
+      <i class="fas fa-lightbulb"></i>
+    </div>
+    <div sws-tooltip--text>
+      <p> Please specify date, month and year representations, e.g. mm/dd/yyyy. d = Day not leading zero, dd = Day with
+        leading zero, m = Month not leading zero, mm = Month with leading zero, mmm = Month as a text, yyyy = Year four
+        digit. </p>
+    </div>
+  </div>
 </div>

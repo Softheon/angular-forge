@@ -12,6 +12,9 @@
         <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
       </div>
       <div *ngIf="!validation.customErrorMessage">
+        <div *ngIf="name.errors.required">
+          <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
+        </div>
       </div>
     </div>
     <div sws-form__bar></div>
