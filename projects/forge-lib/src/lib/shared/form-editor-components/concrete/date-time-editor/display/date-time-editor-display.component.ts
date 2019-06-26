@@ -27,8 +27,14 @@ export class DateTimeEditorDisplayComponent extends FormEditorDisplayComponent i
    * Emits updated date format to date time component
    */
   public emitDateFormat(): void {
-    // TODO: validation here only update on valid dates
-    this.component.updateDateFormat(this.component.display.dateFormat);
+    var val = this.component.display.dateFormat;
+    var specialChars = /[@#$%^&*_+-=\[\]{};':"|,.<>\/? ]/g;
+    const valid = ((val.includes('m') || val.includes('mm') || val.includes('mmm')) &&
+      (val.includes('d') || val.includes('dd')) && (val.includes('yyyy')) && (val.match(specialChars).length > 1));
+
+    if (valid) {
+      this.component.updateDateFormat(val);
+    }
   }
 }
 

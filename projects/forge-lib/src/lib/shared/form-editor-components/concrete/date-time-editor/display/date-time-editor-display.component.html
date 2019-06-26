@@ -11,17 +11,14 @@
 <div flex-container-row>
   <div sws-form input-active full-width>
     <input [(ngModel)]="this.component.display.dateFormat" sws-form__input type="'text'" [name]="'dateFormat_input'"
-      onkeyup="this.setAttribute('value', this.value);" (keyup)="emitDateFormat();">
+      #name="ngModel" onkeyup="this.setAttribute('value', this.value);" (keyup)="emitDateFormat();" dateFormat placeholder="mm/dd/yyyy">
     <label sws-form__label [for]="'label_input'">Date Format</label>
-    <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)">'
-      <div *ngIf="validation.customErrorMessage">
-        <div *ngIf="name.errors.minlength">
-          <span [id]="'minimum_message' + id" sws-label--danger m-t-30>{{display.label}} must be at least
-            {{validation.minimumLength}} characters
-            long.</span>
-        </div>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-left: -20px; margin-top: -4px;">
+      <div *ngIf="name.errors.invalidDateFormat">
+        <span sws-label--danger m-t-30>Date Format must include one of each d/dd m/mm/mmm yyyy and at least 2 special
+          characters.</span>
       </div>
-    </div> -->
+    </div>
     <div sws-form__bar></div>
   </div>
   <div sws-tooltip-left--light m-t-20>
