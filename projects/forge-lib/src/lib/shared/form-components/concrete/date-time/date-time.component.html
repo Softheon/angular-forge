@@ -19,6 +19,9 @@
           <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
         </div>
       </div>
+      <div *ngIf="!myDpModelValid">
+        <span sws-label--danger m-t-30> {{display.label}} must be formatted as {{ myDpOptions.dateFormat }}.</span>
+      </div>
     </div>
   </div>
   <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">

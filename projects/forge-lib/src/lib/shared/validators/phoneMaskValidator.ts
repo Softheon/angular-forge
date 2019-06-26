@@ -12,18 +12,15 @@ export function phoneMaskValidator(): ValidatorFn {
 
 export function validatePhoneMask(inputMask: any): boolean {
     var val = inputMask as string;
-    var specialChars = /[@#$%^&*_+-=\[\]{};':"|,.<>\/?() ]/g;
-
+    var specialChars = /[^A-Za-z0-9]/g;
     var specialCharsCount = 0;
     if(val.match(specialChars)) {
         specialCharsCount = val.match(specialChars).length;
     }
-
     var numericCharsCount = 0;
     if(val.split('x')) {
         numericCharsCount = val.split('x').length - 1;
     }
-
     const valid = ((specialCharsCount + numericCharsCount) == (val.length));
     return valid;
 }

@@ -71,12 +71,16 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   };
 
   /**
+   * Whether date model is valid
+   */
+  public myDpModelValid: boolean;
+
+  /**
    * Initializes the component
    */
   public ngOnInit(): void {
     if (!this.display.label) {
       this.display.label = 'Date Time';
-      this.display.dateFormat = 'mm/dd/yyyy';
     }
   }
 
@@ -91,7 +95,12 @@ export class DateTimeComponent extends FormComponent implements OnInit {
    * Updates value model on date model updates
    */
   public onInputFieldChanged(event: any): void {
-    this.value = this.myDpModel.singleDate.jsDate.toString();
+    if(event.valid) {
+      this.value = this.myDpModel.singleDate.jsDate.toString();
+      this.myDpModelValid = true;
+    } else {
+      this.myDpModelValid = false;
+    }
   }
 
   /**
