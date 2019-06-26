@@ -11,6 +11,11 @@ export class PhoneNumberDirective {
     @HostListener('keyup', ['$event']) onkeyUp(_) {
         const value: string = this.el.nativeElement.value;
 
+        // No input mask
+        if(!this.inputMask || this.inputMask.split("x").length - 1 == 0) {
+            return;
+        }
+
         // Format phone number if not already formatted
         if ((value.replace(/[^0-9]/g, "").length == this.inputMask.split("x").length - 1)
             && (value.replace(/[0-9]/g, "").length == 0)) {
@@ -44,6 +49,16 @@ export class PhoneNumberDirective {
             (e.keyCode >= 35 && e.keyCode <= 39)) {
             // Let it happen, don't do anything
             return;
+        }
+
+        // No input mask
+        if(!this.inputMask || this.inputMask.split("x").length - 1 == 0) {
+            if ((e.keyCode >= 96 && e.keyCode <= 105) || (e.keyCode >= 48 && e.keyCode <= 57)) {
+                return;
+            } else {
+                e.preventDefault();
+                return;
+            }
         }
 
         // Don't allow more than specified numbers, but allow when mask is 0

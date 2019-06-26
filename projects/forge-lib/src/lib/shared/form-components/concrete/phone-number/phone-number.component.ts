@@ -22,7 +22,6 @@ export class PhoneNumberComponent extends TextFieldComponent implements OnInit {
   public ngOnInit(): void {
     if (!this.display.label) {
       this.display.label = 'Phone Number';
-      this.display.inputMask = '(xxx) xxx - xxxx';
     }
 
     this.value = this.data.defaultValue;
