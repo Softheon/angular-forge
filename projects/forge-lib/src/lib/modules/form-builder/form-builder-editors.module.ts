@@ -37,6 +37,7 @@ import { PhoneNumberEditorDataComponent } from '../../shared/form-editor-compone
 import { PhoneNumberEditorDisplayComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/display/phone-number-editor-display.component';
 import { PhoneNumberEditorValidationComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/validation/phone-number-editor-validation.component';
 import { DateFormatValidatorDirective } from '../../shared/validators/dateValidator';
+import { PhoneMaskValidatorDirective } from '../../shared/validators/phoneMaskValidator';
 
 @NgModule({
     imports: [
@@ -77,7 +78,8 @@ import { DateFormatValidatorDirective } from '../../shared/validators/dateValida
         PhoneNumberEditorDataComponent,
         PhoneNumberEditorDisplayComponent,
         PhoneNumberEditorValidationComponent,
-        DateFormatValidatorDirective
+        DateFormatValidatorDirective,
+        PhoneMaskValidatorDirective
     ],
     exports: [
         TextFieldEditorDisplayComponent,
@@ -113,7 +115,8 @@ import { DateFormatValidatorDirective } from '../../shared/validators/dateValida
         PhoneNumberEditorDataComponent,
         PhoneNumberEditorDisplayComponent,
         PhoneNumberEditorValidationComponent,
-        DateFormatValidatorDirective
+        DateFormatValidatorDirective,
+        PhoneMaskValidatorDirective
     ],
     entryComponents: [
         TextFieldEditorDisplayComponent,
