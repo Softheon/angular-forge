@@ -1,5 +1,8 @@
 import { FormDisplay } from '../../abstract/form-display';
 
+/**
+ * The date time display attributes
+ */
 export class DateTimeDisplay extends FormDisplay {
     /**
      * Placeholder of date
