@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormEditorDisplayComponent } from '../../../abstract/form-editor/display/form-editor-display-component';
 import { PhoneNumberComponent } from '../../../../form-components/concrete/phone-number/phone-number.component';
-import { validatePhoneMask } from '../../../../validators/phoneMaskValidator';
+import { phoneMaskValidator } from '../../../../validators/phoneMaskValidator';
+import { FormControl } from '@angular/forms';
 
 /**
  * Phone number form editor display
@@ -32,8 +33,9 @@ export class PhoneNumberEditorDisplayComponent extends FormEditorDisplayComponen
     this.component.validation.minimumLength = null;
     this.component.validation.maximumLength = null;
 
-    if(this.component.display.inputMask && validatePhoneMask(this.component.display.inputMask)) {
-      let numberOfNumericValues = this.component.display.inputMask.split("x").length - 1;
+    let phoneMask = this.component.display.inputMask;
+    if (phoneMask && phoneMaskValidator()(new FormControl(phoneMask)) == null) {
+      let numberOfNumericValues = phoneMask.split("x").length - 1;
       this.component.validation.minimumLength = numberOfNumericValues;
       this.component.validation.maximumLength = numberOfNumericValues;
     }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormEditorDisplayComponent } from '../../../abstract/form-editor/display/form-editor-display-component';
 import { DateTimeComponent } from '../../../../form-components/concrete/date-time/date-time.component';
-import { validateDateFormat } from '../../../../validators/dateValidator';
+import { dateFormatValidator } from '../../../../validators/dateValidator';
+import { FormControl } from '@angular/forms';
 
 /**
  * Date time form editor display
@@ -28,8 +29,8 @@ export class DateTimeEditorDisplayComponent extends FormEditorDisplayComponent i
    * Emits updated date format to date time component
    */
   public emitDateFormat(): void {
-    var dateFormat = this.component.display.dateFormat;
-    if(dateFormat && validateDateFormat(dateFormat)) {
+    let dateFormat = this.component.display.dateFormat;
+    if(dateFormat && dateFormatValidator()(new FormControl(dateFormat)) == null) {
       this.component.updateDateFormat(dateFormat);
     }
   }
