@@ -46,6 +46,7 @@ import { PhoneNumberEditorDisplayComponent } from '../../../..//shared/form-edit
 import { PhoneNumberEditorDataComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/data/phone-number-editor-data.component';
 import { PhoneNumberEditorValidationComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/validation/phone-number-editor-validation.component';
 import { PhoneNumberDirective } from '../../../../shared/directives/phone-number.directive';
+import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 
 describe('FieldEditorComponent', () => {
   let component: FieldEditorComponent;
@@ -97,7 +98,8 @@ describe('FieldEditorComponent', () => {
       ],
       imports: [
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        AngularMyDatePickerModule
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA

@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl } from '@angular/forms';
 
 import { NumberComponent } from './number.component';
 import { NumberDirective } from '../../../directives/number.directive';
-import { MinValidatorDirective } from '../../../validators/minValidator';
-import { MaxValidatorDirective } from '../../../validators/maxValidator';
+import { MinValidatorDirective, minValidator } from '../../../validators/minValidator';
+import { MaxValidatorDirective, maxValidator } from '../../../validators/maxValidator';
 
 describe('NumberComponent', () => {
   let component: NumberComponent;
@@ -132,5 +132,29 @@ describe('NumberComponent', () => {
     component.data.defaultValue = defaultValue;
     component.ngOnInit();
     expect(component.getValue()).toEqual(defaultValue);
+  });
+
+  it('should validate min value as invalid', () => {
+    let ctrlValue = String(minValue - 1);
+    expect(minValidator(minValue)(new FormControl(ctrlValue))).toEqual({
+      'minValue': { value: ctrlValue }
+    });
+  });
+
+  it('should validate min value as valid', () => {
+    let ctrlValue = String(minValue + 1);
+    expect(minValidator(minValue)(new FormControl(ctrlValue))).toBeNull();
+  });
+
+  it('should validate max value as invalid', () => {
+    let ctrlValue = String(maxValue + 1);
+    expect(maxValidator(maxValue)(new FormControl(ctrlValue))).toEqual({
+      'maxValue': { value: ctrlValue }
+    });
+  });
+
+  it('should validate max value as valid', () => {
+    let ctrlValue = String(maxValue - 1);
+    expect(maxValidator(maxValue)(new FormControl(ctrlValue))).toBeNull();
   });
 });

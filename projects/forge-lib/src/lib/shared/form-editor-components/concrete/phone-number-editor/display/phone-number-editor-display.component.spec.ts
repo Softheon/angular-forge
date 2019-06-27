@@ -33,4 +33,20 @@ describe('PhoneNumberEditorDisplayComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should reset value only for invalid mask', () => {
+    component.component.display.inputMask = '(xyz) - xyz - wxyz'
+    component.resetValue();
+    expect(component.component.value).toEqual('');
+    expect(component.component.validation.minimumLength).toBeNull();
+    expect(component.component.validation.maximumLength).toBeNull();
+  });
+
+  it('should reset value and apply validation for valid mask', () => {
+    component.component.display.inputMask = '(xxx) - xxx - xxxx'
+    component.resetValue();
+    expect(component.component.value).toEqual('');
+    expect(component.component.validation.minimumLength).toEqual(10);
+    expect(component.component.validation.maximumLength).toEqual(10);
+  });
 });

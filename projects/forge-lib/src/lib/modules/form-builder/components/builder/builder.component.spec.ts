@@ -132,4 +132,9 @@ describe('BuilderComponent', () => {
     component.generateComponent(ComponentTypes.PhoneNumber);
     expect(component.formsService.form.components.length).toBe(component.components.length);
   });
+
+  it('should create new form', () => {
+    component.createNewForm();
+    expect(component.formsService.form.name).toBe('New Form');
+  });
 });
