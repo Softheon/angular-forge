@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DateTimeEditorDisplayComponent } from './date-time-editor-display.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl } from '@angular/forms';
 import { DateTimeComponent } from '../../../../form-components/concrete/date-time/date-time.component';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
+import { DateFormatValidatorDirective, dateFormatValidator } from '../../../../validators/dateValidator';
 
 describe('DateTimeEditorDisplayComponent', () => {
   let component: DateTimeEditorDisplayComponent;
@@ -13,7 +14,8 @@ describe('DateTimeEditorDisplayComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ 
         DateTimeEditorDisplayComponent,
-        DateTimeComponent
+        DateTimeComponent,
+        DateFormatValidatorDirective
       ],
       imports: [
         FormsModule,
@@ -44,5 +46,17 @@ describe('DateTimeEditorDisplayComponent', () => {
     component.component.display.dateFormat = 'mm/yyyy';
     component.emitDateFormat();
     expect(component.component.myDpOptions.dateFormat).not.toEqual('mm/yyyy');
+  });
+
+  it('should validate date format as invalid', () => {
+    let ctrlValue = 'mm/yyyy';
+    expect(dateFormatValidator()(new FormControl(ctrlValue))).toEqual({
+      'invalidDateFormat': { value: ctrlValue }
+    });
+  });
+
+  it('should validate date format as valid', () => {
+    let ctrlValue = 'mm.dd.yyyy';
+    expect(dateFormatValidator()(new FormControl(ctrlValue))).toBeNull();
   });
 });
