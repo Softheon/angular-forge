@@ -49,7 +49,7 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   /**
    * Value model
    */
-  public value: string;
+  public value: Date;
 
   /**
    * Date model for angular-mydatepicker
@@ -82,12 +82,17 @@ export class DateTimeComponent extends FormComponent implements OnInit {
     if (!this.display.label) {
       this.display.label = 'Date Time';
     }
+
+    // Initializes angular-mydatepicker objects
+    if (this.display.dateFormat) {
+      this.updateDateFormat(this.display.dateFormat);
+    }
   }
 
   /**
    * Gets the value of the component
    */
-  public getValue(): string {
+  public getValue(): Date {
     return this.value;
   }
 
@@ -96,7 +101,7 @@ export class DateTimeComponent extends FormComponent implements OnInit {
    */
   public onInputFieldChanged(event: any): void {
     if(event.valid) {
-      this.value = this.myDpModel.singleDate.jsDate.toString();
+      this.value = this.myDpModel.singleDate.jsDate;
       this.myDpModelValid = true;
     } else {
       this.myDpModelValid = false;
