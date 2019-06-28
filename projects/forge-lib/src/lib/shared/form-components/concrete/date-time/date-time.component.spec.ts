@@ -30,7 +30,7 @@ describe('DateTimeComponent', () => {
   });
 
   it('#getValue should get value', () => {
-    component.value = '02/22/1990';
-    expect(component.getValue()).toEqual('02/22/1990');
+    component.value = new Date('06/28/2019');
+    expect(component.getValue()).toEqual(new Date('06/28/2019'));
   });
 });
