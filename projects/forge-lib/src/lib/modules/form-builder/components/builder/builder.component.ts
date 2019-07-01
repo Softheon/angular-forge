@@ -14,6 +14,9 @@ import { FormBuilderConfig } from '../../../../../lib/configs/form-builder-lib-c
 import { MultiSelectComponent } from '../../../../shared/form-components/concrete/multi-select/multi-select-component';
 import { Form } from '../../../../shared/models/form';
 import { ComponentTypes } from '../../../../shared/constants/component-types';
+import { CurrencyComponent } from '../../../../shared/form-components/concrete/currency/currency.component';
+import { DateTimeComponent } from '../../../../shared/form-components/concrete/date-time/date-time.component';
+import { PhoneNumberComponent } from '../../../../shared/form-components/concrete/phone-number/phone-number.component';
 
 @Component({
   selector: 'forge-form-builder',
@@ -41,7 +44,10 @@ export class BuilderComponent implements OnInit {
     ComponentTypes.Rating,
     ComponentTypes.Email,
     ComponentTypes.Attachment,
-    ComponentTypes.CheckboxGroup
+    ComponentTypes.CheckboxGroup,
+    ComponentTypes.Currency,
+    ComponentTypes.DateTime,
+    ComponentTypes.PhoneNumber
   ];
 
   /**
@@ -139,6 +145,15 @@ export class BuilderComponent implements OnInit {
         break;
       } case ComponentTypes.CheckboxGroup: {
         this.addComponent(new MultiSelectComponent(), `${ComponentTypes.CheckboxGroup}_${this.index++}`);
+        break;
+      } case ComponentTypes.Currency: {
+        this.addComponent(new CurrencyComponent(), `${ComponentTypes.Currency}_${this.index++}`);
+        break;
+      } case ComponentTypes.DateTime: {
+        this.addComponent(new DateTimeComponent(), `${ComponentTypes.DateTime}_${this.index++}`);
+        break;
+      } case ComponentTypes.PhoneNumber: {
+        this.addComponent(new PhoneNumberComponent(), `${ComponentTypes.PhoneNumber}_${this.index++}`);
         break;
       }
     }

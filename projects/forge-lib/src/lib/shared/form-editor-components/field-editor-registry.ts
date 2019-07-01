@@ -27,6 +27,15 @@ import { RatingEditorValidationComponent } from './concrete/rating-editor/valida
 import { EmailEditorValidationComponent } from './concrete/email-editor/validation/email-editor-validation.component';
 import { AttachmentEditorValidationComponent } from './concrete/attachment-editor/validation/attachment-editor-validation.component';
 import { MultiSelectEditorValidationComponent } from './concrete/multi-select-editor/validation/multi-select-editor-validation.component';
+import { CurrencyEditorDisplayComponent } from './concrete/currency-editor/display/currency-editor-display.component';
+import { CurrencyEditorDataComponent } from './concrete/currency-editor/data/currency-editor-data.component';
+import { CurrencyEditorValidationComponent } from './concrete/currency-editor/validation/currency-editor-validation.component';
+import { DateTimeEditorDisplayComponent } from './concrete/date-time-editor/display/date-time-editor-display.component';
+import { DateTimeEditorDataComponent } from './concrete/date-time-editor/data/date-time-editor-data.component';
+import { DateTimeEditorValidationComponent } from './concrete/date-time-editor/validation/date-time-editor-validation.component';
+import { PhoneNumberEditorDisplayComponent } from './concrete/phone-number-editor/display/phone-number-editor-display.component';
+import { PhoneNumberEditorDataComponent } from './concrete/phone-number-editor/data/phone-number-editor-data.component';
+import { PhoneNumberEditorValidationComponent } from './concrete/phone-number-editor/validation/phone-number-editor-validation.component';
 
 export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> => {
     switch (name) {
@@ -55,6 +64,15 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         case MultiSelectEditorDisplayComponent.name: {
             return MultiSelectEditorDisplayComponent;
         }
+        case CurrencyEditorDisplayComponent.name: {
+            return CurrencyEditorDisplayComponent;
+        }
+        case DateTimeEditorDisplayComponent.name: {
+            return DateTimeEditorDisplayComponent;
+        }
+        case PhoneNumberEditorDisplayComponent.name: {
+            return PhoneNumberEditorDisplayComponent;
+        }
 
         // DATA
         case TextFieldEditorDataComponent.name: {
@@ -81,6 +99,15 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         case MultiSelectEditorDataComponent.name: {
             return MultiSelectEditorDataComponent;
         }
+        case CurrencyEditorDataComponent.name: {
+            return CurrencyEditorDataComponent;
+        }
+        case DateTimeEditorDataComponent.name: {
+            return DateTimeEditorDataComponent;
+        }
+        case PhoneNumberEditorDataComponent.name: {
+            return PhoneNumberEditorDataComponent;
+        }
 
         // Validation
         case TextFieldEditorValidationComponent.name: {
@@ -106,6 +133,15 @@ export const getRegistryType = (name: string): Type<FormEditorDisplayComponent> 
         }
         case MultiSelectEditorValidationComponent.name: {
             return MultiSelectEditorValidationComponent;
+        }
+        case CurrencyEditorValidationComponent.name: {
+            return CurrencyEditorValidationComponent;
+        }
+        case DateTimeEditorValidationComponent.name: {
+            return DateTimeEditorValidationComponent;
+        }
+        case PhoneNumberEditorValidationComponent.name: {
+            return PhoneNumberEditorValidationComponent;
         }
     }
 };

@@ -33,6 +33,20 @@ import { EmailEditorValidationComponent } from '../../../..//shared/form-editor-
 import { NumberDirective } from '../../../../shared/directives/number.directive';
 import { MinValidatorDirective } from '../../../../shared/validators/minValidator';
 import { MaxValidatorDirective } from '../../../../shared/validators/maxValidator';
+import { CurrencyComponent } from '../../../..//shared/form-components/concrete/currency/currency.component';
+import { CurrencyEditorDisplayComponent } from '../../../..//shared/form-editor-components/concrete/currency-editor/display/currency-editor-display.component';
+import { CurrencyEditorDataComponent } from '../../../..//shared/form-editor-components/concrete/currency-editor/data/currency-editor-data.component';
+import { CurrencyEditorValidationComponent } from '../../../..//shared/form-editor-components/concrete/currency-editor/validation/currency-editor-validation.component';
+import { DateTimeComponent } from '../../../..//shared/form-components/concrete/date-time/date-time.component';
+import { DateTimeEditorDisplayComponent } from '../../../..//shared/form-editor-components/concrete/date-time-editor/display/date-time-editor-display.component';
+import { DateTimeEditorDataComponent } from '../../../..//shared/form-editor-components/concrete/date-time-editor/data/date-time-editor-data.component';
+import { DateTimeEditorValidationComponent } from '../../../..//shared/form-editor-components/concrete/date-time-editor/validation/date-time-editor-validation.component';
+import { PhoneNumberComponent } from '../../../..//shared/form-components/concrete/phone-number/phone-number.component';
+import { PhoneNumberEditorDisplayComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/display/phone-number-editor-display.component';
+import { PhoneNumberEditorDataComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/data/phone-number-editor-data.component';
+import { PhoneNumberEditorValidationComponent } from '../../../..//shared/form-editor-components/concrete/phone-number-editor/validation/phone-number-editor-validation.component';
+import { PhoneNumberDirective } from '../../../../shared/directives/phone-number.directive';
+import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 
 describe('FieldEditorComponent', () => {
   let component: FieldEditorComponent;
@@ -67,11 +81,25 @@ describe('FieldEditorComponent', () => {
         EmailComponent,
         EmailEditorDisplayComponent,
         EmailEditorDataComponent,
-        EmailEditorValidationComponent
+        EmailEditorValidationComponent,
+        CurrencyComponent,
+        CurrencyEditorDisplayComponent,
+        CurrencyEditorDataComponent,
+        CurrencyEditorValidationComponent,
+        DateTimeComponent,
+        DateTimeEditorDisplayComponent,
+        DateTimeEditorDataComponent,
+        DateTimeEditorValidationComponent,
+        PhoneNumberComponent,
+        PhoneNumberEditorDisplayComponent,
+        PhoneNumberEditorDataComponent,
+        PhoneNumberEditorValidationComponent,
+        PhoneNumberDirective
       ],
       imports: [
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        AngularMyDatePickerModule
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -105,7 +133,19 @@ describe('FieldEditorComponent', () => {
           EmailComponent,
           EmailEditorDisplayComponent,
           EmailEditorDataComponent,
-          EmailEditorValidationComponent
+          EmailEditorValidationComponent,
+          CurrencyComponent,
+          CurrencyEditorDisplayComponent,
+          CurrencyEditorDataComponent,
+          CurrencyEditorValidationComponent,
+          DateTimeComponent,
+          DateTimeEditorDisplayComponent,
+          DateTimeEditorDataComponent,
+          DateTimeEditorValidationComponent,
+          PhoneNumberComponent,
+          PhoneNumberEditorDisplayComponent,
+          PhoneNumberEditorDataComponent,
+          PhoneNumberEditorValidationComponent
         ]
       }
     })
@@ -152,6 +192,21 @@ describe('FieldEditorComponent', () => {
   });
   it('should create with email component', () => {
     component.field = new EmailComponent();
+    component.ngOnInit();
+    expect(component).toBeTruthy();
+  });
+  it('should create with Currency component', () => {
+    component.field = new CurrencyComponent();
+    component.ngOnInit();
+    expect(component).toBeTruthy();
+  });
+  it('should create with Datetime component', () => {
+    component.field = new DateTimeComponent();
+    component.ngOnInit();
+    expect(component).toBeTruthy();
+  });
+  it('should create with PhoneNumber component', () => {
+    component.field = new PhoneNumberComponent();
     component.ngOnInit();
     expect(component).toBeTruthy();
   });

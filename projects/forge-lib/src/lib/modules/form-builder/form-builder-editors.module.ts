@@ -27,6 +27,17 @@ import { AttachmentEditorValidationComponent } from '../../shared/form-editor-co
 import { MultiSelectEditorDataComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/data/multi-select-editor-data.component';
 import { MultiSelectEditorDisplayComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/display/multi-select-editor-display.component';
 import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-components/concrete/multi-select-editor/validation/multi-select-editor-validation.component';
+import { CurrencyEditorDataComponent } from '../../shared/form-editor-components/concrete/currency-editor/data/currency-editor-data.component';
+import { CurrencyEditorDisplayComponent } from '../../shared/form-editor-components/concrete/currency-editor/display/currency-editor-display.component';
+import { CurrencyEditorValidationComponent } from '../../shared/form-editor-components/concrete/currency-editor/validation/currency-editor-validation.component';
+import { DateTimeEditorDataComponent } from '../../shared/form-editor-components/concrete/date-time-editor/data/date-time-editor-data.component';
+import { DateTimeEditorDisplayComponent } from '../../shared/form-editor-components/concrete/date-time-editor/display/date-time-editor-display.component';
+import { DateTimeEditorValidationComponent } from '../../shared/form-editor-components/concrete/date-time-editor/validation/date-time-editor-validation.component';
+import { PhoneNumberEditorDataComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/data/phone-number-editor-data.component';
+import { PhoneNumberEditorDisplayComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/display/phone-number-editor-display.component';
+import { PhoneNumberEditorValidationComponent } from '../../shared/form-editor-components/concrete/phone-number-editor/validation/phone-number-editor-validation.component';
+import { DateFormatValidatorDirective } from '../../shared/validators/dateValidator';
+import { PhoneMaskValidatorDirective } from '../../shared/validators/phoneMaskValidator';
 
 @NgModule({
     imports: [
@@ -57,7 +68,18 @@ import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-c
         AttachmentEditorValidationComponent,
         MultiSelectEditorDataComponent,
         MultiSelectEditorDisplayComponent,
-        MultiSelectEditorValidationComponent
+        MultiSelectEditorValidationComponent,
+        CurrencyEditorDataComponent,
+        CurrencyEditorDisplayComponent,
+        CurrencyEditorValidationComponent,
+        DateTimeEditorDataComponent,
+        DateTimeEditorDisplayComponent,
+        DateTimeEditorValidationComponent,
+        PhoneNumberEditorDataComponent,
+        PhoneNumberEditorDisplayComponent,
+        PhoneNumberEditorValidationComponent,
+        DateFormatValidatorDirective,
+        PhoneMaskValidatorDirective
     ],
     exports: [
         TextFieldEditorDisplayComponent,
@@ -83,7 +105,18 @@ import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-c
         AttachmentEditorValidationComponent,
         MultiSelectEditorDataComponent,
         MultiSelectEditorDisplayComponent,
-        MultiSelectEditorValidationComponent
+        MultiSelectEditorValidationComponent,
+        CurrencyEditorDataComponent,
+        CurrencyEditorDisplayComponent,
+        CurrencyEditorValidationComponent,
+        DateTimeEditorDataComponent,
+        DateTimeEditorDisplayComponent,
+        DateTimeEditorValidationComponent,
+        PhoneNumberEditorDataComponent,
+        PhoneNumberEditorDisplayComponent,
+        PhoneNumberEditorValidationComponent,
+        DateFormatValidatorDirective,
+        PhoneMaskValidatorDirective
     ],
     entryComponents: [
         TextFieldEditorDisplayComponent,
@@ -109,7 +142,16 @@ import { MultiSelectEditorValidationComponent } from '../../shared/form-editor-c
         AttachmentEditorValidationComponent,
         MultiSelectEditorDataComponent,
         MultiSelectEditorDisplayComponent,
-        MultiSelectEditorValidationComponent
+        MultiSelectEditorValidationComponent,
+        CurrencyEditorDataComponent,
+        CurrencyEditorDisplayComponent,
+        CurrencyEditorValidationComponent,
+        DateTimeEditorDataComponent,
+        DateTimeEditorDisplayComponent,
+        DateTimeEditorValidationComponent,
+        PhoneNumberEditorDataComponent,
+        PhoneNumberEditorDisplayComponent,
+        PhoneNumberEditorValidationComponent
     ]
 })
 export class FormBuilderEditorsModule { }

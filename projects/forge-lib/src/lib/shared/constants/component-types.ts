@@ -25,4 +25,13 @@ export class ComponentTypes {
 
     /** Checkbox group component type */
     public static readonly CheckboxGroup: string = 'Checkbox Group';
+
+    /** Currency component type */
+    public static readonly Currency: string = 'Currency';
+
+    /** Date time component type */
+    public static readonly DateTime: string = 'Date Time';
+
+    /** Phone number component type */
+    public static readonly PhoneNumber: string = 'Phone Number';
 }

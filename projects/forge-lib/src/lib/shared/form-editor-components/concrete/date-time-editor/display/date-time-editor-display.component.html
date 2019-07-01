@@ -1,0 +1,34 @@
+<div sws-form input-active full-width>
+  <input [(ngModel)]="this.component.display.placeholder" sws-form__input type="'text'" [name]="'placeholder_input'"
+    onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'label_input'">Placeholder</label>
+</div>
+<div sws-form input-active full-width>
+  <input [(ngModel)]="this.component.display.description" sws-form__input type="'text'" [name]="'description_input'"
+    onkeyup="this.setAttribute('value', this.value);">
+  <label sws-form__label [for]="'label_input'">Description</label>
+</div>
+<div flex-container-row>
+  <div sws-form input-active full-width>
+    <input [(ngModel)]="this.component.display.dateFormat" sws-form__input type="'text'" [name]="'dateFormat_input'"
+      #name="ngModel" onkeyup="this.setAttribute('value', this.value);" (keyup)="emitDateFormat();" dateFormat placeholder="mm/dd/yyyy">
+    <label sws-form__label [for]="'label_input'">Date Format</label>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-left: -20px; margin-top: -4px;">
+      <div *ngIf="name.errors.invalidDateFormat">
+        <span sws-label--danger m-t-30>Date Format must include one of each d/dd m/mm/mmm yyyy and at least 2 special
+          characters.</span>
+      </div>
+    </div>
+    <div sws-form__bar></div>
+  </div>
+  <div sws-tooltip-left--light m-t-20>
+    <div sws-icon-flat--secondary rounded>
+      <i class="fas fa-lightbulb"></i>
+    </div>
+    <div sws-tooltip--text>
+      <p> Please specify date, month and year representations, e.g. mm/dd/yyyy. d = Day not leading zero, dd = Day with
+        leading zero, m = Month not leading zero, mm = Month with leading zero, mmm = Month as a text, yyyy = Year four
+        digit. </p>
+    </div>
+  </div>
+</div>

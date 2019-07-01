@@ -12,6 +12,9 @@ import { EmailComponent } from '../../shared/form-components/concrete/email/emai
 import { NumberComponent } from '../../shared/form-components/concrete/number/number.component';
 import { RatingComponent } from '../../shared/form-components/concrete/rating/rating.component';
 import { TextAreaComponent } from '../../shared/form-components/concrete/text-area/text-area.component';
+import { CurrencyComponent } from '../../shared/form-components/concrete/currency/currency.component';
+import { DateTimeComponent } from '../../shared/form-components/concrete/date-time/date-time.component';
+import { PhoneNumberComponent } from '../../shared/form-components/concrete/phone-number/phone-number.component';
 
 
 @Injectable({
@@ -232,6 +235,18 @@ export class FormsService {
           }
           case "Text Field": {
             this.form.components.push(Object.assign(new TextFieldComponent(), component));
+            break;
+          }
+          case "Currency": {
+            this.form.components.push(Object.assign(new CurrencyComponent(), component));
+            break;
+          }
+          case "Date Time": {
+            this.form.components.push(Object.assign(new DateTimeComponent(), component));
+            break;
+          }
+          case "Phone Number": {
+            this.form.components.push(Object.assign(new PhoneNumberComponent(), component));
             break;
           }
         }

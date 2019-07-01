@@ -4,7 +4,8 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
-      "ng2-file-upload": "ng2-file-upload"
+      "ng2-file-upload": "ng2-file-upload",
+      "angular-mydatepicker": "angular-mydatepicker"
     }
   }
 }

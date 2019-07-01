@@ -221,6 +221,34 @@ export class FieldEditorComponent implements OnInit {
         this.showAbstractDisplay = true;
         this.showAbstractData = true;
         this.showAbstractValidation = true;
+        break;
+      }
+      case ComponentTypes.Currency: {
+        this.displayName = 'CurrencyEditorDisplayComponent';
+        this.dataName = 'CurrencyEditorDataComponent';
+        this.validationName = 'CurrencyEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
+        break;
+      }
+      case ComponentTypes.DateTime: {
+        this.displayName = 'DateTimeEditorDisplayComponent';
+        this.dataName = 'DateTimeEditorDataComponent';
+        this.validationName = 'DateTimeEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
+        break;
+      }
+      case ComponentTypes.PhoneNumber: {
+        this.displayName = 'PhoneNumberEditorDisplayComponent';
+        this.dataName = 'PhoneNumberEditorDataComponent';
+        this.validationName = 'PhoneNumberEditorValidationComponent';
+        this.showAbstractDisplay = true;
+        this.showAbstractData = true;
+        this.showAbstractValidation = true;
+        break;
       }
     }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 
 import { TextFieldComponent } from '../../shared/form-components/concrete/text-field/text-field.component';
 import { ForgeComponent } from '../../shared/form-components/concrete/forge-component/forge-component.component';
@@ -18,12 +19,17 @@ import { MultiSelectComponent } from '../../shared/form-components/concrete/mult
 import { NumberDirective } from '../../shared/directives/number.directive';
 import { MaxValidatorDirective } from '../../shared/validators/maxValidator';
 import { MinValidatorDirective } from '../../shared/validators/minValidator';
+import { PhoneNumberDirective } from '../../shared/directives/phone-number.directive';
+import { CurrencyComponent } from '../../shared/form-components/concrete/currency/currency.component';
+import { DateTimeComponent } from '../../shared/form-components/concrete/date-time/date-time.component';
+import { PhoneNumberComponent } from '../../shared/form-components/concrete/phone-number/phone-number.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        FileUploadModule
+        FileUploadModule,
+        AngularMyDatePickerModule
     ],
     declarations: [
         TextFieldComponent,
@@ -38,7 +44,11 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         MaxValidatorDirective,
         MinValidatorDirective,
         AttachmentComponent,
-        MultiSelectComponent
+        MultiSelectComponent,
+        CurrencyComponent,
+        DateTimeComponent,
+        PhoneNumberComponent,
+        PhoneNumberDirective
     ],
     exports: [
         TextFieldComponent,
@@ -53,7 +63,11 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         MaxValidatorDirective,
         MinValidatorDirective,
         AttachmentComponent,
-        MultiSelectComponent
+        MultiSelectComponent,
+        CurrencyComponent,
+        DateTimeComponent,
+        PhoneNumberComponent,
+        PhoneNumberDirective
     ],
     entryComponents: [
         TextFieldComponent,
@@ -65,7 +79,10 @@ import { MinValidatorDirective } from '../../shared/validators/minValidator';
         RatingComponent,
         EmailComponent,
         AttachmentComponent,
-        MultiSelectComponent
+        MultiSelectComponent,
+        CurrencyComponent,
+        DateTimeComponent,
+        PhoneNumberComponent
     ]
 })
 export class FormBuilderComponentsModule { }

@@ -10,6 +10,9 @@ import { EmailComponent } from './concrete/email/email.component';
 import { AttachmentComponent } from './concrete/attachment/attachment.component';
 import { MultiSelectComponent } from './concrete/multi-select/multi-select-component';
 import { ComponentTypes } from '../constants/component-types';
+import { CurrencyComponent } from './concrete/currency/currency.component';
+import { DateTimeComponent } from './concrete/date-time/date-time.component';
+import { PhoneNumberComponent } from './concrete/phone-number/phone-number.component';
 
 export const getRegistryType = (name: string): Type<FormComponent> => {
     switch (name) {
@@ -36,6 +39,15 @@ export const getRegistryType = (name: string): Type<FormComponent> => {
         }
         case ComponentTypes.CheckboxGroup: {
             return MultiSelectComponent;
+        }
+        case ComponentTypes.Currency: {
+            return CurrencyComponent;
+        }
+        case ComponentTypes.DateTime: {
+            return DateTimeComponent;
+        }
+        case ComponentTypes.PhoneNumber: {
+            return PhoneNumberComponent;
         }
     }
 };
