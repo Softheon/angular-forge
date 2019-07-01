@@ -6,6 +6,7 @@ import { FormComponent } from '../../abstract/form-component';
 import { TextAreaData } from './text-area-data';
 import { FormApi } from '../../abstract/form-api';
 import { ComponentTypes } from '../../../constants/component-types';
+import { FormConditional } from '../../abstract/form-conditional';
 
 /**
  * Text area component
@@ -48,9 +49,14 @@ export class TextAreaComponent extends FormComponent implements OnInit {
   public value: string;
 
   /**
- * Api data attributes
- */
+   * Api data attributes
+   */
   public api: FormApi = new FormApi();
+
+  /**
+   * Conditional attributes
+   */
+  public conditional: FormConditional = new FormConditional();
 
   /**
    * Gets the value

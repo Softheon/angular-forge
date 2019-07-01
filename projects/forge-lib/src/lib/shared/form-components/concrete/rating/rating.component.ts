@@ -6,6 +6,7 @@ import { RatingValidation } from './rating-validation';
 import { RatingData } from './rating-data';
 import { FormApi } from '../../abstract/form-api';
 import { ComponentTypes } from '../../../constants/component-types';
+import { FormConditional } from '../../abstract/form-conditional';
 
 /**
  * Rating component
@@ -47,9 +48,14 @@ export class RatingComponent extends FormComponent implements OnInit {
   public value: number;
 
   /**
- * Api data attributes
- */
-  public api: FormApi = new FormApi();
+   * Api data attributes
+   */
+    public api: FormApi = new FormApi();
+
+  /**
+   * Conditional attributes
+   */
+  public conditional: FormConditional = new FormConditional();
 
   /**
    * List of ratings

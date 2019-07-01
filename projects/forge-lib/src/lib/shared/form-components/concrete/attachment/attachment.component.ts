@@ -9,6 +9,7 @@ import { AttachmentDisplay } from './attachment-display';
 import { mimeType } from './mimeTypes';
 import { FormApi } from '../../abstract/form-api';
 import { ComponentTypes } from '../../../constants/component-types';
+import { FormConditional } from '../../abstract/form-conditional';
 
 const URL = 'blah';
 
@@ -52,6 +53,11 @@ export class AttachmentComponent extends FormComponent implements OnInit {
    * The api attributes
    */
   public api: FormApi;
+
+  /**
+   * Conditional attributes
+   */
+  public conditional: FormConditional = new FormConditional();
 
   /**
    * Is over file size limit

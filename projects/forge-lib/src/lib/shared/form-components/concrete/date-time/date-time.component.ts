@@ -6,6 +6,7 @@ import { FormApi } from '../../abstract/form-api';
 import { DateTimeValidation } from './date-time-validation';
 import { DateTimeData } from './date-time-data';
 import { IAngularMyDpOptions, IMyDateModel } from 'angular-mydatepicker';
+import { FormConditional } from '../../abstract/form-conditional';
 
 /**
  * Datetime component
@@ -45,6 +46,11 @@ export class DateTimeComponent extends FormComponent implements OnInit {
    * api attributes
    */
   public api: FormApi = new FormApi();
+
+  /**
+   * Conditional attributes
+   */
+  public conditional: FormConditional = new FormConditional();
 
   /**
    * Value model
