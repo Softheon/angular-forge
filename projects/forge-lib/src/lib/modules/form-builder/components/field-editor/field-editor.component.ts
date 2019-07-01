@@ -7,6 +7,8 @@ import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateM
 import { EntityTemplateModel } from '../../../../shared/models/entityTemplateModel';
 import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
 import { ComponentTypes } from '../../../../shared/constants/component-types';
+import { ConditionalTypes, ComparisonTypes, ActionTypes } from '../../../../shared/constants/conditional-options';
+import { SimpleConditional } from '../../../../shared/form-components/abstract/form-conditional';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -31,9 +33,14 @@ export class FieldEditorComponent implements OnInit {
   @ViewChild('vcValidation', { read: ViewContainerRef }) vcValidation: ViewContainerRef;
 
   /**
-   * the form component
+   * The form component
    */
   @Input() public field: FormComponent;
+
+  /**
+   * The complete list of form components
+   */
+  @Input() public formFields: FormComponent[];
 
   /**
    * The profile that has been selected
@@ -84,6 +91,34 @@ export class FieldEditorComponent implements OnInit {
    * whether or not to show the abstract fields for the data tab
    */
   public showAbstractValidation = true;
+
+  /**
+   * List of conditional types
+   */
+  public conditionalTypes: Array<string> = [
+    ConditionalTypes.Simple,
+    ConditionalTypes.Advanced
+  ];
+
+  /**
+   * List of comparison types
+   */
+  public comparisonTypes: Array<string> = [
+    ComparisonTypes.Equal,
+    ComparisonTypes.Greater,
+    ComparisonTypes.GreaterOrEqualTo,
+    ComparisonTypes.Lesser,
+    ComparisonTypes.LesserOrEqualTo
+  ];
+
+  /**
+   * List of action types
+   */
+  public actionTypes: Array<string> = [
+    ActionTypes.Display,
+    ActionTypes.Hide,
+    ActionTypes.Disable
+  ];
 
   constructor(
     private resolver: ComponentFactoryResolver,
@@ -267,5 +302,17 @@ export class FieldEditorComponent implements OnInit {
     vc.clear();
     const newComponent = vc.createComponent(factory);
     newComponent.instance.component = this.field;
+  }
+
+
+  /**
+   * Create and append a simple conditional to form's conditional attribute
+   */
+  public createConditional(): void {
+    if(!this.field.conditional.simpleConditionals) {
+      this.field.conditional.simpleConditionals = [];
+    }
+
+    this.field.conditional.simpleConditionals.push(new SimpleConditional());
   }
 }

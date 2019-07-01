@@ -78,28 +78,80 @@
           <div *ngIf="this.selectedProfile && this.field.type != 'Attachment'" sws-select--primary>
             <select id="this.field.api.entityFieldName" [(ngModel)]="this.field.api.fieldName"
               onclick="this.setAttribute('value', this.value);" (blur)="selectEntityField()">
-              <option selected disabled>Select an Field</option>
+              <option selected disabled>Select a Field</option>
               <option *ngFor="let field of this.selectedProfile.fields" (value)="field.name">{{field.name}}</option>
             </select>
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Conditional" p-t-15>
-        <div flex-container>
-          <!-- <div sws-checkbox>
-            <input id="conditional_display" [(ngModel)]="this.field.conditional.display" type="checkbox" checked="unchecked" />
-            <label for="conditional_display">Display</label>
+      <mat-tab label="Conditional">
+        <div *ngIf="showAbstractData">
+          <div p-t-30>
+            <div sws-select--jet>
+              <select id="conditional_type" [(ngModel)]="this.field.conditional.type"
+                onclick="this.setAttribute('value', this.value);">
+                <option selected disabled>Select a Conditional Type</option>
+                <option *ngFor="let type of this.conditionalTypes" (value)="type">{{type}}</option>
+              </select>
+              <label for="conditional_type">Conditional Type</label>
+            </div>
           </div>
-          <div sws-form input-active full-width>
-            <input [(ngModel)]="this.field.conditional.component" sws-form__input type="'text'" [name]="'conditional_component'"
-              onkeyup="this.setAttribute('value', this.value);">
-            <label sws-form__label [for]="'conditional_component'">Component</label>
+          <hr>
+          <div *ngIf="this.field.conditional.type == 'simple'">
+            <div *ngFor="let condition of this.field.conditional.simpleConditionals; index as i">
+              <h5 style="margin: 0px;">Condition {{i}}</h5>
+              <div p-t-30>
+                <div sws-select--jet>
+                  <select id="compare_component"
+                    [(ngModel)]="this.field.conditional.simpleConditionals[i].compareComponentId"
+                    onclick="this.setAttribute('value', this.value);">
+                    <option selected disabled>Select a Compare Component</option>
+                    <option *ngFor="let field of formFields" (value)="field.id">{{field.display.label}} ({{field.id}})
+                    </option>
+                  </select>
+                  <label for="compare_component">Compare Component</label>
+                </div>
+              </div>
+              <div p-t-30>
+                <div sws-select--jet>
+                  <select id="comparison_type" [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonType"
+                    onclick="this.setAttribute('value', this.value);">
+                    <option selected disabled>Select a Comparison Type</option>
+                    <option *ngFor="let type of this.comparisonTypes" (value)="type">{{type}}</option>
+                  </select>
+                  <label for="comparison_type">Comparison Type</label>
+                </div>
+              </div>
+              <div sws-form input-active form-md>
+                <input [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonValue" sws-form__input type="'text'"
+                  [name]="'comparison_value'" onkeyup="this.setAttribute('value', this.value);">
+                <label sws-form__label [for]="'comparison_value'">Comparison Value</label>
+              </div>
+              <div p-t-30>
+                <div sws-select--jet>
+                  <select id="action_type" [(ngModel)]="this.field.conditional.simpleConditionals[i].action"
+                    onclick="this.setAttribute('value', this.value);">
+                    <option selected disabled>Select an Action Type</option>
+                    <option *ngFor="let type of this.actionTypes" (value)="type">{{type}}</option>
+                  </select>
+                  <label for="action_type">Action Type</label>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <button sws-button--primary (click)="createConditional()">Create Conditional</button>
           </div>
-          <div sws-form input-active full-width>
-            <input [(ngModel)]="this.field.conditional.value" sws-form__input type="'text'" [name]="'conditional_value'"
-              onkeyup="this.setAttribute('value', this.value);">
-            <label sws-form__label [for]="'conditional_value'">Value</label>
-          </div> -->
+          <div *ngIf="this.field.conditional.type == 'advanced'">
+            <div flex-container-column full-width border-box>
+              <div sws-textarea>
+                <textarea [(ngModel)]="this.field.conditional.advancedConditional" name="exampleform2"
+                  id="conditional_advanced_conditional" rows="4" cols="50"
+                  onkeyup="this.setAttribute('value', this.value);"
+                  placeholder="if(data['Text Area 1'] == 'john')"></textarea>
+                <label sws-textarea__label for="conditional_advanced_conditional">Advanced Conditional</label>
+              </div>
+            </div>
+          </div>
         </div>
       </mat-tab>
     </mat-tab-group>
