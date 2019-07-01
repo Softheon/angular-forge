@@ -20,6 +20,7 @@ export function phoneMaskValidator(): ValidatorFn {
   };
 }
 
+/** Phone Mask Directive to ensure valid phone mask in input. */
 @Directive({
   selector: '[phoneMask]',
   providers: [{ provide: NG_VALIDATORS, useExisting: PhoneMaskValidatorDirective, multi: true }]

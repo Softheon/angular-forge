@@ -17,6 +17,7 @@ export function dateFormatValidator(): ValidatorFn {
   };
 }
 
+/** Date Format Directive to ensure valid date format in input. */
 @Directive({
   selector: '[dateFormat]',
   providers: [{ provide: NG_VALIDATORS, useExisting: DateFormatValidatorDirective, multi: true }]

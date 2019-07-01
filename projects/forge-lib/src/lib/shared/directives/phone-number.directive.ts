@@ -1,13 +1,16 @@
 import { Directive, Input, HostListener, ElementRef } from '@angular/core';
 
+/** Forge Phone Number Directive to format/unformat phone number depending on specified phone mask. */
 @Directive({
     selector: '[forgePhoneNumber]'
 })
 export class PhoneNumberDirective {
     constructor(private el: ElementRef) { }
 
+    /** Phone input mask, for example (xxx) xxx - xxxx. */
     @Input() inputMask: string;
 
+    /** Formats/unformats phone input value depending on certain conditionals. */
     @HostListener('keyup', ['$event']) onkeyUp(_) {
         const value: string = this.el.nativeElement.value;
 
@@ -33,6 +36,7 @@ export class PhoneNumberDirective {
         }
     }
 
+    /** Allows/prevents certain keys to be processed. */
     @HostListener('keydown', ['$event']) onKeyDown(event) {
         const e = <KeyboardEvent>event;
         const value: string = this.el.nativeElement.value;
