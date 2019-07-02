@@ -9,6 +9,7 @@ import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel
 import { ComponentTypes } from '../../../../shared/constants/component-types';
 import { ConditionalTypes, ComparisonTypes, ActionTypes } from '../../../../shared/constants/conditional-options';
 import { SimpleConditional } from '../../../../shared/form-components/abstract/form-conditional';
+import { ConditionalService } from '../../../../../lib/core/services/conditional.service';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -122,15 +123,15 @@ export class FieldEditorComponent implements OnInit {
 
   constructor(
     private resolver: ComponentFactoryResolver,
-    public formsService: FormsService
-  ) {  }
+    public formsService: FormsService,
+    public conditionalService: ConditionalService
+  ) { }
 
   /**
    * Actions to take on the init life-cycle
    */
   public ngOnInit(): void {
-    if(this.field)
-    {
+    if (this.field) {
       this.setDynamicComponents();
     }
   }
@@ -140,10 +141,9 @@ export class FieldEditorComponent implements OnInit {
    * @param changes changes to inputs
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    if(changes.field.currentValue !==  changes.field.previousValue )
-    {
+    if (changes.field.currentValue !== changes.field.previousValue) {
       this.setDynamicComponents();
-    }   
+    }
   }
 
   /**
@@ -309,10 +309,17 @@ export class FieldEditorComponent implements OnInit {
    * Create and append a simple conditional to form's conditional attribute
    */
   public createConditional(): void {
-    if(!this.field.conditional.simpleConditionals) {
+    if (!this.field.conditional.simpleConditionals) {
       this.field.conditional.simpleConditionals = [];
     }
 
     this.field.conditional.simpleConditionals.push(new SimpleConditional());
+  }
+
+  /**
+   * Generate functions as string from conditional attributes
+   */
+  public generateConditional(): void {
+    this.conditionalService.generateConditionals(this.field);
   }
 }

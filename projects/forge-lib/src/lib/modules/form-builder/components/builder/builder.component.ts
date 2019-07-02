@@ -17,6 +17,7 @@ import { ComponentTypes } from '../../../../shared/constants/component-types';
 import { CurrencyComponent } from '../../../../shared/form-components/concrete/currency/currency.component';
 import { DateTimeComponent } from '../../../../shared/form-components/concrete/date-time/date-time.component';
 import { PhoneNumberComponent } from '../../../../shared/form-components/concrete/phone-number/phone-number.component';
+import { ConditionalService } from '../../../../core/services/conditional.service';
 
 @Component({
   selector: 'forge-form-builder',
@@ -70,7 +71,8 @@ export class BuilderComponent implements OnInit {
    * @param formsService Forms service
    */
   constructor(
-    public formsService: FormsService
+    public formsService: FormsService,
+    public conditionalService: ConditionalService
   ) { }
 
   /**
@@ -221,7 +223,6 @@ export class BuilderComponent implements OnInit {
    * @param component the updated form component
    */
   public applyConditional(component: FormComponent) {
-    // TODO: apply conditionals
-    console.log(component)
+    this.conditionalService.applyConditionals(component, this.formsService.form.components);
   }
 }

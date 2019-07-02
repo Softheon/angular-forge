@@ -27,4 +27,7 @@ export class SimpleConditional {
 
     /** The action */
     public action: string;
+
+    /** The function */
+    public function: string;
 }
