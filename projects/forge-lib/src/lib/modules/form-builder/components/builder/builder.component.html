@@ -22,7 +22,7 @@
       <div [ngClass]="{ 'fa-selected': forgeComponent?.id === selectedComponent?.id}" class="form-box"
         *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag>
         <div full-width (click)="editComponent(i)">
-          <forge-builder-component full-width [component]="forgeComponent" (input)="applyConditional(forgeComponent)">
+          <forge-builder-component full-width [component]="forgeComponent" (change)="applyConditional(forgeComponent)">
           </forge-builder-component>
         </div>
       </div>

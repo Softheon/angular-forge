@@ -114,7 +114,7 @@ export class DateTimeComponent extends FormComponent implements OnInit {
     if (event.valid) {
       this.value = this.myDpModel.singleDate.jsDate;
       this.myDpModelValid = true;
-      let event = new Event('input', {
+      let event = new Event('change', {
         'bubbles': true,
       });
       this.dateInput.nativeElement.dispatchEvent(event);
