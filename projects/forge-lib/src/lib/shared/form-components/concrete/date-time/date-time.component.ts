@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ComponentTypes } from '../../../constants/component-types';
 import { DateTimeDisplay } from './date-time-display';
 import { FormComponent } from '../../abstract/form-component';
@@ -82,6 +82,11 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   public myDpModelValid: boolean;
 
   /**
+   * Date Input element reference
+   */
+  @ViewChild('dateInput') dateInput: ElementRef;
+
+  /**
    * Initializes the component
    */
   public ngOnInit(): void {
@@ -106,9 +111,13 @@ export class DateTimeComponent extends FormComponent implements OnInit {
    * Updates value model on date model updates
    */
   public onInputFieldChanged(event: any): void {
-    if(event.valid) {
+    if (event.valid) {
       this.value = this.myDpModel.singleDate.jsDate;
       this.myDpModelValid = true;
+      let event = new Event('input', {
+        'bubbles': true,
+      });
+      this.dateInput.nativeElement.dispatchEvent(event);
     } else {
       this.myDpModelValid = false;
     }

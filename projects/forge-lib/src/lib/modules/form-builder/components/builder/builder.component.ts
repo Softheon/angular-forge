@@ -208,11 +208,20 @@ export class BuilderComponent implements OnInit {
   }
 
   /**
- * tracker for re-rendering *ngFor
- * @param index index of the item
- * @param item the component;
- */
+   * tracker for re-rendering *ngFor
+   * @param index index of the item
+   * @param item the component;
+   */
   public trackComponentById(index, item): any {
     return item.id;
+  }
+
+  /**
+   * Applies conditionals when a form component value is modified
+   * @param component the updated form component
+   */
+  public applyConditional(component: FormComponent) {
+    // TODO: apply conditionals
+    console.log(component)
   }
 }

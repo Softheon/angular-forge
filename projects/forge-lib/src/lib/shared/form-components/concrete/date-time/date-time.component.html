@@ -1,6 +1,6 @@
 <div flex-container-row>
   <div sws-form input-active full-width>
-    <input [id]="'input_' + id" [(ngModel)]="myDpModel" sws-form__input class="input-box" angular-mydatepicker
+    <input #dateInput [id]="'input_' + id" [(ngModel)]="myDpModel" sws-form__input class="input-box" angular-mydatepicker
       #name="ngModel" [name]="'input_' + id" [disabled]="display.disabled" [required]="validation.required"
       onkeyup="this.setAttribute('value', this.value);" (click)="dp.toggleCalendar()" [options]="myDpOptions"
       #dp="angular-mydatepicker" (inputFieldChanged)="onInputFieldChanged($event)" />
