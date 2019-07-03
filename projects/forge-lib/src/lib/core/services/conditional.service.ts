@@ -19,7 +19,6 @@ export class ConditionalService {
      */
   public generateConditionals(component: FormComponent): void {
     for (var i = 0; i < component.conditional.simpleConditionals.length; i++) {
-      // TODO: right now only handles numbers, should handle strings and datetimes!!
       let conditional = component.conditional.simpleConditionals[i];
       let comparitor = conditional.comparisonType;
       let expected = conditional.comparisonValue;
@@ -37,7 +36,6 @@ export class ConditionalService {
       let component = components[i];
       if (component.conditional.type == ConditionalTypes.Advanced) {
         if (component.conditional.advancedConditional) {
-          //TODO: advanced conditional
         }
       } else {
         if (component.conditional.simpleConditionals) {
@@ -63,11 +61,11 @@ export class ConditionalService {
     if (eval(conditional.function)(updatedComponent.getValue())) {
       switch (conditional.action) {
         case ActionTypes.Hide: {
-          // component.display.show = false;
+          component.display.hidden = true;
           break;
         }
         case ActionTypes.Display: {
-          // component.display.show = false;
+          component.display.hidden = false;
           break;
         }
         case ActionTypes.Disable: {
@@ -82,11 +80,11 @@ export class ConditionalService {
     } else {
       switch (conditional.action) {
         case ActionTypes.Hide: {
-          // component.display.show = false;
+          component.display.hidden = false;
           break;
         }
         case ActionTypes.Display: {
-          // component.display.show = false;
+          component.display.hidden = true;
           break;
         }
         case ActionTypes.Disable: {

@@ -110,8 +110,9 @@
                     [(ngModel)]="this.field.conditional.simpleConditionals[i].compareComponentId"
                     onclick="this.setAttribute('value', this.value);">
                     <option selected disabled>Select a Compare Component</option>
-                    <option *ngFor="let field of formFields" [value]="field.id">{{field.display.label}} ({{field.id}})
-                    </option>
+                    <ng-container *ngFor="let formField of formFields">
+                        <option [value]="formField.id" *ngIf="this.field !== formField">{{formField.display.label}} ({{formField.id}})</option>
+                    </ng-container>
                   </select>
                   <label for="compare_component">Compare Component</label>
                 </div>
