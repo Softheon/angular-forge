@@ -1,25 +1,28 @@
-<p [id]="'label_' + id" h5 m-b-5 semibold *ngIf="!display.hideLabel">{{display.label}}</p>
-<p [id]="'description_' + id" h6 m-t-5 *ngIf="display.description">{{display.description}}</p>
-<div full-width flex-container-row flex-wrap>
-  <div full-width flex-container-column>
-    <div full-width sws-button-group--jet m-a-0>
-      <div [style.width]=" 100 * (100/ratings.length) + '%'" *ngFor="let rating of ratings">
-        <input full-width flex-space-evenly [id]="'input_' + id + rating" type="radio" [name]="'formgroup_' + id" (click)="selectRating(rating)"
-          [checked]="rating === data.defaultValue" [disabled]="display.disabled">
-        <label class="rating-label" [id]="'label_' + id + rating" full-width [for]="'input_' + id + rating">{{rating}}</label>
+<div *ngIf="!display.hidden">
+  <p [id]="'label_' + id" h5 m-b-5 semibold *ngIf="!display.hideLabel">{{display.label}}</p>
+  <p [id]="'description_' + id" h6 m-t-5 *ngIf="display.description">{{display.description}}</p>
+  <div full-width flex-container-row flex-wrap>
+    <div full-width flex-container-column>
+      <div full-width sws-button-group--jet m-a-0>
+        <div [style.width]=" 100 * (100/ratings.length) + '%'" *ngFor="let rating of ratings">
+          <input full-width flex-space-evenly [id]="'input_' + id + rating" type="radio" [name]="'formgroup_' + id"
+            (click)="selectRating(rating)" [checked]="rating === data.defaultValue" [disabled]="display.disabled">
+          <label class="rating-label" [id]="'label_' + id + rating" full-width
+            [for]="'input_' + id + rating">{{rating}}</label>
+        </div>
+      </div>
+      <div flex-container-row flex-space-between>
+        <p [id]="'minRatingDesc_' + id" h6>{{display.minRatingDesc}}</p>
+        <p [id]="'maxRatingDesc_' + id" h6>{{display.maxRatingDesc}}</p>
       </div>
     </div>
-    <div flex-container-row flex-space-between>
-      <p [id]="'minRatingDesc_' + id" h6>{{display.minRatingDesc}}</p>
-      <p [id]="'maxRatingDesc_' + id" h6>{{display.maxRatingDesc}}</p>
-    </div>
-  </div>
-  <div [id]="'tooltip_' + id" sws-tooltip-right--light *ngIf="display.tooltip">
-    <div m-t-0  sws-icon-flat--secondary rounded>
-      <i class="fas fa-lightbulb"></i>
-    </div>
-    <div sws-tooltip--text>
-      <p> {{display.tooltip}} </p>
+    <div [id]="'tooltip_' + id" sws-tooltip-right--light *ngIf="display.tooltip">
+      <div m-t-0 sws-icon-flat--secondary rounded>
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <div sws-tooltip--text>
+        <p> {{display.tooltip}} </p>
+      </div>
     </div>
   </div>
 </div>

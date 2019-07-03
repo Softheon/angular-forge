@@ -21,6 +21,10 @@
             <input id="disabled" [(ngModel)]="this.field.display.disabled" type="checkbox" checked="unchecked" />
             <label for="disabled">Disabled</label>
           </div>
+          <div sws-checkbox>
+            <input id="hidden" [(ngModel)]="this.field.display.hidden" type="checkbox" checked="unchecked" />
+            <label for="hidden">Hidden</label>
+          </div>
         </div>
         <ng-container #vcDisplay></ng-container>
       </mat-tab>
@@ -123,8 +127,8 @@
                 </div>
               </div>
               <div sws-form input-active form-md>
-                <input [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonValue" sws-form__input type="'text'"
-                  [name]="'comparison_value'" onkeyup="this.setAttribute('value', this.value);">
+                <input [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonValue" sws-form__input
+                  type="'text'" [name]="'comparison_value'" onkeyup="this.setAttribute('value', this.value);">
                 <label sws-form__label [for]="'comparison_value'">Comparison Value</label>
               </div>
               <div p-t-30>
