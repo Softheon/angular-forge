@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormComponent } from '../../shared/form-components/abstract/form-component';
-import { ConditionalTypes } from '../../shared/constants/conditional-options';
+import { ConditionalTypes, ActionTypes } from '../../shared/constants/conditional-options';
+import { SimpleConditional } from '../../shared/form-components/abstract/form-conditional';
 
 @Injectable({
   providedIn: 'root'
@@ -43,18 +44,70 @@ export class ConditionalService {
           for (var j = 0; j < component.conditional.simpleConditionals.length; j++) {
             let conditional = component.conditional.simpleConditionals[j];
             if (conditional.compareComponentId == updatedComponent.id) {
-              console.log(conditional.function);
-              console.log(eval(conditional.function)(updatedComponent.getValue()));
-              if (eval(conditional.function)(updatedComponent.getValue())) {
-                //TODO: take action, switch case with conditional.action!!
-                console.log(`${component.id} should be ${conditional.action}`);
-              } else {
-                //TODO: reverse action, not HIDE not DISPLAY
-              }
+              this.log(conditional, updatedComponent);
+              this.evaluateSimpleConditional(conditional, updatedComponent, component);
             }
           }
         }
       }
     }
+  }
+
+  /**
+   * Evaluate conditional
+   * @param conditional the conditional to be evaluated
+   * @param updatedComponent the updated form component
+   * @param component the component whose conditional is evaluated
+   */
+  public evaluateSimpleConditional(conditional: SimpleConditional, updatedComponent: FormComponent, component: FormComponent): void {
+    if (eval(conditional.function)(updatedComponent.getValue())) {
+      switch (conditional.action) {
+        case ActionTypes.Hide: {
+          // component.display.show = false;
+          break;
+        }
+        case ActionTypes.Display: {
+          // component.display.show = false;
+          break;
+        }
+        case ActionTypes.Disable: {
+          component.display.disabled = true;
+          break;
+        }
+        case ActionTypes.Enable: {
+          component.display.disabled = false;
+          break;
+        }
+      }
+    } else {
+      switch (conditional.action) {
+        case ActionTypes.Hide: {
+          // component.display.show = false;
+          break;
+        }
+        case ActionTypes.Display: {
+          // component.display.show = false;
+          break;
+        }
+        case ActionTypes.Disable: {
+          component.display.disabled = false;
+          break;
+        }
+        case ActionTypes.Enable: {
+          component.display.disabled = true;
+          break;
+        }
+      }
+    }
+  }
+
+  /**
+   * Logs conditional evaluation
+   * @param conditional the conditional to be evaluated
+   * @param updatedComponent the updated form component
+   */
+  private log(conditional: SimpleConditional, updatedComponent: FormComponent): void {
+    console.log(conditional.function);
+    console.log(eval(conditional.function)(updatedComponent.getValue()));
   }
 }
