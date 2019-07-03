@@ -116,9 +116,10 @@ export class FieldEditorComponent implements OnInit {
    * List of action types
    */
   public actionTypes: Array<string> = [
-    ActionTypes.Display,
     ActionTypes.Hide,
-    ActionTypes.Disable
+    ActionTypes.Display,
+    ActionTypes.Disable,
+    ActionTypes.Enable
   ];
 
   constructor(

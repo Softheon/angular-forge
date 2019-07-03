@@ -18,7 +18,7 @@ export class ConditionalService {
      */
   public generateConditionals(component: FormComponent): void {
     for (var i = 0; i < component.conditional.simpleConditionals.length; i++) {
-      // TODO: right now only handles numbers, should handle strings and datetimes
+      // TODO: right now only handles numbers, should handle strings and datetimes!!
       let conditional = component.conditional.simpleConditionals[i];
       let comparitor = conditional.comparisonType;
       let expected = conditional.comparisonValue;
@@ -46,8 +46,10 @@ export class ConditionalService {
               console.log(conditional.function);
               console.log(eval(conditional.function)(updatedComponent.getValue()));
               if (eval(conditional.function)(updatedComponent.getValue())) {
-                //TODO: take action, switch case with conditional.action
+                //TODO: take action, switch case with conditional.action!!
                 console.log(`${component.id} should be ${conditional.action}`);
+              } else {
+                //TODO: reverse action, not HIDE not DISPLAY
               }
             }
           }

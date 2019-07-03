@@ -41,4 +41,7 @@ export class ActionTypes {
 
     /** Disable comparison type */
     public static readonly Disable: string = 'disable';
+
+    /** Enable comparison type */
+    public static readonly Enable: string = 'enable';
 }
