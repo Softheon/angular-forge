@@ -14,7 +14,10 @@ export class ConditionalTypes {
  */
 export class ComparisonTypes {
     /** Equal comparison type */
-    public static readonly Equal: string = '==';
+    public static readonly Equal: string = '===';
+
+    /** Not equal comparison type */
+    public static readonly NotEqual: string = '!==';
 
     /** Greater comparison type */
     public static readonly Greater: string = '>';
@@ -27,6 +30,9 @@ export class ComparisonTypes {
 
     /** Lesser or equal to comparison type */
     public static readonly LesserOrEqualTo: string = '<=';
+
+    /** Includes comparison type */
+    public static readonly Includes: string = '.includes';
 }
 
 /**

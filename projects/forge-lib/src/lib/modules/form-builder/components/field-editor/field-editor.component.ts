@@ -10,6 +10,7 @@ import { ComponentTypes } from '../../../../shared/constants/component-types';
 import { ConditionalTypes, ComparisonTypes, ActionTypes } from '../../../../shared/constants/conditional-options';
 import { SimpleConditional } from '../../../../shared/form-components/abstract/form-conditional';
 import { ConditionalService } from '../../../../../lib/core/services/conditional.service';
+import { getComparisonTypes } from '../../../../../lib/shared/constants/conditional-registry';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -104,13 +105,7 @@ export class FieldEditorComponent implements OnInit {
   /**
    * List of comparison types
    */
-  public comparisonTypes: Array<string> = [
-    ComparisonTypes.Equal,
-    ComparisonTypes.Greater,
-    ComparisonTypes.GreaterOrEqualTo,
-    ComparisonTypes.Lesser,
-    ComparisonTypes.LesserOrEqualTo
-  ];
+  public comparisonTypes: Array<string> = [];
 
   /**
    * List of action types
@@ -321,6 +316,16 @@ export class FieldEditorComponent implements OnInit {
    * Generate functions as string from conditional attributes
    */
   public generateConditional(): void {
-    this.conditionalService.generateConditionals(this.field);
+    this.conditionalService.generateConditionals(this.field, this.formFields);
+  }
+
+  /**
+   * Selected component to be compared
+   * @param index index where compare component is specified
+   */
+  public selectCompareComponent(index: number): void {
+    let compareComponentId = this.field.conditional.simpleConditionals[index].compareComponentId;
+    let compareComponent = this.formFields.filter(comp => comp.id == compareComponentId)[0];
+    this.comparisonTypes = getComparisonTypes(compareComponent.type);
   }
 }

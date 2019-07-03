@@ -108,19 +108,25 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   }
 
   /**
-   * Updates value model on date model updates
+   * Updates date model validator
    */
-  public onInputFieldChanged(event: any): void {
-    if (event.valid) {
-      this.value = this.myDpModel.singleDate.jsDate;
+  public onInputFieldChanged($event: any): void {
+    if ($event.valid) {
       this.myDpModelValid = true;
-      let event = new Event('change', {
-        'bubbles': true,
-      });
-      this.dateInput.nativeElement.dispatchEvent(event);
     } else {
       this.myDpModelValid = false;
     }
+  }
+
+  /**
+   * Updates value model on date model updates and dispatched change event
+   */
+  public onDateChanged($event: any) {
+    this.value = new Date($event.singleDate.jsDate);
+    let event = new Event('change', {
+      'bubbles': true,
+    });
+    this.dateInput.nativeElement.dispatchEvent(event);
   }
 
   /**

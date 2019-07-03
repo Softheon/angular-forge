@@ -4,7 +4,7 @@
       <input #dateInput [id]="'input_' + id" [(ngModel)]="myDpModel" sws-form__input class="input-box"
         angular-mydatepicker #name="ngModel" [name]="'input_' + id" [disabled]="display.disabled"
         [required]="validation.required" onkeyup="this.setAttribute('value', this.value);" (click)="dp.toggleCalendar()"
-        [options]="myDpOptions" #dp="angular-mydatepicker" (inputFieldChanged)="onInputFieldChanged($event)" />
+        [options]="myDpOptions" #dp="angular-mydatepicker" (inputFieldChanged)="onInputFieldChanged($event)" (dateChanged)="onDateChanged($event)"/>
       <label sws-form__label [id]="'label_' + id" [for]="'label_' + id"
         *ngIf="!display.hideLabel">{{display.label}}</label>
       <div sws-form__bar></div>
