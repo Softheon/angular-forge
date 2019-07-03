@@ -114,7 +114,9 @@ export class FieldEditorComponent implements OnInit {
     ActionTypes.Hide,
     ActionTypes.Display,
     ActionTypes.Disable,
-    ActionTypes.Enable
+    ActionTypes.Enable,
+    ActionTypes.HideNotRequired,
+    ActionTypes.DisplayRequired
   ];
 
   constructor(

@@ -39,15 +39,21 @@ export class ComparisonTypes {
  * Action type constants
  */
 export class ActionTypes {
-    /** Hide comparison type */
+    /** Hide action type */
     public static readonly Hide: string = 'hide';
 
-    /** Display comparison type*/
+    /** Display action type*/
     public static readonly Display: string = 'display';
 
-    /** Disable comparison type */
+    /** Hide:notrequired action type */
+    public static readonly HideNotRequired: string = 'hide:notrequired';
+
+    /** Display:required action type*/
+    public static readonly DisplayRequired: string = 'display:required';
+
+    /** Disable action type */
     public static readonly Disable: string = 'disable';
 
-    /** Enable comparison type */
+    /** Enable action type */
     public static readonly Enable: string = 'enable';
 }

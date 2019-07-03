@@ -102,6 +102,16 @@ export class ConditionalService {
           component.display.disabled = false;
           break;
         }
+        case ActionTypes.HideNotRequired: {
+          component.display.hidden = true;
+          component.validation.required = false;
+          break;
+        }
+        case ActionTypes.DisplayRequired: {
+          component.display.hidden = false;
+          component.validation.required = true;
+          break;
+        }
       }
     } else {
       switch (conditional.action) {
@@ -119,6 +129,16 @@ export class ConditionalService {
         }
         case ActionTypes.Enable: {
           component.display.disabled = true;
+          break;
+        }
+        case ActionTypes.HideNotRequired: {
+          component.display.hidden = false;
+          component.validation.required = true;
+          break;
+        }
+        case ActionTypes.DisplayRequired: {
+          component.display.hidden = true;
+          component.validation.required = false;
           break;
         }
       }
