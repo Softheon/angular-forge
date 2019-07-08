@@ -32,6 +32,7 @@ export class ForgeComponent implements OnInit {
     newComponent.instance.data = this.component.data;
     newComponent.instance.display = this.component.display;
     newComponent.instance.validation = this.component.validation;
+    newComponent.instance.conditional = this.component.conditional;
     this.component = newComponent.instance;
 
     for (let i = 0; i < this.formsService.form.components.length; i++) {

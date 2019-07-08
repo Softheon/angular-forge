@@ -154,7 +154,7 @@ export class ConditionalService {
     if (!comparisonComponent) {
       action = eval(conditional.function)(compareComponent.getValue());
     } else {
-      if (compareComponent.getValue() && comparisonComponent.getValue()) {
+      if (compareComponent.getValue() != null && comparisonComponent.getValue() != null) {
         action = eval(conditional.function)(compareComponent.getValue(), comparisonComponent.getValue());
       }
     }
@@ -211,7 +211,7 @@ export class ConditionalService {
     if (!comparisonComponent) {
       console.log(eval(conditional.function)(compareComponent.getValue()));
     } else {
-      if (compareComponent.getValue() && comparisonComponent.getValue()) {
+      if (compareComponent.getValue() != null && comparisonComponent.getValue() != null) {
         console.log(eval(conditional.function)(compareComponent.getValue(), comparisonComponent.getValue()));
       }
     }

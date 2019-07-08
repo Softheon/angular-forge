@@ -219,7 +219,7 @@ export class FormsService {
             this.form.components.push(Object.assign(new EmailComponent(), component));
             break;
           }
-          case "Number": {
+          case "Number Field": {
             this.form.components.push(Object.assign(new NumberComponent(), component));
             break;
           }
