@@ -10,7 +10,7 @@ import { ComponentTypes } from '../../../../shared/constants/component-types';
 import { ConditionalTypes, ComparisonTypes, ActionTypes } from '../../../../shared/constants/conditional-options';
 import { SimpleConditional } from '../../../../shared/form-components/abstract/form-conditional';
 import { ConditionalService } from '../../../../../lib/core/services/conditional.service';
-import { getComparisonTypes } from '../../../../../lib/shared/constants/conditional-registry';
+import { getComparisonTypes, getDataType } from '../../../../../lib/shared/constants/conditional-registry';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -106,6 +106,11 @@ export class FieldEditorComponent implements OnInit {
    * List of comparison types
    */
   public comparisonTypes: Array<string> = [];
+
+  /**
+   * The filtered list of form components based on compare component data type
+   */
+  public comparisonFields: FormComponent[];
 
   /**
    * List of action types
@@ -329,5 +334,6 @@ export class FieldEditorComponent implements OnInit {
     let compareComponentId = this.field.conditional.simpleConditionals[index].compareComponentId;
     let compareComponent = this.formFields.filter(comp => comp.id == compareComponentId)[0];
     this.comparisonTypes = getComparisonTypes(compareComponent.type);
+    this.comparisonFields = this.formFields.filter(comp => getDataType(comp.type) == getDataType(compareComponent.type));
   }
 }

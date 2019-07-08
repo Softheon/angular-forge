@@ -15,39 +15,87 @@ export class ConditionalService {
   constructor() { }
 
   /**
-     * Generate functions as string from conditional attributes
-     * @param component the selected form component
-     */
+   * Generate functions as string from conditional attributes
+   * @param component the selected form component
+   * @param components the components in a form
+   */
   public generateConditionals(component: FormComponent, components: FormComponent[]): void {
     for (var i = 0; i < component.conditional.simpleConditionals.length; i++) {
       let conditional = component.conditional.simpleConditionals[i];
-      if (!conditional.action || !conditional.compareComponentId || !conditional.comparisonType || !conditional.comparisonValue) continue;
+      if (!conditional.action || !conditional.compareComponentId || !conditional.comparisonType || (!conditional.comparisonValue && !conditional.comparisonComponentId)) continue;
       let comparitor = conditional.comparisonType;
       let expected = conditional.comparisonValue;
-      let type = getDataType(components.filter(comp => comp.id == conditional.compareComponentId)[0].type);
+      let dataType = getDataType(components.filter(comp => comp.id == conditional.compareComponentId)[0].type);
+      let conditionalType = this.checkConditionalType(conditional);
 
-      switch (type) {
-        case 'boolean':
-          conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}(String(${expected}).toLowerCase() == 'true'? true : false); }`;
-          break;
-        case 'date':
-          conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}new Date("${expected}"); }`;
-          if (comparitor == '===' || comparitor == '!==') {
-            conditional.function = `(compareComponentValue) => { return compareComponentValue.getTime()${comparitor}new Date("${expected}").getTime()}; }`;
-          }
-          break;
-        case 'number':
-          conditional.function = `(compareComponentValue) => { return Number(compareComponentValue)${comparitor}Number(${expected}); }`;
-          break;
-        case 'string':
-          conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}String("${expected}"); }`;
-          if (comparitor == ".includes") {
-            conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}(String("${expected}")); }`;
-          }
-          break;
-        default:
-          conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}${expected}; }`;
+      if (conditionalType == 'comparisonValue') {
+        this.constructComparisonValueConditional(conditional, comparitor, expected, dataType);
+      } else {
+        this.constructComparisonComponentConditional(conditional, comparitor, dataType);
       }
+    }
+  }
+
+  /**
+   * Constructs the conditional function to be evaluated as strings when the comparison value is a string
+   * @param conditional the conditional to be evaluated
+   * @param comparitor the conditional comparitor
+   * @param expected the expected value
+   * @param dataType the data type of the comparison value
+   */
+  public constructComparisonValueConditional(conditional: SimpleConditional, comparitor: string, expected: string, dataType: string): void {
+    switch (dataType) {
+      case 'boolean':
+        conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}(String(${expected}).toLowerCase() == 'true'? true : false); }`;
+        break;
+      case 'date':
+        conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}new Date("${expected}"); }`;
+        if (comparitor == '===' || comparitor == '!==') {
+          conditional.function = `(compareComponentValue) => { return compareComponentValue.getTime()${comparitor}(new Date("${expected}")).getTime(); }`;
+        }
+        break;
+      case 'number':
+        conditional.function = `(compareComponentValue) => { return Number(compareComponentValue)${comparitor}Number(${expected}); }`;
+        break;
+      case 'string':
+        conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}String("${expected}"); }`;
+        if (comparitor == ".includes") {
+          conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}(String("${expected}")); }`;
+        }
+        break;
+      default:
+        conditional.function = `(compareComponentValue) => { return compareComponentValue${comparitor}${expected}; }`;
+    }
+  }
+
+  /**
+ * Constructs the conditional function to be evaluated as strings when the comparison value is another component
+ * @param conditional the conditional to be evaluated
+ * @param comparitor the conditional comparitor
+ * @param dataType the data type of the comparison value
+ */
+  public constructComparisonComponentConditional(conditional: SimpleConditional, comparitor: string, dataType: string): void {
+    switch (dataType) {
+      case 'boolean':
+        conditional.function = `(compareComponentValue, comparisonComponentValue) => { return compareComponentValue${comparitor}comparisonComponentValue; }`;
+        break;
+      case 'date':
+        conditional.function = `(compareComponentValue, comparisonComponentValue) => { return compareComponentValue${comparitor}comparisonComponentValue; }`;
+        if (comparitor == '===' || comparitor == '!==') {
+          conditional.function = `(compareComponentValue, comparisonComponentValue) => { return compareComponentValue.getTime()${comparitor}comparisonComponentValue.getTime(); }`;
+        }
+        break;
+      case 'number':
+        conditional.function = `(compareComponentValue, comparisonComponentValue) => { return Number(compareComponentValue)${comparitor}Number(comparisonComponentValue); }`;
+        break;
+      case 'string':
+        conditional.function = `(compareComponentValue, comparisonComponentValue) => { return compareComponentValue${comparitor}comparisonComponentValue; }`;
+        if (comparitor == ".includes") {
+          conditional.function = `(compareComponentValue, comparisonComponentValue) => { return compareComponentValue${comparitor}(comparisonComponentValue); }`;
+        }
+        break;
+      default:
+        conditional.function = `(compareComponentValue, comparisonComponentValue) => { return compareComponentValue${comparitor}comparisonComponentValue; }`;
     }
   }
 
@@ -66,9 +114,25 @@ export class ConditionalService {
         if (component.conditional.simpleConditionals) {
           for (var j = 0; j < component.conditional.simpleConditionals.length; j++) {
             let conditional = component.conditional.simpleConditionals[j];
-            if (conditional.compareComponentId == updatedComponent.id) {
-              this.log(conditional, updatedComponent);
-              this.evaluateSimpleConditional(conditional, updatedComponent, component);
+            let conditionalType = this.checkConditionalType(conditional);
+            if (conditionalType == 'comparisonValue') {
+              if (conditional.compareComponentId == updatedComponent.id) {
+                this.log(conditional, updatedComponent);
+                this.evaluateConditional(conditional, component, updatedComponent);
+              }
+            } else {
+              if (conditional.compareComponentId == updatedComponent.id || conditional.comparisonComponentId == updatedComponent.id) {
+                let otherComponent: FormComponent;
+                if (conditional.compareComponentId == updatedComponent.id) {
+                  otherComponent = components.filter(comp => comp.id == conditional.comparisonComponentId)[0];
+                  this.log(conditional, updatedComponent, otherComponent);
+                  this.evaluateConditional(conditional, component, updatedComponent, otherComponent);
+                } else {
+                  otherComponent = components.filter(comp => comp.id == conditional.compareComponentId)[0];
+                  this.log(conditional, otherComponent, updatedComponent);
+                  this.evaluateConditional(conditional, component, otherComponent, updatedComponent);
+                }
+              }
             }
           }
         }
@@ -77,72 +141,64 @@ export class ConditionalService {
   }
 
   /**
-   * Evaluate conditional
+   * Evaluate conditional 
    * @param conditional the conditional to be evaluated
-   * @param updatedComponent the updated form component
    * @param component the component whose conditional is evaluated
+   * @param compareComponent the first component to be compared
+   * @param comparisonComponent the second component to be compared
    */
-  public evaluateSimpleConditional(conditional: SimpleConditional, updatedComponent: FormComponent, component: FormComponent): void {
+  public evaluateConditional(conditional: SimpleConditional, component: FormComponent, compareComponent: FormComponent, comparisonComponent?: FormComponent): void {
     if (!conditional.function) return;
-    if (eval(conditional.function)(updatedComponent.getValue())) {
-      switch (conditional.action) {
-        case ActionTypes.Hide: {
-          component.display.hidden = true;
-          break;
-        }
-        case ActionTypes.Display: {
-          component.display.hidden = false;
-          break;
-        }
-        case ActionTypes.Disable: {
-          component.display.disabled = true;
-          break;
-        }
-        case ActionTypes.Enable: {
-          component.display.disabled = false;
-          break;
-        }
-        case ActionTypes.HideNotRequired: {
-          component.display.hidden = true;
-          component.validation.required = false;
-          break;
-        }
-        case ActionTypes.DisplayRequired: {
-          component.display.hidden = false;
-          component.validation.required = true;
-          break;
-        }
-      }
+
+    let action: boolean;
+    if (!comparisonComponent) {
+      action = eval(conditional.function)(compareComponent.getValue());
     } else {
-      switch (conditional.action) {
-        case ActionTypes.Hide: {
-          component.display.hidden = false;
-          break;
-        }
-        case ActionTypes.Display: {
-          component.display.hidden = true;
-          break;
-        }
-        case ActionTypes.Disable: {
-          component.display.disabled = false;
-          break;
-        }
-        case ActionTypes.Enable: {
-          component.display.disabled = true;
-          break;
-        }
-        case ActionTypes.HideNotRequired: {
-          component.display.hidden = false;
-          component.validation.required = true;
-          break;
-        }
-        case ActionTypes.DisplayRequired: {
-          component.display.hidden = true;
-          component.validation.required = false;
-          break;
-        }
+      if (compareComponent.getValue() && comparisonComponent.getValue()) {
+        action = eval(conditional.function)(compareComponent.getValue(), comparisonComponent.getValue());
       }
     }
+
+    switch (conditional.action) {
+      case ActionTypes.Hide: {
+        component.display.hidden = action ? true : false;
+        break;
+      }
+      case ActionTypes.Display: {
+        component.display.hidden = action ? false : true;
+        break;
+      }
+      case ActionTypes.Disable: {
+        component.display.disabled = action ? true : false;
+        break;
+      }
+      case ActionTypes.Enable: {
+        component.display.disabled = action ? false : true;
+        break;
+      }
+      case ActionTypes.HideNotRequired: {
+        component.display.hidden = action ? true : false;
+        component.validation.required = action ? false : true;
+        break;
+      }
+      case ActionTypes.DisplayRequired: {
+        component.display.hidden = action ? false : true;
+        component.validation.required = action ? true : false;
+        break;
+      }
+    }
+  }
+
+  /**
+   * Checks whether comparison is done with a value or another component
+   * @param conditional the conditional to be evaluated
+   */
+  private checkConditionalType(conditional: SimpleConditional): string {
+    if (!conditional.comparisonValue || conditional.comparisonValue == '') {
+      return "comparisonComponent";
+    }
+
+    return "comparisonValue";
   }
 
   /**
@@ -150,8 +206,14 @@ export class ConditionalService {
    * @param conditional the conditional to be evaluated
    * @param updatedComponent the updated form component
    */
-  private log(conditional: SimpleConditional, updatedComponent: FormComponent): void {
+  private log(conditional: SimpleConditional, compareComponent: FormComponent, comparisonComponent?: FormComponent): void {
     console.log(conditional.function);
-    console.log(eval(conditional.function)(updatedComponent.getValue()));
+    if (!comparisonComponent) {
+      console.log(eval(conditional.function)(compareComponent.getValue()));
+    } else {
+      if (compareComponent.getValue() && comparisonComponent.getValue()) {
+        console.log(eval(conditional.function)(compareComponent.getValue(), comparisonComponent.getValue()));
+      }
+    }
   }
 }

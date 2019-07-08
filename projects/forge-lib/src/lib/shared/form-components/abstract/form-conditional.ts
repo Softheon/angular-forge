@@ -25,6 +25,9 @@ export class SimpleConditional {
     /** The comparison value */
     public comparisonValue: string;
 
+    /** The comparison component id */
+    public comparisonComponentId: string;
+
     /** The action */
     public action: string;
 

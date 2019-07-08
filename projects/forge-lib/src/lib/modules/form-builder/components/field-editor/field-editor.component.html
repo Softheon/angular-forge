@@ -111,7 +111,8 @@
                     onclick="this.setAttribute('value', this.value);" (change)="selectCompareComponent(i)">
                     <option selected disabled>Select a Compare Component</option>
                     <ng-container *ngFor="let formField of formFields">
-                        <option [value]="formField.id" *ngIf="this.field !== formField">{{formField.display.label}} ({{formField.id}})</option>
+                      <option [value]="formField.id" *ngIf="this.field !== formField">{{formField.display.label}}
+                        ({{formField.id}})</option>
                     </ng-container>
                   </select>
                   <label for="compare_component">Compare Component</label>
@@ -127,13 +128,31 @@
                   <label for="comparison_type">Comparison Type</label>
                 </div>
               </div>
-              <div *ngIf="this.field.conditional.simpleConditionals[i].comparisonType"  sws-form input-active form-md>
-                <input [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonValue" sws-form__input
-                  type="'text'" [name]="'comparison_value'" onkeyup="this.setAttribute('value', this.value);">
-                <label sws-form__label [for]="'comparison_value'">Comparison Value</label>
+              <div *ngIf="this.field.conditional.simpleConditionals[i].comparisonType">
+                <div *ngIf="!this.field.conditional.simpleConditionals[i].comparisonComponentId || this.field.conditional.simpleConditionals[i].comparisonComponentId === 'Select a Comparison Component'" sws-form input-active form-md>
+                  <input [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonValue" sws-form__input
+                    type="'text'" [name]="'comparison_value'" onkeyup="this.setAttribute('value', this.value);">
+                  <label sws-form__label [for]="'comparison_value'">Comparison Value</label>
+                </div>
+                <div *ngIf="!this.field.conditional.simpleConditionals[i].comparisonValue || this.field.conditional.simpleConditionals[i].comparisonValue === ''" p-t-30>
+                  <div sws-select--jet>
+                    <select id="comparison_component"
+                      [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonComponentId"
+                      onclick="this.setAttribute('value', this.value);">
+                      <option selected>Select a Comparison Component</option>
+                      <ng-container *ngFor="let formField of comparisonFields">
+                        <option [value]="formField.id"
+                          *ngIf="this.field !== formField && this.field.conditional.simpleConditionals[i].compareComponentId !== formField.id">
+                          {{formField.display.label}}
+                          ({{formField.id}})</option>
+                      </ng-container>
+                    </select>
+                    <label for="comparison_component">Comparison Component</label>
+                  </div>
+                </div>
               </div>
               <div p-t-30>
-                <div *ngIf="this.field.conditional.simpleConditionals[i].comparisonValue" sws-select--jet>
+                <div *ngIf="this.field.conditional.simpleConditionals[i].comparisonValue || this.field.conditional.simpleConditionals[i].comparisonComponentId" sws-select--jet>
                   <select id="action_type" [(ngModel)]="this.field.conditional.simpleConditionals[i].action"
                     onclick="this.setAttribute('value', this.value);">
                     <option selected disabled>Select an Action Type</option>
