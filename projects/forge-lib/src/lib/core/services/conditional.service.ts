@@ -207,6 +207,7 @@ export class ConditionalService {
    * @param updatedComponent the updated form component
    */
   private log(conditional: SimpleConditional, compareComponent: FormComponent, comparisonComponent?: FormComponent): void {
+    if(!conditional.function) return;
     console.log(conditional.function);
     if (!comparisonComponent) {
       console.log(eval(conditional.function)(compareComponent.getValue()));
