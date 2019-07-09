@@ -20,6 +20,7 @@ class TextFieldComponent {
   validation;
   data;
   api = { entityTemplateName: 'test', accountName: 'test', profileName: '', fieldName: '', options: null };
+  conditional;
   getValue(): any { return 'test'; }
   constructor() { }
 }
