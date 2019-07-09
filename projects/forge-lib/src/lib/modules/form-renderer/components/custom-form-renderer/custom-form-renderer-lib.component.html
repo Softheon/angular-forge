@@ -1,6 +1,6 @@
 <form [formGroup]="entityForm">
   <div *ngFor="let component of formsService.form.components; trackBy: trackComponentById">
-    <forge-renderer-component full-width [component]="component">
+    <forge-renderer-component full-width [component]="component" (change)="applyConditional(component)">
     </forge-renderer-component>
   </div>
   <button sws-button--primary (click)="submit()">Submit</button>

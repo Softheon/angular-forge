@@ -1,4 +1,4 @@
-<div flex-container-column flex-center>
+<div flex-container-column flex-center *ngIf="!display.hidden">
   <div id="fileDropContainer">
     <div [id]="'dropzone_' + id" ng2FileDrop [uploader]="uploader"
       class="card bg-faded text-center file-drop-zone" m-v-30 p-v-50>

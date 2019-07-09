@@ -1,33 +1,35 @@
-<div flex-container-row>
-  <button [id]="'prefix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25 m-r-0
-    *ngIf="display.prefix">{{display.prefix}}</button>
-  <div sws-form input-active full-width>
-    <input [id]="'input_' + id" forgeNumber [requireDecimal]="true" [decimalPlaces]="2" [(ngModel)]="value"
-      sws-form__input type="text" #name="ngModel" [name]="'input_' + id" [disabled]="display.disabled"
-      [required]="validation.required" onkeyup="this.setAttribute('value', this.value);">
-    <label sws-form__label [id]="'label_' + id" [for]="'label_' + id"
-      *ngIf="!display.hideLabel">{{display.label}}</label>
-    <div *ngIf="name.invalid && (name.dirty || name.touched)">'
-      <div *ngIf="validation.customErrorMessage">
-        <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
-      </div>
-      <div *ngIf="!validation.customErrorMessage">
-        <div *ngIf="name.errors.required">
-          <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
+<div *ngIf="!display.hidden">
+  <div flex-container-row>
+    <button [id]="'prefix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25 m-r-0
+      *ngIf="display.prefix">{{display.prefix}}</button>
+    <div sws-form input-active full-width>
+      <input [id]="'input_' + id" forgeNumber [requireDecimal]="true" [decimalPlaces]="2" [(ngModel)]="value"
+        sws-form__input type="text" #name="ngModel" [name]="'input_' + id" [disabled]="display.disabled"
+        [required]="validation.required" onkeyup="this.setAttribute('value', this.value);">
+      <label sws-form__label [id]="'label_' + id" [for]="'label_' + id"
+        *ngIf="!display.hideLabel">{{display.label}}</label>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">'
+        <div *ngIf="validation.customErrorMessage">
+          <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
+        </div>
+        <div *ngIf="!validation.customErrorMessage">
+          <div *ngIf="name.errors.required">
+            <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
+          </div>
         </div>
       </div>
+      <div sws-form__bar></div>
     </div>
-    <div sws-form__bar></div>
+    <button [id]="'suffix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25
+      *ngIf="display.suffix">{{display.suffix}}</button>
+    <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
+      <div sws-icon-flat--secondary rounded>
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <div sws-tooltip--text>
+        <p> {{display.tooltip}} </p>
+      </div>
+    </div>
   </div>
-  <button [id]="'suffix_' + id" class="prefix-suffix" sws-button-simple--jet m-t-25
-    *ngIf="display.suffix">{{display.suffix}}</button>
-  <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
-    <div sws-icon-flat--secondary rounded>
-      <i class="fas fa-lightbulb"></i>
-    </div>
-    <div sws-tooltip--text>
-      <p> {{display.tooltip}} </p>
-    </div>
-  </div>
+  <p *ngIf="display.description">{{display.description}}</p>
 </div>
-<p *ngIf="display.description">{{display.description}}</p>

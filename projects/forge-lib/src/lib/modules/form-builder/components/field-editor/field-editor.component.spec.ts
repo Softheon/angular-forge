@@ -210,4 +210,28 @@ describe('FieldEditorComponent', () => {
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
+  it('should create empty conditional', () => {
+    component.field = new TextFieldComponent();
+    component.ngOnInit();
+    component.createConditional();
+    expect(component.field.conditional.simpleConditionals).toBeTruthy();
+  });
+  it('should generate conditional', () => {
+    let tfComponent = new TextFieldComponent();
+    component.field = tfComponent;
+    component.formFields = [tfComponent];
+    component.ngOnInit();
+    component.createConditional();
+    component.generateConditional();
+    expect(component.field.conditional.simpleConditionals).toBeTruthy();
+  });
+  it('should select compare component', () => {
+    let tfComponent = new TextFieldComponent();
+    component.field = tfComponent;
+    component.formFields = [tfComponent];
+    component.ngOnInit();
+    component.createConditional();
+    component.selectCompareComponent(0);
+    expect(component.field.conditional.simpleConditionals).toBeTruthy();
+  });
 });

@@ -1,4 +1,3 @@
-
 <div>
   <div class="example-container">
     <h2>Basic Components</h2>
@@ -20,9 +19,11 @@
       [cdkDropListConnectedTo]="[componentList]" class="form-list" (cdkDropListDropped)="drop($event)"
       [cdkDropListDisabled]="true" id="forgeComponents">
       <div [ngClass]="{ 'fa-selected': forgeComponent?.id === selectedComponent?.id}" class="form-box"
-        *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag>
-        <div full-width (click)="editComponent(i)">
-          <forge-builder-component full-width [component]="forgeComponent">
+        *ngFor="let forgeComponent of formsService.form.components; index as i; trackBy: trackComponentById" cdkDrag
+        (click)="editComponent(i)">
+        <span full-width *ngIf="forgeComponent.display.hidden">{{forgeComponent.display.label}} ({{forgeComponent.id}})</span>
+        <div full-width>
+          <forge-builder-component full-width [component]="forgeComponent" (change)="applyConditional(forgeComponent)">
           </forge-builder-component>
         </div>
       </div>
@@ -30,7 +31,7 @@
   </div>
 
   <div class="form-container" *ngIf="selectedComponent">
-    <forge-renderer-field-editor [field]="selectedComponent">
+    <forge-renderer-field-editor [field]="selectedComponent" [formFields]="formsService.form.components">
     </forge-renderer-field-editor>
     <button m-t-30 sws-button--primary (click)="deleteComponent()">Delete selected component</button>
   </div>

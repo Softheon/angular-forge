@@ -1,18 +1,21 @@
-<div flex-container-row>
-  <label h4 [id]="'label_' + id" *ngIf="!display.hideLabel" m-t-15>{{display.label}}</label>
-  <div [id]="'tooltip_' + id" sws-tooltip-right--light *ngIf="display.tooltip">
-    <div sws-icon-flat--secondary rounded>
-      <i class="fas fa-lightbulb"></i>
-    </div>
-    <div sws-tooltip--text>
-      <p> {{display.tooltip}} </p>
+<div *ngIf="!display.hidden">
+  <div flex-container-row>
+    <label h4 [id]="'label_' + id" *ngIf="!display.hideLabel" m-t-15>{{display.label}}</label>
+    <div [id]="'tooltip_' + id" sws-tooltip-right--light *ngIf="display.tooltip">
+      <div sws-icon-flat--secondary rounded>
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <div sws-tooltip--text>
+        <p> {{display.tooltip}} </p>
+      </div>
     </div>
   </div>
-</div>
-<p *ngIf="display.description" [id]="'description_' + id">{{display.description}}</p>
-<div m-t-10 flex-container-row flex-wrap>
-  <div sws-checkbox *ngFor="let option of api.options; let i = index">
-    <input [id]="option + i" type="checkbox" [disabled]="display.disabled" (change)="calculateValue($event, option.value)" />
-    <label [for]="option + i">{{option.name}}</label>
+  <p *ngIf="display.description" [id]="'description_' + id">{{display.description}}</p>
+  <div m-t-10 flex-container-row flex-wrap>
+    <div sws-checkbox *ngFor="let option of api.options; let i = index">
+      <input [id]="option + i" type="checkbox" [disabled]="display.disabled"
+        (change)="calculateValue($event, option.value)" />
+      <label [for]="option + i">{{option.name}}</label>
+    </div>
   </div>
 </div>

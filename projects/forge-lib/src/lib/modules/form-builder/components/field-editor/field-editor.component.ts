@@ -7,6 +7,10 @@ import { ProfileTemplateModel } from '../../../../shared/models/profileTemplateM
 import { EntityTemplateModel } from '../../../../shared/models/entityTemplateModel';
 import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
 import { ComponentTypes } from '../../../../shared/constants/component-types';
+import { ConditionalTypes, ComparisonTypes, ActionTypes } from '../../../../shared/constants/conditional-options';
+import { SimpleConditional } from '../../../../shared/form-components/abstract/form-conditional';
+import { ConditionalService } from '../../../../../lib/core/services/conditional.service';
+import { getComparisonTypes, getDataType } from '../../../../../lib/shared/constants/conditional-registry';
 
 @Component({
   selector: 'forge-renderer-field-editor',
@@ -31,9 +35,14 @@ export class FieldEditorComponent implements OnInit {
   @ViewChild('vcValidation', { read: ViewContainerRef }) vcValidation: ViewContainerRef;
 
   /**
-   * the form component
+   * The form component
    */
   @Input() public field: FormComponent;
+
+  /**
+   * The complete list of form components
+   */
+  @Input() public formFields: FormComponent[];
 
   /**
    * The profile that has been selected
@@ -85,17 +94,47 @@ export class FieldEditorComponent implements OnInit {
    */
   public showAbstractValidation = true;
 
+  /**
+   * List of conditional types
+   */
+  public conditionalTypes: Array<string> = [
+    ConditionalTypes.Simple,
+    ConditionalTypes.Advanced
+  ];
+
+  /**
+   * List of comparison types
+   */
+  public comparisonTypes: Array<string> = [];
+
+  /**
+   * The filtered list of form components based on compare component data type
+   */
+  public comparisonFields: FormComponent[];
+
+  /**
+   * List of action types
+   */
+  public actionTypes: Array<string> = [
+    ActionTypes.Hide,
+    ActionTypes.Display,
+    ActionTypes.Disable,
+    ActionTypes.Enable,
+    ActionTypes.HideNotRequired,
+    ActionTypes.DisplayRequired
+  ];
+
   constructor(
     private resolver: ComponentFactoryResolver,
-    public formsService: FormsService
-  ) {  }
+    public formsService: FormsService,
+    public conditionalService: ConditionalService
+  ) { }
 
   /**
    * Actions to take on the init life-cycle
    */
   public ngOnInit(): void {
-    if(this.field)
-    {
+    if (this.field) {
       this.setDynamicComponents();
     }
   }
@@ -105,10 +144,9 @@ export class FieldEditorComponent implements OnInit {
    * @param changes changes to inputs
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    if(changes.field.currentValue !==  changes.field.previousValue )
-    {
+    if (changes.field.currentValue !== changes.field.previousValue) {
       this.setDynamicComponents();
-    }   
+    }
   }
 
   /**
@@ -267,5 +305,35 @@ export class FieldEditorComponent implements OnInit {
     vc.clear();
     const newComponent = vc.createComponent(factory);
     newComponent.instance.component = this.field;
+  }
+
+
+  /**
+   * Create and append a simple conditional to form's conditional attribute
+   */
+  public createConditional(): void {
+    if (!this.field.conditional.simpleConditionals) {
+      this.field.conditional.simpleConditionals = [];
+    }
+
+    this.field.conditional.simpleConditionals.push(new SimpleConditional());
+  }
+
+  /**
+   * Generate functions as string from conditional attributes
+   */
+  public generateConditional(): void {
+    this.conditionalService.generateConditionals(this.field, this.formFields);
+  }
+
+  /**
+   * Selected component to be compared
+   * @param index index where compare component is specified
+   */
+  public selectCompareComponent(index: number): void {
+    let compareComponentId = this.field.conditional.simpleConditionals[index].compareComponentId;
+    let compareComponent = this.formFields.filter(comp => comp.id == compareComponentId)[0];
+    this.comparisonTypes = getComparisonTypes(compareComponent.type);
+    this.comparisonFields = this.formFields.filter(comp => getDataType(comp.type) == getDataType(compareComponent.type));
   }
 }

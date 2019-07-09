@@ -16,7 +16,6 @@ import { CurrencyComponent } from '../../shared/form-components/concrete/currenc
 import { DateTimeComponent } from '../../shared/form-components/concrete/date-time/date-time.component';
 import { PhoneNumberComponent } from '../../shared/form-components/concrete/phone-number/phone-number.component';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -144,8 +143,7 @@ export class FormsService {
     return this.http.get<EntityTemplateModel>(url, { headers: headers })
       .toPromise()
       .then(value => {
-        if(shouldMap)
-        {
+        if (shouldMap) {
           this.mapFormResponse(value);
         }
         return this.form;
@@ -193,9 +191,9 @@ export class FormsService {
   }
 
   /**
- * Gets the HTTP Header
- * @param oauthToken OAuth Token
- */
+   * Gets the HTTP Header
+   * @param oauthToken OAuth Token
+   */
   private getHeader(oauthToken: string): HttpHeaders {
     return new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${oauthToken}` });
   }
@@ -221,7 +219,7 @@ export class FormsService {
             this.form.components.push(Object.assign(new EmailComponent(), component));
             break;
           }
-          case "Number": {
+          case "Number Field": {
             this.form.components.push(Object.assign(new NumberComponent(), component));
             break;
           }

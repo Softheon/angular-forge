@@ -3,6 +3,8 @@ import { FormRendererConfig } from '../../../../configs/form-renderer-lib-config
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsService } from '../../../../../lib/core/services/forms.service';
 import { ComponentTypes } from '../../../../../lib/shared/constants/component-types';
+import { FormComponent } from '../../../../../lib/shared/form-components/abstract/form-component';
+import { ConditionalService } from '../../../../../lib/core/services/conditional.service';
 
 @Component({
   selector: 'custom-forge-form-renderer',
@@ -47,7 +49,8 @@ export class CustomFormRendererLibComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     // private resolver: ComponentFactoryResolver,
-    public formsService: FormsService) { }
+    public formsService: FormsService,
+    public conditionalService: ConditionalService) { }
 
   /**
    * Initializes the component
@@ -129,25 +132,25 @@ export class CustomFormRendererLibComponent implements OnInit {
           }
         }
         //if the list of submissions doesn't have one for the template the component is trying to update create one and add everything
-         if (!createdFormValue) {
-           let res = await this.formsService.getEntityTemplate(component.api.entityTemplateName);
-           let submissionForm = {};
-           submissionForm[res.name] = {};
-           this.entityNames.push(res.name)
-           if (this.formRendererConfig.displayFormName) {
-             submissionForm[res.name].Name = (<HTMLInputElement>document.getElementById('entityName')).value;
-           } else {
-             submissionForm[res.name].Name = `${new Date(Date.now()).toLocaleString()} - ${res.name}`;
-           }
-           if (component.type == ComponentTypes.Attachment) {
-             submissionForm[res.name].Attachments = component.getValue()
-           }
-           else {
-             submissionForm[res.name][component.api.profileName] = {}
-             submissionForm[res.name][component.api.profileName][component.api.fieldName] = component.getValue();
-           }
-           submissionForms.push(submissionForm);
-         }
+        if (!createdFormValue) {
+          let res = await this.formsService.getEntityTemplate(component.api.entityTemplateName);
+          let submissionForm = {};
+          submissionForm[res.name] = {};
+          this.entityNames.push(res.name)
+          if (this.formRendererConfig.displayFormName) {
+            submissionForm[res.name].Name = (<HTMLInputElement>document.getElementById('entityName')).value;
+          } else {
+            submissionForm[res.name].Name = `${new Date(Date.now()).toLocaleString()} - ${res.name}`;
+          }
+          if (component.type == ComponentTypes.Attachment) {
+            submissionForm[res.name].Attachments = component.getValue()
+          }
+          else {
+            submissionForm[res.name][component.api.profileName] = {}
+            submissionForm[res.name][component.api.profileName][component.api.fieldName] = component.getValue();
+          }
+          submissionForms.push(submissionForm);
+        }
       }
     }
     return submissionForms;
@@ -173,5 +176,13 @@ export class CustomFormRendererLibComponent implements OnInit {
    */
   public trackComponentById(index, item): any {
     return item.id;
+  }
+
+  /**
+   * Applies conditionals when a form component value is modified
+   * @param component the updated form component
+   */
+  public applyConditional(component: FormComponent) {
+    this.conditionalService.applyConditionals(component, this.formsService.form.components);
   }
 }

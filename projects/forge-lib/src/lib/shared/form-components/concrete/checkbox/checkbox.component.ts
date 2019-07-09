@@ -6,6 +6,7 @@ import { CheckboxDisplay } from './checkbox-display';
 import { CheckboxValidation } from './checkbox-validation';
 import { FormApi } from '../../abstract/form-api';
 import { ComponentTypes } from '../../../constants/component-types';
+import { FormConditional } from '../../abstract/form-conditional';
 
 @Component({
   selector: 'forge-checkbox',
@@ -47,6 +48,11 @@ export class CheckboxComponent extends FormComponent implements OnInit {
    * Checkbox value
    */
   public value: boolean;
+
+  /**
+   * Conditional attributes
+   */
+  public conditional: FormConditional = new FormConditional();
 
   /**
    * Initializes the component

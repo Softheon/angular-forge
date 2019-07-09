@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ComponentTypes } from '../../../constants/component-types';
 import { DateTimeDisplay } from './date-time-display';
 import { FormComponent } from '../../abstract/form-component';
@@ -6,6 +6,7 @@ import { FormApi } from '../../abstract/form-api';
 import { DateTimeValidation } from './date-time-validation';
 import { DateTimeData } from './date-time-data';
 import { IAngularMyDpOptions, IMyDateModel } from 'angular-mydatepicker';
+import { FormConditional } from '../../abstract/form-conditional';
 
 /**
  * Datetime component
@@ -47,6 +48,11 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   public api: FormApi = new FormApi();
 
   /**
+   * Conditional attributes
+   */
+  public conditional: FormConditional = new FormConditional();
+
+  /**
    * Value model
    */
   public value: Date;
@@ -76,6 +82,11 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   public myDpModelValid: boolean;
 
   /**
+   * Date Input element reference
+   */
+  @ViewChild('dateInput') dateInput: ElementRef;
+
+  /**
    * Initializes the component
    */
   public ngOnInit(): void {
@@ -97,15 +108,25 @@ export class DateTimeComponent extends FormComponent implements OnInit {
   }
 
   /**
-   * Updates value model on date model updates
+   * Updates date model validator
    */
-  public onInputFieldChanged(event: any): void {
-    if(event.valid) {
-      this.value = this.myDpModel.singleDate.jsDate;
+  public onInputFieldChanged($event: any): void {
+    if ($event.valid) {
       this.myDpModelValid = true;
     } else {
       this.myDpModelValid = false;
     }
+  }
+
+  /**
+   * Updates value model on date model updates and dispatched change event
+   */
+  public onDateChanged($event: any) {
+    this.value = new Date($event.singleDate.jsDate);
+    let event = new Event('change', {
+      'bubbles': true,
+    });
+    this.dateInput.nativeElement.dispatchEvent(event);
   }
 
   /**

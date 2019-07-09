@@ -1,36 +1,38 @@
-<div flex-container-row>
-  <div sws-form input-active full-width>
-    <input [id]="'input_' + id" [(ngModel)]="myDpModel" sws-form__input class="input-box" angular-mydatepicker
-      #name="ngModel" [name]="'input_' + id" [disabled]="display.disabled" [required]="validation.required"
-      onkeyup="this.setAttribute('value', this.value);" (click)="dp.toggleCalendar()" [options]="myDpOptions"
-      #dp="angular-mydatepicker" (inputFieldChanged)="onInputFieldChanged($event)" />
-    <label sws-form__label [id]="'label_' + id" [for]="'label_' + id"
-      *ngIf="!display.hideLabel">{{display.label}}</label>
-    <div sws-form__bar></div>
-    <div sws-form__calendar>
-      <i class="fas fa-calendar"></i>
-    </div>
-    <div *ngIf="name.invalid && (name.dirty || name.touched)" style="margin-top: -12px;">
-      <div *ngIf="validation.customErrorMessage">
-        <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
+<div *ngIf="!display.hidden">
+  <div flex-container-row>
+    <div sws-form input-active full-width>
+      <input #dateInput [id]="'input_' + id" [(ngModel)]="myDpModel" sws-form__input class="input-box"
+        angular-mydatepicker #name="ngModel" [name]="'input_' + id" [disabled]="display.disabled"
+        [required]="validation.required" onkeyup="this.setAttribute('value', this.value);" (click)="dp.toggleCalendar()"
+        [options]="myDpOptions" #dp="angular-mydatepicker" (inputFieldChanged)="onInputFieldChanged($event)" (dateChanged)="onDateChanged($event)"/>
+      <label sws-form__label [id]="'label_' + id" [for]="'label_' + id"
+        *ngIf="!display.hideLabel">{{display.label}}</label>
+      <div sws-form__bar></div>
+      <div sws-form__calendar>
+        <i class="fas fa-calendar"></i>
       </div>
-      <div *ngIf="!validation.customErrorMessage">
-        <div *ngIf="name.errors.required">
-          <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" style="margin-top: -12px;">
+        <div *ngIf="validation.customErrorMessage">
+          <span sws-label--danger m-t-30>{{validation.customErrorMessage}}</span>
+        </div>
+        <div *ngIf="!validation.customErrorMessage">
+          <div *ngIf="name.errors.required">
+            <span [id]="'required_message' + id" sws-label--danger m-t-30>{{display.label}} is required.</span>
+          </div>
+        </div>
+        <div *ngIf="!myDpModelValid">
+          <span sws-label--danger m-t-30> {{display.label}} must be formatted as {{ myDpOptions.dateFormat }}.</span>
         </div>
       </div>
-      <div *ngIf="!myDpModelValid">
-        <span sws-label--danger m-t-30> {{display.label}} must be formatted as {{ myDpOptions.dateFormat }}.</span>
+    </div>
+    <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
+      <div sws-icon-flat--secondary rounded>
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <div sws-tooltip--text>
+        <p> {{display.tooltip}} </p>
       </div>
     </div>
   </div>
-  <div [id]="'tooltip_' + id" sws-tooltip-right--light m-t-20 *ngIf="display.tooltip">
-    <div sws-icon-flat--secondary rounded>
-      <i class="fas fa-lightbulb"></i>
-    </div>
-    <div sws-tooltip--text>
-      <p> {{display.tooltip}} </p>
-    </div>
-  </div>
+  <p *ngIf="display.description">{{display.description}}</p>
 </div>
-<p *ngIf="display.description">{{display.description}}</p>

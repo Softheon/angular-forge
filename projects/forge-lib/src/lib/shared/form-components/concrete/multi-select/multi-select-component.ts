@@ -6,6 +6,7 @@ import { MultiSelectDisplay } from './multi-select-display';
 import { MultiSelectValidation } from './multi-select-validation';
 import { MultiSelectData } from './multi-select-data';
 import { ComponentTypes } from '../../../constants/component-types';
+import { FormConditional } from '../../abstract/form-conditional';
 
 /**
  * Multi Select component
@@ -45,6 +46,11 @@ export class MultiSelectComponent extends FormComponent {
    * Form API attributes
    */
   public api: FormApi = new FormApi();
+
+  /**
+   * Conditional attributes
+   */
+  public conditional: FormConditional = new FormConditional();
 
   /**
    * The value of the component

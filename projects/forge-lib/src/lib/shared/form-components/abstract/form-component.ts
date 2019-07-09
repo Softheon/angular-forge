@@ -3,6 +3,7 @@ import { ComponentActions } from './component-actions';
 import { FormValidation } from './form-validation';
 import { FormData } from './form-data';
 import { FormApi } from './form-api';
+import { FormConditional } from './form-conditional';
 
 /**
  * Abstract Form Component
@@ -37,6 +38,11 @@ export abstract class FormComponent implements ComponentActions {
      * Form api attribute
      */
     abstract api: FormApi = new FormApi();
+
+    /**
+     * Form conditional attribute
+     */
+    abstract conditional: FormConditional = new FormConditional();
 
     /**
      * Gets the value of the form component

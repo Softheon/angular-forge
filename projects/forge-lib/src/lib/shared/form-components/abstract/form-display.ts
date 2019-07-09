@@ -26,4 +26,9 @@ export abstract class FormDisplay {
      * Whether the label should be disabled
      */
     public disabled: boolean;
+
+    /**
+     * Whether the component should be hidden
+     */
+    public hidden: boolean;
 }
