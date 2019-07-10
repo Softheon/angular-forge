@@ -129,12 +129,27 @@
                 </div>
               </div>
               <div *ngIf="this.field.conditional.simpleConditionals[i].comparisonType">
-                <div *ngIf="!this.field.conditional.simpleConditionals[i].comparisonComponentId || this.field.conditional.simpleConditionals[i].comparisonComponentId === 'Select a Comparison Component'" sws-form input-active form-md>
-                  <input [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonValue" sws-form__input
-                    type="'text'" [name]="'comparison_value'" onkeyup="this.setAttribute('value', this.value);">
-                  <label sws-form__label [for]="'comparison_value'">Comparison Value</label>
+                <div flex-container-row>
+                  <div
+                    *ngIf="!this.field.conditional.simpleConditionals[i].comparisonComponentId || this.field.conditional.simpleConditionals[i].comparisonComponentId === 'Select a Comparison Component'"
+                    sws-form input-active form-md>
+                    <input [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonValue" sws-form__input
+                      type="'text'" [name]="'comparison_value'" onkeyup="this.setAttribute('value', this.value);">
+                    <label sws-form__label [for]="'comparison_value'">Comparison Value</label>
+                  </div>
+                  <div sws-tooltip-left--light m-t-20>
+                    <div sws-icon-flat--secondary rounded>
+                      <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div sws-tooltip--text>
+                      <p> Please enter appropriate value type. For examples, number (-2, 19.8), string (john, sarah),
+                        datetime (07/04/2019, 12/25/1970), boolean (true, false).</p>
+                    </div>
+                  </div>
                 </div>
-                <div *ngIf="!this.field.conditional.simpleConditionals[i].comparisonValue || this.field.conditional.simpleConditionals[i].comparisonValue === ''" p-t-30>
+                <div
+                  *ngIf="!this.field.conditional.simpleConditionals[i].comparisonValue || this.field.conditional.simpleConditionals[i].comparisonValue === ''"
+                  p-t-30>
                   <div sws-select--jet>
                     <select id="comparison_component"
                       [(ngModel)]="this.field.conditional.simpleConditionals[i].comparisonComponentId"
@@ -152,7 +167,9 @@
                 </div>
               </div>
               <div p-t-30>
-                <div *ngIf="this.field.conditional.simpleConditionals[i].comparisonValue || this.field.conditional.simpleConditionals[i].comparisonComponentId" sws-select--jet>
+                <div
+                  *ngIf="this.field.conditional.simpleConditionals[i].comparisonValue || this.field.conditional.simpleConditionals[i].comparisonComponentId"
+                  sws-select--jet>
                   <select id="action_type" [(ngModel)]="this.field.conditional.simpleConditionals[i].action"
                     onclick="this.setAttribute('value', this.value);">
                     <option selected disabled>Select an Action Type</option>
