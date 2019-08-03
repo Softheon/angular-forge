@@ -23,13 +23,16 @@ import { PhoneNumberDirective } from '../../shared/directives/phone-number.direc
 import { CurrencyComponent } from '../../shared/form-components/concrete/currency/currency.component';
 import { DateTimeComponent } from '../../shared/form-components/concrete/date-time/date-time.component';
 import { PhoneNumberComponent } from '../../shared/form-components/concrete/phone-number/phone-number.component';
+import { MatInputModule, MatFormFieldModule } from '@angular/material';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         FileUploadModule,
-        AngularMyDatePickerModule
+        AngularMyDatePickerModule,
+        MatInputModule,
+        MatFormFieldModule        
     ],
     declarations: [
         TextFieldComponent,

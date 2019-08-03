@@ -9,6 +9,7 @@ import { FloatDirective } from '../../shared/directives/float.directive';
 import { FormRendererLibComponent } from './components/form-renderer/form-renderer-lib.component';
 import { CustomFormRendererLibComponent } from './components/custom-form-renderer/custom-form-renderer-lib.component';
 import { FormBuilderComponentsModule } from '../form-builder/form-builder-components.module';
+import { MatInputModule, MatFormFieldModule, MatOptionModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,11 @@ import { FormBuilderComponentsModule } from '../form-builder/form-builder-compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FormBuilderComponentsModule
+    FormBuilderComponentsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports: [
     FormRendererLibComponent,
