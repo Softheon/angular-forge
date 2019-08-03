@@ -6,6 +6,16 @@ import { TextFieldValidation } from './text-field-validation';
 import { TextFieldData } from './text-field-data';
 import { FormApi } from '../../abstract/form-api';
 import { ComponentTypes } from '../../../constants/component-types';
+import { ErrorStateMatcher } from '@angular/material/core'
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 /**
  * Text field form component
@@ -16,6 +26,8 @@ import { ComponentTypes } from '../../../constants/component-types';
   styleUrls: ['./text-field.component.scss']
 })
 export class TextFieldComponent extends FormComponent implements OnInit {
+
+  public matcher = new MyErrorStateMatcher();
   /**
    * The ID of the component
    */

@@ -15,13 +15,21 @@ export class FieldTemplateModel {
   /** The options */
   public options?: Option[];
 
+  /** The fields */
+  public fields: FieldTemplateModel[];
+
+  /** the Field Template Model */
+  public data: FieldTemplateModel[][] = [];
+
    /**
     * Constructs a Field Object
     * @param name The name of a field
     * @param type The type of a field
+    * @param fields: the list of fields
     */
-  constructor(name: string, type: FieldType) {
+  constructor(name?: string, type?: FieldType, fields?: FieldTemplateModel[]) {
     this.name = name;
     this.type = type;
+    this.fields = fields;
   }
 }

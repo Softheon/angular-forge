@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EntityTemplateModel } from '../../../../shared/models/entityTemplateModel';
 import { FormRendererConfig } from '../../../../configs/form-renderer-lib-config';
 import { ForgeService } from '../../../../core/services/forge.service';
+import { FieldTemplateModel } from '../../../../shared/models/fieldTemplateModel';
+import { FieldType } from '../../../../shared/models/field-type';
 
 @Component({
   selector: 'forge-form-renderer',
@@ -82,6 +84,14 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
     this.didFinishRendering = false;
     this.finishedRendering.emit(false);
     this.entityTemplateModel = await this.forgeService.getEntityTemplate();
+    this.entityTemplateModel.profiles.forEach(profile => {
+      for (let i = 0; i < profile.fields.length; i++) {
+        if (profile.fields[i].type == "Table") {
+          profile.fields[i].data = [];
+          profile.fields[i].data.push(profile.fields[i].fields);
+        }
+      }
+    });
     this.didFinishRendering = true;
     this.finishedRendering.emit(true);
   }
@@ -109,6 +119,10 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
     this.formSubmitted.emit(res);
   }
 
+  public addDataRow(profileIndex: number, fieldIndex: number): void {
+    this.entityTemplateModel.profiles[profileIndex].fields[fieldIndex].data.push(this.entityTemplateModel.profiles[profileIndex].fields[fieldIndex].fields)
+  }
+
   /**
    * Creates the form to be submitted
    */
@@ -120,6 +134,7 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
       submissionForm.Name = `${new Date(Date.now()).toLocaleString()} - ${this.entityTemplateModel.name}`;
     }
 
+    console.log(this.entityTemplateModel);
     for (let i = 0; i < this.entityTemplateModel.profiles.length; i++) {
       const profileTemplate = this.entityTemplateModel.profiles[i];
       submissionForm[profileTemplate.name] = {};
@@ -139,9 +154,34 @@ export class FormRendererLibComponent implements OnInit, OnChanges {
             submissionForm[profileTemplate.name][fieldTemplate.name] = '0001-01-01T00:00:00Z';
           }
         }
+        else if (fieldTemplate.type === 'ListBox') {
+          submissionForm[profileTemplate.name][fieldTemplate.name] = fieldInput.value;
+        }
+        else if (fieldTemplate.type === 'Table') {
+          submissionForm[profileTemplate.name][fieldTemplate.name] = []
+          let index = 0;
+          fieldTemplate.data.forEach(fieldVal => {
+            let tableData: any = {}
+            fieldVal.forEach(field => {
+              const tableFieldInput = (<HTMLInputElement>document.getElementById(index + field.name));
+              if (field.type === 'Integer' || field.type === 'Double') {
+                tableData[field.name] = +tableFieldInput.value;
+              } else if (field.type === 'String') {
+                tableData[field.name] = tableFieldInput.value;
+              } else if (field.type === 'DateTime') {
+                if (tableFieldInput.value !== '') {
+                  tableData[field.name] = new Date(tableFieldInput.value);
+                } else {
+                  tableData[field.name] = '0001-01-01T00:00:00Z';
+                }
+              }
+            });
+            index++;
+            submissionForm[profileTemplate.name][fieldTemplate.name].push(tableData);
+          });
+        }
       }
     }
-
     return submissionForm;
   }
 

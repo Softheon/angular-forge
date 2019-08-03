@@ -14,32 +14,82 @@
                 <div sws-form__bar></div>
             </div>
         </div>
-        <div *ngFor="let profile of entityTemplateModel?.profiles">
-            <h4>{{profile.name}}</h4>
-            <div *ngFor="let field of profile.fields">
+        <div *ngFor="let profile of entityTemplateModel?.profiles; let profileIndex = index">
+            <h3 m-b-0>{{profile.name}}</h3>
+            <div *ngFor="let field of profile.fields; let fieldIndex = index">
+                <div *ngIf="field.type === 'ListBox'" sws-form>
+                    <mat-form-field full-width>
+                        <mat-label>{{field.name}}</mat-label>
+                        <mat-select [id]="field.name" selectionChange="this.setAttribute('value', this.value);">
+                            <mat-option *ngFor="let option of field.options" [value]="option.number">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
                 <div *ngIf="field.type === 'String'" sws-form full-width>
-                    <input sws-form__input type="text" [name]="field.name" [id]="field.name"
-                        onchange="this.setAttribute('value', this.value);">
-                    <label sws-form__label [for]="field.name">{{field.name}}</label>
-                    <div sws-form__bar></div>
+                    <mat-form-field full-width>
+                        <input matInput type="text" [name]="field.name" [id]="field.name"
+                            onchange="this.setAttribute('value', this.value);" placeholder="{{field.name}}">
+                    </mat-form-field>
                 </div>
                 <div *ngIf="field.type === 'Integer'" sws-form full-width>
-                    <input sws-form__input Integer="true" [name]="field.name" [id]="field.name"
-                        onchange="this.setAttribute('value', this.value);">
-                    <label sws-form__label [for]="field.name">{{field.name}}</label>
-                    <div sws-form__bar></div>
+                    <mat-form-field>
+                        <input matInput type="number" [name]="field.name" [id]="field.name"
+                            onchange="this.setAttribute('value', this.value);" placeholder="{{field.name}}">
+                    </mat-form-field>
                 </div>
                 <div *ngIf="field.type === 'DateTime'" sws-form full-width>
-                    <input sws-form__input type="datetime-local" [name]="field.name" [id]="field.name"
-                        onchange="this.setAttribute('value', this.value);">
-                    <label class="label-prepopulated" sws-form__label [for]="field.name">{{field.name}}</label>
-                    <div sws-form__bar></div>
+                    <mat-form-field>
+                        <input matInput type="datetime-local" [name]="field.name" [id]="field.name"
+                            onchange="this.setAttribute('value', this.value);" placeholder="{{field.name}}">
+                    </mat-form-field>
                 </div>
                 <div *ngIf="field.type === 'Double'" sws-form full-width>
-                    <input sws-form__input Float="true" [name]="field.name" [id]="field.name"
-                        onchange="this.setAttribute('value', this.value);">
-                    <label sws-form__label [for]="field.name">{{field.name}}</label>
-                    <div sws-form__bar></div>
+                    <mat-form-field>
+                        <input matInput type="number" [name]="field.name" [id]="field.name"
+                            onchange="this.setAttribute('value', this.value);" placeholder="{{field.name}}">
+                    </mat-form-field>
+                </div>
+                <div *ngIf="field.type === 'Table'" sws-form full-width>
+                    <h4 m-b-0>{{field.name}} Table</h4>
+                    <div *ngFor="let data of field.data; let i = index">
+                        <span class="row-label">{{i}})</span>
+                        <div d-inline-block *ngFor="let field of field.fields">
+                            <div flex-container>
+                                <div flex-2 *ngIf="field.type === 'String'" m-r-5 sws-form>
+                                    <mat-form-field>
+                                        <input matInput type="text" [name]="i + field.name" [id]="i + field.name"
+                                            onchange="this.setAttribute('value', this.value);"
+                                            placeholder="{{field.name}}">
+                                    </mat-form-field>
+                                </div>
+                                <div flex-1 *ngIf="field.type === 'Integer'" m-r-5 sws-form>
+                                    <mat-form-field>
+                                        <input matInput type="number" [name]="i + field.name" [id]="i + field.name"
+                                            onchange="this.setAttribute('value', this.value);"
+                                            placeholder="{{field.name}}">
+                                    </mat-form-field>
+                                </div>
+                                <div flex-1 *ngIf="field.type === 'DateTime'" m-r-5 sws-form>
+                                    <mat-form-field>
+                                        <input matInput type="datetime-local" [name]="i + field.name" [id]="i + field.name"
+                                            onchange="this.setAttribute('value', this.value);"
+                                            placeholder="{{field.name}}">
+                                    </mat-form-field>
+                                </div>
+                                <div flex-1 *ngIf="field.type === 'Double'" m-r-5 sws-form>
+                                    <mat-form-field>
+                                        <input matInput type="number" [name]="i + field.name" [id]="i + field.name"
+                                            onchange="this.setAttribute('value', this.value);"
+                                            placeholder="{{field.name}}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button m-l-0 p-l-0 p-r-0 sws-button--primary
+                        (click)="addDataRow(profileIndex, fieldIndex)">+Add</button>
                 </div>
             </div>
         </div>

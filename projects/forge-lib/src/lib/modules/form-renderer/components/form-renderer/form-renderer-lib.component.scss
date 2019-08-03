@@ -1,4 +1,19 @@
 .label-prepopulated {
-    top: -18px !important;
-    font-size: 12px !important;   
+  top: -18px !important;
+  font-size: 12px !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.row-label {
+  font-weight: 600;
+  padding-right: 5px;
 }
